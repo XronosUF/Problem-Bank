@@ -1,0 +1,100 @@
+\documentclass[]{ximera}
+\usepackage[]{PackageLoader}
+\newcounter{TotalProblems}
+\setcounter{TotalProblems}{0}
+
+\Verbosetrue
+
+\begin{document}
+\makeatletter
+\usetag{Cat@One}
+
+%%%%%%%%%%%%%%%%%%%
+\input{Limit_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Limit_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Derivative_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Derivative_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Integral_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Integral_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Limit_Imp_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Limit_Imp_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Derivative_Imp_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Derivative_Imp_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Integral_Imp_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Integral_Imp_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Limit_Multi_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Limit_Multi_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Derivative_Multi_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Derivative_Multi_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%
+\input{Integral_Multi_Input}
+%%%%%%%%%%%%%%%%%%%
+
+There are \arabic{Number@CurrentProblem} problems in the \verb|Integral_Multi_Input| file.
+\addtocounter{TotalProblems}{\arabic{Number@CurrentProblem}}
+\setcounter{Number@CurrentProblem}{0}
+\vfill
+
+
+
+
+
+
+There are a total of \arabic{TotalProblems} problems in the Database.
+
+\end{document}

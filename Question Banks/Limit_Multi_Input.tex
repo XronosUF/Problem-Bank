@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% 			Header Contents				%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Debug line. to activate this check, put \Verbosetrue at the start of a file calling this.
+\ifVerbose{Limit Multi Called}\fi
+
+%For Each input file, use the below casing. Run "Count_Questions_In_File.tex" to count how many questions are in the file, then put that number in the "addtocounter" in the casing below.
+\ifquestionList{% Input File goes below
+%Currently no files to place here.
+}
+\else{%	Update the counter below with the total number of QUESTIONS in the Input File. 
+\addtocounter{Total@Question}{0}
+}\fi% Don't Add anything below this!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% 			File Contents				%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifquestionList{% Input File goes below
+%Currently no files to place here.
+}
+\else{%	Update the counter below with the total number of QUESTIONS in the Input File. 
+\addtocounter{Total@Question}{0}
+}\fi% Don't Add anything below this!

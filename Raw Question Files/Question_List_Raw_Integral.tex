@@ -1,0 +1,753 @@
+%%%%%%  This is the raw list of questions before processing %%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Riemann}{
+\begin{sagesilent}
+# Build the Interval
+a = NonZeroInt(-8,8) 				# Left end point
+n = NonZeroInt(3,7)					# Number of rectangles
+b = a + n				# Fix right endpoint based on left endpoint and number of rec.
+M = max( abs(a), abs(b)) 			# Max val useful for some functions
+m = min( abs(a), abs(b))			# Min val useful for some functions
+
+# Build the function
+v = [ x - a, x^2 - m^2, -x^2 + M^2, b - x]# Make a vector of functions
+p = RandInt(0,3)					# Select a function
+f = v[p]							# Assign function
+
+v2 = ['right', 'left']				# Vector of endpoints. (Note, we can add more!)
+p2 = RandInt(0,1)					# Pick Endpoint
+Endpoint = v2[p2]					#Initialize Endpoint
+
+# Calculate the area
+Area = 0							# Initialize Area
+for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
+    if p2 == 0:						# Right Endpoint case
+        Xpt = j + 1					# Shift to right x anchor point by adding width
+    if p2 == 1:						# Left Endpoint case
+        Xpt = j						# Use left x anchor point.
+# Case not implemented    if p2 == 2:						# Midpoint case
+# Case not implemented        Xpt = j + 0.5				# Shift half a width
+    Area = Area + f(a+Xpt)			# Exploit that rectangles are width 1
+   
+Ans=Area
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+
+\input{2311_Compute_Integral_0001.HELP.tex}
+
+\[\mbox{Area}\approx\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Riemann}{
+\begin{sagesilent}
+# Build the Interval
+Parity = (-1)^RandInt(0,1)			# Determine if you are on negative or pos side.
+LeftEnd = NonZeroInt(1,3)			# Left end point
+n = NonZeroInt(3,5)					# Number of rectangles
+RightEnd = LeftEnd + n				# Determine Right Endpoint
+Delx = (RightEnd - LeftEnd)/n		# Width of each rectangle.
+
+# Build the function
+v = [ 1/(x), 1/(x^2), 1/(-x^2), 1/(x)]# Make a vector of functions
+p = RandInt(0,3)					# Select a function
+f = v[p]							# Assign function
+
+v2 = ['right', 'left']				# Vector of endpoints. (Note, we can add more!)
+p2 = RandInt(0,1)					# Pick Endpoint
+Endpoint = v2[p2]					# Initialize Endpoint
+
+# Calculate the area
+Area = 0							# Initialize Area
+for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
+    if p2 == 0:						# Right Endpoint case
+        Xpt = j + 1					# Shift to right x anchor point by adding width
+    if p2 == 1:						# Left Endpoint case
+        Xpt = j						# Use left x anchor point.
+# Case not implemented    if p2 == 2:					# Midpoint case
+# Case not implemented        Xpt = j + 0.5				# Shift half a width
+    Area = Area + f(LeftEnd+(Delx*Xpt))	# Exploit that rectangles are width 1
+   
+Ans=abs(Area)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{LeftEnd}$ to $x=\sage{RightEnd}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+
+\input{2311_Compute_Integral_0002.HELP.tex}
+
+\[\mbox{Area}\approx\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Rational, Sub@Riemann}{
+\begin{sagesilent}
+# Build the Interval
+a = NonZeroInt(0,8) 				# Left end point
+n = NonZeroInt(3,7)					# Number of rectangles
+b = a + n				# Fix right endpoint based on left endpoint and number of rec.
+M = max( abs(a), abs(b)) 			# Max val useful for some functions
+m = min( abs(a), abs(b))			# Min val useful for some functions
+
+# Build the function
+v = [ sqrt(x - a), sqrt(x^2 - m^2), sqrt(-x^2 + M^2), sqrt(b - x)]# Make a vector of functions
+p = RandInt(0,3)					# Select a function
+f = v[p]							# Assign function
+
+v2 = ['right', 'left']				# Vector of endpoints. (Note, we can add more!)
+p2 = RandInt(0,1)					# Pick Endpoint
+Endpoint = v2[p2]					# Initialize Endpoint
+
+# Calculate the area
+Area = 0							# Initialize Area
+for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
+    if p2 == 0:						# Right Endpoint case
+        Xpt = j + 1					# Shift to right x anchor point by adding width
+    if p2 == 1:						# Left Endpoint case
+        Xpt = j						# Use left x anchor point.
+# Case not implemented    if p2 == 2:					# Midpoint case
+# Case not implemented        Xpt = j + 0.5				# Shift half a width
+    Area = Area + f(a+(Xpt))	# Exploit that rectangles are width 1
+   
+Ans=abs(Area)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+
+\input{2311_Compute_Integral_0003.HELP.tex}
+
+\[\mbox{Area}\approx\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% 10 Compute (Riemann Sums problems ^) %%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite}{
+\begin{sagesilent}
+# Build Interval
+a = NonZeroInt(-10,10)
+Width = RandInt(3,10)
+b = a + Width
+r = RandInt(1, 5)
+
+# Build Function
+v = [abs(x), x, sqrt(r^2 - x^2)]
+p = RandInt(0,2)
+f = v[p]
+
+if p==2:
+   Area = (1/2)*pi*r^2
+   a = -r
+   b = r
+else:
+   c1 = NonZeroInt(-5,5)
+   c2 = RandInt(-5,5)
+   f(x) = f(c1*x + c2)
+   g(x) = abs(f(x))
+   Area = integral(g(x), x, a, b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Evaluate the definite integral by interpreting it in terms of areas.  
+
+\input{2311_Compute_Integral_004.HELP.tex}
+
+\[\int_{\sage{a}}^{\sage{b}} \sage{f(x)}\;dx= \answer{\sage{Area}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, \Sub@Piecewise}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b=Integer(randint(a+3,a+8))
+c = NonZeroInt(1,5)
+m1=NonZeroInt(1,4)
+m2=NonZeroInt(1,4)
+d=(-2*m1*a-2*c)/(b-a)
+l=Integer(randint(a-5,a))
+u=Integer(randint(a+1,b+5))
+
+f1=m1*x+c
+f2=d*(x-a)+(m1*a+c)
+f3=m2*(x-b)-(m1*a+c)
+f = piecewise([([-20,a],f1), ((a,b), f2), ([b,20], f3)])
+
+Ans=integrate(f,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Given the piecewise function 
+\[f(x)=\left\{\begin{array}{ll}
+\sage{f1}\; , & x\leq\sage{a}\\[3pt]
+\sage{f2}\; , & \sage{a}< x< \sage{b}\\[3pt]
+\sage{f3}\; , & x\geq\sage{b}
+\end{array} \right.\]
+evaluate the following definite integral by interpreting it in terms of areas.  
+
+\input{2311_Compute_Integral_0005.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} f(x)\;dx= \answer{\sage{Ans}}\]  
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+v=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+f=v[p]
+Ans=f(t)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{t} \sage{f}\;dx\]
+
+\input{2311_Compute_Integral_0006.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v2=[sqrt(x), log(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+f=v1[p]
+g=v2[p]
+h=f*g
+Ans=f(t)*g(t)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{t} \sage{h}\;dx\]
+
+\input{2311_Compute_Integral_0007.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v2=[sqrt(x), log(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+f=v1[p]
+g=v2[p]
+h=g(f)
+Ans=g(f(t))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{t} \sage{h}\;dx\]
+
+\input{2311_Compute_Integral_0008.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Chain_Rule}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v2=[sqrt(x), log(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+f=v1[p]
+g=v2[p]
+
+Ans=(diff(g,x))(t)*f(t)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{\sage{g(t)}} \sage{f}\;dx\]
+
+\input{2311_Compute_Integral_0009.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% 18 Compute %%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Poly}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = Integer(randint(-8,8))
+c = NonZeroInt(1,5)
+l=Integer(randint(-10,5))
+u=Integer(randint(l,12))
+
+p=Integer(randint(0,4))
+vpoly=[(x-a), expand((x-a)^2), expand((x-a)^3), expand((x-a)*(x-b)), expand((x-a)^2*(x-b))]
+F=vpoly[p]
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{2311_Compute_Integral_0010.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Poly}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = Integer(randint(-8,8))
+c = NonZeroInt(1,5)
+l=Integer(randint(-10,5))
+u=Integer(randint(l,12))
+
+F=(x-a)/(b*sqrt(x))
+Ans=integrate(F,x,l,u)
+\end{sagesilent}a-3
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{2311_Compute_Integral_0011.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Trig}{
+\begin{sagesilent} 
+b = NonZeroInt(-10,10)
+l = RandAng(0,pi)
+u = RandAng(l,2*pi)
+p=Integer(randint(0,1))
+vtrig=[b*sin(x), b*cos(x)]
+
+F=vtrig[p]
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{2311_Compute_Integral_0012.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+
+l=NonZeroInt(-10,5)  
+if l<0:
+   while l==-1:
+      l=NonZeroInt(-10,5)
+   u=NonZeroInt(l+1,-1)
+elif l>0:
+   u=NonZeroInt(l+1,12)
+
+p=Integer(randint(0,3))
+v=[a/x,a/x^2, a/x^3, a/x^4]
+F=v[p]
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{2311_Compute_Integral_0013.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% 22 Compute %%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+l=NonZeroInt(-6,-1)  
+u=NonZeroInt(1,6)
+
+p=Integer(randint(0,3))
+v=[a/x,a/x^2, a/x^3, a/x^4]
+F=v[p]
+f=integrate(F,x)
+Ans=f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
+
+\input{2311_Concept_Integral_0001.HELP.tex}
+
+\begin{multipleChoice}
+\choice The bounds are evaluated in the wrong order.
+\choice The antiderivative is incorrect.
+\choice[correct] The integrand is not defined over the entire interval.
+\choice Nothing is wrong.  The equation is correct, as is.
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%% 22 Compute   1 Concept %%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Trig}{
+\begin{sagesilent}
+b = NonZeroInt(-10,10)
+l = RandAng(0,pi/3)
+u = RandAng(2*pi/3,pi)
+
+p=Integer(randint(0,1))
+vt=[b*sec(x)*tan(x), b*sec(x)^2]
+F=vt[p]
+f=integrate(F,x)
+Ans=f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
+
+\input{2311_Concept_Integral_0002.HELP.tex}
+
+\begin{multipleChoice}
+\choice The antiderivative is incorrect.
+\choice[correct] The integrand is not defined over the entire interval.
+\choice The bounds are evaluated in the wrong order.
+\choice Nothing is wrong.  The equation is correct, as is.
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems_FTC, Sub@Trig}{
+\begin{sagesilent}
+b = NonZeroInt(-10,10)
+l = RandAng(pi/6,5*pi/6)
+u = RandAng(7*pi/6,11*pi/6)
+
+p=Integer(randint(0,1))
+vt=[b*csc(x)^2, b*csc(x)*cot(x)]
+F=vt[p]
+f=integrate(F,x)
+Ans=f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
+
+\input{2311_Concept_Integral_0003.HELP.tex}
+
+\begin{multipleChoice}
+\choice The antiderivative is incorrect.
+\choice[correct] The integrand is not defined over the entire interval.
+\choice The bounds are evaluated in the wrong order.
+\choice Nothing is wrong.  The equation is correct, as is.
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%% 3 Concept   13 Compute %%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = Integer(randint(-15,15))
+p=Integer(randint(0,10))
+v2=[sqrt(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=a*F+c
+Ans=integrate(G,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{2311_Compute_Integral_0014.HELP.tex}
+
+\[\int\;\sage{G}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,10))
+q=Integer(randint(0,10))
+v2=[sqrt(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=v2[q]
+Ans=integrate(a*(F+G),x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{2311_Compute_Integral_0015.HELP.tex}
+
+\[\int\;\sage{a*(F+G)}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub_u}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(-10,10)
+p=Integer(randint(0,11))
+v2=[sqrt(x), exp(x), log(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]+c
+G=diff(F,x)
+Ans=integrate(a*G*F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{2311_Compute_Integral_0016.HELP.tex}
+
+\[\int\;\sage{a*G*F}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub_u}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v2=[sqrt(x), exp(x), log(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=v2[q]
+f=diff(F,x)
+Ans=integrate(a*G(F)*f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{2311_Compute_Integral_0017.HELP.tex}
+
+\[\int\;\sage{a*G(F)*f}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub_u}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+p=Integer(randint(0,11))
+q=Integer(randint(0,3))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v=[a/x,a/x^2, a/x^3, a/x^4]
+F=v1[p]
+G=v[q]
+f=diff(F,x)
+Ans=integrate(G(F)*f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{2311_Compute_Integral_0018.HELP.tex}
+
+\[\int\;\sage{G(F)*f}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub_u, Sub@Arctrig}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,1))
+v=[a*arcsin(b*x), a*arccos(b*x), a*arctan(b*x)]
+F=v[p]
+f=diff(F,x)
+Ans=integrate(F*f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{2311_Compute_Integral_0019.HELP.tex}
+
+\[\int\;\sage{F*f}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%  3 Concept    19 Compute %%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

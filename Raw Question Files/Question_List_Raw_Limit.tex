@@ -1,0 +1,695 @@
+%%%%%%  This is the raw list of questions before processing %%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote}{
+\begin{sagesilent}
+a = RandInt(-14,14)
+b = RandInt(-14,14)
+
+f1 = (x - a)
+f2 = (x - b)
+
+
+
+fNum=expand(f1*f2)
+fDen=f1
+Ans=f2(a)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0001.HELP.tex}
+
+\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-14,14)
+b = NonZeroInt(-14,14,[0,a])
+
+fDen=expand((x-a)*(x-b))
+fNum=(x-a)
+Ans=1/(a-b)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0002.HELP.tex}
+
+\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-14,14)
+b = NonZeroInt(-14,14, [0,a])
+
+fNum=expand((x-a)*(x-b))
+fDen=(x-a)
+Ans(fNum/fDen, x=b)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0003.HELP.tex}
+
+\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote}{
+\begin{sagesilent}
+a = NonZeroInt(-14,14)
+b = NonZeroInt(-14,14, [0,a])
+
+fDen=expand((x-a)*(x-b))
+fNum=(x-a)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0004.HELP.tex}
+
+\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{DNE}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-4,4)
+b = NonZeroInt(-4,4, [0,a])
+c = NonZeroInt(-5,5)
+
+fNum=expand((x-a)*(x-c))
+fDen=expand((x-a)*(x-b))
+Ans=limit(fNum/fDen, x=a)
+#fans=(a-c)/(a-b)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0005.HELP.tex}
+
+\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-25,25, [a])
+
+fNum=x^3-a^3
+fDen=expand((x-a)*(x-b))
+Ans=limit(fNum/fDen, x=a)
+#fans=(3*a^2)/(a-b)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0006.HELP.tex}
+
+\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, \Sub@Asymptote}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+c = NonZeroInt(-5,5)
+d = NonZeroInt(-5,5, [0,c])
+e = NonZeroInt(-5,5, [0,b])
+   
+v=[(x-a),(x-b),(x-c),(x-d),(x-e)]
+p=NonZeroInt(1,3)
+q=NonZeroInt(1,4)
+while p>>q:
+   q=NonZeroInt(1,4)
+   
+f=1
+for j in [1..p]:
+   k=Integer(randint(0,4))
+   f=v[k]*f
+
+g=1
+for j in [1..q]:
+   k=Integer(randint(0,4))
+   g=v[k]*g
+
+fNum=expand(f)
+fDen=expand(g)
+Ans=limit(fNum/fDen,x=infinity)
+
+I=NonZeroInt(-1,1)
+Inf=I*infinity
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0007.HELP.tex}
+
+\[\lim_{x\to\sage{Inf}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@FRQ, Type@Compute, Topic@Limit, Sub@Rational, Sub@Continuity}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10, [0,a])
+r=a-b   
+c=NonZeroInt(-5,5, [0,r])
+
+vleft=[b/2*(x+a)/a,expand((x-c)*(x-r))/(x-c),sqrt(x^2-a^2)+b]
+vright=[b/2*(x+a)/a,expand((x-c)*(x-r))/(x-c)]
+
+first = Integer(randint(0,2))
+second = Integer(randint(0,1))
+while first==second:
+   second = Integer(randint(0,1))
+
+Fone=vleft[first]
+Ftwo=vright[second]
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+
+Use the function to answer the following questions.
+\[f(x)=\left\{\begin{array}{ll}\sage{Fone}&,x<\sage{a}\\[5pt]
+\sage{Ftwo}&,x\geq\sage{a}
+\end{array}\right.\]
+
+\input{2311_Compute_Limit_0008.HELP.tex}
+
+
+Compute $\lim\limits_{x\to\sage{a}^-}f(x)=\answer{\sage{b}}$\\[1in]
+
+Compute $\lim\limits_{x\to\sage{a}^+}f(x)=\answer{\sage{b}}$\\[1in]
+
+Compute $f(\sage{a})=\answer{\sage{b}}$\\[1in]
+
+The function is ...
+\begin{multipleChoice}
+\choice[correct]{continuous at $x=\sage{a}$.}
+\choice{discontinuous at $x=\sage{a}$.}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Poly, Sub@Trig, Sub@Continuity}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+c = NonZeroInt(-5,5)
+d=NonZeroInt(-5,5, [0,a])
+   
+vleft=[a*sin(b*x*pi), a*cos(b*x*pi), a*tan(b*x*pi), a*sin(b*x*pi/2), a*cos(b*x*pi/2), a*tan(b*x*pi/2), a*sin(b*x*pi/6), a*cos(b*x*pi/6), a*tan(b*x*pi/6), a*sin(b*x*pi/3), a*cos(b*x*pi/3), a*tan(b*x*pi/3)]
+
+vright=[(x-a),(x-a)*(x-b),(x-a)*(x-b)*(x-c),expand((x-a)*(x-b)),expand((x-a)*(x-b)*(x-c))]
+
+first = Integer(randint(0,11))
+second = Integer(randint(0,4))
+
+Fone=vleft[first]
+Ftwo=vright[second]
+F=Fone*Ftwo
+
+Ans=limit(F,x=d)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0009.HELP.tex}
+
+\[\lim_{x\to\sage{d}}\sage{F}=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
+\begin{sagesilent}
+a = NonZeroInt(-15,15)
+b = NonZeroInt(-15,15)
+Fone=(b/a)+(b/x)
+Ftwo=a+x
+F=Fone/Ftwo
+
+Ans=limit(F,x=-a)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following difference quotient:
+
+\input{2311_Compute_Limit_0010.HELP.tex}
+
+\[\lim_{x\to\sage{-a}}\dfrac{\sage{Fone}}{\sage{Ftwo}}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Asymptote, Sub@OneSided}{
+\begin{sagesilent}
+a = NonZeroInt(-15,15)
+b = RandInt(-15,15)
+p=Integer(randint(1,9))
+v=[a*x*ln(x-b),a/(x-b), a/(x-b)^2, a/(x-b)^3, a/(x-b)^p]
+first = Integer(randint(0,4))
+F=v[first]
+Ans=limit(F,x=b,dir='plus')
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0011.HELP.tex}
+
+\[\lim_{x\to \sage{b}^+}\sage{F}=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Asymptote, Sub@Radical}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)   
+d=NonZeroInt(1,5, [a])
+e=NonZeroInt(-5,5) 
+m=NonZeroInt(2,6,[3,5])  
+
+F=(sqrt(d*x^m+a)-b)/(e*x^(m/2)+c)
+
+Ans=limit(F,x=infinity)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0012.HELP.tex}
+
+\[\lim_{x\to\infty}\sage{F}=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@DifferenceQuotient, Sub@Poly}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-4,4)
+p=Integer(randint(0,3))
+if p==0:
+   b = NonZeroInt(1,4)
+
+v=[a*sqrt(x),a/x, a*x^2, a*x^3]
+
+F=v[p]
+Fone=F(b+h)
+Ftwo=F(b)
+DQ=(F(b+h)-F(b))/h
+
+Ans=limit(DQ,h=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0013.HELP.tex}
+
+\[\lim_{h\to0}\frac{\sage{Fone-Ftwo}}{h}=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Concept, Topic@Limit, Sub@LimitLaws}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+
+f=x+a
+d=b*c
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\to0}g(x)=\sage{c}$, then evaluate the following limit:
+
+\input{2311_Concept_Limit_0001.HELP.tex}
+
+\[\lim_{x\to0}f(\sage{f})g(x)=\answer{\sage{d}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Concept, Topic@Limit, Sub@LimitLaws}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+
+f=x+a
+d=b+c
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\to0}g(x)=\sage{c}$, then evaluate the following limit:
+
+\input{2311_Concept_Limit_0002.HELP.tex}
+
+\[\lim_{x\to0}f(\sage{f})+g(x)=\answer{\sage{d}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Limit, Sub@LimitLaws}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+
+f=x+a
+g=x-a
+d=b*c
+d2=b+c
+d3=c-b
+d4=b/c
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\to0}g(x)=\sage{c}$, then evaluate the following limits:
+
+\input{2311_Concept_Limit_0003.HELP.tex}
+
+
+\[\lim_{x\to0}f(\sage{f})g(x)=\answer{\sage{d}}\]
+
+\[\lim_{x\to0}f(\sage{f})+g(x)=\answer{\sage{d2}}\]
+
+\[\lim_{x\to0}g(x)-f(\sage{f})=\answer{\sage{d3}}\]
+
+\[\lim_{x\to\sage{a}}\dfrac{f(x)}{g(\sage{g})}=\answer{\sage{d4}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Disc_Jump, Sub@Piecewise}{
+\begin{sagesilent}
+a = Integer(randint(-3,3))
+b = NonZeroInt(a+2,a+5)
+
+f=x-a
+k=(x-b)^2
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Let $f(x)=\left\{\begin{array}{clc}
+1+(\sage{f})^2 & , & x\leq \sage{a}\\
+\sage{b}-x & , & \sage{a}<x\leq\sage{b}\\
+\sage{k} & , & x>\sage{b}
+\end{array}\right.$.  
+
+Find the numbers at which $f$ is discontinuous: $x=\answer{\sage{a}}$\\ \qquad (If no such numbers exist, enter ``None'')
+
+\input{2311_Concept_Limit_0004.HELP.tex}
+
+At which of these points of discontinuity is $f$ continuous from the right?\\  $x=$\answer{None} \qquad (If no such numbers exist, enter ``None'')
+
+At which of these points of discontinuity is $f$ continuous from the left?\\  $x=\answer{\sage{a}}$ \qquad (If no such numbers exist, enter ``None'')
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Disc_Jump, Sub@Piecewise}{
+\begin{sagesilent}
+a = Integer(randint(-3,3))
+b = NonZeroInt(a+2,a+5)
+
+c=a+2
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Let $f(x)=\left\{\begin{array}{clc}
+x+\sage{c} & , & x< \sage{a}\\
+e^x & , & \sage{a}\leq x\leq\sage{b}\\
+\sage{c}-x & , & x>\sage{b}
+\end{array}\right.$.  
+
+Find the numbers at which $f$ is discontinuous: $x=\answer{\sage{a},\sage{b}}$\\ \qquad (If no such numbers exist, enter ``None'')
+
+\input{2311_Concept_Limit_0005.HELP.tex}
+
+At which of these points of discontinuity is $f$ continuous from the right?\\  $x=\answer{\sage{a}}$ \qquad (If no such numbers exist, enter ``None'')
+
+At which of these points of discontinuity is $f$ continuous from the left?\\  $x=\answer{\sage{b}}$ \qquad (If no such numbers exist, enter ``None'')
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MC, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Theorems_IVT, Sub@Poly}{
+\begin{sagesilent}
+a = Integer(randint(-3,3))
+b = NonZeroInt(a+2,a+5)
+left=a+1
+right=b-1
+while left==right:
+   b = NonZeroInt(a+2,a+5)
+   right=b-1
+
+c = b+1
+d=a-1
+
+m=NonZeroInt(a+1,b-1)
+p=Integer(randint(0,2))
+v=[expand((x-m)*(x-c)), expand((x-m)*(x-c)*(x-d)), expand((x-m)*(x-c)*(x-d)^2)]
+
+F=v[p]
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does $\sage{F}$ have a root in the interval $(\sage{a},\sage{b})$?  
+
+\input{2311_Concept_Limit_0006.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Yes}
+\choice{No}
+\choice{Inconclusive}
+\end{multipleChoice}
+
+What is the reason for this answer?\begin{multipleChoice}
+\choice{$f(\sage{a})<0$ and $f(\sage{b})>0$, so $f$ has a root by IVT.}
+\choice[correct]{$f(\sage{a})>0$ and $f(\sage{b})<0$, so $f$ has a root by IVT.}
+\choice{$f(\sage{a})<0$ and $f(\sage{b})<0$, so $f$ does not have a root by IVT.}
+\choice{$f(\sage{a})>0$ and $f(\sage{b})>0$, so $f$ does not have a root by IVT.}
+\choice{The answer could not be determined.}
+\end{multipleChoice}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MC, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Theorems_IVT, Sub@Poly, Sub@Trig}{
+\begin{sagesilent}
+a = Integer(randint(-3,3))
+p=Integer(randint(0,1))
+
+trig=[sin(x-a), cos(x-a)]
+poly=[a+1-x, x-a]
+
+F=trig[p]
+G=poly[p]
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the equation $\sage{F}=\sage{G}$ have a solution in the interval $(\sage{a},\sage{a+1})$?  
+
+\input{2311_Concept_Limit_0007.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Yes}
+\choice{No}
+\choice{Inconclusive}
+\end{multipleChoice}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%% SO FAR 13 Compute, 7 Concept
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(1,5,[0,a])
+
+p=Integer(randint(0,5))
+v=[sin(a*x)/(b*x), (a*x)/sin(b*x), tan(a*x)/(b*x), (a*x)/tan(b*x), (1-cos(a*x))/(b*x), (a*x)/(1-cos(b*x))]
+
+F=v[p]
+Ans=limit(F,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0014.HELP.tex}
+
+\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(1,5,[0,a])
+
+p=Integer(randint(0,5))
+v=[sin(a*x)/(b*x), sin(a*x)^2/(b*x^2), sin(a*x)^3/(b*x^3), tan(a*x)/(b*x), tan(a*x)^2/(b*x^2), tan(a*x)^3/(b*x^3)]
+
+F=v[p]
+Ans=limit(F,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0015.HELP.tex}
+
+\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Limit, Sub@Trig, Sub@Squeeze}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+p=Integer(randint(0,5))
+v=[x*cos(a/x), x^2*cos(a/x), x^3*cos(a/x), x*cos(a/x^2), x^2*cos(a/x^2), x^3*cos(a/x^2)]
+F=v[p]
+
+Ans=limit(F,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+The limit as $x\to0$ of $f(x)=\sage{F}$ is $0$.  What is the reason why this is true?
+
+\input{2311_Concept_Limit_0008.HELP.tex}
+
+\begin{multipleChoice}
+\choice{The statement is in fact false: $\lim\limits_{x\to0}\sage{F}\neq0$.}
+\choice{The cosine factor decreases to $0$ faster than the polynomial.}
+\choice[correct]{The cosine factor is bounded between $-1$ and $1$, so the polynomial forces the function to $0$.}
+\choice{The cosine factor directly cancels out the polynomial factor.}
+\end{multipleChoice}
+
+
+What is the name of the theorem that applies to this problem? \qquad \\
+The \underline{\answer{Squeeze}} Theorem
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%% SO FAR 15-Compute.....8-Concept %%%
+
+
+
+
+
+
+
+
+
+
