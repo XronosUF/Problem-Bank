@@ -157,4 +157,38 @@ try:
 except:
  _st_.goboom(155)
 _st_.blockend()
+_st_.current_tex_line = 11
+_st_.blockbegin()
+try:
+ a = Integer(randint(-10,10))
+ p = Integer(randint(0,1))
+ 
+ trig=[sin(x-a), cos(x-a)]
+ poly=[a+1-x, x-a]
+ 
+ F=trig[p]
+ G=poly[p]
+except:
+ _st_.goboom(20)
+_st_.blockend()
+try:
+ _st_.current_tex_line = 34
+ _st_.inline(0, latex(F))
+except:
+ _st_.goboom(34)
+try:
+ _st_.current_tex_line = 34
+ _st_.inline(1, latex(G))
+except:
+ _st_.goboom(34)
+try:
+ _st_.current_tex_line = 34
+ _st_.inline(2, latex(a))
+except:
+ _st_.goboom(34)
+try:
+ _st_.current_tex_line = 34
+ _st_.inline(3, latex(a+1))
+except:
+ _st_.goboom(34)
 _st_.endofdoc()

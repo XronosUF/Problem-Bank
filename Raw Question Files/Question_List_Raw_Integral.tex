@@ -360,7 +360,7 @@ Ans=integrate(F,x,l,u)
 
 Use the Fundamental Theorem of Calculus to evaluate the integral.
 
-\input{2311_Compute_Integral_0010.HELP.tex}
+\input{2311_Compute_Integral_0019.HELP.tex}
 
 \[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -377,14 +377,14 @@ u=Integer(randint(l,12))
 
 F=(x-a)/(b*sqrt(x))
 Ans=integrate(F,x,l,u)
-\end{sagesilent}a-3
+\end{sagesilent}
 
 \latexProblemContent{
 \begin{problem}
 
 Use the Fundamental Theorem of Calculus to evaluate the integral.
 
-\input{2311_Compute_Integral_0011.HELP.tex}
+\input{2311_Compute_Integral_0020.HELP.tex}
 
 \[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -408,7 +408,7 @@ Ans=integrate(F,x,l,u)
 
 Use the Fundamental Theorem of Calculus to evaluate the integral.
 
-\input{2311_Compute_Integral_0012.HELP.tex}
+\input{2311_Compute_Integral_0021.HELP.tex}
 
 \[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -438,7 +438,7 @@ Ans=integrate(F,x,l,u)
 
 Use the Fundamental Theorem of Calculus to evaluate the integral.
 
-\input{2311_Compute_Integral_0013.HELP.tex}
+\input{2311_Compute_Integral_0022.HELP.tex}
 
 \[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -538,7 +538,7 @@ What is wrong with the following equation:
 
 \[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
 
-\input{2311_Concept_Integral_0003.HELP.tex}
+%\input{2311_Concept_Integral_0003.HELP.tex}
 
 \begin{multipleChoice}
 \choice The antiderivative is incorrect.
@@ -552,7 +552,7 @@ What is wrong with the following equation:
 
 
 
-%%%%%%%%%% 3 Concept   13 Compute %%%%%%%%%%
+%%%%%%%%%% 3 Concept   22 Compute %%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -560,11 +560,10 @@ What is wrong with the following equation:
 \begin{sagesilent}
 a = NonZeroInt(-10,10)
 b = NonZeroInt(-10,10)
-c = Integer(randint(-15,15))
 p=Integer(randint(0,10))
 v2=[sqrt(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
 F=v2[p]
-G=a*F+c
+G=a*F
 Ans=integrate(G,x)
 \end{sagesilent}
 
@@ -573,7 +572,7 @@ Ans=integrate(G,x)
 
 Compute the indefinite integral:
 
-\input{2311_Compute_Integral_0014.HELP.tex}
+\input{2311_Compute_Integral_0023.HELP.tex}
 
 \[\int\;\sage{G}\;dx = \answer{\sage{Ans}+C}\]
 \end{problem}}%}
@@ -597,23 +596,20 @@ Ans=integrate(a*(F+G),x)
 
 Compute the indefinite integral:
 
-\input{2311_Compute_Integral_0015.HELP.tex}
+\input{2311_Compute_Integral_0024.HELP.tex}
 
 \[\int\;\sage{a*(F+G)}\;dx = \answer{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub_u}{
 \begin{sagesilent}
 a = NonZeroInt(-10,10)
 b = NonZeroInt(-10,10)
-c = NonZeroInt(-10,10)
 p=Integer(randint(0,11))
 v2=[sqrt(x), exp(x), log(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
-F=v2[p]+c
+F=v2[p]
 G=diff(F,x)
 Ans=integrate(a*G*F,x)
 \end{sagesilent}
@@ -623,7 +619,7 @@ Ans=integrate(a*G*F,x)
 
 Compute the indefinite integral:
 
-\input{2311_Compute_Integral_0016.HELP.tex}
+\input{2311_Compute_Integral_0025.HELP.tex}
 
 \[\int\;\sage{a*G*F}\;dx = \answer{\sage{Ans}+C}\]
 \end{problem}}%}
@@ -648,7 +644,7 @@ Ans=integrate(a*G(F)*f,x)
 
 Compute the indefinite integral:
 
-\input{2311_Compute_Integral_0017.HELP.tex}
+\input{2311_Compute_Integral_0026.HELP.tex}
 
 \[\int\;\sage{a*G(F)*f}\;dx = \answer{\sage{Ans}+C}\]
 \end{problem}}%}
@@ -676,7 +672,7 @@ Ans=integrate(G(F)*f,x)
 
 Compute the indefinite integral:
 
-\input{2311_Compute_Integral_0018.HELP.tex}
+\input{2311_Compute_Integral_0027.HELP.tex}
 
 \[\int\;\sage{G(F)*f}\;dx = \answer{\sage{Ans}+C}\]
 \end{problem}}%}
@@ -700,7 +696,7 @@ Ans=integrate(F*f,x)
 
 Compute the indefinite integral:
 
-\input{2311_Compute_Integral_0019.HELP.tex}
+\input{2311_Compute_Integral_0028.HELP.tex}
 
 \[\int\;\sage{F*f}\;dx = \answer{\sage{Ans}+C}\]
 \end{problem}}%}
@@ -708,7 +704,7 @@ Compute the indefinite integral:
 
 
 
-%%%%%%%%%  3 Concept    19 Compute %%%%%%%%%%%%%
+%%%%%%%%%  3 Concept    28 Compute %%%%%%%%%%%%%
 
 
 

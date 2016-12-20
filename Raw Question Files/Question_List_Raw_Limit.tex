@@ -8,17 +8,12 @@
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote}{
 \begin{sagesilent}
-a = RandInt(-14,14)
-b = RandInt(-14,14)
+a = NonZeroInt(-4,4)
+b = NonZeroInt(-4,4, [0,a])
 
-f1 = (x - a)
-f2 = (x - b)
-
-
-
-fNum=expand(f1*f2)
-fDen=f1
-Ans=f2(a)
+fNum=expand((x-a)*(x-b))
+fDen=(x-a)
+Ans=limit(fNum/fDen, x=a)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -27,7 +22,7 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 
 \input{2311_Compute_Limit_0001.HELP.tex}
 
-\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
@@ -35,12 +30,13 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
 \begin{sagesilent}
-a = NonZeroInt(-14,14)
-b = NonZeroInt(-14,14,[0,a])
+a = NonZeroInt(-4,4)
+b = NonZeroInt(-4,4, [0,a])
 
 fDen=expand((x-a)*(x-b))
 fNum=(x-a)
-Ans=1/(a-b)
+Ans=limit(fNum/fDen, x=a)
+#fans=1/(a-b)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -59,8 +55,8 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
 \begin{sagesilent}
-a = NonZeroInt(-14,14)
-b = NonZeroInt(-14,14, [0,a])
+a = NonZeroInt(-4,4)
+b = NonZeroInt(-4,4, [0,a])
 
 fNum=expand((x-a)*(x-b))
 fDen=(x-a)
@@ -82,8 +78,8 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote}{
 \begin{sagesilent}
-a = NonZeroInt(-14,14)
-b = NonZeroInt(-14,14, [0,a])
+a = NonZeroInt(-4,4)
+b = NonZeroInt(-4,4, [0,a])
 
 fDen=expand((x-a)*(x-b))
 fNum=(x-a)
@@ -130,9 +126,9 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
 \begin{sagesilent}
 a = NonZeroInt(-5,5)
-b = NonZeroInt(-25,25, [a])
+b = NonZeroInt(-5,5, [a])
 
-fNum=x^3-a^3
+fNum=expand((x-a)*(x^2+a*x+a^2))
 fDen=expand((x-a)*(x-b))
 Ans=limit(fNum/fDen, x=a)
 #fans=(3*a^2)/(a-b)
@@ -284,9 +280,8 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational}{
 \begin{sagesilent}
-a = NonZeroInt(-15,15)
-b = NonZeroInt(-15,15)
-Fone=(b/a)+(b/x)
+a = NonZeroInt(-5,5)
+Fone=(1/a)+(1/x)
 Ftwo=a+x
 F=Fone/Ftwo
 
@@ -296,7 +291,7 @@ Ans=limit(F,x=-a)
 \latexProblemContent{
 \begin{problem}
 
-Compute the following difference quotient:
+Compute the following derivative:
 
 \input{2311_Compute_Limit_0010.HELP.tex}
 
@@ -304,16 +299,16 @@ Compute the following difference quotient:
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Asymptote, Sub@OneSided}{
 \begin{sagesilent}
-a = NonZeroInt(-15,15)
-b = RandInt(-15,15)
+a = NonZeroInt(-5,5)
 p=Integer(randint(1,9))
-v=[a*x*ln(x-b),a/(x-b), a/(x-b)^2, a/(x-b)^3, a/(x-b)^p]
+v=[a*x*ln(x),a/x, a/x^2, a/x^3, a/x^p]
 first = Integer(randint(0,4))
 F=v[first]
-Ans=limit(F,x=b,dir='plus')
+Ans=limit(F,x=0,dir='plus')
 \end{sagesilent}
 
 \latexProblemContent{
@@ -323,7 +318,7 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 
 \input{2311_Compute_Limit_0011.HELP.tex}
 
-\[\lim_{x\to \sage{b}^+}\sage{F}=\answer{\sage{Ans}}\]
+\[\lim_{x\to 0^+}\sage{F}=\answer{\sage{Ans}}\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -386,6 +381,56 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(1,5,[0,a])
+
+p=Integer(randint(0,5))
+v=[sin(a*x)/(b*x), (a*x)/sin(b*x), tan(a*x)/(b*x), (a*x)/tan(b*x), (1-cos(a*x))/(b*x), (a*x)/(1-cos(b*x))]
+
+F=v[p]
+Ans=limit(F,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0014.HELP.tex}
+
+\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(1,5,[0,a])
+
+p=Integer(randint(0,5))
+v=[sin(a*x)/(b*x), sin(a*x)^2/(b*x^2), sin(a*x)^3/(b*x^3), tan(a*x)/(b*x), tan(a*x)^2/(b*x^2), tan(a*x)^3/(b*x^3)]
+
+F=v[p]
+Ans=limit(F,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+
+\input{2311_Compute_Limit_0015.HELP.tex}
+
+\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -472,17 +517,35 @@ If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\t
 a = Integer(randint(-3,3))
 b = NonZeroInt(a+2,a+5)
 
-f=x-a
-k=(x-b)^2
+c = RandInt(-5,5)
+c2 = RandInt(-5,5)
+c3 = RandInt(-5,5)
+
+func1=[x-c, c-x, (x-c)^2, expand((x-c)*(x-c2))]
+func2=[x, x^2-c3*x, x^2+c3*x, (x-c3)^2]
+
+p1 = RandInt(0,3)
+p2 = RandInt(0,3)
+p3 = RandInt(0,3)
+
+f1 = func1[p1]
+F2 = func2[p2]
+F3 = func2[p3]
+
+A = f1(a) - F3(a) + 1
+f3 = F3 + A
+B = f1(b)- F2(b)
+f2 = F2 + B
+
 \end{sagesilent}
 
 \latexProblemContent{
 \begin{problem}
 
 Let $f(x)=\left\{\begin{array}{clc}
-1+(\sage{f})^2 & , & x\leq \sage{a}\\
-\sage{b}-x & , & \sage{a}<x\leq\sage{b}\\
-\sage{k} & , & x>\sage{b}
+\sage{f3} & , & x\leq \sage{a}\\
+\sage{f1} & , & \sage{a}<x\leq\sage{b}\\
+\sage{f2} & , & x>\sage{b}
 \end{array}\right.$.  
 
 Find the numbers at which $f$ is discontinuous: $x=\answer{\sage{a}}$\\ \qquad (If no such numbers exist, enter ``None'')
@@ -496,22 +559,37 @@ At which of these points of discontinuity is $f$ continuous from the left?\\  $x
 %%%%%%%%%%%%%%%%%%%%%%
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Disc_Jump, Sub@Piecewise}{
 \begin{sagesilent}
 a = Integer(randint(-3,3))
 b = NonZeroInt(a+2,a+5)
 
-c=a+2
+c = RandInt(-6,6)
+d = RandInt(-6,6)
+
+intp1 = RandInt(0,3)
+intp2 = NonZeroInt(0,3,[intp1])
+nonintp=RandInt(0,3)
+
+integerfunc=[x-c, (x-c)^2, expand((x-c)*(x-d)), c-x]
+nonintfunc=[e^x, e^(x-b), sin(x), cos(x)]
+
+f1 = integerfunc[intp1]
+f2 = nonintfunc[nonintp]
+f3 = integerfunc[intp2]
+
+
 \end{sagesilent}
 
 \latexProblemContent{
 \begin{problem}
 
 Let $f(x)=\left\{\begin{array}{clc}
-x+\sage{c} & , & x< \sage{a}\\
-e^x & , & \sage{a}\leq x\leq\sage{b}\\
-\sage{c}-x & , & x>\sage{b}
+\sage{f1} & , & x< \sage{a}\\
+\sage{f2} & , & \sage{a}\leq x\leq\sage{b}\\
+\sage{f3} & , & x>\sage{b}
 \end{array}\right.$.  
 
 Find the numbers at which $f$ is discontinuous: $x=\answer{\sage{a},\sage{b}}$\\ \qquad (If no such numbers exist, enter ``None'')
@@ -602,60 +680,12 @@ Does the equation $\sage{F}=\sage{G}$ have a solution in the interval $(\sage{a}
 
 
 %%%%%%%%%%%%%%%%%%%%%
-%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig}{
-\begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(1,5,[0,a])
-
-p=Integer(randint(0,5))
-v=[sin(a*x)/(b*x), (a*x)/sin(b*x), tan(a*x)/(b*x), (a*x)/tan(b*x), (1-cos(a*x))/(b*x), (a*x)/(1-cos(b*x))]
-
-F=v[p]
-Ans=limit(F,x=0)
-\end{sagesilent}
-
-\latexProblemContent{
-\begin{problem}
-
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
-
-\input{2311_Compute_Limit_0014.HELP.tex}
-
-\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
-\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig}{
-\begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(1,5,[0,a])
-
-p=Integer(randint(0,5))
-v=[sin(a*x)/(b*x), sin(a*x)^2/(b*x^2), sin(a*x)^3/(b*x^3), tan(a*x)/(b*x), tan(a*x)^2/(b*x^2), tan(a*x)^3/(b*x^3)]
-
-F=v[p]
-Ans=limit(F,x=0)
-\end{sagesilent}
-
-\latexProblemContent{
-\begin{problem}
-
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
-
-\input{2311_Compute_Limit_0015.HELP.tex}
-
-\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
-\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Limit, Sub@Trig, Sub@Squeeze}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
+a = NonZeroInt(-25,25)
+b = RandInt(-15,15)
 p=Integer(randint(0,5))
-v=[x*cos(a/x), x^2*cos(a/x), x^3*cos(a/x), x*cos(a/x^2), x^2*cos(a/x^2), x^3*cos(a/x^2)]
+v=[(x-b)*cos(a/(x-b)), (x-b)^2*cos(a/(x-b)), (x-b)^3*cos(a/(x-b)), (x-b)*cos(a/(x-b)^2), (x-b)^2*cos(a/(x-b)^2), (x-b)^3*cos(a/(x-b)^2)]
 F=v[p]
 
 Ans=limit(F,x=0)
@@ -664,12 +694,12 @@ Ans=limit(F,x=0)
 \latexProblemContent{
 \begin{problem}
 
-The limit as $x\to0$ of $f(x)=\sage{F}$ is $0$.  What is the reason why this is true?
+The limit as $x\to\sage{b}$ of $f(x)=\sage{F}$ is $0$.  What is the reason why this is true?
 
 \input{2311_Concept_Limit_0008.HELP.tex}
 
 \begin{multipleChoice}
-\choice{The statement is in fact false: $\lim\limits_{x\to0}\sage{F}\neq0$.}
+\choice{The statement is in fact false: $\lim\limits_{x\to\sage{b}}\sage{F}\neq0$.}
 \choice{The cosine factor decreases to $0$ faster than the polynomial.}
 \choice[correct]{The cosine factor is bounded between $-1$ and $1$, so the polynomial forces the function to $0$.}
 \choice{The cosine factor directly cancels out the polynomial factor.}
@@ -680,6 +710,8 @@ What is the name of the theorem that applies to this problem? \qquad \\
 The \underline{\answer{Squeeze}} Theorem
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 %% SO FAR 15-Compute.....8-Concept %%%

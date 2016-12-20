@@ -934,7 +934,7 @@ Compute the following derivative:
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Related_Rates}{
 \begin{sagesilent}
-a = NonZeroInt(1,72)
+a = NonZeroInt(1,6)
 A=a*pi
 Ans=a/36
 \end{sagesilent}
@@ -1075,7 +1075,7 @@ c = NonZeroInt(-5,5)
 
 p=Integer(randint(0,8))
 
-v=[a*sqrt(x)+c, a*log(x)+c, a*exp(x)+c, a*x^2+c, a*x^3+c, a*x^4+c, (x-b), a*sin(x)+c, a*cos(x)+c]
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x)]
 F=v[p]
 f=diff(F, x)
 Ans=f
@@ -1126,16 +1126,12 @@ Compute the differential of the function $y=\sage{H}$.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems_EVT}{
 \begin{sagesilent}
-a = NonZeroInt(-15,15)
+a = NonZeroInt(1,5)
 b=a-1
 c=a+1
 p=Integer(randint(1,4))
 f=log(c-x)
 g=(x-b)^p-1
-l=NonZeroInt(2,10)
-lower=a-l
-u=NonZeroInt(3,10)
-upper=a+u
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1145,7 +1141,7 @@ Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}
 \sage{f}\; , & x<\sage{a}\\[3pt]
 \sage{g}\; , & x\geq\sage{a}
 \end{array}\right.\]
- over the interval $[\sage{lower},\sage{upper}]$?
+ over the interval $[\sage{a-2},\sage{a+3}]$?
 
 \input{2311_Concept_Derivative_0001.HELP.tex}
 
@@ -1161,16 +1157,12 @@ Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Concept, Topic@Derivative, Sub@Theorems_EVT}{
 \begin{sagesilent}
-a = NonZeroInt(-15,15)
+a = NonZeroInt(1,5)
 b=a-1
 c=a+1
 p=Integer(randint(1,4))
 f=log(c-x)
 g=(x-b)^p-1
-l=NonZeroInt(2,10)
-lower=a-l
-u=NonZeroInt(3,10)
-upper=a+u
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1180,7 +1172,7 @@ Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}
 \sage{f}\; , & x<\sage{a}\\[3pt]
 \sage{g}\; , & x\geq\sage{a}
 \end{array}\right.\]
- over the interval $[\sage{lower},\sage{upper})$?
+ over the interval $[\sage{a-3},\sage{a+5})$?
 
 \input{2311_Concept_Derivative_0002.HELP.tex}
 
@@ -1307,12 +1299,10 @@ Compute the first and second derivatives for the function\\ $f(x)=\sage{F}$.\\
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Cat@One, Cat@Two, Cat@Three, Cat@Four, Cat@Five, Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Product_Rule, Sub@Multi_Deriv}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5)
-c = NonZeroInt(-5,5)
 p=Integer(randint(0,11))
 q=Integer(randint(0,11))
-v=[a*sqrt(x)+c, a*log(x)+c, a*exp(x)+c, a*x^2+c, a*x^3+c, a*x^4+c, (x-b), a*sin(x)+c, a*cos(x)+c, a/x+c, a/x^2+c, a/x^3+c]
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x), 1/x, 1/x^2, 1/x^3]
 
 Fone=v[p]
 Ftwo=v[q]
@@ -1341,12 +1331,11 @@ Compute the first and second derivatives for the function\\ $f(x)=\sage{G}$.\\
 b = NonZeroInt(-5,5)
 p=Integer(randint(0,11))
 q=Integer(randint(0,11))
-c = RandInt(-20,20)
 v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x), 1/x, 1/x^2, 1/x^3]
 
 Fone=v[p]
 Ftwo=v[q]
-G=Fone(Ftwo) + c
+G=Fone(Ftwo)
 f=diff(G, x)
 g=diff(f,x)
 \end{sagesilent}

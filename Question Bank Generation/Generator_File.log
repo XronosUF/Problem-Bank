@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.22)  15 DEC 2016 15:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.11)  18 DEC 2016 22:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,8 +6,8 @@ entering extended mode
 (./Generator_File.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
-(/home/xronosadmin/texmf/tex/latex/ximeraLatex.backup/ximera.cls
-Document Class: ximera 2016/08/17 Version 1.24 by Bart Snapp
+(/home/jason/texmf/tex/latex/ximera.cls
+Document Class: ximera 2016/08/17 Version 1.25 by Bart Snapp
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -1086,13 +1086,15 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \c@summary=\count284
 \c@template=\count285
 \c@warning=\count286
-\c@problem=\count287
-\c@problemType=\count288
+\c@track@Problem=\count287
+\c@shuffle@Count=\count288
+\c@problem=\count289
+\c@problemType=\count290
 \myfile=\write7
 \openout7 = `Generator_File.jax'.
 
 )
-(/home/xronosadmin/texmf/tex/latex/sagetex/sagetex.sty
+(/home/jason/texmf/tex/My Sty Folder/sagetex.sty
 Package: sagetex 2015/08/26 v3.0-92d9f7a embedding Sage into LaTeX documents
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
@@ -1104,58 +1106,111 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 (/usr/share/texlive/texmf-dist/tex/latex/makecmds/makecmds.sty
 Package: makecmds 2009/09/03 v1.0a extra command making commands
 )
-\c@ST@inline=\count289
-\c@ST@plot=\count290
-\c@ST@cmdline=\count291
+\c@ST@inline=\count291
+\c@ST@plot=\count292
+\c@ST@cmdline=\count293
 \sagetexindent=\skip135
 
 (./Generator_File.sagetex.sout)
 \sagecommandlineskip=\skip136
 )
-(/home/xronosadmin/texmf/tex/latex/ProblemSelection.sty
+(/home/jason/texmf/tex/My Sty Folder/Ximera/PackageLoader.sty
+Package: PackageLoader 
+\c@Total@Question=\count294
+
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count295
+\Gm@cntv=\count296
+\c@Gm@tempcnt=\count297
+\Gm@bindingoffset=\dimen280
+\Gm@wd@mp=\dimen281
+\Gm@odd@mp=\dimen282
+\Gm@even@mp=\dimen283
+\Gm@layoutwidth=\dimen284
+\Gm@layoutheight=\dimen285
+\Gm@layouthoffset=\dimen286
+\Gm@layoutvoffset=\dimen287
+\Gm@dimlist=\toks52
+)
+(/usr/share/texlive/texmf-dist/tex/latex/forloop/forloop.sty
+Package: forloop 2006/09/18 v3.0 For Loops for LaTeX
+)
+(/home/jason/texmf/tex/My Sty Folder/Ximera/Filter.sty
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \set@ActiveTags with sig. 'm' on line 49.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tagged with sig. 'mm' on line 64.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \maketagsstrict with sig. '' on line 70.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \maketagssuperstrict with sig. '' on line 76.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \maketagsrelax with sig. '' on line 82.
+.................................................
+)
+(/home/jason/texmf/tex/My Sty Folder/Ximera/TagMasterList.sty))
+(/home/jason/texmf/tex/My Sty Folder/Ximera/ProblemSelection.sty
 Package: ProblemSelection 
-\c@Problem@MasterCounter=\count292
-\c@Iteration@1=\count293
-\c@Real@PullNumber=\count294
-\c@Iteration@List=\count295
-\c@Rnd@Quant=\count296
-\c@Temp@Hold=\count297
-\c@Temp@RandMe=\count298
-\c@Rnd@EndQuant=\count299
-\c@TEMP=\count300
-\c@Colision@Chance=\count301
-\c@Last@Question=\count302
-) (./Generator_File.aux)
+\c@Problem@MasterCounter=\count298
+\c@Iteration@1=\count299
+\c@Real@PullNumber=\count300
+\c@Iteration@List=\count301
+\c@Rnd@Quant=\count302
+\c@Temp@Hold=\count303
+\c@Temp@RandMe=\count304
+\c@Rnd@EndQuant=\count305
+\c@TEMP=\count306
+\c@Colision@Chance=\count307
+\c@Last@Question=\count308
+\c@LogicChecks=\count309
+\c@Pull@Queue=\count310
+)
+(./Generator_File.aux)
 \openout1 = `Generator_File.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-ABD: EveryShipout initializing macros
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+ ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count303
-\scratchdimen=\dimen280
+\scratchcounter=\count311
+\scratchdimen=\dimen288
 \scratchbox=\box65
-\nofMPsegments=\count304
-\nofMParguments=\count305
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count306
-\MPscratchDim=\dimen281
-\MPnumerator=\count307
-\makeMPintoPDFobject=\count308
-\everyMPtoPDFconversion=\toks53
+\nofMPsegments=\count312
+\nofMParguments=\count313
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count314
+\MPscratchDim=\dimen289
+\MPnumerator=\count315
+\makeMPintoPDFobject=\count316
+\everyMPtoPDFconversion=\toks54
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1175,22 +1230,22 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 5.
+ on input line 4.
 
-\c@lstlisting=\count309
+\c@lstlisting=\count317
 \AtBeginShipoutBox=\box66
-Package hyperref Info: Link coloring ON on input line 5.
+Package hyperref Info: Link coloring ON on input line 4.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count310
+\c@section@level=\count318
 )
-LaTeX Info: Redefining \ref on input line 5.
-LaTeX Info: Redefining \pageref on input line 5.
-LaTeX Info: Redefining \nameref on input line 5.
+LaTeX Info: Redefining \ref on input line 4.
+LaTeX Info: Redefining \pageref on input line 4.
+LaTeX Info: Redefining \nameref on input line 4.
 
 (./Generator_File.out) (./Generator_File.out)
 \@outlinefile=\write8
@@ -1200,260 +1255,89 @@ LaTeX Info: Redefining \nameref on input line 5.
 \openout9 = `Generator_File.sagetex.sage'.
 
 
-(/home/xronosadmin/texmf/tex/latex/ExtraSty/JasonSageMacros.tex)
-(./2311_Compute_Integral_0019.HELP.tex)
-LaTeX Font Info:    Try loading font information for U+msa on input line 21.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-39.0pt
+* \headheight=14.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/home/jason/texmf/tex/My Sty Folder/JasonSageMacros.tex)
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 21.
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./2311_Compute_Integral_0
-019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[2] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[3] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[4] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[5] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[6] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[7] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[8] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[9] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[10] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[11] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[12] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[13] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[14] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[15] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[16] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[17] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[18] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[19] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[20] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[21] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[22] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[23] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[24] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[25] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[26] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[27] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[28] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[29] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[30] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[31] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[32] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[33] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[34] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[35] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[36] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[37] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[38] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[39] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[40] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[41] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex) (./2311_Compute_Integral_0019.HELP.tex)
-[42] (./2311_Compute_Integral_0019.HELP.tex)
-(./2311_Compute_Integral_0019.HELP.tex)
+(/home/jason/texmf/tex/My Sty Folder/Ximera/Question Bank Files/Question Banks/
+Limits/2311_Concept_Limit_0007.HELP.tex)
 *********************************************************************
-[43]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5626.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5626.
- (./Generator_File.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5626.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5626.
+[1
 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 40.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 40.
+ (./Generator_File.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 40.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 40.
 Package rerunfilecheck Info: File `Generator_File.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
- ) 
+ )
+(\end occurred when \if on line 34 was incomplete)
+(\end occurred when \iftrue on line 34 was incomplete)
+(\end occurred when \if on line 34 was incomplete)
+(\end occurred when \iftrue on line 34 was incomplete) 
 Here is how much of TeX's memory you used:
- 37332 strings out of 493029
- 851217 string characters out of 6136234
- 972004 words of memory out of 5000000
- 39505 multiletter control sequences out of 15000+600000
- 5692 words of font info for 23 fonts, out of 8000000 for 9000
+ 37057 strings out of 493029
+ 831730 string characters out of 39886233
+ 978863 words of memory out of 5000000
+ 40007 multiletter control sequences out of 15000+600000
+ 7002 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,7n,79p,10424b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Generator_File.pdf (43 pages, 123597 bytes).
+ 69i,6n,79p,10424b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbxsl10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/symbols/msam10.pfb>
+Output written on Generator_File.pdf (1 page, 62773 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
+ 51 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
+ 7 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
