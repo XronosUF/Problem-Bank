@@ -1,0 +1,2982 @@
+%%%%%%  This is the raw list of questions before processing %%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Computation				%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%			MAC2311: Calculus 1			%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Riemann, File@0001}{
+\begin{sagesilent}
+# Build the Interval
+a = NonZeroInt(-8,8) 				# Left end point
+n = NonZeroInt(3,7)					# Number of rectangles
+b = a + n				# Fix right endpoint based on left endpoint and number of rec.
+M = max( abs(a), abs(b)) 			# Max val useful for some functions
+m = min( abs(a), abs(b))			# Min val useful for some functions
+
+# Build the function
+v = [ x - a, x^2 - m^2, -x^2 + M^2, b - x]# Make a vector of functions
+p = RandInt(0,3)					# Select a function
+f = v[p]							# Assign function
+
+v2 = ['right', 'left']				# Vector of endpoints. (Note, we can add more!)
+p2 = RandInt(0,1)					# Pick Endpoint
+Endpoint = v2[p2]					#Initialize Endpoint
+
+# Calculate the area
+Area = 0							# Initialize Area
+for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
+    if p2 == 0:						# Right Endpoint case
+        Xpt = j + 1					# Shift to right x anchor point by adding width
+    if p2 == 1:						# Left Endpoint case
+        Xpt = j						# Use left x anchor point.
+# Case not implemented    if p2 == 2:						# Midpoint case
+# Case not implemented        Xpt = j + 0.5				# Shift half a width
+    Area = Area + f(a+Xpt)			# Exploit that rectangles are width 1
+   
+Ans=Area
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+
+\input{Integral-Compute-0001.HELP.tex}
+
+\[\mbox{Area}\approx\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Riemann, File@0002}{
+\begin{sagesilent}
+# Build the Interval
+Parity = (-1)^RandInt(0,1)			# Determine if you are on negative or pos side.
+LeftEnd = NonZeroInt(1,3)			# Left end point
+n = NonZeroInt(3,5)					# Number of rectangles
+RightEnd = LeftEnd + n				# Determine Right Endpoint
+Delx = (RightEnd - LeftEnd)/n		# Width of each rectangle.
+
+# Build the function
+v = [ 1/(x), 1/(x^2), 1/(-x^2), 1/(x)]# Make a vector of functions
+p = RandInt(0,3)					# Select a function
+f = v[p]							# Assign function
+
+v2 = ['right', 'left']				# Vector of endpoints. (Note, we can add more!)
+p2 = RandInt(0,1)					# Pick Endpoint
+Endpoint = v2[p2]					# Initialize Endpoint
+
+# Calculate the area
+Area = 0							# Initialize Area
+for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
+    if p2 == 0:						# Right Endpoint case
+        Xpt = j + 1					# Shift to right x anchor point by adding width
+    if p2 == 1:						# Left Endpoint case
+        Xpt = j						# Use left x anchor point.
+# Case not implemented    if p2 == 2:					# Midpoint case
+# Case not implemented        Xpt = j + 0.5				# Shift half a width
+    Area = Area + f(LeftEnd+(Delx*Xpt))	# Exploit that rectangles are width 1
+   
+Ans=abs(Area)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{LeftEnd}$ to $x=\sage{RightEnd}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+
+\input{Integral-Compute-0002.HELP.tex}
+
+\[\mbox{Area}\approx\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Rational, Sub@Riemann, File@0003}{
+\begin{sagesilent}
+# Build the Interval
+a = NonZeroInt(0,8) 				# Left end point
+n = NonZeroInt(3,7)					# Number of rectangles
+b = a + n				# Fix right endpoint based on left endpoint and number of rec.
+M = max( abs(a), abs(b)) 			# Max val useful for some functions
+m = min( abs(a), abs(b))			# Min val useful for some functions
+
+# Build the function
+v = [ sqrt(x - a), sqrt(x^2 - m^2), sqrt(-x^2 + M^2), sqrt(b - x)]# Make a vector of functions
+p = RandInt(0,3)					# Select a function
+f = v[p]							# Assign function
+
+v2 = ['right', 'left']				# Vector of endpoints. (Note, we can add more!)
+p2 = RandInt(0,1)					# Pick Endpoint
+Endpoint = v2[p2]					# Initialize Endpoint
+
+# Calculate the area
+Area = 0							# Initialize Area
+for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
+    if p2 == 0:						# Right Endpoint case
+        Xpt = j + 1					# Shift to right x anchor point by adding width
+    if p2 == 1:						# Left Endpoint case
+        Xpt = j						# Use left x anchor point.
+# Case not implemented    if p2 == 2:					# Midpoint case
+# Case not implemented        Xpt = j + 0.5				# Shift half a width
+    Area = Area + f(a+(Xpt))	# Exploit that rectangles are width 1
+   
+Ans=abs(Area)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+
+\input{Integral-Compute-0003.HELP.tex}
+
+\[\mbox{Area}\approx\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% 10 Compute (Riemann Sums problems ^) %%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, File@0004}{
+\begin{sagesilent}
+# Build Interval
+a = NonZeroInt(-10,10)
+Width = RandInt(3,10)
+b = a + Width
+r = RandInt(1, 5)
+
+# Build Function
+v = [abs(x), x, sqrt(r^2 - x^2)]
+p = RandInt(0,2)
+f = v[p]
+
+if p==2:
+   Area = (1/2)*pi*r^2
+   a = -r
+   b = r
+else:
+   c1 = NonZeroInt(-5,5)
+   c2 = RandInt(-5,5)
+   f(x) = f(c1*x + c2)
+   g(x) = abs(f(x))
+   Area = integral(g(x), x, a, b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Evaluate the definite integral by interpreting it in terms of areas.  
+
+\input{Integral-Compute-0004.HELP.tex}
+
+\[\int_{\sage{a}}^{\sage{b}} \sage{f(x)}\;dx= \answer{\sage{Area}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, \Sub@Piecewise, File@0005}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b=Integer(randint(a+3,a+8))
+c = NonZeroInt(1,5)
+m1=NonZeroInt(1,4)
+m2=NonZeroInt(1,4)
+d=(-2*m1*a-2*c)/(b-a)
+l=Integer(randint(a-5,a))
+u=Integer(randint(a+1,b+5))
+
+f1=m1*x+c
+f2=d*(x-a)+(m1*a+c)
+f3=m2*(x-b)-(m1*a+c)
+f = piecewise([([-20,a],f1), ((a,b), f2), ([b,20], f3)])
+
+Ans=integrate(f,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Given the piecewise function 
+\[f(x)=\left\{\begin{array}{ll}
+\sage{f1}\; , & x\leq\sage{a}\\[3pt]
+\sage{f2}\; , & \sage{a}< x< \sage{b}\\[3pt]
+\sage{f3}\; , & x\geq\sage{b}
+\end{array} \right.\]
+evaluate the following definite integral by interpreting it in terms of areas.  
+
+\input{Integral-Compute-0005.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} f(x)\;dx= \answer{\sage{Ans}}\]  
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, File@0006}{
+\begin{sagesilent}
+var('x,t')
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+v=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+f=v[p]
+Ans=f(t)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{t} \sage{f}\;dx\]
+
+\input{Integral-Compute-0006.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, File@0007}{
+\begin{sagesilent}
+var('x,t')
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v2=[sqrt(x), log(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+f=v1[p]
+g=v2[p]
+h=f*g
+Ans=f(t)*g(t)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{t} \sage{h}\;dx\]
+
+\input{Integral-Compute-0007.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, File@0008}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v2=[sqrt(x), log(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+f=v1[p]
+g=v2[p]
+h=g(f)
+Ans=g(f(t))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{t} \sage{h}\;dx\]
+
+\input{Integral-Compute-0008.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Chain-Rule, File@0009}{
+\begin{sagesilent}
+var('x,t')
+a = NonZeroInt(1,5)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+
+p=Integer(randint(0,11))
+q=Integer(randint(0,10))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v2=[sqrt(x), log(x), exp(x), (x)^2, (x)^3, (x)^4, sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+f=v1[p]
+g=v2[q]
+
+Ans=(diff(g,x))(t)*f(t)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to find the derivative of the function.
+\[g(t)=\int_{\sage{a}}^{\sage{g(t)}} \sage{f}\;dx\]
+
+\input{Integral-Compute-0009.HELP.tex}
+
+\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% 18 Compute %%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Poly, File@0010}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = Integer(randint(-8,8))
+c = NonZeroInt(1,5)
+l=Integer(randint(-10,5))
+u=Integer(randint(l,12))
+
+p=Integer(randint(0,4))
+vpoly=[(x-a), expand((x-a)^2), expand((x-a)^3), expand((x-a)*(x-b)), expand((x-a)^2*(x-b))]
+F=vpoly[p]
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{Integral-Compute-0010.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Poly, File@0011}{
+\begin{sagesilent}
+var('x')
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-8,8)
+l=Integer(randint(1,20))
+u=Integer(randint(l,21))
+
+F=(x-a)/(b*sqrt(x))
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{Integral-Compute-0011.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Trig, File@0012}{
+\begin{sagesilent} 
+b = NonZeroInt(-10,10)
+l = RandAng(0,pi)
+u = RandAng(l,2*pi)
+p=Integer(randint(0,1))
+vtrig=[b*sin(x), b*cos(x)]
+
+F=vtrig[p]
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{Integral-Compute-0012.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Rational, File@0013}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+
+l=NonZeroInt(-10,5)  
+if l<0:
+   while l==-1:
+      l=NonZeroInt(-10,-3)
+   while l==-2:
+      l=NonZeroInt(-10,-3)
+   u=NonZeroInt(l+1,-2)
+elif l>0:
+   u=NonZeroInt(l+1,12)
+p=Integer(randint(0,3))
+v=[a/x,a/x^2, a/x^3, a/x^4]
+F=v[p]
+Ans=integrate(F,x,l,u)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Use the Fundamental Theorem of Calculus to evaluate the integral.
+
+\input{Integral-Compute-0013.HELP.tex}
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, File@0014}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,10))
+v2=[sqrt(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=a*F
+Ans=integrate(G,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{Integral-Compute-0014.HELP.tex}
+
+\[\int\;\sage{G}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, File@0015}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,10))
+q=Integer(randint(0,10))
+v2=[sqrt(x), exp(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=v2[q]
+Ans=integrate(a*(F+G),x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{Integral-Compute-0015.HELP.tex}
+
+\[\int\;\sage{a*(F+G)}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub-u, File@0016}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,11))
+v2=[sqrt(x), exp(x), log(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=diff(F,x)
+Ans=integrate(a*G*F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{Integral-Compute-0016.HELP.tex}
+
+\[\int\;\sage{a*G*F}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub-u, File@0017}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v2=[sqrt(x), exp(x), log(x), (x)^2, (x)^3, (x)^4, (x-b), sin(x), cos(x), 1/(x), 1/(x)^2, 1/(x)^3]
+F=v2[p]
+G=v2[q]
+f=diff(F,x)
+Ans=integrate(a*G(F)*f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{Integral-Compute-0017.HELP.tex}
+
+\[\int\;\sage{a*G(F)*f}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub-u, File@0018}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+p=Integer(randint(0,11))
+q=Integer(randint(0,3))
+v1=[sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+v=[a/x,a/x^2, a/x^3, a/x^4]
+F=v1[p]
+G=v[q]
+f=diff(F,x)
+Ans=integrate(G(F)*f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{Integral-Compute-0018.HELP.tex}
+
+\[\int\;\sage{G(F)*f}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Indefinite, Sub@Sub-u, Sub@Arctrig, File@0019}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+p=Integer(randint(0,1))
+v=[a*arcsin(b*x), a*arccos(b*x), a*arctan(b*x)]
+F=v[p]
+f=diff(F,x)
+Ans=integrate(F*f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the indefinite integral:
+
+\input{Integral-Compute-0019.HELP.tex}
+
+\[\int\;\sage{F*f}\;dx = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%			MAC2312 Calculus 2			%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Exp, Sub@ByParts, File@0020}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+p=NonZeroInt(2,5)
+s=Integer(randint(-5,5))
+q=NonZeroInt(-9,9)
+
+#Define the two functions to be multiplied
+f=(x-s)^p
+g=exp(q*x)
+
+#Compute their integral and factor the answer
+A=integral(f*g,x)
+Ans=A.factor()
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0020.HELP.tex}
+
+\[\int{\sage{f}\cdot\sage{g}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Exp, Sub@ByParts, File@0021}{
+\begin{sagesilent}
+# This is a simpler version of the previous problem
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+p=NonZeroInt(2,6)
+q=NonZeroInt(-9,9)
+
+#Define the two functions to be multiplied
+f=(x)^p
+g=exp(q*x)
+
+#Compute their integral and factor the answer
+A=integral(f*g,x)
+Ans=A.factor()
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0021.HELP.tex}
+
+\[\int{\sage{f}\cdot\sage{g}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Log, Sub@Arctrig, Sub@ByParts, File@0022}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+
+#Define and choose potential function archtypes
+v=[a*log(x), b*arctan(x), c*x*arctan(x)]
+p=Integer(randint(0,2))
+f=v[p]
+
+#Compute Integral
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0022.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Exp, Sub@Trig, Sub@ByParts, File@0023}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+
+# Define and choose the function
+v=[a*exp(b*x)*sin(c*x), a*exp(b*x)*cos(c*x)]
+p=Integer(randint(0,1))
+f=v[p]
+
+#Compute the Integral
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0023.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Log, Sub@ByParts, File@0024}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(-9,9)
+
+#Define the function
+f=a*x^b*log(c*x)
+
+#Compute the answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0024.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Exp, Sub@Trig, Sub@ByParts, File@0025}{
+\begin{sagesilent}
+# Define variable
+var('x')
+
+# Define coefficients, powers, etc
+A = NonZeroInt(-5,5)
+B = Integer(randint(-5,5))
+C = NonZeroInt(-10,10)
+pwr1 = Integer(randint(1,3))
+
+func1 = (x-B)^pwr1
+
+funcvec = [e^x, sin(x), cos(x)]
+select = Integer(randint(0,2))
+
+func2 = funcvec[select](x-A)
+
+F(x) = C*func1(x)*func2(x)
+
+Ans = (integral(F(x),x)).factor()
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Evaluate:
+\input{Integral-Compute-0025.HELP.tex}
+\[\int \sage{F(x)} dx = \answer{\sage{Ans}+C}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Poly, Sub@Exp, Sub@Trig, Sub@Definite, Sub@ByParts, File@0026}{
+\begin{sagesilent}
+# Define variable
+var('x')
+# Define coefficients, powers, etc
+A = NonZeroInt(-5,5)
+B = Integer(randint(-5,5))
+C = NonZeroInt(-10,10)
+Start = Integer(randint(-5,5))
+End = Integer(randint(Start, 10))
+pwr1 = Integer(randint(1,3))
+
+# Outside function designed to be the differentiation term in by-parts
+func1 = (x-B)^pwr1
+
+# Inside function designed to be the integration term in by-parts
+
+funcvec = [e^x, sin(x), cos(x)]
+select = Integer(randint(0,2))
+
+func2 = funcvec[select](x-A)
+
+# Final integrand
+F(x) = C*func1(x)*func2(x)
+
+# Compute answer of integral from the Start point to the End point.
+Ans = integral(F(x),x,Start,End)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Evaluate:
+\input{Integral-Compute-0026.HELP.tex}
+\[\int_{\sage{Start}}^{\sage{End}} \sage{F(x)} dx = \answer{\sage{Ans}+C}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, File@0027}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(1,4))
+pwr=2*b+1
+
+# Define function and latex output
+v=[a*sin(x)^(pwr), a*cos(x)^(pwr)]
+u=[latex(sin), latex(cos)]
+p=Integer(randint(0,1))
+f=v[p]
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0027.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, File@0028}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(1,4))
+pwr=2*b
+
+# Define function and latex output
+v=[a*sin(x)^(pwr), a*cos(x)^(pwr)]
+u=[latex(sin), latex(cos)]
+p=Integer(randint(0,1))
+f=v[p]
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0028.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, Sub@EvenOdd, File@0029}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(1,4))
+c=Integer(randint(1,4))
+pwrOdd=2*b+1
+pwrEven=2*c
+
+# Define function and latex output
+v=[a*sin(x)^(pwrOdd)*cos(x)^(pwrEven), a*cos(x)^(pwrOdd)*sin(x)^(pwrEven)]
+u=[latex(sin), latex(cos)]
+w=[latex(cos), latex(sin)]
+p=Integer(randint(0,1))
+f=v[p]
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0029.HELP.tex}
+
+\[\int{\sage{a}\sage{u[p]}^{\sage{pwrOdd}}(x)\sage{w[p]}^{\sage{pwrEven}}(x)\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, Sub@EvenEven, File@0030}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(1,4))
+c=Integer(randint(1,4))
+pwrEven1=2*b
+pwrEven2=2*c
+
+# Define function and latex output
+v=[a*sin(x)^(pwrEven1)*cos(x)^(pwrEven2), a*cos(x)^(pwrEven1)*sin(x)^(pwrEven2)]
+u=[latex(sin), latex(cos)]
+w=[latex(cos), latex(sin)]
+p=Integer(randint(0,1))
+f=v[p]
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0030.HELP.tex}
+
+\[\int{\sage{a}\sage{u[p]}^{\sage{pwrEven1}}(x)\sage{w[p]}^{\sage{pwrEven2}}(x)\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, File@0031}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+
+# Define and choose function array
+v=[a*sin(b*x)*cos(c*x), a*cos(b*x)*cos(c*x), a*sin(b*x)*sin(c*x)]
+p=Integer(randint(0,2))
+f=v[p]
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0031.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, File@0032}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(1,9))
+c=Integer(randint(1,4))
+pwrEven=2*c
+
+#Define fucntion and latex output
+f=a*tan(x)^b*sec(x)^(pwrEven)
+u=latex(tan)
+w=latex(sec)
+
+#Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0032.HELP.tex}
+
+\[\int{\sage{a}\sage{u}^{\sage{b}}(x)\sage{w}^{\sage{pwrEven}}(x)\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, Sub@OddOdd, File@0033}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(0,4))
+c=Integer(randint(0,4))
+pwrOdd1=2*b+1
+pwrOdd2=2*c+1
+
+# Define function and latex output
+f=a*tan(x)^(pwrOdd1)*sec(x)^(pwrOdd2)
+u=latex(tan)
+w=latex(sec)
+
+#Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0033.HELP.tex}
+
+\[\int{\sage{a}\sage{u}^{\sage{pwrOdd1}}(x)\sage{w}^{\sage{pwrOdd2}}(x)\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, Sub@EvenOdd, File@0034}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(1,4))
+c=Integer(randint(0,4))
+pwrEven=2*b
+pwrOdd=2*c+1
+
+# Define function and latex output
+f=a*tan(x)^(pwrEven)*sec(x)^(pwrOdd)
+u=latex(tan)
+w=latex(sec)
+
+#Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0034.HELP.tex}
+
+\[\int{\sage{a}\sage{u}^{\sage{pwrEven}}(x)\sage{w}^{\sage{pwrOdd}}(x)\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, File@0035}{
+\begin{sagesilent}
+# First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
+
+n = Integer(randint((0,2))
+power = 2*n+3
+flip = Integer(randint((0,1))
+freq = NonZeroInt(-5,5)
+Coef = NonZeroInt(-5,5)
+
+# Set up the vectors to grab trig functions.
+
+trigvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
+
+select = Integer(randint((0,5))
+
+# The function that sage uses to calculate the answer
+ToCalcInt = (Coef*trigvec[select](freq*x))^(power)
+
+# Now we need to create the function the student sees to integrate (the actual integrand). If flip=1 we have a negative exponent, so we convert each trig function to it's co-function in the trigvec1 and trigvec2 to pull appropriate functions. Otherwise, we can just use the same function that sage is using to calculate. If we didn't use cofunctions, sage would helpfully negate the negatives and kill it.
+
+if flip == 1:
+    Intvec = [csc(x), sec(x), cos(x)*cot(x), cot(x), sin(x)*tan(x), tan(x)]
+else:
+    Intvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
+
+# Actually create the integrand with the above vectors
+Integrand = (Coef*Intvec[select](freq*x))
+
+# Calculate the actual power separately to prevent sage from trying to cancel negatives.
+Integrandpower = (power*(-1)^flip)
+
+CalcInt = integral(ToCalcInt(x),x)
+Ans = CalcInt#.simplify()
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Evaluate the integral. \\
+
+\input{Integral-Compute-0035.HELP.tex}
+
+\[
+\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer{\sage{Ans}+C}
+\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, Sub@EvenOdd, File@0036}{
+\begin{sagesilent}
+# First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
+
+n1 = Integer(randint((1,3))
+power1 = 2*n1
+n2 = Integer(randint(0,4-n1)) # Curb the size of the power combination to avoid giant ans
+power2 = 2*n2+1
+flip = 1#Integer(randint(0,1))
+freq = NonZeroInt(-5,5)
+Coef = NonZeroInt(-5,5)
+
+#Set up the vectors to grab matching trig functions, first one is even power, second is odd power.
+
+trigvec1 = [sin(x), cos(x), sec(x), csc(x)]
+trigvec2 = [cos(x), sin(x), tan(x), cot(x)]
+
+select = Integer(randint((0,3))
+
+#Grab base trig functions for writing sanity
+F1 = trigvec1[select]
+F2 = trigvec2[select]
+
+#This is what sage uses to calculate the answer. For readability it helps to make sure it's integrating a positive power, so we assume the power is positive, and adjust the negative part in the Integrand part.
+
+ToCalcInt = Coef*(F1(freq*x)^power1)*(F2(freq*x)^power2)
+
+
+#Now we need to create the function the student sees to integrate (the actual integrand). If flip=1 we have a negative exponent, so we convert each trig function to it's co-function in the trigvec1 and trigvec2 to pull appropriate functions. Otherwise, we can just use the same function that sage is using to calculate. If we didn't use cofunctions, sage would helpfully negate the negatives and kill it.
+
+if flip == 1:
+    Intvec1 = [csc(x), sec(x), cos(x), sin(x)]
+    Intvec2 = [sec(x), csc(x), cot(x), tan(x)]
+    Integrand = (Coef) * (Intvec1[select](freq*x))^(-power1) * (Intvec2[select](freq*x))^(-power2)
+else:
+    Integrand = ToCalcInt
+
+
+# Now have sage calculate the answer
+CalcInt = integral(ToCalcInt(x),x)
+
+# Write the answer for ximera. In this case, the 'simplify' just causes it to be worse.
+Ans = CalcInt
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Evaluate the integral. \\
+
+\input{Integral-Compute-0036.HELP.tex}
+
+\[
+\int \sage{Integrand} dx=\answer{\sage{Ans}+C}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%  17 Problems so far... finished up to trig integrals %%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0037}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Choose denominator for trig sub
+v=[sqrt(b^2-x^2), sqrt(b^2+x^2), sqrt(x^2-b^2)]
+p=Integer(randint(0,2))
+denom=v[p]
+f=a/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0037.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0038}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Choose denominator for trig sub
+v=[sqrt(b^2-x^2), sqrt(b^2+x^2), sqrt(x^2-b^2)]
+p=Integer(randint(0,2))
+denom=v[p]
+f=a/(x^2*denom)
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0038.HELP.tex}
+
+\[\int{\dfrac{\sage{a}}{x^2\sage{denom}}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0039}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Choose denominator for trig sub
+v=[sqrt(b^2-x^2), sqrt(b^2+x^2), sqrt(x^2-b^2)]
+p=Integer(randint(0,2))
+denom=v[p]
+f=a*x^3/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0039.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0040}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Choose denominator for trig sub
+v=[sqrt(b^2-x^2), sqrt(x^2-b^2)]
+p=Integer(randint(0,1))
+denom=v[p]
+f=a*x^2/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0040.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0041}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Choose denominator for trig sub
+v=[sqrt(b^2-x^2), sqrt(x^2-b^2)]
+p=Integer(randint(0,1))
+denom=v[p]
+f=a*x/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0041.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0042}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+p=Integer(randint(0,2))
+
+# Choose denominator and function
+v=[sqrt(c^2-(x-b)^2), sqrt(c^2+(x-b)^2), sqrt((x-b)^2-c^2)]
+denom=expand(v[p])
+f=a/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0042.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0043}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+p=Integer(randint(0,2))
+
+# Choose denominator and function
+v=[sqrt(c^2-(x-b)^2), sqrt(c^2+(x-b)^2), sqrt((x-b)^2-c^2)]
+denom=expand(v[p])
+f=a*x/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0043.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0044}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+p=Integer(randint(0,2))
+
+# Choose denominator and function
+v=[sqrt(c^2-(x-b)^2), sqrt(c^2+(x-b)^2), sqrt((x-b)^2-c^2)]
+denom=expand(v[p])
+f=a*x^2/denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0044.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0045}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+p=Integer(randint(0,2))
+
+# Choose denominator and function
+v=[sqrt(c^2-(x-b)^2), sqrt(c^2+(x-b)^2), sqrt((x-b)^2-c^2)]
+denom=expand(v[p])
+f=denom
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0045.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0046}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+p=Integer(randint(0,2))
+
+# Choose denominator and function
+v=[sqrt(c^2-(x-b)^2), sqrt(c^2+(x-b)^2), sqrt((x-b)^2-c^2)]
+denom=expand(v[p])
+f=a/(denom)^3
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0046.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0047}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+p=Integer(randint(0,2))
+
+# Choose denominator and function
+v=[sqrt(c^2-(x-b)^2), sqrt(c^2+(x-b)^2), sqrt((x-b)^2-c^2)]
+denom=expand(v[p])
+f=a/(denom)^5
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0047.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0048}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Choose denominator for trig sub
+v=[sqrt(b^2-x^2), sqrt(b^2+x^2), sqrt(x^2-b^2)]
+u=[x,x^2]
+p=Integer(randint(0,2))
+q=Integer(randint(0,1))
+denom=v[p]
+pwr=u[q]
+f=a*denom/pwr
+
+# Compute answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0048.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Trig, File@0049}{
+\begin{sagesilent}
+# Define coefficients, powers, etc
+A = NonZeroInt(-5,5)
+B = RandInt(-5,5)
+C = NonZeroInt(-10,10)
+
+
+# Vector of possible arctrig functions
+funcvec = [arcsin(x), arccos(x), arctan(x), arcsec(x)]
+select = RandInt(0,3)
+
+# Select our arctrig function, then take the derivative to get the integrand.
+Func1 = funcvec[select]
+F(x) = C*Func1(A*x + B)
+
+Integrand(x) = derivative(F(x),x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0049.HELP.tex}
+
+\[
+\int \sage{Integrand(x)} dx = \answer{\sage{F(x)}+C}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0050}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+
+
+# Define Rational Expression
+f=(a*x+b)/((x-c)*(x-d))
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0050.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0051}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+
+
+# Define Rational Expression
+f=(a*x+b)/((x-c)*(x-d)*(x-e))
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0051.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0052}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+
+
+# Define Rational Expression
+f=(a*x+b)/((c*x+d)*(x-e))
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0052.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0053}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+
+
+# Define Rational Expression
+Numer=expand((x-a)*(x-b))
+denom=expand((x-c)*(x-d))
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0053.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0054}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+g=NonZeroInt(-9,9)
+
+
+# Define Rational Expression
+Numer=expand((a*x+b)*(x-g))
+denom=(x-c)*(x-d)*(x-e)
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0054.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0055}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=expand((a*x+b))
+denom=(x-c)^2
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0055.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0056}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=expand((a*x+b)*(x-d))
+denom=(x-c)^2
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0056.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0057}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=expand((a*x+b))
+denom=(x-c)^2*(x-d)
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0057.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0058}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=expand((a*x+b)*(x-e))
+denom=(x-c)^2*(x-d)
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0058.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0059}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=expand((a*x+b))
+denom=(x-c)^2*(x-d)^2
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0059.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@LinearFactors, File@0060}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=expand((a*x+b)*(x-d))
+denom=(x-c)^3
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0060.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@IrreducibleQuad, Sub@LinearFactors, File@0061}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+g=NonZeroInt(-9,9)
+
+# Compute the discriminant and make sure we have an irreducible quadratic
+Disc=b^2-4*a*c
+
+while Disc>=0:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+   Disc=b^2-4*a*c
+
+
+# Define Rational Expression
+Numer=expand(e*x-g)
+denom=(a*x^2+b*x+c)*(x-d)
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0061.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@IrreducibleQuad, Sub@LinearFactors, File@0062}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+g=NonZeroInt(-9,9)
+h=NonZeroInt(-9,9)
+
+# Compute the discriminant and make sure we have an irreducible quadratic
+Disc=b^2-4*a*c
+
+while Disc>=0:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+   Disc=b^2-4*a*c
+
+
+# Define Rational Expression
+Numer=expand((e*x-g)*(x-h))
+denom=(a*x^2+b*x+c)*(x-d)
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0062.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@IrreducibleQuad, Sub@LinearFactors, File@0063}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+g=NonZeroInt(-9,9)
+
+# Compute the discriminant and make sure we have an irreducible quadratic
+Disc=b^2-4*a*c
+
+while Disc>=0:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+   Disc=b^2-4*a*c
+
+
+# Define Rational Expression
+Numer=expand((e*x-g))
+denom=(a*x^2+b*x+c)*(x-d)^2
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0063.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@IrreducibleQuad, File@0064}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+e=NonZeroInt(-9,9)
+g=NonZeroInt(-9,9)
+
+# Compute the discriminant and make sure we have an irreducible quadratic
+Disc=b^2-4*a*c
+
+while Disc>=0:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+   Disc=b^2-4*a*c
+
+
+# Define Rational Expression
+Numer=expand((e*x-g))
+denom=(a*x^2+b*x+c)^2
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0064.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, File@0065}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,4)
+c=NonZeroInt(-9,9)
+
+
+# Define Rational Expression
+Numer=a
+denom=sqrt(b^2*x^2+c)
+
+f=Numer/(x*denom)
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0065.HELP.tex}
+
+\[\int{\dfrac{\sage{a}}{x\cdot\sage{denom}}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Sub@Sub-u, File@0066}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Define Rational Expression
+Numer=a*sqrt(x)
+denom=(b+x^3)
+
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0066.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Sub-u, File@0067}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+
+# Define Rational Expression
+vNumer=[sin(x)^3, arctan(x), sec(x)^3]
+vDenom=[cos(x), x^2, tan(x)^2]
+p=Integer(randint(0,2))
+Numer=a*vNumer[p]
+denom=vDenom[p]
+
+f=Numer/denom
+
+# Compute Answer
+Ans=integral(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0067.HELP.tex}
+
+\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Improper, File@0068}{
+%%%  This question might not work because of the nested "problem" environment.
+%%%  If it fails to nest properly, simply remove the outer question that has
+%%%  them choose convergent/divergent. 
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,-1)
+c=Integer(randint(-9,9))
+
+# Define Function and parts for latex display
+f=a*x*exp((b*x^2))
+fone=a*x
+fTwo=b*x^2
+
+# Compute the indefinite integral and then evaluate at the bounds
+INT=integral(f,x)
+Ans=limit(INT,x=infinity)-limit(INT,x=c)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{\sage{c}}^\infty{\sage{fone}e^{\sage{fTwo}}\;dx}\]
+
+\input{Integral-Compute-0068.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+\end{problem}
+
+\[\int_{\sage{c}}^\infty{\sage{fone}e^{\sage{fTwo}}\;dx} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Improper, Sub@Rational, File@0069}{
+%%%  This question might not work because of the nested "problem" environment.
+%%%  If it fails to nest properly, simply remove the outer question that has
+%%%  them choose convergent/divergent. 
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(1,9)
+
+# Define Function
+f=a/x^b
+
+# Compute the indefinite integral and then evaluate at the bounds
+INT=integral(f,x)
+Ans=limit(INT,x=infinity)-limit(INT,x=c)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{\sage{c}}^\infty{\sage{f}\;dx}\]
+
+\input{Integral-Compute-0069.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+\end{problem}
+
+\[\int_{\sage{c}}^\infty{\sage{f}\;dx} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Improper, File@0070}{
+%%%  This question might not work because of the nested "problem" environment.
+%%%  If it fails to nest properly, simply remove the outer question that has
+%%%  them choose convergent/divergent. 
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+# Define Function
+f=a/sqrt(b^2-x)
+
+# Compute the indefinite integral and then evaluate at the bounds
+INT=integral(f,x)
+Ans=limit(INT,x=b^2)-limit(INT,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{0}^{\sage{b^2}}{\sage{f}\;dx}\]
+
+\input{Integral-Compute-0070.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+\end{problem}
+
+\[\int_{0}^{\sage{b^2}}{\sage{f}\;dx} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Improper, File@0071}{
+%%%  This question might not work because of the nested "problem" environment.
+%%%  If it fails to nest properly, simply remove the outer question that has
+%%%  them choose convergent/divergent. 
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+
+# Define Function
+f=a/sqrt(b^2-x)
+
+# Compute the indefinite integral and then evaluate at the bounds
+INT=integral(f,x)
+Ans=limit(INT,x=b^2)-limit(INT,x=c)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{\sage{c}}^{\sage{b^2}}{\sage{f}\;dx}\]
+
+\input{Integral-Compute-0071.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+\end{problem}
+
+\[\int_{\sage{c}}^{\sage{b^2}}{\sage{f}\;dx} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Improper, File@0072}{
+%%%  This question might not work because of the nested "problem" environment.
+%%%  If it fails to nest properly, simply remove the outer question that has
+%%%  them choose convergent/divergent. 
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+
+# Define Function
+f=a*exp(x)/(exp(2*x)+b)
+
+# Compute the indefinite integral and then evaluate at the bounds
+INT=integral(f,x)
+Ans=limit(INT,x=infinity)-limit(INT,x=c)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{\sage{c}}^{\infty}{\sage{f}\;dx}\]
+
+\input{Integral-Compute-0072.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+\end{problem}
+
+\[\int_{\sage{c}}^{\infty}{\sage{f}\;dx} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Compute, Topic@Integral, Sub@Improper, File@0073}{
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(-9,9))
+c=NonZeroInt(1,9)
+
+# Define Function
+f=a/(x-b)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{\sage{c}}^{\infty}{\sage{f}\;dx}\]
+
+\input{Integral-Compute-0073.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Compute, Topic@Integral, Sub@Improper, File@0074}{
+
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-9,9)
+b=Integer(randint(-9,9))
+
+# Define Function
+f=a*log(x-b)/(x-b)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the integral converges or diverges.  If it converges, determine what it converges to.
+\[\int_{\sage{b+1}}^{\infty}{\sage{f}\;dx}\]
+
+\input{Integral-Compute-0074.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, File@0075}{
+\begin{sagesilent}
+# First grab all our coefficients
+A = NonZeroInt(-10,10)
+B = NonZeroInt(-10,10)
+C = RandInt(-10,10)
+
+# Form the functions that are being added together, then let sage add them together into a single fraction for us to make sure everything works nicely.
+f1bot = x + RandInt(-5,5) # Linear factor
+f2bot = x^2 + RandInt(1,10) # irreducable quadratic factor
+
+# Make the rational functions
+f1total = (A)/f1bot
+f2total = (B*x+C)/f2bot
+
+# Now we need to make the single rational function that needs to be decomposed. First we add them, then simplify (to get 1 fraction). This has a completely distributed function though, so we then need to apply .factor() to factor the bottom again.
+FtotalT1 = f1total + f2total
+FtotalT2 = FtotalT1.simplify_rational()
+Ftotal = FtotalT2.factor()
+
+# Now we choose which letters we want them to find. We use the cOrd1/cOrd2 to ensure that we write the letters in the question in alphabetical order.
+letterChoice = ['A', 'B', 'C']
+choice1 = RandInt(0,2)
+choice2 = NonZeroInt(0,2,[choice1])
+cOrd1 = min(choice1, choice2)
+cOrd2 = max(choice1, choice2)
+letC1 = letterChoice[cOrd1]
+letC2 = letterChoice[cOrd2]
+
+# Let sage get the correct answers based on which letters are being asked for.
+ansvec = [A, B, C]
+ans = ansvec[choice1] + ansvec[choice2]
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\input{Integral-Compute-0075.HELP.tex}
+After performing the partial fraction decomposition  
+\[
+\sage{Ftotal(x)}=\dfrac{A}{\sage{f1bot(x)}}+\dfrac{Bx+C}{\sage{f2bot(x)}}
+\]
+
+Then $\sage{letC1}+\sage{letC2} =\answer{\sage{ans}}$.\\
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, File@0076}{
+\begin{sagesilent}
+# First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
+
+n = RandInt(0,2)
+power = 2*n+3
+flip = RandInt(0,1)
+freq = NonZeroInt(-5,5)
+Coef = NonZeroInt(-5,5)
+
+# Set up the vectors to grab trig functions.
+
+trigvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
+
+select = RandInt(0,5)
+
+# The function that sage uses to calculate the answer
+ToCalcInt = (Coef*trigvec[select](freq*x))^(power)
+
+# Now we need to create the function the student sees to integrate (the actual integrand). If flip=1 we have a negative exponent, so we convert each trig function to it's co-function in the trigvec1 and trigvec2 to pull appropriate functions. Otherwise, we can just use the same function that sage is using to calculate. If we didn't use cofunctions, sage would helpfully negate the negatives and kill it.
+
+if flip == 1:
+    Intvec = [csc(x), sec(x), cos(x)*cot(x), cot(x), sin(x)*tan(x), tan(x)]
+else:
+    Intvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
+
+# Actually create the integrand with the above vectors
+Integrand = (Coef*Intvec[select](freq*x))
+
+# Calculate the actual power separately to prevent sage from trying to cancel negatives.
+Integrandpower = (power*(-1)^flip)
+
+
+
+CalcInt = integral(ToCalcInt(x),x)
+ans = CalcInt#.simplify()
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\input{Integral-Compute-0076.HELP.tex}
+Evaluate the integral. \\
+\[
+\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\sage{ans}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@EvenOdd, File@0077}{
+\begin{sagesilent}
+# First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
+
+n1 = RandInt(1,3)
+power1 = 2*n1
+n2 = RandInt(0,4-n1) # Curb the size of the power combination to avoid giant ans
+power2 = 2*n2+1
+flip = 1#RandInt(0,1)
+freq = NonZeroInt(-5,5)
+Coef = NonZeroInt(-5,5)
+
+#Set up the vectors to grab matching trig functions, first one is even power, second is odd power.
+
+trigvec1 = [sin(x), cos(x), sec(x), csc(x)]
+trigvec2 = [cos(x), sin(x), tan(x), cot(x)]
+
+select = RandInt(0,3)
+
+#Grab base trig functions for writing sanity
+F1 = trigvec1[select]
+F2 = trigvec2[select]
+
+#This is what sage uses to calculate the answer. For readability it helps to make sure it's integrating a positive power, so we assume the power is positive, and adjust the negative part in the Integrand part.
+
+ToCalcInt = Coef*(F1(freq*x)^power1)*(F2(freq*x)^power2)
+
+
+#Now we need to create the function the student sees to integrate (the actual integrand). If flip=1 we have a negative exponent, so we convert each trig function to it's co-function in the trigvec1 and trigvec2 to pull appropriate functions. Otherwise, we can just use the same function that sage is using to calculate. If we didn't use cofunctions, sage would helpfully negate the negatives and kill it.
+
+if flip == 1:
+    Intvec1 = [csc(x), sec(x), cos(x), sin(x)]
+    Intvec2 = [sec(x), csc(x), cot(x), tan(x)]
+    Integrand = (Coef) * (Intvec1[select](freq*x))^(-power1) * (Intvec2[select](freq*x))^(-power2)
+else:
+    Integrand = ToCalcInt
+
+
+# Now have sage calculate the answer
+CalcInt = integral(ToCalcInt(x),x)
+
+# Write the answer for ximera. In this case, the 'simplify' just causes it to be worse.
+ans = CalcInt
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\input{Integral-Compute-0077.HELP.tex}
+Evaluate the integral. \\
+
+\[
+\int \sage{Integrand} dx=\sage{ans}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, File@0078}{
+\begin{sagesilent}
+A = NonZeroInt(-20,20)
+B = NonZeroInt(-10,10)
+n1 = RandInt(0,1)
+n2 = RandInt(0,1-n1)
+
+pwr1 = 2*n1+1
+pwr2 = 2*n2
+
+func = A * sec(B*x)^(pwr1)*tan(B*x)^(pwr2)
+
+ans = integral(func(x),x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Evaluate:
+\input{Integral-Compute-0078.HELP.tex}
+\[
+\int \sage{func(x)} dx = \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, File@0079}{
+\begin{sagesilent}
+# Define coefficients, powers, etc
+A = NonZeroInt(-5,5)
+B = RandInt(-5,5)
+C = NonZeroInt(-10,10)
+Start = RandInt(-5,5)
+End = RandInt(Start, 10)
+pwr1 = RandInt(1,3)
+
+# Outside function designed to be the differentiation term in by-parts
+func1 = (x-B)^pwr1
+
+# Inside function designed to be the integration term in by-parts
+
+funcvec = [e^x, sin(x), cos(x)]
+select = RandInt(0,2)
+
+func2 = funcvec[select](x-A)
+
+# Final integrand
+F(x) = C*func1(x)*func2(x)
+
+# Compute answer of integral from the Start point to the End point.
+ans2 = integral(F(x),x,Start,End)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Evaluate:
+\input{Integral-Compute-0079.HELP.tex}
+$\int\limits_{\sage{Start}}^{\sage{End}} \sage{F(x)} dx = \answer{\sage{ans2}}$
+
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, File@0080}{
+\begin{sagesilent}
+# Define coefficients, powers, etc
+A = NonZeroInt(-5,5)
+B = RandInt(-5,5)
+C = NonZeroInt(-10,10)
+
+
+# Vector of possible arctrig functions
+funcvec = [arcsin(x), arccos(x), arctan(x), arcsec(x)]
+select = RandInt(0,3)
+
+# Select our arctrig function, then take the derivative to get the integrand.
+Func1 = funcvec[select]
+F(x) = C*Func1(A*x + B)
+
+Integrand(x) = derivative(F(x),x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Evaluate the integral
+\input{Integral-Compute-0080.HELP.tex}
+\[
+\int \sage{Integrand(x)} dx = \answer{\sage{F(x)}}
+\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Compute, Topic@Integral, Sub@Improper, File@0081}{
+%\begin{sagesilent}
+%# Define coefficients, powers, etc
+%A11 = NonZeroInt(1,5)
+%B11 = NonZeroInt(1,5)
+%A12 = NonZeroInt(1,5)
+%B12 = NonZeroInt(1,5)
+%A21 = NonZeroInt(1,5)
+%B21 = NonZeroInt(1,5)
+%A22 = NonZeroInt(1,5)
+%B22 = NonZeroInt(1,5)
+%A31 = NonZeroInt(1,5)
+%B31 = NonZeroInt(1,5)
+%A32 = NonZeroInt(1,5)
+%B32 = NonZeroInt(1,5)
+%A41 = NonZeroInt(1,5)
+%B41 = NonZeroInt(1,5)
+%A42 = NonZeroInt(1,5)
+%B42 = NonZeroInt(1,5)
+%
+%pwr = RandInt(2,6)
+%pwr2 = RandInt(pwr+2,10)
+%
+%slowvec = [ln(x), x^pwr, x^(1/(2*pwr+1))]
+%fastvec = [e^(x), x^pwr2] 
+%funcvec = [ln(x), x^(1/(2*pwr+1)), x^pwr, x^pwr2, e^x]
+%
+%selectslow = RandInt(0,2)
+%selectfast = RandInt(0,1)
+%select11 = RandInt(0,4)
+%select21 = RandInt(0,4)
+%select31 = RandInt(0,4)
+%select41 = RandInt(0,4)
+%select12 = RandInt(0,4)
+%select22 = RandInt(0,4)
+%select32 = RandInt(0,4)
+%select42 = RandInt(0,4)
+%
+%Fslow = slowvec[selectslow]
+%Ffast = fastvec[selectfast]
+%
+%F1 = Fslow/Ffast
+%F2 = funcvec[select11](A11*x + B11)/funcvec[select12](A12*x + B12)
+%F3 = funcvec[select21](A21*x + B21)/funcvec[select22](A22*x + B22)
+%F4 = funcvec[select31](A31*x + B31)/funcvec[select32](A32*x + B32)
+%F5 = funcvec[select41](A41*x + B41)/funcvec[select42](A42*x + B42)
+%
+%
+%if select11 < select12:
+%    ans2T = "correct"
+%else:
+%    ans2T = ""
+%
+%if select21 < select22:
+%    ans3T = "correct"
+%else:
+%    ans3T = ""
+%
+%if select31 < select32:
+%    ans4T = "correct"
+%else:
+%    ans4T = ""
+%
+%if select41 < select42:
+%    ans5T = "correct"
+%else:
+%    ans5T = ""
+%
+%# This will look bad on the pdf, but I think once the merging programs run it will come out correct after the \sage command gets removed. Will probably need to do a replace-all to remove the "\texttt" part of the \texttt{correct} NEEDS TO BE TESTED.
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\begin{problem}
+%Which of the following is a correct statement? (select \textit{all} that apply)
+\input{Integral-Compute-0081.HELP.tex}
+%\begin{multipleChoice}
+%\choice[correct]{$\int\limits_{0}^\infty \sage{F1(x)} dx$}
+%\choice[$\sage{ans2T}$]{$\int\limits_{0}^\infty \sage{F2(x)} dx$}
+%\choice[$\sage{ans3T}$]{$\int\limits_{0}^\infty \sage{F3(x)} dx$}
+%\choice[$\sage{ans4T}$]{$\int\limits_{0}^\infty \sage{F4(x)} dx$}
+%\choice[$\sage{ans5T}$]{$\int\limits_{0}^\infty \sage{F5(x)} dx$}
+%\end{multipleChoice}
+%
+%
+%\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Concept					%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Calc 1 Concept			%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Rational, File@0001}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+l=NonZeroInt(-6,-1)  
+u=NonZeroInt(1,6)
+
+p=Integer(randint(0,3))
+v=[a/x,a/x^2, a/x^3, a/x^4]
+F=v[p]
+f=integrate(F,x)
+Ans=f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
+
+\input{Integral-Concept-0001.HELP.tex}
+
+\begin{multipleChoice}
+\choice The bounds are evaluated in the wrong order.
+\choice The antiderivative is incorrect.
+\choice[correct] The integrand is not defined over the entire interval.
+\choice Nothing is wrong.  The equation is correct, as is.
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Trig, File@0002}{
+\begin{sagesilent}
+b = NonZeroInt(-10,10)
+l = RandAng(0,pi/3)
+u = RandAng(2*pi/3,pi)
+
+p=Integer(randint(0,1))
+vt=[b*sec(x)*tan(x), b*sec(x)^2]
+F=vt[p]
+f=integrate(F,x)
+Ans=f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
+
+\input{Integral-Concept-0002.HELP.tex}
+
+\begin{multipleChoice}
+\choice The antiderivative is incorrect.
+\choice[correct] The integrand is not defined over the entire interval.
+\choice The bounds are evaluated in the wrong order.
+\choice Nothing is wrong.  The equation is correct, as is.
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Trig, File@0003}{
+\begin{sagesilent}
+b = NonZeroInt(-10,10)
+l = RandAng(pi/6,5*pi/6)
+u = RandAng(7*pi/6,11*pi/6)
+
+p=Integer(randint(0,1))
+vt=[b*csc(x)^2, b*csc(x)*cot(x)]
+F=vt[p]
+f=integrate(F,x)
+Ans=f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}\]
+
+\input{Integral-Concept-0003.HELP.tex}
+
+\begin{multipleChoice}
+\choice The antiderivative is incorrect.
+\choice[correct] The integrand is not defined over the entire interval.
+\choice The bounds are evaluated in the wrong order.
+\choice Nothing is wrong.  The equation is correct, as is.
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%

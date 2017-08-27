@@ -1,0 +1,1468 @@
+\documentclass{ximera}
+\usepackage{PackageLoader}
+\usepackage{sagetex}
+%%%%%%  This is the raw list of questions before processing %%%%%%
+\renewcommand{\latexProblemContent}[1]{#1}
+\renewcommand{\choice}[2][No]{\item Is this correct? #1 \\ What is the choice? #2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{JasonSageMacrosNEW}
+
+%%%% ADD IN Sub@PTest - Done %%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Convergence, File@0001}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(1,9)
+while c^2<=b^2:
+   b=NonZeroInt(1,9)
+   c=NonZeroInt(1,9)
+
+#Define the general term of the series
+r=b/c
+f=a*(r)^x
+
+#Compute the sum of the series
+Ans=sum(f,x,0,infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=0}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0001.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\sum_{n=0}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Divergence, File@0002}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(1,9)
+while c^2>b^2:
+   b=NonZeroInt(1,9)
+   c=NonZeroInt(1,9)
+
+#Define the general term of the series
+r=b/c
+f=a*(r)^x
+
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=0}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0002.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Convergence, File@0003}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(1,9)
+while c^2<=b^2:
+   b=NonZeroInt(1,9)
+   c=NonZeroInt(1,9)
+d=RandInt(0,9)
+
+#Define the general term of the series
+r=b/c
+f=a*(r)^x
+
+#Compute the sum of the series
+Ans=sum(f,x,d,infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0003.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Divergence, File@0004}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(1,9)
+while c^2<=b^2:
+   b=NonZeroInt(1,9)
+   c=NonZeroInt(1,9)
+d=RandInt(0,9)
+
+#Define the general term of the series
+r=b/c
+f=a*(r)^x
+
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0004.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Convergence, File@0005}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(2,9)
+d=RandInt(0,9)
+
+#Define the general term of the series
+
+f=a/b^x
+
+#Compute the sum of the series
+Ans=sum(f,x,d,infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0005.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Convergence, File@0007}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,5)
+c=RandInt(0,9)
+
+#Define the general term of the series
+g=1/(x+c)-1/(x+(c+b))
+f=a*g.simplify_rational()
+
+#Compute the sum of the series
+Ans=sum(f,x,0,infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=0}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0007.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\sum_{n=0}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Divergence, File@0008}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,5)
+c=RandInt(0,9)
+
+#Define the general term of the series
+R=(x+c)/(x+(c+b))
+g=log(R)
+f=a*g
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=1}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0008.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Convergence, File@0009}{
+%\begin{sagesilent}
+%# Define variables and constants/exponents
+%var('x,n')
+%a=NonZeroInt(-9,9)
+%c=RandInt(0,9)
+%
+%#Define the general term of the series
+%g=1/(x^3-c^2*x)
+%f=a*c^2*g
+%
+%#Compute the sum of the series
+%Ans=sum(f,x,c+1,infinity)
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\begin{problem}
+%\begin{problem}
+%Determine if the series converges or diverges.  If it converges, find its sum. 
+%
+%\[\sum_{n=\sage{c+1}}^\infty \sage{f(n)}\]
+%
+\input{Series-Compute-0009.HELP.tex}
+%
+%\begin{multipleChoice}
+%\choice{Diverges}
+%\choice[correct]{Converges}
+%\end{multipleChoice}
+%
+%
+%\end{problem}
+%
+%\[\sum_{n=\sage{c+1}}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
+%
+%\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Convergence, File@0010}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+c=NonZeroInt(1,5)
+
+#Define the general term of the series
+f=a*log(1-c^2/x^2)
+
+#Compute the sum of the series
+Ans=sum(f,x,c+1,infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=\sage{c+1}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0010.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\sum_{n=\sage{c+1}}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@IntegralTest, Sub@Divergence, File@0011}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+d=NonZeroInt(2,20)
+
+#Define the general term of the series
+f=a*log(x)/x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0011.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@IntegralTest, Sub@Convergence, File@0012}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*x*exp(-b*x^2)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0012.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PTest, Sub@Convergence, File@0013}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=RandInt(2,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*1/x^b
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0013.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PTest, Sub@Divergence, File@0014}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=RandInt(-20,1)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*1/x^b
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0014.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@DirectComparison, Sub@Convergence, File@0015}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=RandInt(0,20)
+c=NonZeroInt(1,9)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a/(x^c+b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0015.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@DirectComparison, Sub@Divergence, File@0016}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=RandInt(0,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a/(sqrt(x)-b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0016.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@LimitComparison, Sub@Divergence, File@0017}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=RandInt(0,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a/(sqrt(x)+b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0017.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@LimitComparison, Sub@Divergence, File@0018}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=RandInt(0,20)
+d=NonZeroInt(1,20)
+p=RandInt(0,1)
+
+#Define the general term of the series
+v=[a*sin(b/x), a*tan(b/x)]
+f=v[p]
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0018.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@DirectComparison, Sub@Convergence, File@0019}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=RandInt(1,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(a+(-1)^x)/(b*x*sqrt(x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0019.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@LimitComparison, Sub@Convergence, File@0020}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,10)
+b=RandInt(0,10)
+c=NonZeroInt(1,10)
+d=NonZeroInt(1,20)
+g=NonZeroInt(1,9)
+p=RandInt(0,1)
+s=NonZeroInt(1,9)
+t=NonZeroInt(-9,9)
+r=NonZeroInt(-9,9)
+
+#Define the general term of the series
+v=[a*x^2+b*x, a*x^3+b*x^2+c*x]
+w=[s*x^2+t*x+r, s*x^3+t*x^2+r]
+Top=v[p]
+Bot=w[p]
+f=Top/(g^x*(Bot))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0020.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@DirectComparison, Sub@Convergence, File@0021}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=RandInt(0,20)
+t=NonZeroInt(1,9)
+s=2*t+1
+
+#Define the general term of the series
+f=a/sqrt(x^s+b^2)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0021.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@LimitComparison, Sub@Convergence, File@0022}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(1,20)
+e=NonZeroInt(-9,9)
+
+#Define the general term of the series
+f=a*sqrt(x)/(b*x^2+c*x+e)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0022.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@DirectComparison, Sub@LimitComparison, Sub@Convergence, File@0023}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,20)
+b=NonZeroInt(1,a)
+c=NonZeroInt(1,20)
+e=NonZeroInt(1,a)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(e+b^x)/(c+a^x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0023.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@DirectComparison, Sub@Convergence, File@0024}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(2,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+p=RandInt(0,1)
+v=[a+sin(x), a+cos(x)]
+f=v[p]/b^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0024.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Alternating, Sub@Convergence, File@0025}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+s=NonZeroInt(1,9)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*(-1)^(x+1)/x^s
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0025.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Alternating, Sub@Convergence, File@0026}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(2,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*(-1)^(x+1)*b^(1/x)/x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0026.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Alternating, Sub@Divergence, File@0027}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,20)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(-1)^x*a*x/(b*x+c)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0027.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Alternating, Sub@Convergence, File@0028}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+p=RandInt(0,1)
+q=RandInt(0,1)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+v=[a*sin(x*pi/2), a*cos(x*pi)]
+w=[factorial(x), x^x]
+f=v[p]/w[q]
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0028.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Alternating, Sub@Convergence, File@0029}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,20)
+s=NonZeroInt(1,9)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*(-1)^x*x^s/b^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0029.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RatioTest, Sub@Convergence, File@0030}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a^x/factorial(x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0030.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RatioTest, Sub@Divergence, File@0031}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,20)
+d=NonZeroInt(1,20)
+s=NonZeroInt(1,9)
+
+#Define the general term of the series
+f=a^x/x^s
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0031.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RatioTest, Sub@Convergence, File@0032}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,20)
+d=NonZeroInt(1,20)
+s=NonZeroInt(1,9)
+
+#Define the general term of the series
+f=x^s/a^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0032.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RatioTest, Sub@Convergence, File@0033}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,20)
+d=NonZeroInt(1,20)
+s=NonZeroInt(1,9)
+
+#Define the general term of the series
+f=(-1)^(x+1)*n^s*a^x/factorial(x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0033.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RatioTest, Sub@Convergence, File@0034}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+a=RandInt(1,9)
+b=RandInt(1,9)
+c=RandInt(-2,2)
+d=RandInt(0,2)
+e=RandInt(1,9)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+\[\sum_{n=\sage{d}}^\infty
+\dfrac{(-1)^n(\sage{b*d+c}\cdot\sage{b*(d+1)+c}\cdot\sage{b*(d+2)+c}\cdots(\sage{b*n+c}))}
+{\sage{a^n}\; (\sage{e*n})!}\]
+
+\input{Series-Compute-0034.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Convergence, File@0035}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(a,21)
+c=NonZeroInt(1,9)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(a*x/(b*x+c))^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0035.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Convergence, File@0036}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-20,-1)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(1+a/x)^(x^2)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0036.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Divergence, File@0037}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(1+a/x)^(x^2)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0037.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Convergence, File@0038}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*x/(log(x))^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0038.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Convergence, File@0039}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a^(b*x)/x^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0039.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Divergence, File@0040}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,20)
+b=NonZeroInt(1,a)
+c=NonZeroInt(-20,20)
+d=NonZeroInt(1,20)
+e=NonZeroInt(-20,20)
+
+#Define the general term of the series
+f=((a*x^2+c)/(b*x^2+e))^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0040.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Convergence, File@0041}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(a,21)
+c=NonZeroInt(-20,20)
+d=NonZeroInt(1,20)
+e=NonZeroInt(-20,20)
+
+#Define the general term of the series
+f=((a*x^2+c)/(b*x^2+e))^x
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0041.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RootTest, Sub@Divergence, File@0042}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=(a*factorial(x))^x/x^(b*x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine if the series converges or diverges.  
+
+\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+
+\input{Series-Compute-0042.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% Finished with series tests %%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0043}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,20)
+d=NonZeroInt(1,20)
+
+#Define the general term of the series
+f=a*x^(b*n)/factorial(n)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0043.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{\infty}\qquad \mbox{Interval of Convergence}:\; (\answer{-\infty},\answer{\infty})\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0044}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=RandInt(-20,20)
+d=RandInt(0,20)
+
+#Define the general term of the series
+f=(x-a)^n
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0044.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{1}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-1}}<x<\answer{\sage{a+1}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0045}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=RandInt(-20,20)
+b=NonZeroInt(1,20)
+d=RandInt(0,20)
+
+#Define the general term of the series
+f=(x-a)^n/(n+b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0045.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{1}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-1}}<x<\answer{\sage{a+1}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0046}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=RandInt(-20,20)
+b=NonZeroInt(1,20)
+c=NonZeroInt(1,9)
+d=RandInt(0,20)
+
+#Define the general term of the series
+f=(-1)^n*(x-a)^n/((n+b)*c^n)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0046.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{c}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

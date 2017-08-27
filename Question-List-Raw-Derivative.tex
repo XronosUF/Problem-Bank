@@ -1,0 +1,2007 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Computation				%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%			MAC2311: Calculus 1			%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Power-Rule, File@0001}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+c = NonZeroInt(-5,5)
+   
+vright=[(x-a),expand((x-a)*(x-b)),expand((x-a)*(x-b)*(x-c)),1]
+
+first = Integer(randint(0,3))
+second = Integer(randint(0,2))
+
+Fone=vright[first]
+Ftwo=vright[second]
+F=expand(Fone*Ftwo)
+
+Ans=derivative(F,x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0001.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Trig, File@0002}{
+\begin{sagesilent}
+w0=SR.wild(0)
+def TrigSimp(f):
+   ftemp = f
+   ftempsec = ftemp.substitute(tan(w0)^2+1 == sec(w0)^2)
+   ftempcsc = ftempsec.substitute(cot(w0)^2+1 == csc(w0)^2)
+   ffinal = ftempcsc
+   return simplify(ffinal)
+
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+   
+vleft=[a*sin(b*x*pi), a*cos(b*x*pi), a*tan(b*x*pi), a*sin(b*x*pi/2), a*cos(b*x*pi/2), a*tan(b*x*pi/2), a*sin(b*x*pi/6), a*cos(b*x*pi/6), a*tan(b*x*pi/6), a*sin(b*x*pi/3), a*cos(b*x*pi/3), a*tan(b*x*pi/3)]
+
+first = Integer(randint(0,11))
+
+Fone=vleft[first]
+
+Ans=TrigSimp(derivative(Fone,x))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0002.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{Fone}\right)=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Trig, Sub@Product-Rule, File@0003}{
+\begin{sagesilent}
+w0=SR.wild(0)
+def TrigSimp(f):
+   ftemp = f
+   ftempsec = ftemp.substitute(tan(w0)^2+1 == sec(w0)^2)
+   ftempcsc = ftempsec.substitute(cot(w0)^2+1 == csc(w0)^2)
+   ffinal = ftempcsc
+   return simplify(ffinal)
+
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+c = NonZeroInt(-5,5)   
+d=NonZeroInt(-5,5, [0,c])
+   
+vleft=[a*sin(b*x*pi), a*cos(b*x*pi), a*tan(b*x*pi), a*sin(b*x*pi/2), a*cos(b*x*pi/2), a*tan(b*x*pi/2), a*sin(b*x*pi/6), a*cos(b*x*pi/6), a*tan(b*x*pi/6), a*sin(b*x*pi/3), a*cos(b*x*pi/3), a*tan(b*x*pi/3)]
+
+vright=[c*sin(d*x*pi), c*cos(d*x*pi), c*tan(d*x*pi), c*sin(d*x*pi/2), c*cos(d*x*pi/2), c*tan(d*x*pi/2), c*sin(d*x*pi/6), c*cos(d*x*pi/6), c*tan(d*x*pi/6), c*sin(d*x*pi/3), c*cos(d*x*pi/3), c*tan(d*x*pi/3)]
+
+first = Integer(randint(0,11))
+second = Integer(randint(0,11))
+
+Fone=vleft[first]
+Ftwo=vright[second]
+F=expand(Fone*Ftwo)
+
+Ans=TrigSimp(derivative(F,x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0003.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@Quotient-Rule, File@0004}{
+\begin{sagesilent}
+
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+c = NonZeroInt(-5,5, [0,a])
+d=NonZeroInt(-5,5, [0,a])
+e=NonZeroInt(-5,5, [0,a])
+f=NonZeroInt(-5,5)
+
+vleft=[(x-a),expand((x-a)*(x-b)),expand((x-a)*(x-b)*(x-c)),1]
+vright=[(x-d),expand((x-d)*(x-e)),expand((x-d)*(x-e)*(x-f))]
+
+first = Integer(randint(0,3))
+second = Integer(randint(0,2))
+
+Fone=vleft[first]
+Ftwo=vright[second]
+F=Fone/Ftwo
+
+Fnum=(derivative(F,x)).numerator()
+Fden=(derivative(F,x)).denominator()
+Ans=Fnum/Fden
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0004.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@FormalDef, Sub@DifferenceQuotient, Sub@Poly, File@0005}{
+\begin{sagesilent}
+var('h')
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-4,4)
+p=Integer(randint(0,3))
+if p==0:
+   b = NonZeroInt(1,4)
+
+v=[a*sqrt(x),a/x, a*x^2, a*x^3]
+
+F=v[p]
+Fone=F(b+h)
+Ftwo=F(b)
+DQ=(F(b+h)-F(b))/h
+
+Ans=limit(DQ,h=0)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following limit definition of derivative.
+\[\lim_{h\to0}\frac{\sage{Fone-Ftwo}}{h}=\answer{\sage{Ans}}\]
+What function is being differentiated?
+\[f(x)=\answer{\sage{F}}\]
+At what $x-$value are you computing the derivative?
+\[x=\answer{\sage{b}}\]
+
+\input{Derivative-Compute-0005.HELP.tex}
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Log, File@0006}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+g=a*log(x)
+Ans = derivative(g,x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0006.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{g}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Log, Sub@Chain-Rule, File@0007}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+f=a*log(b*x+c)
+Ans = derivative(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0007.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{f}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Exp, File@0008}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = Integer(randint(-5,5))
+g=a*exp(b+x)
+Ans = derivative(g,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0008.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{g}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Exp, Sub@Chain-Rule, File@0009}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = Integer(randint(-5,5))
+c = NonZeroInt(-5,5)
+f=a*exp(c*x+b)
+Ans = derivative(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0009.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{f}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Product-Rule, File@0010}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+
+p=Integer(randint(0,8))
+q=Integer(randint(0,8))
+while p==q:
+   q=Integer(randint(0,8))
+
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x)]
+
+Fone=v[p]
+Ftwo=v[q]
+F=a*Fone*Ftwo
+
+Ans = derivative(F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0010.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Quotient-Rule, File@0011}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+
+p=Integer(randint(0,8))
+q=Integer(randint(0,8))
+while p==q:
+   q=Integer(randint(0,8))
+
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x)]
+
+Fone=v[p]
+Ftwo=v[q]
+F=a*Fone/Ftwo
+
+Ans = derivative(F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0011.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Chain-Rule, File@0012}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+
+p=Integer(randint(0,8))
+q=Integer(randint(0,8))
+while p==q:
+   q=Integer(randint(0,8))
+
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x)]
+
+Fone=v[p]
+Ftwo=v[q]
+F=a*Fone(Ftwo)
+
+Ans = derivative(F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0012.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Tan-Line, Sub@Poly, File@0013}{
+\begin{sagesilent}
+a = NonZeroInt(-3,3)
+b = NonZeroInt(-3,3)
+p=Integer(randint(0,1))
+v=[expand((x-b)^2), expand((x-b)^3)]
+F=v[p]
+
+if p==0:
+   Ans=2*(a-b)*x-2*a*(a-b)+(a-b)^2
+else:
+   Ans = 3*(a-b)^2*x-3*a*(a-b)^2+(a-b)^3
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the equation of the line tangent to $f(x)=\sage{F}$ at $x=\sage{a}$.
+
+\input{Derivative-Compute-0013.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Tan-Line, Sub@Trig, File@0014}{
+\begin{sagesilent}
+a = RandAng(0,pi)
+b = NonZeroInt(-3,3)
+p=Integer(randint(0,1))
+v=[b*sin(x), b*cos(x)]
+F=v[p]
+
+if p==0:
+   Ans=b*cos(a)*x-a*b*cos(a)+b*sin(a)
+else:
+   Ans = -b*sin(a)*x+a*b*sin(a)+b*cos(a)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the equation of the line tangent to $f(x)=\sage{F}$ at $x=\sage{a}$.
+
+\input{Derivative-Compute-0014.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Tan-Line, Sub@Exp, Sub@Log, File@0015}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b = NonZeroInt(-3,3)
+c = Integer(randint(-5,5))
+v=[b*log(x), b*exp(x)]
+
+F=v[p]
+
+if p==0:
+   tar=a   
+   Ans = b/a*x-b+b*log(a)
+else:
+   tar=c
+   Ans = b*exp(c)*x-c*b*exp(c)+b*exp(c)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the equation of the line tangent to $f(x)=\sage{F}$ at $x=\sage{tar}$.
+
+\input{Derivative-Compute-0015.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Poly, File@0016}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,8))
+w=function('w',x)
+v=[x*w, x^2*w, x^3*w, x*w^2, x*w^3, x^2*w^2, x^2*w^3, x^3*w^2, x^3*w^3]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0016.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Trig, Sub@Poly, File@0017}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,7))
+w=function('w',x)
+v=[sin(x*w), sin(x^2*w), cos(x*w), sin(x*w^2), cos(x^2*w), cos(x*w^2), sin(x^2*w^2), cos(x^2*w^2)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0017.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Trig, Sub@Poly, File@0018}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,7))
+w=function('w',x)
+v=[x*sin(w), x^2*sin(w), x*cos(w), x*sin(w^2), x^2*cos(w), x*cos(w^2), x^2*sin(w^2), x^2*cos(w^2)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0018.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Trig, Sub@Poly, File@0019}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,7))
+w=function('w',x)
+v=[w*sin(x), w^2*sin(x), w*cos(x), w*sin(x^2), w^2*cos(x), w*cos(x^2), w^2*sin(x^2), w^2*cos(x^2)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0019.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Exp, Sub@Poly, File@0020}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,8))
+w=function('w',x)
+v=[exp(x*w), exp(x^2*w), exp(x*w^2), exp(x^2*w^2), exp(x^2*w^3), exp(x^3*w^2), exp(x^3*w^3), exp(x*w^3), exp(x^3*w)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0020.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Exp, Sub@Poly, File@0021}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,8))
+w=function('w',x)
+v=[x*exp(x*w), x*exp(x^2*w), x*exp(x*w^2), x*exp(x^2*w^2), x*exp(x^2*w^3), x*exp(x^3*w^2), x*exp(x^3*w^3), x*exp(x*w^3), x*exp(x^3*w)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0021.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Exp, Sub@Poly, File@0022}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,8))
+w=function('w',x)
+v=[w*exp(x*w), w*exp(x^2*w), w*exp(x*w^2), w*exp(x^2*w^2), w*exp(x^2*w^3), w*exp(x^3*w^2), w*exp(x^3*w^3), w*exp(x*w^3), w*exp(x^3*w)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0022.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Exp, Sub@Poly, File@0023}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,8))
+w=function('w',x)
+v=[x*exp(w), x^2*exp(w), x*exp(w^2), x^2*exp(w^2), x^2*exp(w^3), x^3*exp(w^2), x^3*exp(w^3), x*exp(w^3), x^3*exp(w)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0023.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Implicit, Sub@Log, Sub@Poly, File@0024}{
+\begin{sagesilent}
+def FixDeriv(f):
+   ftemp=f
+   ftempderiv = ftemp.substitute(diff(w) == dy/dx)
+   #ftempderivv = ftempderiv.substitute(diff(diff(y)) == (d^2*y)/(d*x^2))
+   ffinal = ftempderiv
+   return ffinal
+
+def RegY(f):
+   ftemp=f
+   ftempnew = ftemp.substitute(w(x) == y)
+   ffinal=ftempnew
+   return ffinal
+
+
+a = NonZeroInt(-3,3)
+p=Integer(randint(0,8))
+w=function('w',x)
+v=[log(x*w), log(x^2*w), log(x*w^2), log(x^2*w^2), log(x^2*w^3), log(x^3*w^2), log(x^3*w^3), log(x*w^3), log(x^3*w)]
+
+F=v[p]
+f=diff(F, x)
+g=solve(diff(F),diff(w))
+f2=g[0]
+f3=FixDeriv(f2)
+f4=RegY(f3)
+f5=f4.rhs()
+G=RegY(F)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Implicitly derive the expression $\sage{G}=\sage{a}$ and solve for $\dfrac{dy}{dx}$.
+
+\input{Derivative-Compute-0024.HELP.tex}
+
+\[\dfrac{dy}{dx}=\answer{\sage{f5}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Domain, Sub@Rational, File@0025}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+p=Integer(randint(0,2))
+v=[1/(x-a), 1/(x-a)^2, 1/(x-a)^3]
+F=v[p]
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find each interval over which $f(x)=\sage{F}$ is differentiable.
+
+\input{Derivative-Compute-0025.HELP.tex}
+
+\[\answer{(-\infty,\sage{a})\cup(\sage{a},\infty)}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Domain, Sub@Rational, File@0026}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5,[0,a])
+p=Integer(randint(0,2))
+v=[1/((x-a)*(x-b)), 1/((x-a)^2*(x-b)), 1/((x-a)*(x-b)^2)]
+F=v[p]
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find each interval over which $f(x)=\sage{F}$ is differentiable.
+
+\input{Derivative-Compute-0026.HELP.tex}
+
+\[\answer{(-\infty,\sage{a})\cup(\sage{a},\sage{b})\cup(\sage{b},\infty)}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Power-Rule, File@0027}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+p=Integer(randint(0,5))
+v=[x^2, x^3, x^4, expand((x-a)*(x-b)), expand((x-a)^2*(x-b)), expand((x-a)*(x-b)^2)]
+F=v[p]
+Ans=diff(F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0027.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%% SO FAR 27-Compute %%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Arctrig, File@0028}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5, [0,a])
+p=Integer(randint(0,2))
+v=[a*arcsin(b*x), a*arccos(b*x), a*arctan(b*x)]
+F=v[p]
+Ans=diff(F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0028.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right)=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Related-Rates, File@0029}{
+\begin{sagesilent}
+a = NonZeroInt(1,6)
+A=a*pi
+Ans=a/36
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+A snowball is melting at a rate of $\sage{A}$ $cm^3/s$.  At what rate is the radius decreasing when the volume of the snowball is $36\,\pi$ $cm^3$?\\[0.5in]
+
+\input{Derivative-Compute-0029.HELP.tex}
+
+The radius is decreasing at $\answer{\sage{Ans}}$ $cm/s$.
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Related-Rates, File@0030}{
+\begin{sagesilent}
+a = NonZeroInt(1,6)
+A=a*100
+Ans=a*20
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+A plane, currently overhead, is flying directly away from you at $\sage{A}$ mph at an altitude of $3$ miles.  How fast is the plane's distance from you increasing at
+the moment when the plane is flying over a point on the ground $4$ miles from you?\\[0.5in]
+
+\input{Derivative-Compute-0030.HELP.tex}
+
+The distance between you and the plane is increasing by $\answer{\sage{Ans}}$ mph.
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Related-Rates, File@0031}{
+\begin{sagesilent}
+a = NonZeroInt(2,10)
+A = a*4
+B = a*3
+Ans=(3*A+4*B)/5
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+A road running north to south crosses a road going east to west at the point $P$.  Cyclist $A$ is riding north along the first road, and cyclist $B$ is riding east along the second road.  At a particular time, cyclist $A$ is $3$ kilometers to the north of $P$ and traveling at $\sage{A}$ kph, while cyclist $B$ is $4$ kilometers to the east of $P$ and traveling at $\sage{B}$ kph.  How fast is the distance between the two cyclists changing? \\[0.5in]
+
+\input{Derivative-Compute-0031.HELP.tex}
+
+The distance between the two cyclists is increasing by $\answer{\sage{Ans}}$ kph.
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%% 31 Compute %%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Related-Rates, File@0032}{
+\begin{sagesilent}
+a = NonZeroInt(1,4)
+A = a*5
+B = a*3
+Ans=3/4
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+A swing consists of a board at the end of a $\sage{A}$ ft long rope.  Think of the board as a point $P$ at the end of the rope, and let $Q$ be the point of attachment at the other end.  Suppose that the swing is directly below $Q$ at time $t=0$, and is being pushed by someone who walks at $\sage{B}$ ft/s from left to right.  What is the angular speed of the rope in rad/s after 1 sec? \\[0.5in]
+
+\input{Derivative-Compute-0032.HELP.tex}
+
+The angular speed of the rope is $\answer{\sage{Ans}}$ rad/s.
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Related-Rates, File@0033}{
+\begin{sagesilent}
+a = NonZeroInt(10,16)
+b = NonZeroInt(4,6)
+B = a-b
+c = NonZeroInt(3,9)
+Ans=b
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+It is night. Someone who is $\sage{b}$ feet tall is walking away from a street light at a rate of $\sage{B}$ feet per second.  The street light is $\sage{a}$ feet tall.  The person casts a shadow on the ground in front of them. How fast is the length of the shadow growing when the person is $\sage{c}$ feet from the street light? \\[0.5in]
+
+\input{Derivative-Compute-0033.HELP.tex}
+
+The length of the shadow is growing at a rate of $\answer{\sage{Ans}}$ ft/s.
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%% 33 - Compute %%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Differential, Sub@Rational, File@0034}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+
+p=Integer(randint(0,2))
+
+v=[a/(x-b), a/(x-b)^2, a/expand((x-b)*(x-c))]
+F=v[p]
+f=diff(F, x)
+Ans=f
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the differential of the function $y=\sage{F}$.
+
+\input{Derivative-Compute-0034.HELP.tex}
+
+\[dy=\answer{\sage{Ans}\,dx}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Differential, File@0035}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+
+p=Integer(randint(0,8))
+
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x)]
+F=v[p]
+f=diff(F, x)
+Ans=f
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the differential of the function $y=\sage{F}$.
+
+\input{Derivative-Compute-0035.HELP.tex}
+
+\[dy=\answer{\sage{Ans}\,dx}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Differential, Sub@Chain-Rule, File@0036}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+
+p=Integer(randint(0,8))
+q=Integer(randint(0,8))
+
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x)]
+F=v[p]
+G=v[q]
+H=F(G)
+f=diff(H, x)
+Ans=f
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the differential of the function $y=\sage{H}$.
+
+\input{Derivative-Compute-0036.HELP.tex}
+
+\[dy=\answer{\sage{Ans}\,dx}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Multi-Deriv, File@0037}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-7,7)
+p=Integer(randint(0,2))
+v=[a*(x-b), a*expand((x-b)^2), a*expand((x-b)^3)]
+F=v[p]
+f=diff(F, x)
+g=diff(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the first and second derivatives for the function\\ $f(x)=\sage{F}$.\\
+
+\input{Derivative-Compute-0037.HELP.tex}
+
+\[f'(x)=\answer{\sage{f}}\]
+
+\[f''(x)=\answer{\sage{g}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Trig, Sub@Multi-Deriv, File@0038}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-5,5)
+p=Integer(randint(0,5))
+
+vtrig=[a*sin(b*x), a*cos(b*x), a*tan(b*x), a*sin(x)+b*cos(x), a*sin(x)^2, a*cos(x)^2]
+
+F=vtrig[p]
+f=diff(F, x)
+g=diff(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the first and second derivatives for the function\\ $f(x)=\sage{F}$.\\
+
+\input{Derivative-Compute-0038.HELP.tex}
+
+\[f'(x)=\answer{\sage{f}}\]
+
+\[f''(x)=\answer{\sage{g}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Product-Rule, Sub@Multi-Deriv, File@0039}{
+\begin{sagesilent}
+b = NonZeroInt(-5,5)
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x), 1/x, 1/x^2, 1/x^3]
+
+Fone=v[p]
+Ftwo=v[q]
+G=Fone*Ftwo
+f=diff(G, x)
+g=diff(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the first and second derivatives for the function\\ $f(x)=\sage{G}$.\\
+
+\input{Derivative-Compute-0039.HELP.tex}
+
+\[f'(x)=\answer{\sage{f}}\]
+
+\[f''(x)=\answer{\sage{g}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Chain-Rule, Sub@Multi-Deriv, File@0040}{
+\begin{sagesilent}
+b = NonZeroInt(-5,5)
+p=Integer(randint(0,11))
+q=Integer(randint(0,11))
+v=[sqrt(x), log(x), exp(x), x^2, x^3, x^4, (x-b), sin(x), cos(x), 1/x, 1/x^2, 1/x^3]
+
+Fone=v[p]
+Ftwo=v[q]
+G=Fone(Ftwo)
+f=diff(G, x)
+g=diff(f,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the first and second derivatives for the function\\ $f(x)=\sage{G}$.\\
+
+\input{Derivative-Compute-0040.HELP.tex}
+
+\[f'(x)=\answer{\sage{f}}\]
+
+\[f''(x)=\answer{\sage{g}}\] 
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Critical-Number, File@0041}{
+\begin{sagesilent}
+a = NonZeroInt(-4,4)
+b = RandInt(-20,20)
+p=Integer(randint(0,2))
+vpoly=[(x-a), expand((x-a)^2), expand((x-a)^3)]
+F=vpoly[p]
+f=integral(F,x) + b
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the critical numbers for the function $f(x)=\sage{f}$.\\
+
+\input{Derivative-Compute-0041.HELP.tex}
+
+\[x=\answer{\sage{a}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Critical-Number, File@0042}{
+\begin{sagesilent}
+a = NonZeroInt(-4,4)
+b = RandInt(-20,20)
+p=Integer(randint(0,2))
+vpoly=[expand(x*(x-a)), expand(x*(x-a)^2), expand(x*(x-a)^3)]
+F=vpoly[p]
+f=integral(F,x) + b
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the critical numbers for the function $f(x)=\sage{f}$.\\
+
+\input{Derivative-Compute-0042.HELP.tex}
+
+\[x=\answer{0,\sage{a}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Critical-Number, File@0043}{
+\begin{sagesilent}
+a = NonZeroInt(-4,4)
+b = NonZeroInt(-4,4)
+c = RandInt(-20,20)
+p=Integer(randint(0,1))
+vpoly=[expand((x-a)*(x-b)), (x-a)^2*(x-b)]
+F=vpoly[p]
+f=integral(F,x) + c
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the critical numbers for the function $f(x)=\sage{f}$.\\
+
+\input{Derivative-Compute-0043.HELP.tex}
+
+\[x=\answer{\sage{b},\sage{a}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Optimization, File@0044}{
+\begin{sagesilent}
+a = NonZeroInt(1,10)
+A=a^2
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find two positive numbers whose product is $\sage{A}$ and whose sum is a minimum.
+
+\input{Derivative-Compute-0044.HELP.tex}
+
+\[\mbox{The two numbers are\;} \answer{\sage{a}, \sage{a}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Optimization, File@0045}{
+\begin{sagesilent}
+a = NonZeroInt(1,15)
+b = NonZeroInt(1,15,[a])   
+A=a^2
+B=b^2
+Area=2*a*b
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the area of the largest rectangle that can be inscribed in the ellipse $\dfrac{x^2}{\sage{A}}+\dfrac{y^2}{\sage{B}}=1$
+
+\input{Derivative-Compute-0045.HELP.tex}
+
+\[\mbox{The largest area is \;} \answer{\sage{Area}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Optimization, File@0046}{
+\begin{sagesilent}
+a = NonZeroInt(1,8)
+b = NonZeroInt(1,8)
+A=a*b
+Area=A^2/(2*(pi+4))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+A Norman window has the shape of a rectangle surmounted by a semicircle (i.e. the diameter of the semicircle is equal to the width of the rectangle).  If the perimeter of the window is $\sage{A}$ ft, what area will allow in the greatest amount of light?
+
+\input{Derivative-Compute-0046.HELP.tex}
+
+\[\mbox{The largest possible area is\;} \answer{\sage{Area}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Optimization, File@0047}{
+\begin{sagesilent}
+a = NonZeroInt(-15,15)
+b = NonZeroInt(-15,15)   
+X=(-a*b)/(a^2+1)
+Y=b/(a^2+1)
+f=a*x+b
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the point on the line $y=\sage{f}$ that is closest to the origin.
+
+\input{Derivative-Compute-0047.HELP.tex}
+
+\[\mbox{The closest point to the origin is}\; \answer{\left(\sage{X},\sage{Y}\right)}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Trig, File@0048}{
+\begin{sagesilent}
+b = NonZeroInt(-20,20)
+c = RandInt(-20,20)   
+p=Integer(randint(0,5))
+vtrig=[b*sin(x), b*cos(x), b*tan(x), b*cot(x), b*sec(x), b*csc(x)]
+F=vtrig[p] + c
+f=diff(F,x)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Compute the following derivative:
+
+\input{Derivative-Compute-0048.HELP.tex}
+
+\[\dfrac{d}{dx}\left(\sage{F}\right) = \answer{\sage{f}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Trig, Sub@LHopital, File@0049}{
+\begin{sagesilent}
+a = NonZeroInt(-8,8)
+b = NonZeroInt(-8,8)
+p=Integer(randint(0,3))
+v=[sin(a*x)/tan(b*x), sin(a*x)/cos(b*x), tan(a*x)/sin(b*x), tan(a*x)/cos(b*x)]
+F=v[p]
+Ans=limit(F,x=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the limit.  Use L'H$\hat{o}$pital's rule where appropriate.
+
+\input{Derivative-Compute-0049.HELP.tex}
+
+\[\lim\limits_{x\to0} \sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Trig, Sub@LHopital, File@0050}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = RandInt(-20,20)
+F=(1+a/x)^(b*x) + c
+Ans=limit(F,x=infinity)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the limit.  Use L'H$\hat{o}$pital's rule where appropriate.
+
+\input{Derivative-Compute-0050.HELP.tex}
+
+\[\lim\limits_{x\to\infty} \sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Exp, Sub@LHopital, File@0051}{
+\begin{sagesilent}
+a = NonZeroInt(-8,8)
+b = NonZeroInt(-8,8)
+c = NonZeroInt(-8,8)
+p=Integer(randint(0,2))
+v=[(x-b),(x-b)^2,(x-b)^3]
+F=a*v[p]*exp(-x+c)
+Ans=limit(F,x=infinity)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the limit.  Use L'H$\hat{o}$pital's rule where appropriate.
+
+\input{Derivative-Compute-0051.HELP.tex}
+
+\[\lim\limits_{x\to\infty} \sage{F}=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Theorems-MVT, File@0052}{
+\begin{sagesilent}
+a = NonZeroInt(-8,8)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+F=expand(a*(x-b)*(x-c))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the function $\sage{F}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $[-1,1]$?
+
+\input{Derivative-Compute-0052.HELP.tex}
+
+\begin{multipleChoice}
+\choice No, the function is not continuous over the closed interval $[-1,1]$
+\choice No, the function is not differentiable over the open interval $(-1,1)$
+\choice No, the function is not defined over the interval $[-1,1]$
+\choice[correct] Yes, all the conditions are met
+\end{multipleChoice}
+
+If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT.  If the conditions are not met, then write ``NONE.''
+
+\[c = \answer{0}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Exp, Sub@Theorems-MVT, File@0053}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+f=a*exp(b*x)
+Ans=1/b*log((exp(b*c)-1)/(b*c))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the function $\sage{f}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $[0,\sage{c}]$?
+
+\input{Derivative-Compute-0053.HELP.tex}
+
+\begin{multipleChoice}
+\choice No, the function is not continuous over the closed interval $[0,\sage{c}]$
+\choice No, the function is not differentiable over the open interval $(0,\sage{c})$
+\choice No, the function is not defined over the interval $[0,\sage{c}]$
+\choice[correct] Yes, all the conditions are met
+\end{multipleChoice}
+
+If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT.  If the conditions are not met, then write ``NONE.''
+
+\[c = \answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Arctrig, Sub@Theorems-MVT, File@0054}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(1,5)
+f=a*arctan(b*x)
+Ans=sqrt((c-arctan(b*c))/(b^2*arctan(b*c)))
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the function $\sage{f}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $[0,\sage{c}]$?
+
+\input{Derivative-Compute-0054.HELP.tex}
+
+\begin{multipleChoice}
+\choice No, the function is not continuous over the closed interval $[0,\sage{c}]$
+\choice No, the function is not differentiable over the open interval $(0,\sage{c})$
+\choice No, the function is not defined over the interval $[0,\sage{c}]$
+\choice[correct] Yes, all the conditions are met
+\end{multipleChoice}
+
+If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT.  If the conditions are not met, then write ``NONE.''
+
+\[c = \answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\tagged{Ans@Short, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Inflection, File@0055}{
+
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10)
+c = NonZeroInt(-10,10)
+f=x^3+a*x^2+b*x+c
+Ans=-a/3
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find all inflection points for the function $f(x)=\sage{f}$.  If there are no inflection points enter ``NONE.''
+
+\input{Derivative-Compute-0055.HELP.tex}
+
+\[\mbox{Inflection points at\;} x=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Domain, Sub@Inflection, File@0056}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = RandInt(-20,20)
+f=(sqrt(x+a)) + b
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find all inflection points for the function $f(x)=x\sage{f}$.  If there are no inflection points enter ``NONE.''
+
+\input{Derivative-Compute-0056.HELP.tex}
+
+\[\mbox{Inflection points at\;} x=\answer{NONE}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Inflection, File@0057}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = RandInt(-20, 20)
+c = ISP(b)
+f=(x+a)
+Ans=a/2
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find all inflection points for the function $f(x)=x^{\frac{1}{3}}(\sage{f}) \sage{c}$.
+
+\input{Derivative-Compute-0057.HELP.tex}
+
+\[\mbox{Inflection points at\;} x=\answer{0,\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Inflection, File@0058}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b = NonZeroInt(1,10)
+c = RandInt(-20,20)
+f=a*exp(b/x) + c
+Ans=-b/2
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find all inflection points for the function $f(x)=\sage{f}$.
+
+\input{Derivative-Compute-0058.HELP.tex}
+
+\[\mbox{Inflection points at\;} x=\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@QuotientRule, File@0059}{
+
+\begin{sagesilent}
+
+c1 = RandInt(-5,5)
+c2 = RandInt(-5,5)
+c3 = RandInt(-5,5)
+
+f1(x) = expand((x-c1)*(x-c2))
+f2(x) = (x-c3)*(x+c3)
+
+fFinal(x) = f1(x)/f2(x)
+
+ans = derivative(fFinal(x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Calculate the derivative of the following function:
+
+\input{Compute-Derivative-0059.HELP.tex}
+
+$f(x) = \sage{fFinal(x)}$ 
+
+$f'(x) = \answer{\sage{ans}}$
+\end{problem}}
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@QuotientRule, File@0060}{
+
+\begin{sagesilent}
+
+c1 = RandInt(-10,10)
+c2 = RandInt(-10,10)
+c3 = RandInt(-10,10)
+
+f1(x) = factor((x-c1)*(x-c2))
+f2(x) = expand((x-c3)*(x+c3))
+
+fFinal(x) = f1(x)/f2(x)
+
+ans = derivative(fFinal(x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Calculate the derivative of the following function:
+
+\input{Compute-Derivative-0060.HELP.tex}
+
+$f(x) = \sage{fFinal(x)}$
+
+$f'(x) = \answer{\sage{ans}}$
+\end{problem}}
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@QuotientRule, File@0061}{
+
+\begin{sagesilent}
+
+funcvec = [x, x^2, x^3, sqrt(x), x^(1/3)]
+
+pick1 = RandInt(0, 4)
+pick2 = RandInt(0, 4)
+pick3 = RandInt(0, 4)
+pick4 = RandInt(0, 4)
+
+f1 = funcvec[pick1]
+f2 = funcvec[pick2]
+f3 = funcvec[pick3]
+f4 = funcvec[pick4]
+
+c1 = RandInt(-5,5)
+c2 = RandInt(-5,5)
+c3 = RandInt(-5,5)
+
+ftop(x) = (f1(x)-c1)*(f2(x)-c2)
+fbot(x) = (f3(x)-c3)*(f4(x)+c3)
+
+fFinal(x) = ftop(x)/fbot(x)
+
+fcalc(x) = expand(ftop(x))/expand(fbot(x))
+
+ans = derivative(fcalc(x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Calculate the derivative of the following function:
+
+\input{Compute-Derivative-0061.HELP.tex}
+
+$f(x) = \sage{fFinal(x)}$
+
+$f'(x) = \answer{\sage{ans}}$
+\end{problem}}
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@ProductRule, File@0062}{
+
+\begin{sagesilent}
+
+funcvec = [x, x^2, x^3, sqrt(x), x^(1/3)]
+
+pick1 = RandInt(0, 4)
+pick2 = RandInt(0, 4)
+pick3 = RandInt(0, 4)
+pick4 = RandInt(0, 4)
+
+f1 = funcvec[pick1]
+f2 = funcvec[pick2]
+f3 = funcvec[pick3]
+f4 = funcvec[pick4]
+
+c1 = RandInt(-5,5)
+c2 = RandInt(-5,5)
+c3 = RandInt(-5,5)
+
+ftop(x) = expand((f1(x)-c1)*(f2(x)-c2))
+fbot(x) = expand((f3(x)-c3)*(f4(x)+c3))
+
+fFinal(x) = ftop(x)/fbot(x)
+
+ans = derivative(fFinal(x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Calculate the derivative of the following function:
+
+\input{Compute-Derivative-0062.HELP.tex}
+
+$f(x) = \sage{fFinal(x)}$
+
+$f'(x) = \answer{\sage{ans}}$
+\end{problem}}
+
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@QuotientRule, File@0063}{
+
+\begin{sagesilent}
+
+funcvec = [e^x, x, x^2, x^3, sqrt(x), x^(1/3)]
+
+pick1 = RandInt(0, 4)
+pick2 = RandInt(0, 4)
+pick3 = RandInt(0, 4)
+pick4 = RandInt(0, 4)
+
+f1 = funcvec[pick1]
+f2 = funcvec[pick2]
+f3 = funcvec[pick3]
+f4 = funcvec[pick4]
+
+c1 = RandInt(-5,5)
+c2 = RandInt(-5,5)
+c3 = RandInt(-5,5)
+c4 = RandInt(-20,20)
+c5 = RandInt(-20,20)
+
+fleft(x) = (f1(x)-c1)*(f1(x)+c1)
+fright(x) = (f3(x)-c3)*(f3(x)+c3)
+
+fFinal(x) = fleft(x)*fright(x)
+
+ans = derivative(expand(fFinal(x)))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Calculate the derivative of the following function:
+
+\input{Compute-Derivative-0063.HELP.tex}
+
+$f(x) = \sage{fFinal(x)}$
+
+$f'(x) = \answer{\sage{ans}}$
+\end{problem}}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Concept					%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Calc 1 Concept			%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems-EVT, File@0001}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b=a-1
+c=a+1
+p=Integer(randint(1,4))
+f=log(c-x)
+g=(x-b)^p-1
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f}\; , & x<\sage{a}\\[3pt]
+\sage{g}\; , & x\geq\sage{a}
+\end{array}\right.\]
+ over the interval $[\sage{a-2},\sage{a+3}]$?
+
+\input{Derivative-Concept-0001.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice[correct]{Yes}
+ \choice{No}
+ \end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Concept, Topic@Derivative, Sub@Theorems-EVT, File@0002}{
+\begin{sagesilent}
+a = NonZeroInt(1,5)
+b=a-1
+c=a+1
+p=Integer(randint(1,4))
+f=log(c-x)
+g=(x-b)^p-1
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f}\; , & x<\sage{a}\\[3pt]
+\sage{g}\; , & x\geq\sage{a}
+\end{array}\right.\]
+ over the interval $[\sage{a-3},\sage{a+5})$?
+
+\input{Derivative-Concept-0002.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice{Yes}
+ \choice[correct]{No}
+ \end{multipleChoice}
+
+If not, which condition fails?
+
+\begin{multipleChoice}
+\choice{$f$ is not continuous on the interval}
+\choice[correct]{The interval is not closed}
+\choice{$f$ is not differentiable on the interval}
+\choice{Nothing fails; the theorem holds}
+\end{multipleChoice}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MultiAns, Type@Concept, Topic@Derivative, Sub@Theorems-EVT, File@0003}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+b=a-1
+c=a+1
+p=NonZeroInt(-10,10)
+f=log(c-x)
+g=(x-b)^p
+
+r = randint(1,20)
+q = randint(1,20)
+intstart = a-r
+intend = a + q
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f}\; , & x<\sage{a}\\[3pt]
+\sage{g}\; , & x\geq\sage{a}
+\end{array}\right.\]
+ over the interval $[\sage{intstart},\sage{intend}]$?
+
+\input{Derivative-Concept-0003.HELP.tex}
+ 
+ \begin{multipleChoice}
+ \choice{Yes}
+ \choice[correct]{No}
+ \end{multipleChoice}
+
+If not, which condition fails?
+
+\begin{multipleChoice}
+\choice[correct]{$f$ is not continuous on the interval}
+\choice{The interval is not closed}
+\choice{$f$ is not differentiable on the interval}
+\choice{Nothing fails; the theorem holds}
+\end{multipleChoice}
+\end{problem}
+}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+

@@ -1,0 +1,590 @@
+%%%%%%  This is the raw list of questions before processing %%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Poly, File@0001}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-5,5)
+
+#Define the general term of the sequence
+f(x)=1/x^a
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the general term of the sequence 
+
+\input{Sequence-Compute-0001.HELP.tex}
+
+\[\{a_n\} = \left\{\sage{f(1)}, \sage{f(2)}, \sage{f(3)}, \sage{f(4)}, \sage{f(5)}, \ldots \right\} \qquad a_n=\answer{\sage{f(n)}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Alternating, Sub@Poly, File@0002}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-5,5)
+
+#Define the general term of the sequence
+f(x)=(-1)^x/x^a
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+
+Find the general term of the sequence 
+
+\input{Sequence-Compute-0002.HELP.tex}
+
+\[\{a_n\} = \left\{\sage{f(1)}, \sage{f(2)}, \sage{f(3)}, \sage{f(4)}, \sage{f(5)}, \ldots \right\} \qquad a_n=\answer{\sage{f(n)}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Convergence, Sub@Alternating, Sub@Poly, File@0003}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,9)
+
+#Define the general term of the sequence
+f=(-1)^x/x^a
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0003.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Convergence, Sub@Factorial, File@0004}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,9)
+
+#Define the general term of the sequence
+f=(x-a).factorial()/(x+a).factorial()
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0004.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Divergence, Sub@Poly, File@0005}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,9)
+p=Integer(randint(0,2))
+s=Integer(randint(1,9))
+
+
+#Define the general term of the sequence
+v=[a*x^s, (-a)^x, a*cos(pi*x)]
+f=v[p]
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0005.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Trig, Sub@Convergence, File@0006}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,9)
+p=Integer(randint(0,1))
+
+
+#Define the general term of the sequence
+v=[a*cos(2*pi*x), a*sin(2*pi*x)]
+f=v[p]
+
+#Compute limit of sequence
+if p==0:
+   Ans=1
+else:
+   Ans=0
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0006.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Trig, Sub@Exp, Sub@Convergence, File@0007}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(1,9)
+c=NonZeroInt(1,9)
+
+
+#Define the general term of the sequence
+f=a*cos(x)^b/c^x
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0007.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Exp, Sub@Convergence, File@0008}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+
+#Define the general term of the sequence
+f=a*(1+b/x)^x
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0008.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Trig, Sub@Convergence, File@0009}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,9)
+
+
+#Define the general term of the sequence
+f=x/a*sin(a/x)
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0009.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Squeeze, Sub@Rational, Sub@Convergence, File@0010}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+
+
+#Define the general term of the sequence
+f=(-1)^(x+a)*x/(x^2+b)
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0010.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Squeeze, Sub@Trig, Sub@Convergence, File@0011}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(1,9)
+p=Integer(randint(0,1))
+
+#Define the general term of the sequence
+v=[a*sin(b*x), a*cos(b*x)]
+f=v[p]/x^c
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0011.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Geometric, Sub@Convergence, File@0012}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(1,9)
+
+while a^2>b^2:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+B=-b
+while a==B:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+   B=-b
+
+#Define the general term of the sequence
+f=(a^x)/b^(x+c)
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0012.HELP.tex}
+
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Geometric, Sub@Divergence, File@0013}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(1,9)
+
+while a^2<=b^2:
+   a=NonZeroInt(-9,9)
+   b=NonZeroInt(-9,9)
+
+#Define the general term of the sequence
+f=(a^x)/b^(x+c)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0013.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Rational, Sub@Convergence, File@0014}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+d=NonZeroInt(-9,9)
+s=NonZeroInt(1,9)
+t=NonZeroInt(1,9)
+
+while t<s:
+   s=NonZeroInt(1,9)
+   t=NonZeroInt(1,9)
+
+#Define the general term of the sequence
+f=(a*x^s+b)/(c*x^t+d)
+
+#Compute limit of sequence
+Ans=limit(f,x=infinity)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0014.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+\end{problem}
+
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Rational, Sub@Divergence, File@0015}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+b=NonZeroInt(-9,9)
+s=NonZeroInt(1,9)
+
+#Define the general term of the sequence
+f=exp(x)/(b*x^s+c)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+Determine whether the sequence converges or diverges.  If it converges, find its limit.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-0015.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Diverges}
+\choice{Converges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Recursive, Sub@Convergence, File@0016}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(2,9)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+The sequence $\left\{\sqrt{\sage{a}},\sqrt{\sage{a}\sqrt{\sage{a}}}, \sqrt{\sage{a}\sqrt{\sage{a}\sqrt{\sage{a}}}},\ldots\right\}$ is monotonically increasing and bounded above.  Find the limit.
+
+\input{Sequence-Compute-0016.HELP.tex}
+
+\[\answer{\sage{a}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
