@@ -1,3 +1,16 @@
+\documentclass{ximera}
+\usepackage{PackageLoader}
+\usepackage{sagetex}
+%%%%%%  This is the raw list of questions before processing %%%%%%
+\renewcommand{\latexProblemContent}[1]{#1}
+\renewcommand{\choice}[2][No]{\item Is this correct? #1 \\ What is the choice? #2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{JasonSageMacrosNEW}
+
 %%%% ADD IN Sub@PTest - Done %%%%
 
 
@@ -54,11 +67,8 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(-9,9)
-b=NonZeroInt(1,9)
-c=NonZeroInt(1,9)
-while c^2>b^2:
-   b=NonZeroInt(1,9)
-   c=NonZeroInt(1,9)
+b=RandInt(2,9)
+c=RandInt(1,b-1)
 
 #Define the general term of the series
 r=b/c
@@ -210,15 +220,16 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(-9,9)
-b=NonZeroInt(1,5)
+b=RandInt(1,5)
 c=RandInt(0,9)
 
 #Define the general term of the series
 g=1/(x+c)-1/(x+(c+b))
 f=a*g.simplify_rational()
+G=a/(x+c)
 
 #Compute the sum of the series
-Ans=sum(f,x,0,infinity)
+Ans=sum(G,x,0,b-1)
 
 \end{sagesilent}
 
@@ -449,7 +460,7 @@ Determine if the series converges or diverges.
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(-9,9)
-b=RandInt(-20,1)
+b=NonZeroInt(-20,1)
 d=NonZeroInt(1,20)
 
 #Define the general term of the series
@@ -570,7 +581,7 @@ Determine if the series converges or diverges.
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(1,20)
-b=RandInt(0,20)
+b=RandInt(1,20)
 d=NonZeroInt(1,20)
 p=RandInt(0,1)
 
@@ -671,13 +682,14 @@ Determine if the series converges or diverges.
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
-a=NonZeroInt(1,20)
+a=RandInt(1,20)
 b=RandInt(0,20)
-t=NonZeroInt(1,9)
+t=RandInt(1,9)
 s=2*t+1
+d=RandInt(1,20)
 
 #Define the general term of the series
-f=a/sqrt(x^s+b^2)
+f=a/sqrt(n^s+b^2)
 
 \end{sagesilent}
 
@@ -685,7 +697,7 @@ f=a/sqrt(x^s+b^2)
 \begin{problem}
 Determine if the series converges or diverges.  
 
-\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
 
 \input{Series-Compute-0021.HELP.tex}
 
@@ -734,14 +746,14 @@ Determine if the series converges or diverges.
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
-a=NonZeroInt(2,20)
-b=NonZeroInt(1,a)
-c=NonZeroInt(1,20)
-e=NonZeroInt(1,a)
-d=NonZeroInt(1,20)
+a=RandInt(2,20)
+b=RandInt(1,a-1)
+c=RandInt(1,20)
+e=RandInt(1,a)
+d=RandInt(1,20)
 
 #Define the general term of the series
-f=(e+b^x)/(c+a^x)
+f=(e+b^n)/(c+a^n)
 
 \end{sagesilent}
 
@@ -749,7 +761,7 @@ f=(e+b^x)/(c+a^x)
 \begin{problem}
 Determine if the series converges or diverges.  
 
-\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
 
 \input{Series-Compute-0023.HELP.tex}
 
@@ -1283,14 +1295,14 @@ Determine if the series converges or diverges.
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
-a=NonZeroInt(1,20)
-b=NonZeroInt(a,21)
+a=NonZeroInt(1,19)
+b=NonZeroInt(a+1,21)
 c=NonZeroInt(-20,20)
 d=NonZeroInt(1,20)
 e=NonZeroInt(-20,20)
 
 #Define the general term of the series
-f=((a*x^2+c)/(b*x^2+e))^x
+f=((a*n^2+c)/(b*n^2+e))^n
 
 \end{sagesilent}
 
@@ -1298,7 +1310,7 @@ f=((a*x^2+c)/(b*x^2+e))^x
 \begin{problem}
 Determine if the series converges or diverges.  
 
-\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
 
 \input{Series-Compute-0041.HELP.tex}
 
@@ -1450,3 +1462,6 @@ Determine the radius of convergence and the interval of convergence.
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
