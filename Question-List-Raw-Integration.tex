@@ -295,6 +295,7 @@ Use the Fundamental Theorem of Calculus to find the derivative of the function.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, File@0008}{
 \begin{sagesilent}
+var('x,t')
 a = NonZeroInt(1,5)
 b = NonZeroInt(-10,10)
 c = NonZeroInt(1,5)
@@ -320,6 +321,7 @@ Use the Fundamental Theorem of Calculus to find the derivative of the function.
 \[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Sub@Chain-Rule, File@0009}{
@@ -1105,15 +1107,14 @@ Compute the following integral:
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Trig, File@0035}{
 \begin{sagesilent}
 # First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
 
-n = Integer(randint((0,2))
-power = 2*n+3
-flip = Integer(randint((0,1))
+n21 = RandInt(0,2)
+pwr = (2 * n21) + 3
+flip = RandInt(0,1)
 freq = NonZeroInt(-5,5)
 Coef = NonZeroInt(-5,5)
 
@@ -1121,10 +1122,10 @@ Coef = NonZeroInt(-5,5)
 
 trigvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
 
-select = Integer(randint((0,5))
+select = RandInt(0,5)
 
 # The function that sage uses to calculate the answer
-ToCalcInt = (Coef*trigvec[select](freq*x))^(power)
+ToCalcInt = (Coef*trigvec[select](freq*x))^(pwr)
 
 # Now we need to create the function the student sees to integrate (the actual integrand). If flip=1 we have a negative exponent, so we convert each trig function to it's co-function in the trigvec1 and trigvec2 to pull appropriate functions. Otherwise, we can just use the same function that sage is using to calculate. If we didn't use cofunctions, sage would helpfully negate the negatives and kill it.
 
@@ -1137,7 +1138,7 @@ else:
 Integrand = (Coef*Intvec[select](freq*x))
 
 # Calculate the actual power separately to prevent sage from trying to cancel negatives.
-Integrandpower = (power*(-1)^flip)
+Integrandpower = (pwr)*((-1)^flip)
 
 CalcInt = integral(ToCalcInt(x),x)
 Ans = CalcInt#.simplify()
@@ -1162,11 +1163,11 @@ Evaluate the integral. \\
 \begin{sagesilent}
 # First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
 
-n1 = Integer(randint((1,3))
+n1 = RandInt(1,3)
 power1 = 2*n1
-n2 = Integer(randint(0,4-n1)) # Curb the size of the power combination to avoid giant ans
-power2 = 2*n2+1
-flip = 1#Integer(randint(0,1))
+n2 = RandInt(0, 4-n1) # Curb the size of the power combination to avoid giant ans
+power2 = 2*n2 + 1
+flip = RandInt(0,1)
 freq = NonZeroInt(-5,5)
 Coef = NonZeroInt(-5,5)
 
@@ -1175,7 +1176,7 @@ Coef = NonZeroInt(-5,5)
 trigvec1 = [sin(x), cos(x), sec(x), csc(x)]
 trigvec2 = [cos(x), sin(x), tan(x), cot(x)]
 
-select = Integer(randint((0,3))
+select = RandInt(0,3)
 
 #Grab base trig functions for writing sanity
 F1 = trigvec1[select]
@@ -1216,7 +1217,6 @@ Evaluate the integral. \\
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%  17 Problems so far... finished up to trig integrals %%%%%%%
 
