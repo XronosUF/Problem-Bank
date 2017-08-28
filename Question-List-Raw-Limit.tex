@@ -212,7 +212,7 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@FRQ, Type@Compute, Topic@Limit, Sub@Rational, Sub@Continuity, File@0008}{
 \begin{sagesilent}
-a = NonZeroInt(1,5)
+a = RandInt(1,5)
 b = NonZeroInt(-10,10, [0,a])
 r=a-b   
 c=NonZeroInt(-5,5, [0,r])
@@ -220,10 +220,8 @@ c=NonZeroInt(-5,5, [0,r])
 vleft=[b/2*(x+a)/a,expand((x-c)*(x-r))/(x-c),sqrt(x^2-a^2)+b]
 vright=[b/2*(x+a)/a,expand((x-c)*(x-r))/(x-c)]
 
-first = Integer(randint(0,2))
-second = Integer(randint(0,1))
-while first==second:
-   second = Integer(randint(0,1))
+first = RandInt(0,2)
+second = NonZeroInt(0,1, [first])
 
 Fone=vleft[first]
 Ftwo=vright[second]

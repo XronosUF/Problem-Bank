@@ -416,18 +416,15 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
-a=NonZeroInt(-9,9)
-b=NonZeroInt(-9,9)
-c=NonZeroInt(1,9)
+bT=RandInt(2,9)
+aT=RandInt(1,bT-1)
+flip1 = RandInt(0,1)
+flip2 = RandInt(0,1)
 
-while a^2>b^2:
-   a=NonZeroInt(-9,9)
-   b=NonZeroInt(-9,9)
-B=-b
-while a==B:
-   a=NonZeroInt(-9,9)
-   b=NonZeroInt(-9,9)
-   B=-b
+a = (-1)^flip1*aT
+b = (-1)^flip2*bT
+
+c=NonZeroInt(1,9)
 
 #Define the general term of the sequence
 f=(a^x)/b^(x+c)
@@ -500,21 +497,26 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(-9,9)
-b=NonZeroInt(-9,9)
+b=RandInt(-9,9)
 c=NonZeroInt(-9,9)
-d=NonZeroInt(-9,9)
-s=NonZeroInt(1,9)
-t=NonZeroInt(1,9)
+d=RandInt(-9,9)
 
-while t<s:
-   s=NonZeroInt(1,9)
-   t=NonZeroInt(1,9)
+s=RandInt(1,8)
+t=RandInt(s,9)
+
+if t == s:
+   while b/a == d/c:
+      d = RandInt(-9,9)
 
 #Define the general term of the sequence
 f=(a*x^s+b)/(c*x^t+d)
 
 #Compute limit of sequence
-Ans=limit(f,x=infinity)
+
+if t>s:
+   Ans = 0
+else:
+   Ans = a/c
 
 \end{sagesilent}
 
@@ -539,6 +541,9 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Rational, Sub@Divergence, File@0015}{
 \begin{sagesilent}
@@ -546,10 +551,10 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 var('x,n')
 a=NonZeroInt(-9,9)
 b=NonZeroInt(-9,9)
-s=NonZeroInt(1,9)
+s=RandInt(1,9)
 
 #Define the general term of the sequence
-f=exp(x)/(b*x^s+c)
+f=exp(x)/(a*x^s+b)
 
 \end{sagesilent}
 
