@@ -40,7 +40,7 @@ Ans=sum(f,x,0,infinity)
 \end{sagesilent}
 
 \latexProblemContent{
-\ifVerboseLocation This is Series Compute Question 0001. \fi
+\ifVerboseLocation This is Series Compute Question 0001. \\ \fi
 \begin{problem}
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
@@ -79,6 +79,7 @@ f=a*(r)^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0002. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
 
@@ -117,6 +118,7 @@ Ans=sum(f,x,d,infinity)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0003. \\ \fi
 \begin{problem}
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
@@ -159,6 +161,7 @@ f=a*(r)^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0004. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
 
@@ -193,6 +196,7 @@ Ans=sum(f,x,d,infinity)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0005. \\ \fi
 \begin{problem}
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
@@ -222,24 +226,24 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 var('x,n')
 a=NonZeroInt(-9,9)
 b=RandInt(1,5)
-c=RandInt(0,9)
+c=RandInt(1,9)
 
 #Define the general term of the series
-g=1/(x+c)-1/(x+(c+b))
-f=a*g.simplify_rational()
-G=a/(x+c)
+f=(a*b)/(n^2+(2*c+b)*n+(c^2+c*b))
+g=a/(x+c)
 
 #Compute the sum of the series
-Ans=sum(G,x,0,b-1)
+Ans=sum(g,x,0,b-1)
 
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0007. \\ \fi
 \begin{problem}
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
 
-\[\sum_{n=0}^\infty \sage{f(n)}\]
+\[\sum_{n=0}^\infty \sage{f}\]
 
 \input{Series-Compute-0007.HELP.tex}
 
@@ -273,6 +277,7 @@ f=a*g
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0008. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
 
@@ -288,44 +293,47 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Convergence, File@0009}{
-%\begin{sagesilent}
-%# Define variables and constants/exponents
-%var('x,n')
-%a=NonZeroInt(-9,9)
-%c=RandInt(0,9)
-%
-%#Define the general term of the series
-%g=1/(x^3-c^2*x)
-%f=a*c^2*g
-%
-%#Compute the sum of the series
-%Ans=sum(f,x,c+1,infinity)
-%
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\begin{problem}
-%\begin{problem}
-%Determine if the series converges or diverges.  If it converges, find its sum. 
-%
-%\[\sum_{n=\sage{c+1}}^\infty \sage{f(n)}\]
-%
-\input{Series-Compute-0009.HELP.tex}
-%
-%\begin{multipleChoice}
-%\choice{Diverges}
-%\choice[correct]{Converges}
-%\end{multipleChoice}
-%
-%
-%\end{problem}
-%
-%\[\sum_{n=\sage{c+1}}^\infty \sage{f(n)} = \answer{\sage{Ans}}\]
-%
-%\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Convergence, File@0009}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-9,9)
+c=RandInt(1,9)
+
+#Define the general term of the series
+g=1/(n^3-c^2*n)
+f=a*c^2*g
+F=1/n
+
+
+#Compute the sum of the series
+Ans=a/2*(sum(F,n,1,c)-sum(F,n,c+1,2*c))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0009. \\ \fi
+\begin{problem}
+\begin{problem}
+Determine if the series converges or diverges.  If it converges, find its sum. 
+
+\[\sum_{n=\sage{c+1}}^\infty \sage{f}\]
+
+\input{Series-Compute-0009.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Diverges}
+\choice[correct]{Converges}
+\end{multipleChoice}
+
+
+\end{problem}
+
+\[\sum_{n=\sage{c+1}}^\infty \sage{f} = \answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Telescopic, Sub@Convergence, File@0010}{
@@ -344,6 +352,7 @@ Ans=sum(f,x,c+1,infinity)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0010. \\ \fi
 \begin{problem}
 \begin{problem}
 Determine if the series converges or diverges.  If it converges, find its sum. 
@@ -379,6 +388,7 @@ f=a*log(x)/x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0011. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -409,6 +419,7 @@ f=a*x*exp(-b*x^2)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0012. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -440,6 +451,7 @@ f=a*1/x^b
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0013. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -470,6 +482,7 @@ f=a*1/x^b
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0014. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -501,6 +514,7 @@ f=a/(x^c+b)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0015. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -531,6 +545,7 @@ f=a/(sqrt(x)-b)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0016. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -561,6 +576,7 @@ f=a/(sqrt(x)+b)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0017. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -593,6 +609,7 @@ f=v[p]
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0018. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -623,6 +640,7 @@ f=(a+(-1)^x)/(b*x*sqrt(x))
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0019. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -663,6 +681,7 @@ f=Top/(g^x*(Bot))
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0020. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -695,6 +714,7 @@ f=a/sqrt(n^s+b^2)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0021. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -727,6 +747,7 @@ f=a*sqrt(x)/(b*x^2+c*x+e)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0022. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -759,6 +780,7 @@ f=(e+b^n)/(c+a^n)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0023. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -791,6 +813,7 @@ f=v[p]/b^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0024. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -821,6 +844,7 @@ f=a*(-1)^(x+1)/x^s
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0025. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -851,6 +875,7 @@ f=a*(-1)^(x+1)*b^(1/x)/x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0026. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -882,6 +907,7 @@ f=(-1)^x*a*x/(b*x+c)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0027. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -915,6 +941,7 @@ f=v[p]/w[q]
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0028. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -946,6 +973,7 @@ f=a*(-1)^x*x^s/b^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0029. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -975,6 +1003,7 @@ f=a^x/factorial(x)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0030. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1005,6 +1034,7 @@ f=a^x/x^s
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0031. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1035,6 +1065,7 @@ f=x^s/a^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0032. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1065,6 +1096,7 @@ f=(-1)^(x+1)*n^s*a^x/factorial(x)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0033. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1095,6 +1127,7 @@ e=RandInt(1,9)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0034. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 \[\sum_{n=\sage{d}}^\infty
@@ -1127,6 +1160,7 @@ f=(a*x/(b*x+c))^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0035. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1156,6 +1190,7 @@ f=(1+a/x)^(x^2)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0036. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1185,6 +1220,7 @@ f=(1+a/x)^(x^2)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0037. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1214,6 +1250,7 @@ f=a*x/(log(x))^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0038. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1244,6 +1281,7 @@ f=a^(b*x)/x^x
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0039. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1264,22 +1302,23 @@ Determine if the series converges or diverges.
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
-a=NonZeroInt(2,20)
-b=NonZeroInt(1,a)
+a=RandInt(2,20)
+b=RandInt(1,a-1)
 c=NonZeroInt(-20,20)
-d=NonZeroInt(1,20)
+d=RandInt(1,20)
 e=NonZeroInt(-20,20)
 
 #Define the general term of the series
-f=((a*x^2+c)/(b*x^2+e))^x
+f=((a*n^2+c)/(b*n^2+e))^n
 
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0040. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
-\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
 
 \input{Series-Compute-0040.HELP.tex}
 
@@ -1308,6 +1347,7 @@ f=((a*n^2+c)/(b*n^2+e))^n
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0041. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
@@ -1328,20 +1368,21 @@ Determine if the series converges or diverges.
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
-a=NonZeroInt(1,20)
-b=NonZeroInt(1,20)
-d=NonZeroInt(1,20)
+a=RandInt(1,20)
+b=RandInt(1,20)
+d=RandInt(1,20)
 
 #Define the general term of the series
-f=(a*factorial(x))^x/x^(b*x)
+f=(a*factorial(n))^n/n^(b*n)
 
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0042. \\ \fi
 \begin{problem}
 Determine if the series converges or diverges.  
 
-\[\sum_{n=\sage{d}}^\infty \sage{f(n)}\]
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
 
 \input{Series-Compute-0042.HELP.tex}
 
@@ -1371,6 +1412,7 @@ f=a*x^(b*n)/factorial(n)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0043. \\ \fi
 \begin{problem}
 Determine the radius of convergence and the interval of convergence. 
 
@@ -1397,6 +1439,7 @@ f=(x-a)^n
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0044. \\ \fi
 \begin{problem}
 Determine the radius of convergence and the interval of convergence. 
 
@@ -1424,6 +1467,7 @@ f=(x-a)^n/(n+b)
 \end{sagesilent}
 
 \latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0045. \\ \fi
 \begin{problem}
 Determine the radius of convergence and the interval of convergence. 
 
@@ -1436,33 +1480,34 @@ Determine the radius of convergence and the interval of convergence.
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0046}{
+%\begin{sagesilent}
+%# Define variables and constants/exponents
+%var('x,n')
+%a=RandInt(-20,20)
+%b=NonZeroInt(1,20)
+%c=NonZeroInt(1,9)
+%d=RandInt(0,20)
+%
+%#Define the general term of the series
+%f=(-1)^n*(x-a)^n/((n+b)*c^n)
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Series Compute Question 0046. \\ \fi
+%\begin{problem}
+%Determine the radius of convergence and the interval of convergence. 
+%
+%\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+%
+%\input{Series-Compute-0046.HELP.tex}
+%
+%\[\mbox{Radius of Convergence}:\; \answer{c}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
+%
+%\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0046}{
-\begin{sagesilent}
-# Define variables and constants/exponents
-var('x,n')
-a=RandInt(-20,20)
-b=NonZeroInt(1,20)
-c=NonZeroInt(1,9)
-d=RandInt(0,20)
-
-#Define the general term of the series
-f=(-1)^n*(x-a)^n/((n+b)*c^n)
-
-\end{sagesilent}
-
-\latexProblemContent{
-\begin{problem}
-Determine the radius of convergence and the interval of convergence. 
-
-\[\sum_{n=\sage{d}}^\infty \sage{f}\]
-
-\input{Series-Compute-0046.HELP.tex}
-
-\[\mbox{Radius of Convergence}:\; \answer{c}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
-
-\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{document}
