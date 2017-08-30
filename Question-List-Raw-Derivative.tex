@@ -2159,3 +2159,342 @@ If not, which condition fails?
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems-EVT, File@0004}{
+\begin{sagesilent}
+r = RandInt(1,3)
+pwr = 2*r+1
+base = RandInt(2,5)
+funcvec = [x, x^3, log(x), x^(1/pwr), base^x, e^x]
+
+coef1 = RandInt(1,10)
+coef2 = RandInt(1,10)
+coef3 = RandInt(-5,-1)
+
+choice1 = RandInt(0,5)
+if choice1 > 3:
+   choice2 = RandInt(4,5)
+else:
+   choice2 = RandInt(1,3)
+
+pivot = RandInt(1,5)
+
+if choice1 > 3:
+   shift = pivot
+else:
+   shift = pivot - 1
+
+
+fT = coef1 * funcvec[choice1] + coef3
+gT = coef2 * funcvec[choice2]
+
+f(x) = fT(x-shift)
+gTT(x) = gT(x-shift)
+
+coef4 = f(pivot) - gTT(pivot)
+
+g(x) = gTT(x) + coef4
+
+startT = RandInt (-10,-1)
+endT = RandInt(1, 10)
+
+start = pivot + startT
+end = pivot + endT
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Concept Question 0004. \\ \fi
+\begin{problem}
+
+Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f(x)}\; , & x<\sage{pivot}\\[3pt]
+\sage{g(x)}\; , & x\geq\sage{pivot}
+\end{array}\right.\]
+ over the interval $[\sage{start},\sage{end}]$?
+
+\input{Derivative-Concept-0004.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice[correct]{Yes}
+ \choice{No}
+ \end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems-IVT, File@0005}{
+\begin{sagesilent}
+r = RandInt(1,3)
+pwr = 2*r+1
+base = RandInt(2,5)
+funcvec = [x, x^3, log(x), x^(1/pwr), base^x, e^x]
+
+coef1 = RandInt(1,10)
+coef2 = RandInt(1,10)
+coef3 = RandInt(-5,-1)
+
+choice1 = RandInt(0,5)
+if choice1 > 3:
+   choice2 = RandInt(4,5)
+else:
+   choice2 = RandInt(1,3)
+
+pivot = RandInt(1,5)
+
+if choice1 > 3:
+   shift = pivot
+else:
+   shift = pivot - 1
+
+
+fT = coef1 * funcvec[choice1] + coef3
+gT = coef2 * funcvec[choice2]
+
+f(x) = fT(x-shift)
+gTT(x) = gT(x-shift)
+
+coef4 = f(pivot) - gTT(pivot)
+
+g(x) = gTT(x) + coef4
+
+startT = RandInt (-10,-1)
+endT = RandInt(1, 10)
+
+start = pivot + startT
+end = pivot + endT
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Concept Question 0005. \\ \fi
+\begin{problem}
+
+Does the Intermediate Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f(x)}\; , & x<\sage{pivot}\\[3pt]
+\sage{g(x)}\; , & x\geq\sage{pivot}
+\end{array}\right.\]
+ over the interval $[\sage{start},\sage{end}]$?
+
+\input{Derivative-Concept-0005.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice[correct]{Yes}
+ \choice{No}
+ \end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems-EVT, File@0006}{
+\begin{sagesilent}
+r = RandInt(1,3)
+pwr = 2*r+1
+base = RandInt(2,5)
+funcvec = [x, x^3, log(x), x^(1/pwr), base^x, e^x]
+
+coef1 = RandInt(1,10)
+coef2 = RandInt(1,10)
+coef3 = RandInt(-5,-1)
+
+choice1 = RandInt(0,5)
+if choice1 > 3:
+   choice2 = RandInt(4,5)
+else:
+   choice2 = RandInt(1,3)
+
+pivot = RandInt(1,5)
+
+if choice1 > 3:
+   shift = pivot
+else:
+   shift = pivot - 1
+
+
+fT = coef1 * funcvec[choice1] + coef3
+gT = coef2 * funcvec[choice2]
+
+f(x) = fT(x-shift)
+gTT(x) = gT(x-shift)
+
+coef4c = f(pivot) - gTT(pivot)
+
+coef4 = NonZeroInt(-10,10,[coef4c])
+
+g(x) = gTT(x) + coef4
+
+startT = RandInt (-10,-1)
+endT = RandInt(1, 10)
+
+start = pivot + startT
+end = pivot + endT
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Concept Question 0006. \\ \fi
+\begin{problem}
+
+Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f(x)}\; , & x<\sage{pivot}\\[3pt]
+\sage{g(x)}\; , & x\geq\sage{pivot}
+\end{array}\right.\]
+ over the entire interval $[\sage{start},\sage{end}]$?
+
+\input{Derivative-Concept-0006.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice{Yes}
+ \choice[correct]{No}
+ \end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems-IVT, File@0007}{
+\begin{sagesilent}
+r = RandInt(1,3)
+pwr = 2*r+1
+base = RandInt(2,5)
+funcvec = [x, x^3, log(x), x^(1/pwr), base^x, e^x]
+
+coef1 = RandInt(1,10)
+coef2 = RandInt(1,10)
+coef3 = RandInt(-5,-1)
+
+choice1 = RandInt(0,5)
+if choice1 > 3:
+   choice2 = RandInt(4,5)
+else:
+   choice2 = RandInt(1,3)
+
+pivot = RandInt(1,5)
+
+if choice1 > 3:
+   shift = pivot
+else:
+   shift = pivot - 1
+
+
+fT = coef1 * funcvec[choice1] + coef3
+gT = coef2 * funcvec[choice2]
+
+f(x) = fT(x-shift)
+gTT(x) = gT(x-shift)
+
+coef4c = f(pivot) - gTT(pivot)
+
+coef4 = NonZeroInt(-10,10,[coef4c])
+
+g(x) = gTT(x) + coef4
+
+startT = RandInt (-10,-1)
+endT = RandInt(1, 10)
+
+start = pivot + startT
+end = pivot + endT
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Concept Question 0007. \\ \fi
+\begin{problem}
+
+Does the Intermediate Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f(x)}\; , & x<\sage{pivot}\\[3pt]
+\sage{g(x)}\; , & x\geq\sage{pivot}
+\end{array}\right.\]
+ over the entire interval $[\sage{start},\sage{end}]$?
+
+\input{Derivative-Concept-0007.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice{Yes}
+ \choice[correct]{No}
+ \end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@MC, Type@Concept, Topic@Derivative, Sub@Theorems-MVT, File@0008}{
+\begin{sagesilent}
+r = RandInt(1,3)
+pwr = 2*r+1
+base = RandInt(2,5)
+funcvec = [x, x^3, log(x), x^(1/pwr), base^x, e^x]
+
+coef1 = RandInt(1,10)
+coef2 = RandInt(1,10)
+coef3 = RandInt(-5,-1)
+
+choice1 = RandInt(0,5)
+if choice1 > 3:
+   choice2 = RandInt(4,5)
+else:
+   choice2 = RandInt(1,3)
+
+pivot = RandInt(1,5)
+
+if choice1 > 3:
+   shift = pivot
+else:
+   shift = pivot - 1
+
+
+fT = coef1 * funcvec[choice1] + coef3
+gT = coef2 * funcvec[choice2]
+
+f(x) = fT(x-shift)
+gTT(x) = gT(x-shift)
+
+coef4c = f(pivot) - gTT(pivot)
+
+coef4 = NonZeroInt(-10,10,[coef4c])
+
+g(x) = gTT(x) + coef4
+
+startT = RandInt (-10,-1)
+endT = RandInt(1, 10)
+
+start = pivot + startT
+end = pivot + endT
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Concept Question 0008. \\ \fi
+\begin{problem}
+
+Does the Mean Value Theorem hold for the function \[f(x)=\left\{\begin{array}{ll}
+\sage{f(x)}\; , & x<\sage{pivot}\\[3pt]
+\sage{g(x)}\; , & x\geq\sage{pivot}
+\end{array}\right.\]
+ over the entire interval $[\sage{start},\sage{end}]$?
+
+\input{Derivative-Concept-0008.HELP.tex}
+
+ \begin{multipleChoice}
+ \choice{Yes}
+ \choice[correct]{No}
+ \end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
