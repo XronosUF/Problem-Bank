@@ -99,12 +99,19 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(1,9)
+coef1 = NonZeroInt(-15,15)
+coef2 = NonZeroInt(-15,15)
+
+temp = coef1/coef2
+ctop = numerator(temp)
+cbot = denominator(temp)
 
 #Define the general term of the sequence
-f=(x-a).factorial()/(x+a).factorial()
+ftop=(x-a)
+fbot=(x+a)
 
 #Compute limit of sequence
-Ans=limit(f,x=infinity)
+# Ans=limit(f,x=infinity) # This will always be 0 as the problem is designed.
 
 \end{sagesilent}
 
@@ -114,7 +121,7 @@ Ans=limit(f,x=infinity)
 
 Determine whether the sequence converges or diverges.  If it converges, find its limit.
 
-\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+\[\{a_n\} = \left\lbrace \frac{\sage{ctop} \left( \sage{ftop(n)} \right) !}{\sage{cbot} \left( \sage{fbot(n)}\right)!} \right\rbrace\]
 
 \input{Sequence-Compute-0004.HELP.tex}
 
@@ -125,11 +132,10 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 \end{multipleChoice}
 
 \begin{problem}
-\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\[\lim_{n\to\infty} a_n = \answer{0}\]
 
 \end{problem}
-
-\end{problem}}%}
+\end{problem}}%
 %%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -665,7 +671,7 @@ else:
 
 Suppose a sequence $\{a_n\}$ is alternating, and the absolute value of the sequence, $\{ |a_n| \}$, is strictly decreasing. Must the sequence converge?
 
-\input{HELPFILE}
+\input{Sequence-Concept-0001.HELP.tex}
 \begin{multipleChoice}
 \choice{ Yes }
 \choice[correct]{ No }
@@ -674,7 +680,6 @@ Suppose a sequence $\{a_n\}$ is alternating, and the absolute value of the seque
 \begin{problem}
 Consider the sequence $a_n = \left\lbrace (-1)^n \left(\sage{an} \right) \right\rbrace$. What is the limit of this sequence? (Put DNE if the limit does not exist).
 
-\input{HELPFILE}
 
 \[
 \lim\limits_{n\rightarrow\infty} a_n =  \answer{\sage{ans}}.
@@ -772,7 +777,7 @@ Consider the sequence $a_n = \{\sage{an}\}$.
 \end{enumerate}
 
 
-\input{HELPFILE}
+\input{Sequence-Concept-0002.HELP.tex}
 
 
 
