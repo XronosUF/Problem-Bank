@@ -675,14 +675,11 @@ var('x,n')
 
 a=NonZeroInt(-10,10)
 pwr = RandInt(1,4)
-shift = RandInt(-10,10)
+shift = NonZeroInt(-10,10)
 
-an = shift + (a/n^(pwr))
+an = shift + (a/(n^pwr))
 
-if shift == 0:
-   ans = 0
-else:
-   ans = 'DNE'
+
 
 \end{sagesilent}
 
@@ -702,7 +699,7 @@ Consider the sequence $a_n = \left\{ (-1)^n \left(\sage{an} \right) \right\}$. W
 
 
 \[
-\lim\limits_{n\rightarrow\infty} a_n =  \answer{\sage{ans}}.
+\lim\limits_{n\rightarrow\infty} a_n =  \answer{DNE}.
 \]
 
 \end{problem}
