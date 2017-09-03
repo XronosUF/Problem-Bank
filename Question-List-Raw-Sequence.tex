@@ -604,3 +604,181 @@ The sequence $\left\{\sqrt{\sage{a}},\sqrt{\sage{a}\sqrt{\sage{a}}}, \sqrt{\sage
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Concept					%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Concept, Topic@Sequence, Sub@Alternating, Sub@Convergence, File@0001}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+
+
+a=NonZeroInt(-10,10)
+pwr = RandInt(1,4)
+shift = RandInt(-10,10)
+
+an = shift + (a/n^(pwr))
+
+if shift == 0:
+   ans = 0
+else:
+   ans = 'DNE'
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Concept Question 0001. \\ \fi
+\begin{problem}
+
+Suppose a sequence $\{a_n\}$ is alternating, and the absolute value of the sequence, $\{ |a_n| \}$, is strictly decreasing. Must the sequence converge?
+
+\input{HELPFILE}
+\begin{multipleChoice}
+\choice{ Yes }
+\choice[correct]{ No }
+\end{multipleChoice}
+
+\begin{problem}
+Consider the sequence $a_n = \left\lbrace (-1)^n \left(\sage{an} \right) \right\rbrace$. What is the limit of this sequence? (Put DNE if the limit does not exist).
+
+\input{HELPFILE}
+
+\[
+\lim\limits_{n\rightarrow\infty} a_n =  \answer{\sage{ans}}.
+\]
+
+\end{problem}
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Concept, Topic@Sequence, Sub@Convergence, File@0002}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+
+
+a=NonZeroInt(-10,10)
+pwr = RandInt(1,4)
+shift = RandInt(-10,10)
+
+an = shift + (a*n^pwr)
+
+
+
+if pwr == 1:
+   ans1 = 'Yes'
+   ans1F = 'No'
+   ans2 = 'Yes'
+   ans2F = 'No'
+   ans3 = 'Yes'
+   ans3F = 'No'
+
+if pwr == 2:
+   ans1 = 'No'
+   ans1F = 'Yes'
+   ans2 = 'Yes'
+   ans2F = 'No'
+   ans3 = 'Yes'
+   ans3F = 'No'
+
+if pwr == 3:
+   ans1 = 'No'
+   ans1F = 'Yes'
+   ans2 = 'No'
+   ans1F = 'Yes'
+   ans3 = 'Yes'
+   ans3F = 'No'
+
+if pwr == 4:
+   ans1 = 'No'
+   ans1F = 'Yes'
+   ans2 = 'No'
+   ans2F = 'Yes'
+   ans3 = 'No'
+   ans3F = 'Yes'
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Concept Question 0002. \\ \fi
+\begin{problem}
+
+Consider the sequence $a_n = \{\sage{an}\}$. 
+
+\begin{enumerate}
+\item does the sequence $\{\frac{a_n}{n}\}$ converge?
+\begin{multipleChoice}
+\choice[correct]{$\sage{ans1}$}
+\choice{$\sage{ans1F}$}
+\end{multipleChoice}
+
+\item does the sequence $\{\frac{a_n}{n^2}\}$ converge?
+\begin{multipleChoice}
+\choice[correct]{$\sage{ans2}$}
+\choice{$\sage{ans2F}$}
+\end{multipleChoice}
+
+\item does the sequence $\{\frac{a_n}{n^3}\}$ converge?
+\begin{multipleChoice}
+\choice[correct]{$\sage{ans3}$}
+\choice{$\sage{ans3F}$}
+\end{multipleChoice}
+
+\item does the sequence $\{\frac{a_n}{n^4}\}$ converge?
+\begin{multipleChoice}
+\choice[correct]{Yes}
+\choice{No}
+\end{multipleChoice}
+
+\end{enumerate}
+
+
+\input{HELPFILE}
+
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
