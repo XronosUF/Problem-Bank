@@ -1985,6 +1985,7 @@ $f'(x) = \answer{\sage{ans}}$
 \end{problem}}
 
 
+
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@QuotientRule, File@0063}{
 
 \begin{sagesilent}
@@ -2028,6 +2029,149 @@ $f(x) = \sage{fFinal(x)}$
 
 $f'(x) = \answer{\sage{ans}}$
 \end{problem}}
+
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Trig,  Sub@Log, Sub@Exp, Sub@Radical, File@0064}{
+
+
+\begin{sagesilent}
+a1 = NonZeroInt(-5,5)
+a2 = RandInt(-5,5)
+a3 = RandInt(-5,5)
+a4 = RandInt(-5,5)
+b1 = RandInt(-5,5)
+b2 = RandInt(-5,5)
+b3 = RandInt(-5,5)
+b4 = RandInt(-5,5)
+pwr = RandInt(2,10)
+
+funcv = [expand((a1*x+b1)*(a2*x+b2)*(a3*x+b3)*(a4*x+b4)), sin(x), tan(x), sec(x), csc(x), cot(x), cos(x), e^x, ln(x), x^(1/pwr)]
+
+choice = RandInt(0,9)
+
+f(x) = funcv[choice]
+
+ans = simplify(derivative(f(x),x))
+
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 0064 \fi
+\begin{problem}
+Compute the following derivative,
+\input{HELPFILE}
+\[
+\frac{d}{dx} \sage{f(x)} = \answer{\sage{ans}}
+\]
+
+
+\end{problem}}%
+
+
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Motion, File@0065}{
+
+
+\begin{sagesilent}
+hpitch = RandInt(48,66)
+vinit = RandInt(40,70)
+
+
+f(t) = -16*t^2+vinit*t+hpitch
+
+ans = (-vinit - (vinit^2+4*16*(hpitch/12))^(1/2) ) / (-2*16)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 0065 \fi
+\begin{problem}
+\input{HELPFILE}
+A baseball pitcher is practicing out on the field. He releases the ball at shoulder level which is $\sage{hpitch}$ inches. The height of the ball as it passes through the air can be modeled by;
+\[
+\sage{f(t)} 
+\]
+
+At what time does the ball hit the ground? $t = \answer[tolerance=.2]{\sage{ans}}$ seconds.
+
+
+
+\end{problem}}%
+
+
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Motion, File@0066}{
+
+
+\begin{sagesilent}
+hpitch = RandInt(48,66)
+vinit = RandInt(40,70)
+hcatch = RandInt(48,66)
+
+f(t) = -16*t^2+vinit*t+hpitch
+
+ans = (-vinit - (vinit^2+4*16*((hpitch - hcatch)/12))^(1/2) ) / (-2*16)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 0066 \fi
+\begin{problem}
+\input{HELPFILE}
+A baseball pitcher is practicing out on the field with a partner. He releases the ball at shoulder level which is $\sage{hpitch}$ inches and his partner catches the ball at the height of $\sage{hcatch}$ inches. The height of the ball as it passes through the air can be modeled by;
+\[
+\sage{f(t)} 
+\]
+
+At what time does the partner catch the ball? $t = \answer[tolerance=.2]{\sage{ans}}$ seconds.
+
+
+
+\end{problem}}%
+
+
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Motion, File@0067}{
+
+
+\begin{sagesilent}
+hpitch = RandInt(48,66)
+vinit = RandInt(40,70)
+hhit = RandInt(25,50)
+vhit = RandInt(40,70)
+
+f(t) = -16*t^2+vinit*t+hpitch
+g(t) = -16*t^2+vhit*t+hhit
+
+
+ans = (-vinit - (vinit^2+4*16*((hpitch - hhit)/12))^(1/2) ) / (-2*16)
+
+ans2 = (-vinit - (vinit^2+4*16*((hhit)/12))^(1/2) ) / (-2*16) + ans
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 0067 \fi
+\begin{problem}
+\input{HELPFILE}
+A baseball pitcher and batter are practicing out on the field. The pitcher releases the ball at shoulder level which is $\sage{hpitch}$ inches. The batter hits the ball when it is at a height of $\sage{hhit}$. The height of the ball as it passes through the air can be modeled by;
+\[
+\sage{f(t)} 
+\]
+
+At what time does the batter hit the ball? $t = \answer[tolerance=.2]{\sage{ans}}$ seconds.
+
+After the ball is struck the height of the ball is modeled by the function
+
+\[
+\sage{g(t)}
+\]
+
+When does the ball hit the ground (after the batter strikes it)? $t = \answer[tolerance=0.2]{\sage{ans2}}$ seconds.
+
+
+\end{problem}}%
+
 
 
 
