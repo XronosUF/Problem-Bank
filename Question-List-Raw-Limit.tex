@@ -23,12 +23,13 @@
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote, File@0001}{
 \begin{sagesilent}
-a = NonZeroInt(-4,4)
-b = NonZeroInt(-4,4, [0,a])
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10, [0,a])
+c = RandInt(1,3)
 
-fNum=expand((x-a)*(x-b))
+fNum=expand(c*(x-a)*(x-b))
 fDen=(x-a)
-ans=limit(fNum/fDen, x=a)
+ans=c*(a-b)# The limit is simplified and computable by design.
 \end{sagesilent}
 
 \latexProblemContent{
@@ -46,13 +47,13 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0002}{
 \begin{sagesilent}
-a = NonZeroInt(-4,4)
-b = NonZeroInt(-4,4, [0,a])
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10, [0,a])
+c = RandInt(1,3)
 
 fDen=expand((x-a)*(x-b))
-fNum=(x-a)
-Ans=limit(fNum/fDen, x=a)
-#fans=1/(a-b)
+fNum=c*(x-a)
+Ans=c/(a-b)# Limit is simplified to be computable by design.
 \end{sagesilent}
 
 \latexProblemContent{
@@ -72,12 +73,13 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0003}{
 \begin{sagesilent}
-a = NonZeroInt(-4,4)
-b = NonZeroInt(-4,4, [0,a])
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10, [0,a])
+c = RandInt(1,3)
 
-fNum=expand((x-a)*(x-b))
+fNum=expand(c*(x-a)*(x-b))
 fDen=(x-a)
-Ans = limit(fNum/fDen, x=b)
+Ans = 0# by simplification; limit(fNum/fDen, x=b)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -88,7 +90,7 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 
 \input{Limit-Compute-0003.HELP.tex}
 
-\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{0}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -96,11 +98,12 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote, File@0004}{
 \begin{sagesilent}
-a = NonZeroInt(-4,4)
-b = NonZeroInt(-4,4, [0,a])
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-10,10, [0,a])
+c = RandInt(1,3)
 
 fDen=expand((x-a)*(x-b))
-fNum=(x-a)
+fNum=c*(x-a)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -119,8 +122,8 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0005}{
 \begin{sagesilent}
-a = NonZeroInt(-4,4)
-b = NonZeroInt(-4,4, [0,a])
+a = NonZeroInt(-6,6)
+b = NonZeroInt(-6,6, [0,a])
 c = NonZeroInt(-5,5)
 
 fNum=expand((x-a)*(x-c))
@@ -145,13 +148,13 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0006}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(-5,5, [a])
+a = NonZeroInt(-6,6)
+b = NonZeroInt(-6,6, [0,a])
+c = NonZeroInt(-5,5)
 
-fNum=expand((x-a)*(x^2+a*x+a^2))
+fNum=expand(c*(x-a)*(x^2+a*x+a^2))
 fDen=expand((x-a)*(x-b))
-Ans=limit(fNum/fDen, x=a)
-#fans=(3*a^2)/(a-b)
+Ans=(c*(3*a^2))/(a-b)# Answer is computable by simplification by design; limit(fNum/fDen, x=a)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -171,31 +174,34 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, \Sub@Asymptote, File@0007}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(-5,5, [0,a])
-c = NonZeroInt(-5,5)
-d = NonZeroInt(-5,5, [0,c])
-e = NonZeroInt(-5,5, [0,b])
+a = RandInt(-5,5)
+b = NonZeroInt(-5,5, [a])
+c = NonZeroInt(-5,5, [a, b])
+d = NonZeroInt(-5,5, [a,b,c])
+e = NonZeroInt(-5,5, [a,b,c,d])
    
 v=[(x-a),(x-b),(x-c),(x-d),(x-e)]
-p=NonZeroInt(1,3)
-q=NonZeroInt(1,4)
-while p>>q:
-   q=NonZeroInt(1,4)
-   
+
+p=RandInt(1,3)
+q=RandInt(p,4)
+
 f=1
 for j in [1..p]:
-   k=Integer(randint(0,4))
+   k=RandInt(0,4)
    f=v[k]*f
 
 g=1
 for j in [1..q]:
-   k=Integer(randint(0,4))
+   k=RandInt(0,4)
    g=v[k]*g
 
 fNum=expand(f)
 fDen=expand(g)
-Ans=limit(fNum/fDen,x=infinity)
+#Ans=limit(fNum/fDen,x=infinity)
+if p==q:
+   Ans=1# If the degrees are equal, then the limit is 1
+else:
+   Ans=0# Otherwise, by design the bottom is higher degree than top so the answer is 0.
 
 I=NonZeroInt(-1,1)
 Inf=I*infinity
@@ -210,7 +216,7 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 
 \input{Limit-Compute-0007.HELP.tex}
 
-\[\lim_{x\to\sage{Inf}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\[\lim_{x\to\sage{Inf}}\frac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
@@ -302,8 +308,9 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0010}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
-Fone=(1/a)+(1/x)
+a = NonZeroInt(-8,8)
+b = NonZeroInt(-15,15)
+Fone=(b/a)+(b/x)
 Ftwo=a+x
 F=Fone/Ftwo
 
@@ -326,12 +333,20 @@ Compute the following derivative:
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Asymptote, Sub@OneSided, File@0011}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
-p=Integer(randint(1,9))
-v=[a*x*ln(x),a/x, a/x^2, a/x^3, a/x^p]
-first = Integer(randint(0,4))
-F=v[first]
-Ans=limit(F,x=0,dir='plus')
+a = NonZeroInt(-30,30)
+v=[a*x*ln(x),a/(x), a/(x^2), a/(x^3), a/(x^4), a/(x^5), a/(x^6), a/(x^7), a/(x^8), a/(x^9)]
+choice = RandInt(0,9)
+F=v[choice]
+
+if choice==0:
+   Ans=0# By definition
+else:# The bottom is going to 0 from the right regardless of other choice
+   if a > 0:# Top is positive
+      Ans=infinity
+   else:# Top is negative
+      Ans=-infinity
+
+#Ans=limit(F,x=0,dir='plus') # Answer is computable directly.
 \end{sagesilent}
 
 \latexProblemContent{
@@ -354,13 +369,14 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5)
 c = NonZeroInt(-5,5)   
-d=NonZeroInt(1,5, [a])
-e=NonZeroInt(-5,5) 
-m=NonZeroInt(2,6,[3,5])  
+d1 = NonZeroInt(1,10, [a])
+d = d1^2# For a nice answer
+e = NonZeroInt(-5,5) 
+m = RandInt(1,3)
 
-F=(sqrt(d*x^m+a)-b)/(e*x^(m/2)+c)
+F=(sqrt(d*x^(2*m)+a)-b)/(e*x^m+c)
 
-Ans=limit(F,x=infinity)
+Ans=sqrt(d)/e# Computable by simplification. limit(F,x=infinity)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -379,11 +395,11 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@DifferenceQuotient, Sub@Poly, File@0013}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
+a = NonZeroInt(-15,15)
 b = NonZeroInt(-4,4)
-p=Integer(randint(0,3))
+p=RandInt(0,3)
 if p==0:
-   b = NonZeroInt(1,4)
+   b = RandInt(1,4)
 
 v=[a*sqrt(x),a/x, a*x^2, a*x^3]
 
@@ -411,10 +427,10 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig, File@0014}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(1,5,[0,a])
+a = NonZeroInt(-15,15)
+b = NonZeroInt(1,5,[a])
 
-p=Integer(randint(0,5))
+p=RandInt(0,5)
 v=[sin(a*x)/(b*x), (a*x)/sin(b*x), tan(a*x)/(b*x), (a*x)/tan(b*x), (1-cos(a*x))/(b*x), (a*x)/(1-cos(b*x))]
 
 F=v[p]
@@ -436,10 +452,10 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig, File@0015}{
 \begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(1,5,[0,a])
+a = NonZeroInt(-15,15)
+b = NonZeroInt(1,5,[a])
 
-p=Integer(randint(0,5))
+p=RandInt(0,5)
 v=[sin(a*x)/(b*x), sin(a*x)^2/(b*x^2), sin(a*x)^3/(b*x^3), tan(a*x)/(b*x), tan(a*x)^2/(b*x^2), tan(a*x)^3/(b*x^3)]
 
 F=v[p]
@@ -703,6 +719,88 @@ $\lim\limits_{x \rightarrow \sage{lim}} \dfrac{\sage{f1(x)}}{\sqrt[\sage{cprt}]{
 
 
 
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Poly, Sub@DifferenceQuotient, File@0022}{
+\begin{sagesilent}
+# This is a ballistic arc problem
+a = -16 # This is acceleration in ft/sec
+b = RandInt(1,40)# Positive for initial velocity ft/sec
+c = RandInt(0,10)# Starting position in ft.
+
+start = RandInt(1,4)# Choose a time to consider location
+
+f(t) = a*t^2+b*t+c
+
+ans1 = 2*( f(start+(1/2))-f(start) )# Difference quotient for h=1/2
+
+ans2 = ( f(start+h)-f(start) )/h# Difference quotient
+
+ans3 = limit(ans2(h),h=0)
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+The position function of a ball thrown into the air with a velocity of $\sage{b}$ ft/sec and initial height of $\sage{c}$ feet is given by the function $s(t) = \sage{f(t)}$ where $s(t)$ is the height of the ball above the ground after $t$ seconds.  
+
+\input{Limit-Compute-0022.HELP.tex}
+
+Find the average velocity of the ball on the interval starting with $t = \sage{start}$ to the time $0.5$ seconds later. $V_{ave}=\answer[tolerance=0.1]{\sage{ans1}}$
+
+\begin{problem}
+Now write an expression for the average velocity of the ball on the time interval from $t=\sage{start}$ to $h$ seconds later.  That is, on the interval $[\sage{start},\sage{start}+h]$ where $h\neq 0$. Simplify your answer.  
+
+$\answer{\sage{ans2}}$
+
+\begin{problem}
+How can we (mathematically) determine what happens as $h$ gets closer and closer to 0? 
+
+\begin{multipleChoice}
+\choice[correct]{We can use limits to find what happens when $h$ goes to 0.}
+\choice{We can use limits to find what happens when $h$ goes to $\sage{start}$.}
+\choice{We can plug in very small values of $h$ to figure out what the value of $s(t)$ is heading to.}
+\choice{We can plug in $h=0$ and then simplify to find an answer.}
+\end{multipleChoice}
+%average velocity approaches -24 ft/sec as h goes to 0
+\begin{problem}
+Calculate the limit:
+
+$\lim\limits_{h\rightarrow 0} \sage{ans2} = \answer{\sage{ans3}}$
+
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Poly, Sub@DifferenceQuotient, File@0023}{
+\begin{sagesilent}
+# This is a ballistic arc problem
+a = RandInt(-20,-1)# This is negative to account for acceleration
+b = RandInt(1,10)# Positive for initial velocity
+c = RandInt(-5,5)# Starting position
+
+start = RandInt(1,4)# Choose a time to consider location
+
+f(t) = a*t^2+b*t+c
+
+ans = ( f(start+h)-f(start) )/h# Difference quotient
+
+\end{sagesilent}
+\latexProblemContent{
+\begin{problem}
+Find the average velocity of $s(t) = \sage{f(t)}$ from $t=\sage{start}$ to $t=\sage{start}+h$. 
+
+\input{Limit-Compute-0023.HELP.tex}
+
+$V_{ave}=\answer{\sage{ans}}$
+
+\end{problem}}%}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %
@@ -916,29 +1014,25 @@ At which of these points of discontinuity is $f$ continuous from the left?\\  $x
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@MC, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Theorems-IVT, Sub@Poly, File@0006}{
 \begin{sagesilent}
-a = Integer(randint(-3,3))
-b = NonZeroInt(a+2,a+5)
-left=a+1
-right=b-1
-while left==right:
-   b = NonZeroInt(a+2,a+5)
-   right=b-1
+a = RandInt(1,3)
+r1 = RandInt(-5,5)
+shift1 = RandInt(2,4)
+shift2 = RandInt(2,4)
+r2 = r1 + shift1
+r3 = r1 - shift2
+pwr1 = RandInt(0,2)
 
-c = b+1
-d=a-1
+start = r1-RandInt(1,shift2-1)
+end = r1+RandInt(1,shift1-1)
 
-m=NonZeroInt(a+1,b-1)
-p=Integer(randint(0,2))
-v=[expand((x-m)*(x-c)), expand((x-m)*(x-c)*(x-d)), expand((x-m)*(x-c)*(x-d)^2)]
-
-F=v[p]
+F=expand(a*(x-r3)^pwr1*(x-r1)*(x-r2))
 \end{sagesilent}
 
 \latexProblemContent{
 \ifVerboseLocation This is Derivative Concept Question 0006. \\ \fi
 \begin{problem}
 
-Does $\sage{F}$ have a root in the interval $(\sage{a},\sage{b})$?  
+Does $\sage{F}$ have a root in the interval $(\sage{start},\sage{end})$?  
 
 \input{Limit-Concept-0006.HELP.tex}
 
@@ -949,10 +1043,10 @@ Does $\sage{F}$ have a root in the interval $(\sage{a},\sage{b})$?
 \end{multipleChoice}
 
 What is the reason for this answer?\begin{multipleChoice}
-\choice{$f(\sage{a})<0$ and $f(\sage{b})>0$, so $f$ has a root by IVT.}
-\choice[correct]{$f(\sage{a})>0$ and $f(\sage{b})<0$, so $f$ has a root by IVT.}
-\choice{$f(\sage{a})<0$ and $f(\sage{b})<0$, so $f$ does not have a root by IVT.}
-\choice{$f(\sage{a})>0$ and $f(\sage{b})>0$, so $f$ does not have a root by IVT.}
+\choice{$f(\sage{start})<0$ and $f(\sage{end})>0$, so $f$ has a root by IVT.}
+\choice[correct]{$f(\sage{start})>0$ and $f(\sage{end})<0$, so $f$ has a root by IVT.}
+\choice{$f(\sage{start})<0$ and $f(\sage{end})<0$, so $f$ does not have a root by IVT.}
+\choice{$f(\sage{start})>0$ and $f(\sage{end})>0$, so $f$ does not have a root by IVT.}
 \choice{The answer could not be determined.}
 \end{multipleChoice}
 \end{problem}}%}
@@ -961,11 +1055,12 @@ What is the reason for this answer?\begin{multipleChoice}
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@MC, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Theorems-IVT, Sub@Poly, Sub@Trig, File@0007}{
 \begin{sagesilent}
-a = Integer(randint(-3,3))
-p=Integer(randint(0,1))
+a = RandInt(-8,8)
+p=RandInt(0,1)
+b = RandInt(2,18)
 
 trig=[sin(x-a), cos(x-a)]
-poly=[a+1-x, x-a]
+poly=[a+b-x, x-a]
 
 F=trig[p]
 G=poly[p]
@@ -975,7 +1070,7 @@ G=poly[p]
 \ifVerboseLocation This is Derivative Concept Question 0007. \\ \fi
 \begin{problem}
 
-Does the equation $\sage{F}=\sage{G}$ have a solution in the interval $(\sage{a},\sage{a+1})$?  
+Does the equation $\sage{F}=\sage{G}$ have a solution in the interval $(\sage{a},\sage{a+b})$?  
 
 \input{Limit-Concept-0007.HELP.tex}
 
