@@ -801,6 +801,31 @@ $V_{ave}=\answer{\sage{ans}}$
 \end{problem}}%}
 
 
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Poly, Sub@DifferenceQuotient, File@0024}{
+\begin{sagesilent}
+a = NonZeroInt(-15,15)
+c = NonZeroInt(-8,9)
+
+f(x) = a*x^2
+
+dif(h) = (f(c+h)-f(c))/(h)
+
+ans = 2*a*c
+
+\end{sagesilent}
+
+\latexProblemContent{
+\begin{problem}
+\ifVerboseLocation This is Limit Compute Question 0024. \\ \fi
+Use algebra to find the following limit
+
+\[
+\lim\limits_{h\rightarrow 0} \sage{dif(h)} = \answer{\sage{ans}}
+\]
+\end{problem}}%
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
