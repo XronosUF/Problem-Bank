@@ -606,23 +606,28 @@ $\lim\limits_{x\rightarrow\sage{c1}} \sage{fFinal(x)} = \answer{0}$
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@squeeze, File@0019}{
 
 \begin{sagesilent}
-funcvec = [sin(x), tan(x)]
-pick1 = RandInt(0,1)
-f1(x) = funcvec[pick1](x)
-f2(x) = funcvec[1-pick1](x) - 1
+
+#This problem will involve sin(x) and tan(x) (to a -1,0 or 1 power)
+f1(x) = sin(x)
+f2(x) = tan(x)
+
+pwr1 = RandInt(-1,1)
+if pwr1 == 0: # If pwr1 is 0, we need to make sure the other one isn't.
+   pwr2 = NonZeroInt(-1,1)
+else: # Otherwise it doesn't matter.
+   pwr2 = RandInt(-1,1)
 
 c1 = RandInt(1,10)
 c2 = RandInt(1,10)
-c3 = RandInt(0,1)
-f3(x) = f1(c1*x)*(1 + f2(c2*x)*c3)
+pwr3 = pwr1 + pwr2 # This is the power of x we will end up needing.
+f3(x) = f1(c1*x)^pwr1*f2(c2*x)^pwr2
 
-f4(x) = f3(x)/(x*(1 + (x-1)*c3))
+pwr4 = NonZeroInt(-1,1)# The power of the constant
+c4 = NonZeroInt(-10,10)^pwr4
 
-c4 = NonZeroInt(-10,10)
-c5 = RandInt(0,1)
-fFinal(x) = c4*(f4(x))*(1 + (1/c4^2 - 1)*c5)
+f4(x) = c4*f3(x)/(x^pwr3)
 
-ans = c4/(c1*c2)*(1 + (1/(c4)^2 - 1)*c5)
+ans = c1^pwr1 * c2^pwr2 * c4
 
 \end{sagesilent}
 
@@ -634,8 +639,10 @@ Calculate the following limit:
 
 \input{Limit-Compute-0019.HELP.tex}
 
-$\lim\limits_{x\rightarrow 0} \sage{fFinal(x)} = \answer{\sage{ans}}$
+$\lim\limits_{x\rightarrow 0} \sage{f4(x)} = \answer{\sage{ans}}$
 \end{problem}}
+
+
 
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Indeterminant, File@0020}{
 
