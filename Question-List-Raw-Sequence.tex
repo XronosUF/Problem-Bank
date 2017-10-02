@@ -617,7 +617,8 @@ a=NonZeroInt(2,9)
 coef1 = RandInt(3,20)
 coef2 = RandInt(1,coef1)
 coef = coef1/coef2 # >=1 by design for monotonicity
-ans = coef * a
+
+ans = coef^2 * a
 \end{sagesilent}
 
 \latexProblemContent{
@@ -673,9 +674,9 @@ The sequence $\left\{\sage{coef}\sqrt{\sage{a}},\sage{coef}\sqrt{\sage{a}\sqrt{\
 var('x,n')
 
 
-a=NonZeroInt(-10,10)
+a=NonZeroInt(1,30)
 pwr = RandInt(1,4)
-shift = NonZeroInt(-10,10)
+shift = NonZeroInt(1,30)
 
 an = shift + (a/(n^pwr))
 
