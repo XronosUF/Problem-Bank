@@ -144,11 +144,11 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 # Define variables and constants/exponents
 var('x,n')
 a=NonZeroInt(-9,9)
-b=NonZeroInt(1,9)
-c=NonZeroInt(1,9)
-while c^2<=b^2:
-   b=NonZeroInt(1,9)
-   c=NonZeroInt(1,9)
+b=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9)
+while c^2>b^2:
+   b=NonZeroInt(-9,9)
+   c=NonZeroInt(-9,9)
 d=RandInt(0,9)
 
 #Define the general term of the series
