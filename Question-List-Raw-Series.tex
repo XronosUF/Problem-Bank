@@ -138,6 +138,7 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Divergence, File@0004}{
 \begin{sagesilent}
@@ -145,10 +146,10 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 var('x,n')
 a=NonZeroInt(-9,9)
 b=NonZeroInt(-9,9)
-c=NonZeroInt(-9,9, [b])
+c=NonZeroInt(-9,9, [0, b])
 while c^2>b^2:
    b=NonZeroInt(-9,9)
-   c=NonZeroInt(-9,9,[b])
+   c=NonZeroInt(-9,9,[0, b])
 d=RandInt(0,9)
 
 #Define the general term of the series
@@ -175,6 +176,8 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@Geometric, Sub@Convergence, File@0005}{
