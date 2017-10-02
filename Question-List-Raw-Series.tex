@@ -145,16 +145,16 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 var('x,n')
 a=NonZeroInt(-9,9)
 b=NonZeroInt(-9,9)
-c=NonZeroInt(-9,9)
+c=NonZeroInt(-9,9, [b])
 while c^2>b^2:
    b=NonZeroInt(-9,9)
-   c=NonZeroInt(-9,9)
+   c=NonZeroInt(-9,9,[b])
 d=RandInt(0,9)
 
 #Define the general term of the series
 r=b/c
-f=a*(r)^x
 
+f(x)=a*(r)^x
 
 \end{sagesilent}
 
@@ -171,6 +171,7 @@ Determine if the series converges or diverges.  If it converges, find its sum.
 \choice[correct]{Diverges}
 \choice{Converges}
 \end{multipleChoice}
+
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
