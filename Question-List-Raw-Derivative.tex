@@ -465,21 +465,21 @@ d = RandInt(-3,3)
 base = RandInt(2,8)
 
 v=[b*log(x), b*exp(x), b*base^x]
-p = 2#RandInt(0,2)
+p = 0#RandInt(0,2)
 
 F=v[p]
 
-if p==0:
-   tar=a   
-   Ans = b/a*x-b+b*log(a)
-
-
-if p==1:
-   tar=c
-   Ans = b*exp(c)*x-c*b*exp(c)+b*exp(c)
+if p == 0:
+   tar = abs(c) + 1
 else:
-   tar=d
-   Ans = b*base^d*x-c*b*base^d+b*base^d
+   tar = c
+
+derv(x) = derivative(F(x),x)
+slope = derv(tar)
+
+Ans = slope*(x-tar) + (F(tar))
+
+
 
 \end{sagesilent}
 
