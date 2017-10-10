@@ -1518,13 +1518,14 @@ Find the area of the largest rectangle that can be inscribed in the ellipse $\df
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Optimization, File@0046}{
 \begin{sagesilent}
 a = NonZeroInt(1,8)
 b = NonZeroInt(1,8)
 A=a*b
-Area=A^2/(2*(pi+4))
+Area=2*A^2/(16 + 3*pi)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1538,6 +1539,8 @@ A Norman window has the shape of a rectangle surmounted by a semicircle (i.e. th
 \[\mbox{The largest possible area is\;} \answer{\sage{Area}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Optimization, File@0047}{
@@ -1661,25 +1664,34 @@ Find the limit.  Use L'H$\hat{o}$pital's rule where appropriate.
 a = NonZeroInt(-8,8)
 b = NonZeroInt(-5,5)
 c = NonZeroInt(-5,5)
+while (b+c)/2 != round((b+c)/2):
+   b = NonZeroInt(-5,5)
+   c = NonZeroInt(-5,5)
+
 F=expand(a*(x-b)*(x-c))
+
+vert = (c+b)/(2)
+shift = RandInt(1,4)
+Lpt = vert - shift
+Rpt = vert + shift
 \end{sagesilent}
 
 \latexProblemContent{
 \ifVerboseLocation This is Derivative Compute Question 0052. \\ \fi
 \begin{problem}
 
-Does the function $\sage{F}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $[-1,1]$?
+Does the function $\sage{F}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $[\sage{Lpt},\sage{Rpt}]$?
 
 \input{Derivative-Compute-0052.HELP.tex}
 
 \begin{multipleChoice}
-\choice No, the function is not continuous over the closed interval $[-1,1]$
-\choice No, the function is not differentiable over the open interval $(-1,1)$
-\choice No, the function is not defined over the interval $[-1,1]$
-\choice[correct] Yes, all the conditions are met
+\choice{No, the function is not continuous over the closed interval $[\sage{Lpt},\sage{Rpt}]$}
+\choice{No, the function is not differentiable over the open interval $[\sage{Lpt},\sage{Rpt}]$}
+\choice{No, the function is not defined over the interval $[\sage{Lpt},\sage{Rpt}]$}
+\choice[correct]{Yes, all the conditions are met}
 \end{multipleChoice}
 
-If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT.  If the conditions are not met, then write ``NONE.''
+If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT over the interval $[\sage{Lpt},\sage{Rpt}]$.  If the conditions are not met, then write ``NONE.''
 
 \[c = \answer{0}\]
 \end{problem}}%}
@@ -1768,7 +1780,7 @@ Find all inflection points for the function $f(x)=\sage{f}$.  If there are no in
 
 \input{Derivative-Compute-0055.HELP.tex}
 
-\[\mbox{Inflection points at\;} x=\answer{\sage{Ans}}\]
+\[\mbox{Inflection points at } x=\answer{\sage{Ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1790,7 +1802,7 @@ Find all inflection points for the function $f(x)=x\sage{f}$.  If there are no i
 
 \input{Derivative-Compute-0056.HELP.tex}
 
-\[\mbox{Inflection points at\;} x=\answer{NONE}\]
+\[\mbox{Inflection points at } x=\answer{NONE}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1812,7 +1824,7 @@ Find all inflection points for the function $f(x)=x^{\frac{1}{3}}(\sage{f}) \sag
 
 \input{Derivative-Compute-0057.HELP.tex}
 
-\[\mbox{Inflection points at\;} x=\answer{0,\sage{Ans}}\]
+\[\mbox{Inflection points at } x=\answer{0,\sage{Ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1834,7 +1846,7 @@ Find all inflection points for the function $f(x)=\sage{f}$.
 
 \input{Derivative-Compute-0058.HELP.tex}
 
-\[\mbox{Inflection points at\;} x=\answer{\sage{Ans}}\]
+\[\mbox{Inflection points at } x=\answer{\sage{Ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -2069,6 +2081,7 @@ $\frac{d}{dx} \sage{f(x)} = \answer{\sage{ans}}$
 
 
 
+
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Motion, File@0065}{
 
 
@@ -2079,7 +2092,9 @@ vinit = RandInt(40,70)
 
 f(t) = -16*t^2+vinit*t+hpitch
 
-ans = (-vinit - (vinit^2+4*16*(hpitch/12))^(1/2) ) / (-2*16)
+determ = vinit^2 - 4*(-16)*(hpitch)
+
+ans = (vinit + determ^(1/2))/32
 
 \end{sagesilent}
 
@@ -2095,6 +2110,7 @@ At what time does the ball hit the ground? $t = \answer[tolerance=.2]{\sage{ans}
 
 
 \end{problem}}%}
+
 
 
 
@@ -2262,6 +2278,7 @@ Does the Extreme Value Theorem hold for the function \[f(x)=\left\{\begin{array}
  \choice[correct]{No}
  \end{multipleChoice}
 
+\begin{problem}
 If not, which condition fails?
 
 \begin{multipleChoice}
@@ -2270,6 +2287,7 @@ If not, which condition fails?
 \choice{$f$ is not differentiable on the interval}
 \choice{Nothing fails; the theorem holds}
 \end{multipleChoice}
+\end{problem}
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
