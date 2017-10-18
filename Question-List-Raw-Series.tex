@@ -1380,117 +1380,117 @@ Determine if the series converges or diverges.
 %%%%%%%%%%%%%%%%% Finished with series tests %%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0043}{
-%\begin{sagesilent}
-%# Define variables and constants/exponents
-%var('x,n')
-%a=NonZeroInt(1,20)
-%b=NonZeroInt(1,20)
-%d=NonZeroInt(1,20)
-%
-%#Define the general term of the series
-%f=a*x^(b*n)/factorial(n)
-%
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\ifVerboseLocation This is Series Compute Question 0043. \\ \fi
-%\begin{problem}
-%Determine the radius of convergence and the interval of convergence. 
-%
-%\[\sum_{n=\sage{d}}^\infty \sage{f}\]
-%
-%\input{Series-Compute-0043.HELP.tex}
-%
-%\[\mbox{Radius of Convergence}:\; \answer{\infty}\qquad \mbox{Interval of Convergence}:\; (\answer{-\infty},\answer{\infty})\]
-%
-%\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0044}{
-%\begin{sagesilent}
-%# Define variables and constants/exponents
-%var('x,n')
-%a=RandInt(-20,20)
-%d=RandInt(0,20)
-%
-%#Define the general term of the series
-%f=(x-a)^n
-%
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\ifVerboseLocation This is Series Compute Question 0044. \\ \fi
-%\begin{problem}
-%Determine the radius of convergence and the interval of convergence. 
-%
-%\[\sum_{n=\sage{d}}^\infty \sage{f}\]
-%
-%\input{Series-Compute-0044.HELP.tex}
-%
-%\[\mbox{Radius of Convergence}:\; \answer{1}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-1}}<x<\answer{\sage{a+1}}\]
-%
-%\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%%%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0045}{
-%\begin{sagesilent}
-%# Define variables and constants/exponents
-%var('x,n')
-%a=RandInt(-20,20)
-%b=NonZeroInt(1,20)
-%d=RandInt(0,20)
-%
-%#Define the general term of the series
-%f=(x-a)^n/(n+b)
-%
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\ifVerboseLocation This is Series Compute Question 0045. \\ \fi
-%\begin{problem}
-%Determine the radius of convergence and the interval of convergence. 
-%
-%\[\sum_{n=\sage{d}}^\infty \sage{f}\]
-%
-%\input{Series-Compute-0045.HELP.tex}
-%
-%\[\mbox{Radius of Convergence}:\; \answer{1}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-1}}<x<\answer{\sage{a+1}}\]
-%
-%\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0043}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,20)
+b=NonZeroInt(1,20)
+d=NonZeroInt(1,20)
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0046}{
-%\begin{sagesilent}
-%# Define variables and constants/exponents
-%var('x,n')
-%a=RandInt(-20,20)
-%b=NonZeroInt(1,20)
-%c=NonZeroInt(1,9)
-%d=RandInt(0,20)
-%
-%#Define the general term of the series
-%f=(-1)^n*(x-a)^n/((n+b)*c^n)
-%
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\ifVerboseLocation This is Series Compute Question 0046. \\ \fi
-%\begin{problem}
-%Determine the radius of convergence and the interval of convergence. 
-%
-%\[\sum_{n=\sage{d}}^\infty \sage{f}\]
-%
-%\input{Series-Compute-0046.HELP.tex}
-%
-%\[\mbox{Radius of Convergence}:\; \answer{c}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
-%
-%\end{problem}}%}
+#Define the general term of the series
+f=a*x^(b*n)/factorial(n)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0043. \\ \fi
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0043.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{\infty}\qquad \mbox{Interval of Convergence}:\; (\answer{-\infty},\answer{\infty})\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0044}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=RandInt(-20,20)
+d=RandInt(0,20)
+
+#Define the general term of the series
+f=(x-a)^n
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0044. \\ \fi
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0044.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{1}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-1}}<x<\answer{\sage{a+1}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0045}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=RandInt(-20,20)
+b=NonZeroInt(1,20)
+d=RandInt(0,20)
+
+#Define the general term of the series
+f=(x-a)^n/(n+b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0045. \\ \fi
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0045.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{1}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-1}}<x<\answer{\sage{a+1}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@RadiusOfConvergence, Sub@IntervalOfConvergence, File@0046}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=RandInt(-20,20)
+b=NonZeroInt(1,20)
+c=NonZeroInt(1,9)
+d=RandInt(0,20)
+
+#Define the general term of the series
+f=(-1)^n*(x-a)^n/((n+b)*c^n)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0046. \\ \fi
+\begin{problem}
+Determine the radius of convergence and the interval of convergence. 
+
+\[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0046.HELP.tex}
+
+\[\mbox{Radius of Convergence}:\; \answer{c}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@MC, Type@Compute, Topic@Series, Sub@IntegralTest, Sub@Divergence, File@0047}{
@@ -1649,4 +1649,611 @@ What is the error in estimating the sum of the series with the first $\sage{b}$ 
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Rational, File@0052}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-20,20)
+b=NonZeroInt(-20,20)
+
+#Define the general term of the series
+f=b*x
+g=1-f
+
+#Series general term and radius
+Ans=a*(f)^n
+Rad=abs(1/b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0052. \\ \fi
+\begin{problem}
+Find a power series representation for $\dfrac{\sage{a}}{\sage{g}}$.
+	
+\input{Series-Compute-0052.HELP.tex}
+
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Rational, File@0053}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-20,20)
+b=NonZeroInt(-20,20)
+c=RandInt(1,20)
+p=RandInt(1,4)
+
+#Define the general term of the series
+f=b*x^p
+g=c-f
+
+#Series general term and radius
+Ans=a*(1/c*f)^n
+Rad=abs(c/b)^(1/p)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0053. \\ \fi
+\begin{problem}
+Find a power series representation for $\dfrac{\sage{a}}{\sage{g}}$.
+
+\input{Series-Compute-0053.HELP.tex}
+
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, File@0054}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-20,20)
+b=NonZeroInt(-20,20)
+c=RandInt(1,20)
+p=RandInt(1,4)
+q=Randint(1,5)
+
+#Define the general term of the series
+f=b*x^p
+g=c-f
+#h=x^q
+# This might need some work.........
+
+#Series general term and radius
+Ans=a*(b/c)^n*(f/b)^(n+q)
+Rad=abs(c/b)^(1/p)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0054. \\ \fi
+\begin{problem}
+Find a power series representation for $\dfrac{\sage{a}}{\sage{g}}$.
+
+\input{Series-Compute-0054.HELP.tex}
+
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Log, File@0055}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(1,10)
+b=NonZeroInt(-10,10)
+p=RandInt(1,10)
+
+
+#Define the general original function and the general term with ROC
+originf=a+b*x^p
+
+#Series general term and radius
+Ans=(-1)^n/(n+1)*(b/a)^(n+1)*x^(p*(n+1))
+Rad=abs(a/b)^(1/p)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0055. \\ \fi
+\begin{problem}
+Find a power series representation for $\log(\sage{originf})$.
+
+\input{Series-Compute-0055.HELP.tex}
+
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Arctrig, File@0056}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+b=NonZeroInt(1,10)
+p=RandInt(1,10)
+
+
+#Define the general original function and the general term with ROC
+originf=b*x^p
+
+#Series general term and radius
+Ans=a*(-1)^n/(2*n+1)*b^(2*n+1)*x^(p*(2*n+1))
+Rad=abs(1/b)^(1/(2*p))
+
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0056. \\ \fi
+\begin{problem}
+Find a power series representation for $\sage{a}\arctan(\sage{originf})$.
+
+\input{Series-Compute-0056.HELP.tex}
+
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Rational, File@0057}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+b=NonZeroInt(1,10)
+p=RandInt(1,10)
+
+
+#Define the general original function and the general term with ROC
+originTop=a*x^p
+originBot=1+b*x
+
+#Series general term and radius
+Ans=a*(-1)^n*b^n*x^(n+p)
+Rad=abs(1/b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0057. \\ \fi
+\begin{problem}
+Find a power series representation for $\dfrac{\sage{originTop}}{\sage{originBot}}$.
+
+\input{Series-Compute-0057.HELP.tex}
+
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Rational, File@0058}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+b=NonZeroInt(1,10)
+p=RandInt(1,10)
+
+
+#Define the general original function and the general term with ROC
+originTop=a*x^p
+originBot=(1+b*x)^2
+
+#Series general term and radius
+Ans=a*n*(-1)^(n+1)*b^(n-1)*x^(n+p-1)
+Rad=abs(1/b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0058. \\ \fi
+\begin{problem}
+Find a power series representation for $\dfrac{\sage{originTop}}{\sage{originBot}}$.
+
+\input{Series-Compute-0058.HELP.tex}
+
+\[\sum_{n=\answer{1}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Representation, Sub@Rational, File@0059}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+b=NonZeroInt(1,10)
+p=RandInt(1,10)
+
+
+#Define the general original function and the general term with ROC
+originTop=a*x^p
+originBot=(1+b*x)^3
+
+#Series general term and radius
+Ans=a/2*n*(n-1)*(-1)^n*b^(n-2)*x^(n+p-2)
+Rad=abs(1/b)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0059. \\ \fi
+\begin{problem}
+Find a power series representation for $\dfrac{\sage{originTop}}{\sage{originBot}}$.
+
+\input{Series-Compute-0059.HELP.tex}
+
+\[\sum_{n=\answer{2}}^\infty \answer{\sage{Ans}}\]
+
+\begin{problem}
+What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Exp, File@0060}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+c=RandInt(-5,5)
+d=RandInt(3,6)
+
+#Define the general original function and the first few taylor terms
+f=exp(a*x)
+ans=taylor(f,x,c,d-1)
+
+#Define general taylor term
+fCoeff=a^n*exp(a*c)/n.factorial()
+TAY=fCoeff*(x-c)^n
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0060. \\ \fi
+\begin{problem}
+Determine the first $\sage{d}$ nonzero terms of the Taylor series for $f(x)=\sage{f}$ centered at $\sage{c}$.
+
+\input{Series-Compute-0060.HELP.tex}
+
+\[\answer{\sage{ans}}\]
+
+\begin{problem}
+What is full Taylor series?
+\[\sum_{n=\answer{0}}^\infty{\answer{\sage{TAY}}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Rational, File@0061}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+c=NonZeroInt(-5,5)
+d=NonZeroInt(3,6)
+
+#Define the general original function and the first few taylor terms
+f=a/x^p
+ans=taylor(f,x,c,d-1)
+
+#Define general taylor term
+fCoeff=((-1)^n*a*(p+n-1).factorial()*c^(-p-n))/(n.factorial()*(p-1).factorial())
+TAY=fCoeff*(x-c)^n
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0061. \\ \fi
+\begin{problem}
+Determine the first $\sage{d}$ nonzero terms of the Taylor series for $f(x)=\sage{f}$ centered at $\sage{c}$.
+
+\input{Series-Compute-0061.HELP.tex}
+
+\[\answer{\sage{ans}}\]
+
+\begin{problem}
+What is full Taylor series?
+\[\sum_{n=\answer{0}}^\infty{\answer{\sage{TAY}}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Radical, File@0062}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+c=NonZeroInt(1,7)
+d=NonZeroInt(3,6)
+
+#Define the general original function and the first few taylor terms
+f=a/x^(1/p)
+ans=taylor(f,x,c,d-1)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0062. \\ \fi
+\begin{problem}
+Determine the first $\sage{d}$ nonzero terms of the Taylor series for $f(x)=\sage{f}$ centered at $\sage{c}$.
+
+\input{Series-Compute-0062.HELP.tex}
+
+\[\answer{\sage{ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Radical, File@0063}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+a=NonZeroInt(-10,10)
+c=NonZeroInt(1,7)
+d=NonZeroInt(3,6)
+
+#Define the general original function and the first few taylor terms
+f=a*x^(1/p)
+ans=taylor(f,x,c,d-1)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0063. \\ \fi
+\begin{problem}
+Determine the first $\sage{d}$ nonzero terms of the Taylor series for $f(x)=\sage{f}$ centered at $\sage{c}$.
+
+\input{Series-Compute-0063.HELP.tex}
+
+\[\answer{\sage{ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Exp, File@0064}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+b=RandInt(1,10)
+d=RandInt(1,3)
+p=RandInt(1,10)
+
+#Define the general original function
+f=(-1)^n*b^n*x^(p*n)/n.factorial()
+
+#Define the sum of the series
+ans1=exp(-b*x^p)
+ans2=sum(f,n,0,d-1)
+ANS=ans1-ans2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0064. \\ \fi
+\begin{problem}
+Determine the sum of the series \[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0064.HELP.tex}
+
+\[\answer{\sage{ANS}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Trig, File@0065}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+b=RandInt(1,10)
+d=RandInt(1,3)
+p=RandInt(1,10)
+
+#Define the general original function
+f=(-1)^n*b^(2*n+1)*x^(p*(2*n+1))/(2*n+1).factorial()
+
+#Define the sum of the series
+ans1=sin(b*x^p)
+ans2=sum(f,n,0,d-1)
+ANS=ans1-ans2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0065. \\ \fi
+\begin{problem}
+Determine the sum of the series \[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0065.HELP.tex}
+
+\[\answer{\sage{ANS}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Trig, File@0066}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+b=RandInt(1,10)
+d=RandInt(1,3)
+p=RandInt(1,10)
+
+#Define the general original function
+f=(-1)^n*b^(2*n)*x^(p*(2*n))/(2*n).factorial()
+
+#Define the sum of the series
+ans1=cos(b*x^p)
+ans2=sum(f,n,0,d-1)
+ANS=ans1-ans2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0066. \\ \fi
+\begin{problem}
+Determine the sum of the series \[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0066.HELP.tex}
+
+\[\answer{\sage{ANS}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Arctrig, File@0067}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+b=RandInt(1,10)
+d=RandInt(1,3)
+p=RandInt(1,10)
+
+#Define the general original function
+f=(-1)^n*b^(2*n+1)*x^(p*(2*n+1))/(2*n+1)
+
+#Define the sum of the series
+ans1=arctan(b*x^p)
+ans2=sum(f,n,0,d-1)
+ANS=ans1-ans2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0067. \\ \fi
+\begin{problem}
+Determine the sum of the series \[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0067.HELP.tex}
+
+\[\answer{\sage{ANS}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Log, File@0068}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+b=RandInt(1,10)
+d=RandInt(2,4)
+p=RandInt(1,10)
+
+#Define the general original function
+f=b^(n)*x^(p*(n))/(n)
+
+#Define the sum of the series
+ans1=log(1-b*x^p)
+ans2=sum(f,n,1,d-1)
+ANS=ans1+ans2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0068. \\ \fi
+\begin{problem}
+Determine the sum of the series \[-\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0068.HELP.tex}
+
+\[\answer{\sage{ANS}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@PowerSeries, Sub@Taylor, Sub@Log, File@0069}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,n')
+b=RandInt(1,10)
+d=RandInt(2,4)
+p=RandInt(1,10)
+
+#Define the general original function
+f=(-1)^(n+1)*b^(n)*x^(p*(n))/(n)
+
+#Define the sum of the series
+ans1=log(1+b*x^p)
+ans2=sum(f,n,1,d-1)
+ANS=ans1-ans2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Series Compute Question 0069. \\ \fi
+\begin{problem}
+Determine the sum of the series \[\sum_{n=\sage{d}}^\infty \sage{f}\]
+
+\input{Series-Compute-0069.HELP.tex}
+
+\[\answer{\sage{ANS}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
 
