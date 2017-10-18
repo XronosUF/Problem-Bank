@@ -1729,7 +1729,7 @@ a=NonZeroInt(-20,20)
 b=NonZeroInt(-20,20)
 c=RandInt(1,20)
 p=RandInt(1,4)
-q=Randint(1,5)
+q=RandInt(1,5)
 
 #Define the general term of the series
 f=b*x^p
@@ -1986,7 +1986,8 @@ What is full Taylor series?
 var('x,n')
 a=NonZeroInt(-10,10)
 c=NonZeroInt(-5,5)
-d=NonZeroInt(3,6)
+d=RandInt(3,6)
+p=RandInt(1,10)
 
 #Define the general original function and the first few taylor terms
 f=a/x^p
@@ -2024,6 +2025,7 @@ var('x,n')
 a=NonZeroInt(-10,10)
 c=NonZeroInt(1,7)
 d=NonZeroInt(3,6)
+p=RandInt(1,10)
 
 #Define the general original function and the first few taylor terms
 f=a/x^(1/p)
@@ -2050,6 +2052,7 @@ var('x,n')
 a=NonZeroInt(-10,10)
 c=NonZeroInt(1,7)
 d=NonZeroInt(3,6)
+p=RandInt(1,10)
 
 #Define the general original function and the first few taylor terms
 f=a*x^(1/p)
