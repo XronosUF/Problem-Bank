@@ -1,0 +1,543 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@ParametricEq, File@0001}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v1=[a*t+b, a*t^2+b, a*t^3+b, a*exp(t)+b, a*log(t)+b, a*sin(t)+b, a*cos(t)+b]
+xT=t
+yT=v1[p]
+
+#Define the Answer function
+Ans=yT(x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0001. \\ \fi
+\begin{problem}
+Given the following paremeterization, determine the associated curve being traced.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0001.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@ParametricEq, File@0002}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v2=[t^2, t^3, 1/t, 1/t^2, exp(t), log(t), sin(t), cos(t)]
+xT=a*t
+yT=v2[p]
+
+#Define the Answer function
+Ans=yT(x/a)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0002. \\ \fi
+\begin{problem}
+Given the following paremeterization, determine the associated curve being traced.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0002.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@ParametricEq, File@0003}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+xT=a*t^2
+yT=v2[p]
+
+#Define the Answer function
+Ans=yT(sqrt(x/a))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0003. \\ \fi
+\begin{problem}
+Given the following paremeterization, determine the associated curve being traced.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0003.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@ParametricEq, File@0004}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+xT=a*sqrt(t)
+yT=v2[p]
+
+#Define the Answer function
+Ans=yT((x/a)^2)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0004. \\ \fi
+\begin{problem}
+Given the following paremeterization, determine the associated curve being traced.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0004.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, File@0005}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v1=[a*t+b, a*t^2+b, a*t^3+b, a*exp(t)+b, a*log(t)+b, a*sin(t)+b, a*cos(t)+b]
+xT=t
+yT=v1[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+DDy=diff(Dy/Dx,t)
+
+#Define the Answers
+Ans1=Dy/Dx
+Ans2=DDy/Dx
+
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0005. \\ \fi
+\begin{problem}
+Given the following paremeterization, find $\dfrac{dy}{dx}$ and $\dfrac{d^2y}{dx^2}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0005.HELP.tex}
+
+\[\frac{dy}{dx}=\answer{\sage{Ans1}}\qquad \frac{d^2y}{dx^2}=\answer{\sage{Ans2}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, File@0006}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v2=[t^2, t^3, 1/t, 1/t^2, exp(t), log(t), sin(t), cos(t)]
+xT=a*t
+yT=v2[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+DDy=diff(Dy/Dx,t)
+
+#Define the Answers
+Ans1=Dy/Dx
+Ans2=DDy/Dx
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0006. \\ \fi
+\begin{problem}
+Given the following paremeterization, find $\dfrac{dy}{dx}$ and $\dfrac{d^2y}{dx^2}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0006.HELP.tex}
+
+\[\frac{dy}{dx}=\answer{\sage{Ans1}}\qquad \frac{d^2y}{dx^2}=\answer{\sage{Ans2}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, File@0007}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+xT=a*t^2
+yT=v2[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+DDy=diff(Dy/Dx,t)
+
+#Define the Answers
+Ans1=Dy/Dx
+Ans2=DDy/Dx
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0007. \\ \fi
+\begin{problem}
+Given the following paremeterization, find $\dfrac{dy}{dx}$ and $\dfrac{d^2y}{dx^2}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0007.HELP.tex}
+
+\[\frac{dy}{dx}=\answer{\sage{Ans1}}\qquad \frac{d^2y}{dx^2}=\answer{\sage{Ans2}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, File@0008}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+
+#Define the general vector for parameterization
+v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+xT=a*sqrt(t)
+yT=v2[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+DDy=diff(Dy/Dx,t)
+
+#Define the Answers
+Ans1=Dy/Dx
+Ans2=DDy/Dx
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0008. \\ \fi
+\begin{problem}
+Given the following paremeterization, find $\dfrac{dy}{dx}$ and $\dfrac{d^2y}{dx^2}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0008.HELP.tex}
+
+\[\frac{dy}{dx}=\answer{\sage{Ans1}}\qquad \frac{d^2y}{dx^2}=\answer{\sage{Ans2}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, Sub@Tan-Line, File@0009}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+d=RandInt(1,8)
+
+#Define the general vector for parameterization
+v1=[a*t+b, a*t^2+b, a*t^3+b, a*exp(t)+b, a*log(t)+b, a*sin(t)+b, a*cos(t)+b]
+xT=t
+yT=v1[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+xVal=xT(d)
+yVal=yT(d)
+Deriv=Dy/Dx
+
+#Define the Answer
+Ans=Deriv(d)*(x-xVal)+yVal
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0009. \\ \fi
+\begin{problem}
+Given the following paremeterization, find the equation of the tangent line to the curve at $t=\sage{d}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0009.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, Sub@Tan-Line, File@0010}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+p=RandInt(0,6)
+d=RandInt(1,8)
+
+#Define the general vector for parameterization
+v2=[t^2, t^3, 1/t, 1/t^2, exp(t), log(t), sin(t), cos(t)]
+xT=a*t
+yT=v2[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+xVal=xT(d)
+yVal=yT(d)
+Deriv=Dy/Dx
+
+#Define the Answer
+Ans=Deriv(d)*(x-xVal)+yVal
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0010. \\ \fi
+\begin{problem}
+Given the following paremeterization, find the equation of the tangent line to the curve at $t=\sage{d}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0010.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, Sub@Tan-Line, File@0011}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+d=RandInt(1,8)
+
+#Define the general vector for parameterization
+v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+xT=a*t^2
+yT=v2[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+xVal=xT(d)
+yVal=yT(d)
+Deriv=Dy/Dx
+
+#Define the Answer
+Ans=Deriv(d)*(x-xVal)+yVal
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0011. \\ \fi
+\begin{problem}
+Given the following paremeterization, find the equation of the tangent line to the curve at $t=\sage{d}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0011.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, Sub@Tan-Line, File@0012}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,6)
+d=RandInt(1,8)
+
+#Define the general vector for parameterization
+v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+xT=a*sqrt(t)
+yT=v2[p]
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+xVal=xT(d)
+yVal=yT(d)
+Deriv=Dy/Dx
+
+#Define the Answer
+Ans=Deriv(d)*(x-xVal)+yVal
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0012. \\ \fi
+\begin{problem}
+Given the following paremeterization, find the equation of the tangent line to the curve at $t=\sage{d}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0012.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Parametric, Sub@DerivPara, Sub@ArcLength, File@0013}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,t')
+a=RandInt(-10,10)
+b=NonZeroInt(-5,5)
+c=RandInt(-10,10)
+d=NonZeroInt(-5,5)
+# NEED p/q to not have 1/3 or 3/1
+p=RandInt(1,3)
+q=RandInt(1,3)
+while p==1:
+   if q==3:
+      q=RandInt(1,2)
+while p==3:
+   if q==1:
+      q=RandInt(2,3)
+
+#Define the general parameterization
+xT=a+b*t^p
+yT=c+d*t^q
+Dx=diff(xT,t)
+Dy=diff(yT,t)
+ARC=sqrt((Dx)^2+(Dy)^2)
+
+#Define the Answer
+Ans=integral(ARC,t,d1,d2)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Parametric Compute Question 0013. \\ \fi
+\begin{problem}
+Determine the arclength of the following parametric curve from $t=\sage{d1}$ to $t=\sage{d2}$.
+
+\[\left\{\begin{array}{lll}
+x(t) &=& \sage{xT}\\
+y(t) &=& \sage{yT}
+\end{array}\right.,\quad t>0\]
+
+\input{Parametric-Compute-0013.HELP.tex}
+
+\[y=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
