@@ -313,11 +313,11 @@ y(t) &=& \sage{yT}
 var('x,t')
 a=NonZeroInt(-10,10)
 b=RandInt(-10,10)
-p=RandInt(0,6)
+p=RandInt(0,5)
 d=RandInt(1,8)
 
 #Define the general vector for parameterization
-v1=[a*t+b, a*t^2+b, a*t^3+b, a*exp(t)+b, a*log(t)+b, a*sin(t)+b, a*cos(t)+b]
+v1=[a*t^2+b, a*t^3+b, a*exp(t)+b, a*log(t)+b, a*sin(t)+b, a*cos(t)+b]
 xT=t
 yT=v1[p]
 Dx=diff(xT,t)
@@ -398,7 +398,7 @@ p=RandInt(0,6)
 d=RandInt(1,8)
 
 #Define the general vector for parameterization
-v2=[t^2+b, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
+v2=[t^2+a*t, t^3+b, 1/t+b, 1/t^2+b, exp(t)+b, log(t)+b, sin(t)+b, cos(t)+b]
 xT=a*t^2
 yT=v2[p]
 Dx=diff(xT,t)
@@ -478,13 +478,15 @@ a=RandInt(-10,10)
 b=NonZeroInt(-5,5)
 c=RandInt(-10,10)
 d=NonZeroInt(-5,5)
+d1=RandInt(0,2)
+d2=RandInt(d1+1,10)
 # NEED p/q to not have 1/3 or 3/1
 p=RandInt(1,3)
 q=RandInt(1,3)
-while p==1:
+if p==1:
    if q==3:
       q=RandInt(1,2)
-while p==3:
+if p==3:
    if q==1:
       q=RandInt(2,3)
 
@@ -504,7 +506,7 @@ Ans=integral(ARC,t,d1,d2)
 \begin{problem}
 Determine the arclength of the following parametric curve from $t=\sage{d1}$ to $t=\sage{d2}$.
 
-\[\left\{\begin{array}{lll}
+\[\left\lbrace\begin{array}{lll}
 x(t) &=& \sage{xT}\\
 y(t) &=& \sage{yT}
 \end{array}\right.,\quad t>0\]
