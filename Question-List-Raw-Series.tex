@@ -1068,13 +1068,13 @@ Determine if the series converges or diverges.
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Series, Sub@RatioTest, Sub@Convergence, File@0033}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('x,n')
+var('n')
 a=NonZeroInt(2,20)
 d=NonZeroInt(1,20)
 s=NonZeroInt(1,9)
 
 #Define the general term of the series
-f=(-1)^(x+1)*n^s*a^x/factorial(x)
+f=(-1)^(n+1)*n^s*a^n/factorial(n)
 
 \end{sagesilent}
 
