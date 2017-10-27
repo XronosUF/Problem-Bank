@@ -1657,7 +1657,6 @@ Find the limit.  Use L'H$\hat{o}$pital's rule where appropriate.
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Theorems-MVT, File@0052}{
 \begin{sagesilent}
@@ -1693,7 +1692,7 @@ Does the function $\sage{F}$ satisfy the conditions of the Mean Value Theorem (M
 
 If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT over the interval $[\sage{Lpt},\sage{Rpt}]$.  If the conditions are not met, then write ``NONE.''
 
-\[c = \answer{0}\]
+\[c = \answer{\sage{vert}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1730,6 +1729,7 @@ If the conditions are met, then find all numbers $c$ that satisfy the conclusion
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@MultiAns, Type@Compute, Topic@Derivative, Sub@Arctrig, Sub@Theorems-MVT, File@0054}{
 \begin{sagesilent}
@@ -1737,7 +1737,10 @@ a = NonZeroInt(-10,10)
 b = NonZeroInt(-10,10)
 c = NonZeroInt(1,5)
 f=a*arctan(b*x)
-Ans=sqrt((c-arctan(b*c))/(b^2*arctan(b*c)))
+
+Ans= 1/b * sqrt( (c*b) / (arctan(b*c)) - 1 )
+
+
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1760,6 +1763,8 @@ If the conditions are met, then find all numbers $c$ that satisfy the conclusion
 \[c = \answer{\sage{Ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 %\tagged{Ans@Short, Type@Compute, Topic@Derivative, Sub@Poly, Sub@Inflection, File@0055}{
