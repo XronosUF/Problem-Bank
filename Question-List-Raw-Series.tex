@@ -1105,7 +1105,17 @@ a=RandInt(1,9)
 b=RandInt(1,9)
 c=RandInt(-2,2)
 d=RandInt(0,2)
+if d==0:
+   c=RandInt(0,2)
 e=RandInt(1,9)
+nonNeg=b*d+c # To check that the prodcut doesn't have negative or zero terms
+while nonNeg<=0:
+   b=RandInt(1,9)
+   nonNeg=b*d+c
+LIM=b/a # To check that the series actually converges
+while LIM>1:
+   a=RandInt(b+1,10)
+   LIM=b/a
 
 \end{sagesilent}
 
