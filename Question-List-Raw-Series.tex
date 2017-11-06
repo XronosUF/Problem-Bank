@@ -1497,7 +1497,7 @@ Determine the radius of convergence and the interval of convergence.
 
 \input{Series-Compute-0046.HELP.tex}
 
-\[\mbox{Radius of Convergence}:\; \answer{c}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
+\[\mbox{Radius of Convergence}:\; \answer{\sage{c}}\qquad \mbox{Interval of Convergence}:\; = \answer{\sage{a-c}}<x<\answer{\sage{a+c}}\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1748,7 +1748,7 @@ g=c-f
 # This might need some work.........
 
 #Series general term and radius
-Ans=a*(b/c)^n*(f/b)^(n+q)
+Ans=(a/c)*(b/c)^n*(x)^(n*p)
 Rad=abs(c/b)^(1/p)
 
 \end{sagesilent}
@@ -1784,7 +1784,7 @@ p=RandInt(1,10)
 originf=a+b*x^p
 
 #Series general term and radius
-Ans=(-1)^n/(n+1)*(b/a)^(n+1)*x^(p*(n+1))
+Ans=(b/a)^(n+1)*(1/(n+1))*x^(p*(n+1))
 Rad=abs(a/b)^(1/p)
 
 \end{sagesilent}
@@ -1796,7 +1796,7 @@ Find a power series representation for $\log(\sage{originf})$.
 
 \input{Series-Compute-0055.HELP.tex}
 
-\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}\]
+\[\sum_{n=\answer{0}}^\infty \answer{\sage{Ans}}+\log(\sage{a})\]
 
 \begin{problem}
 What is the radius of convergence? \[|x|<\answer{\sage{Rad}}\]
