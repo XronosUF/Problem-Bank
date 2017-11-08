@@ -1709,7 +1709,7 @@ f=b*x^p
 g=c-f
 
 #Series general term and radius
-Ans=a*(1/c*f)^n
+Ans=a/c*(1/c*f)^n
 Rad=abs(c/b)^(1/p)
 
 \end{sagesilent}
@@ -1781,7 +1781,7 @@ p=RandInt(1,10)
 
 
 #Define the general original function and the general term with ROC
-originf=a+b*x^p
+originf=a-b*x^p
 
 #Series general term and radius
 Ans=(b/a)^(n+1)*(1/(n+1))*x^(p*(n+1))
