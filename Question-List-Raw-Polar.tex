@@ -41,7 +41,7 @@ Convert the Cartesian coordinates into polar coordinates with $0\leq\theta\leq2\
 a=NonZeroInt(-10,10)
 b=RandInt(-10,10)
 p=RandInt(0,1)
-v=[b,sqrt(b)]
+v=[b,sgn(b)*sqrt(abs(b))]
 B=v[p]
 
 #Define the coordinates
@@ -59,7 +59,7 @@ Convert the Cartesian coordinates into polar coordinates with $0\leq\theta\leq2\
 
 \input{Polar-Compute-0002.HELP.tex}
 
-\[(\sage{a},\sage{b}) \longrightarrow \left(\answer{\sage{arr}},\answer{\sage{theta}}\right)\]
+\[(\sage{a},\sage{B}) \longrightarrow \left(\answer{\sage{arr}},\answer{\sage{theta}}\right)\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -120,6 +120,7 @@ Convert the polar coordinates into Cartesian coordinates:
 # Define variables and constants/exponents
 var('XTRtheta')
 r=NonZeroInt(1,10)
+p=RandInt(0,2)
 v1=[0,r,-r]
 
 #Define the coordinates
@@ -159,7 +160,7 @@ Write the polar equation for a circle of radius $\sage{r}$ and center $(\sage{xV
 var('XTRtheta')
 a=RandInt(1,10)
 b=RandInt(2,10)
-p=Integer(randint(0,1))
+p=RandInt(0,1)
 v1=[a*cos(b*XTRtheta), a*sin(b*XTRtheta)]
 
 #Define the number of petals and the equation
@@ -198,7 +199,7 @@ Find the area enclosed by one petal.
 var('XTRtheta')
 a=RandInt(1,10)
 b=RandInt(2,10)
-p=Integer(randint(0,1))
+p=RandInt(0,1)
 v1=[a*cos(b*XTRtheta), a*sin(b*XTRtheta)]
 
 #Define the number of petals and the equation
@@ -237,8 +238,8 @@ Find the area enclosed by $\sage{d}$ petal(s).
 # Define variables and constants/exponents
 var('XTRtheta')
 a=RandInt(1,10)
-p=Integer(randint(0,1))
-q=Integer(randint(0,1))
+p=RandInt(0,1)
+q=RandInt(0,1)
 v1=[a*(1+(-1)^q*cos(XTRtheta)), a*(1+(-1)^q*sin(XTRtheta))]
 
 #Define the equation
@@ -269,8 +270,8 @@ Find the area enclosed by the cardioid $r=\sage{R}$.
 var('XTRtheta')
 a=RandInt(1,10)
 b=RandInt(2,5)
-p=Integer(randint(0,1))
-q=Integer(randint(0,1))
+p=RandInt(0,1)
+q=RandInt(0,1)
 v1=[a*(1+(-1)^q*(1/b)*cos(XTRtheta)), a*(1+(-1)^q*(1/b)*sin(XTRtheta))]
 
 #Define the equation
@@ -301,8 +302,8 @@ Find the area enclosed by the cardioid $r=\sage{R}$.
 var('XTRtheta')
 a=RandInt(1,5)
 b=RandInt(2,5)
-p=Integer(randint(0,1))
-q=Integer(randint(0,1))
+p=RandInt(0,1)
+q=RandInt(0,1)
 v1=[a*(1+(-1)^q*b*cos(XTRtheta)), a*(1+(-1)^q*b*sin(XTRtheta))]
 
 #Define the equation
@@ -338,8 +339,8 @@ Find the area enclosed by the inner loop of the Lima\c on $r=\sage{R}$.
 # Define variables and constants/exponents
 var('XTRtheta')
 a=RandInt(1,10)
-p=Integer(randint(0,1))
-q=Integer(randint(0,1))
+p=RandInt(0,1)
+q=RandInt(0,1)
 v1=[a*(1+(-1)^q*cos(XTRtheta)), a*(1+(-1)^q*sin(XTRtheta))]
 
 #Define the equation
@@ -377,7 +378,7 @@ Find the are of the region that lies inside $r_1=\sage{R1}$ and outside $r_2=\sa
 # Define variables and constants/exponents
 var('XTRtheta')
 a=RandInt(1,10)
-p=Integer(randint(0,1))
+p=RandInt(0,1)
 v1=[a*(1+(1/a)*cos(XTRtheta)), a*(1+(1/a)*sin(XTRtheta))]
 v2=[(a+1)*cos(XTRtheta), (a+1)*sin(XTRtheta)]
 
