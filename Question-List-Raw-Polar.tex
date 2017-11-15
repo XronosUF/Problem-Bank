@@ -1,0 +1,427 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@PolarCoordinates, File@0001}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,1)
+v=[b,sgn(b)*sqrt(abs(b))]
+B=v[p]
+
+#Define the coordinates
+arr=sqrt(a^2+B^2)
+if sgn(a)==1:
+   theta=arctan(B/a)
+if sgn(a)==-1:
+   theta=arctan(B/a)+pi
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0001. \\ \fi
+\begin{problem}
+Convert the Cartesian coordinates into polar coordinates with $0\leq\theta\leq2\pi$ and $r>0$:
+
+\input{Polar-Compute-0001.HELP.tex}
+
+\[(\sage{a},\sage{B}) \longrightarrow \left(\answer{\sage{arr}},\answer{\sage{theta}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@PolarCoordinates, File@0002}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(-10,10)
+b=RandInt(-10,10)
+p=RandInt(0,1)
+v=[b,sqrt(b)]
+B=v[p]
+
+#Define the coordinates
+arr=-sqrt(a^2+B^2)
+if sgn(a)==1:
+   theta=arctan(B/a)+pi
+if sgn(a)==-1:
+   theta=arctan(B/a)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0002. \\ \fi
+\begin{problem}
+Convert the Cartesian coordinates into polar coordinates with $0\leq\theta\leq2\pi$ and $r<0$:
+
+\input{Polar-Compute-0002.HELP.tex}
+
+\[(\sage{a},\sage{b}) \longrightarrow \left(\answer{\sage{arr}},\answer{\sage{theta}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@PolarCoordinates, File@0003}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=NonZeroInt(-10,10)
+p=RandInt(0,1)
+v=[b,sgn(b)*sqrt(abs(b))]
+B=v[p]
+
+#Define the coordinates
+arr=sqrt(B^2)
+theta=sgn(b)*pi/2
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0003. \\ \fi
+\begin{problem}
+Convert the Cartesian coordinates into polar coordinates with $0\leq\theta\leq2\pi$ and $r>0$:
+
+\input{Polar-Compute-0003.HELP.tex}
+
+\[(0,\sage{b}) \longrightarrow \left(\answer{\sage{arr}},\answer{\sage{theta}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@PolarCoordinates, File@0004}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+r=NonZeroInt(-10,10)
+angle=RandAng(0,2*pi)
+
+#Define the coordinates
+xVal=r*cos(angle)
+yVal=r*sin(angle)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0004. \\ \fi
+\begin{problem}
+Convert the polar coordinates into Cartesian coordinates:
+
+\input{Polar-Compute-0004.HELP.tex}
+
+\[\left(\sage{r},\sage{angle}\right) \longrightarrow \left(\answer{\sage{xVal}},\answer{\sage{yVal}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@PolarEq, File@0005}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+r=NonZeroInt(1,10)
+v1=[0,r,-r]
+
+#Define the coordinates
+xVal=v1[p]
+if p==0:
+   if q==0:
+      q=Integer(randint(1,2))
+      yVal=v1[q]
+   else:
+      yVal=v1[q]
+if p>0:
+   yVal=0
+
+#Define the Answer using sage char replacement
+if p==0:
+   Ans=2*yVal*sin(XTRtheta)
+if p>0:
+   Ans=2*xVal*cos(XTRtheta)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0005. \\ \fi
+\begin{problem}
+Write the polar equation for a circle of radius $\sage{r}$ and center $(\sage{xVal},\sage{yVal})$.
+
+\input{Polar-Compute-0005.HELP.tex}
+
+\[r=\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Rose, Sub@AreaPolar, File@0006}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,10)
+b=RandInt(2,10)
+p=Integer(randint(0,1))
+v1=[a*cos(b*XTRtheta), a*sin(b*XTRtheta)]
+
+#Define the number of petals and the equation
+if mod(b,2)==0:
+   Petals=2*b
+else:
+   Petals=b
+
+R=v1[p]
+
+#Define the Answer using sage char replacement
+Ans=integral(R^2,XTRtheta,0,pi/(2*b))
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0006. \\ \fi
+\begin{problem}
+How many petals does $r=\sage{R}$ have?
+
+\input{Polar-Compute-0006.HELP.tex}
+
+\[\answer{\sage{Petals}}\]
+\begin{problem}
+Find the area enclosed by one petal.
+
+\[\answer{\sage{Ans}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Rose, Sub@AreaPolar, File@0007}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,10)
+b=RandInt(2,10)
+p=Integer(randint(0,1))
+v1=[a*cos(b*XTRtheta), a*sin(b*XTRtheta)]
+
+#Define the number of petals and the equation
+if mod(b,2)==0:
+   Petals=2*b
+else:
+   Petals=b
+   
+d=NonZeroInt(1,Petals-1)
+R=v1[p]
+
+#Define the Answer using sage char replacement
+Ans=integral(R^2,XTRtheta,0,pi/(2*b))*d
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0007. \\ \fi
+\begin{problem}
+How many petals does $r=\sage{R}$ have?
+
+\input{Polar-Compute-0007.HELP.tex}
+
+\[\answer{\sage{Petals}}\]
+\begin{problem}
+Find the area enclosed by $\sage{d}$ petal(s).
+
+\[\answer{\sage{Ans}}\]
+
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@AreaPolar, File@0008}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,10)
+p=Integer(randint(0,1))
+q=Integer(randint(0,1))
+v1=[a*(1+(-1)^q*cos(XTRtheta)), a*(1+(-1)^q*sin(XTRtheta))]
+
+#Define the equation
+R=v1[p]
+
+#Define the Answer using sage char replacement
+if p==0:
+   Ans=integral(R^2,XTRtheta,0,pi)
+if p==1:
+   Ans=integral(R^2,XTRtheta,-pi/2,pi/2)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0008. \\ \fi
+\begin{problem}
+Find the area enclosed by the cardioid $r=\sage{R}$.
+
+\input{Polar-Compute-0008.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@AreaPolar, File@0009}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,10)
+b=RandInt(2,5)
+p=Integer(randint(0,1))
+q=Integer(randint(0,1))
+v1=[a*(1+(-1)^q*(1/b)*cos(XTRtheta)), a*(1+(-1)^q*(1/b)*sin(XTRtheta))]
+
+#Define the equation
+R=v1[p]
+
+#Define the Answer using sage char replacement
+if p==0: # Cosine version
+   Ans=integral(R^2,XTRtheta,0,pi)
+if p==1: # Sine version
+   Ans=integral(R^2,XTRtheta,-pi/2,pi/2)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0009. \\ \fi
+\begin{problem}
+Find the area enclosed by the cardioid $r=\sage{R}$.
+
+\input{Polar-Compute-0009.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Limacon, Sub@AreaPolar, File@0010}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,5)
+b=RandInt(2,5)
+p=Integer(randint(0,1))
+q=Integer(randint(0,1))
+v1=[a*(1+(-1)^q*b*cos(XTRtheta)), a*(1+(-1)^q*b*sin(XTRtheta))]
+
+#Define the equation
+R=v1[p]
+
+#Define the Answer using sage char replacement
+if p==0: ## If Cosine
+   if q==0:  #If Positve b
+      Ans=integral(R^2,XTRtheta,arccos(-1/b),pi)
+   else: #If Negative b
+      Ans=integral(R^2,XTRtheta,0,arccos(1/b))
+if p==1: ## If Sine
+   if q==0:  #If Positive b
+      Ans=integral(R^2,XTRtheta,arcsin(-1/b),3*pi/2)
+   else:  ##If Negative b
+      Ans=integral(R^2,XTRtheta,arcsin(1/b),pi/2)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0010. \\ \fi
+\begin{problem}
+Find the area enclosed by the inner loop of the Lima\c on $r=\sage{R}$.
+
+\input{Polar-Compute-0010.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@PolarGraph, Sub@AreaPolar, File@0011}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,10)
+p=Integer(randint(0,1))
+q=Integer(randint(0,1))
+v1=[a*(1+(-1)^q*cos(XTRtheta)), a*(1+(-1)^q*sin(XTRtheta))]
+
+#Define the equation
+R1=v1[p]
+R2=a
+RSquared=R1^2-R2^2
+
+#Define the Answer using sage char replacement
+if p==0: # COSINE
+   if q==0: #POSITIVE
+      Ans=integral(RSquared,XTRtheta,0,pi/2)
+   else: #NEGATIVE
+      Ans=integral(RSquared,XTRtheta,pi/2,pi)
+if p==1: #SINE
+   if q==0: #POSITIVE
+      Ans=integral(RSquared,XTRtheta,0,pi/2)
+   else: #NEGATIVE
+      Ans=integral(RSquared,XTRtheta,pi,3*pi/2)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0011. \\ \fi
+\begin{problem}
+Find the are of the region that lies inside $r_1=\sage{R1}$ and outside $r_2=\sage{R2}$.
+
+\input{Polar-Compute-0011.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@PolarGraph, Sub@AreaPolar, File@0012}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('XTRtheta')
+a=RandInt(1,10)
+p=Integer(randint(0,1))
+v1=[a*(1+(1/a)*cos(XTRtheta)), a*(1+(1/a)*sin(XTRtheta))]
+v2=[(a+1)*cos(XTRtheta), (a+1)*sin(XTRtheta)]
+
+#Define the equation
+R1=v1[p]
+R2=v2[p]
+
+#Define the Answer using sage char replacement
+if p==0: # COSINE
+   Ans=integral(R1^2,XTRtheta,0,pi)-integral(R2^2,XTRtheta,0,pi/2)  
+if p==1: #SINE
+   Ans=integral(R1^2,XTRtheta,-pi/2,pi/2)-integral(R2^2,XTRtheta,0,pi/2)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Polar Compute Question 0012. \\ \fi
+\begin{problem}
+Find the are of the region that lies inside $r_1=\sage{R1}$ and outside $r_2=\sage{R2}$.
+
+\input{Polar-Compute-0012.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
