@@ -121,13 +121,14 @@ Convert the polar coordinates into Cartesian coordinates:
 var('XTRtheta')
 r=NonZeroInt(1,10)
 p=RandInt(0,2)
+q=RandInt(0,2)
 v1=[0,r,-r]
 
 #Define the coordinates
 xVal=v1[p]
 if p==0:
    if q==0:
-      q=Integer(randint(1,2))
+      q=RandInt(1,2)
       yVal=v1[q]
    else:
       yVal=v1[q]
