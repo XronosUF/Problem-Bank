@@ -1,0 +1,467 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Notation, File@0001}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(1,5)
+b=RandInt(1,10)
+c=NonZeroInt(-5,5,[b])
+p=RandInt(0,3)
+
+#Define the function and values
+v=[b*x+c, b*x^2+c, sqrt(b*x), (x+c)/(x+b)]
+F=v[p]
+F1=F(a)
+F2=F(a+1)
+F3=F(a+2)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0001. \\ \fi
+\begin{problem}
+Evaluate the function $f(x)=\sage{F}$ at the given values.
+
+\input{Precalc-Compute-0001.HELP.tex}
+
+\begin{tabular}{|l|l|}
+\hline
+$x$ & $f(x)$\\
+\hline
+$\sage{a}$ & $\sage{F1}$\\
+\hline
+$\sage{a+1}$ & $\sage{F2}$\\
+\hline
+$\sage{a+2}$ & $\sage{F3}$\\
+\hline
+\end{tabular}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Domain, Sub@Poly, File@0002}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=RandInt(1,10)
+c=RandInt(-5,5)
+p=RandInt(0,2)
+
+#Define the function and values
+v=[b*x+c, b*x^2+c, b*x^3+c]
+F=v[p]   
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0002. \\ \fi
+\begin{problem}
+Compute the domain of the function $\sage{F}$.
+
+\input{Precalc-Compute-0002.HELP.tex}
+
+\[\left(\answer{-\infty},\answer{\infty}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Domain, Sub@Radical, File@0003}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=RandInt(1,10)
+c=NonZeroInt(-5,5)
+p=Integer(randint(0,1))
+
+#Define the function and values
+v=[sqrt(b*x), sqrt(b*x+c)]
+F=v[p]
+if p==0:
+   D1=0
+   D2=infinity
+else:
+   D1=-c/b
+   D2=infinity   
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0003. \\ \fi
+\begin{problem}
+Compute the domain of the function $\sage{F}$.
+
+\input{Precalc-Compute-0003.HELP.tex}
+
+\[\left(\answer{\sage{D1}},\answer{\sage{D2}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Domain, Sub@Rational, File@0004}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=RandInt(1,10)
+c=RandInt(-5,5)
+
+#Define the function and values
+F=(x+c)/(x+b)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0004. \\ \fi
+\begin{problem}
+Compute the domain of the function $\sage{F}$.
+
+\input{Precalc-Compute-0004.HELP.tex}
+
+\[\left(\answer{-\infty},\answer{\sage{-b}}\right)\bigcup\left(\answer{\sage{-b}},\answer{\infty}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@MC, Type@Compute, Topic@Precalc, Sub@Domain, Sub@Relation, File@0005}{
+%\begin{sagesilent}
+%# Define variables and constants/exponents
+%a=RandInt(-5,5)
+%b = a-1
+%c = a+1
+%d = a+2
+%e = a+3
+%q = a-2
+%\end{sagesilent}
+% 
+%\latexProblemContent{
+%\ifVerboseLocation This is Precalc Compute Question 0005. \\ \fi
+%\begin{problem}
+%Which of the following is \underline{not} in the domain of the function:
+%\[\lbrace(\sage{q},\sage{b}), (\sage{b},\sage{a}), (\sage{a},\sage{c}), (\sage{c},\sage{d}), (\sage{d},\sage{e})\rbrace\]
+%
+%\input{Precalc-Compute-0005.HELP.tex}
+%%\answer{$\sage{e}$}
+%
+%\begin{multipleChoice}
+%\choice{$\sage{b}$}
+%\choice{$\sage{d}$}
+%\choice{$\sage{a}$}
+%\choice[correct]{$\sage{e}$}
+%\choice{$\sage{c}$}
+%\end{multipleChoice}
+%
+%\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Avg-RoC, File@0006}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(1,5)
+c=RandInt(-5,5)
+d=RandInt(a+1,10)
+b=NonZeroInt(1,10,[-a,-d,c])
+p=RandInt(0,4)
+
+#Choosing the function
+v=[b*x+c, b*x^2+c, b*x^3+c, sqrt(b*x), (x+c)/(x+b)]
+F=v[p]
+
+#Computing the slope
+Ans=(F(d)-F(a))/(d-a)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0006. \\ \fi
+\begin{problem}
+Compute the average rate of change of the function $\sage{F}$ on the interval $[\sage{a},\sage{d}]$.
+
+\input{Precalc-Compute-0006.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Composition, File@0007}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=RandInt(1,10)
+c=RandInt(-5,5)
+p=RandInt(0,4)
+q=NonZeroInt(0,4,[p])
+
+#Choosing the function
+v=[b*x+c, b*x^2+c, b*x^3+c, sqrt(b*x), (x+c)/(x+b)]
+F=v[p]
+G=v[q]
+
+#Computing the Composites
+A1=F-G
+A2=G/F
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0007. \\ \fi
+\begin{problem}
+Given the functions $f(x)=\sage{F}$ and $g(x)=\sage{G}$, compute the following:
+
+\input{Precalc-Compute-0007.HELP.tex}
+
+\begin{itemize}
+\item $f(x)-g(x)=\answer{\sage{A1}}$
+\item $\frac{g(x)}{f(x)}=\answer{\sage{A2}}$
+\end{itemize}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Composition, File@0008}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=RandInt(1,10)
+c=RandInt(-5,5)
+p=RandInt(0,4)
+q=NonZeroInt(0,4,[p])
+
+#Choosing the function
+v=[b*x+c, b*x^2+c, b*x^3+c, sqrt(b*x), (x+c)/(x+b)]
+F=v[p]
+G=v[q]
+
+#Computing the Composites
+A3=G-F
+A4=F*G
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0008. \\ \fi
+\begin{problem}
+Given the functions $f(x)=\sage{F}$ and $g(x)=\sage{G}$, compute the following:
+
+\input{Precalc-Compute-0008.HELP.tex}
+
+\begin{itemize}
+\item $g(x)-f(x)=\answer{\sage{A3}}$
+\item $f(x)g(x)=\answer{\sage{A4}}$
+\end{itemize}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Composition, File@0009}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+b=RandInt(1,10)
+c=NonZeroInt(-5,5,[b])
+p=RandInt(0,4)
+q=NonZeroInt(0,4,[p])
+
+#Choosing the function
+v=[b*x+c, b*x^2+c, b*x^3+c, sqrt(b*x), (x+c)/(x+b)]
+F=v[p]
+G=v[q]
+
+#Computing the Composites
+A1=F(G)
+A2=G(F)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0009. \\ \fi
+\begin{problem}
+Given the functions $f(x)=\sage{F}$ and $g(x)=\sage{G}$, compute the following compositions:
+
+\input{Precalc-Compute-0009.HELP.tex}
+
+\begin{itemize}
+\item $f(g(x))=\answer{\sage{A1}}$
+\item $g(f(x))=\answer{\sage{A2}}$
+\end{itemize}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Composition, File@0010}{
+%\begin{sagesilent}
+%# Define variables and constants/exponents
+%a=RandInt(-2,5)
+%p=RandInt(0,3)
+%q=RandInt(0,3)
+%
+%#Choosing the function
+%v=[a-1, a, a+1, a+2]
+%B=v[p]
+%C=v[q]
+%
+%#Computing the slope
+%vg=[a-2, C, 3*a, 2*a-1]
+%vf=[2*a, B, 2*a+3, a-4]
+%A1=vf[q]
+%A2=vg[p]
+%
+%B1 = a-1
+%B2 = a-2
+%B3 = a+1
+%B4 = a+2
+%B5 = a-4
+%C1 = 2*a
+%C2 = 2*a+3
+%C3 = 3*a
+%C4 = 2*a-1
+%
+%\end{sagesilent}
+% 
+%\latexProblemContent{
+%\ifVerboseLocation This is Precalc Compute Question 0010. \\ \fi
+%\begin{problem}
+%Given the following table, evaluate $f(g(\sage{a}))$ and $g(f(\sage{a}))$.
+%
+%\begin{tabular}{c|c|c}
+%$x$ & $f(x)$ & $g(x)$\\
+%\hline
+%$\sage{B1}$  & $\sage{C1}$ & $\sage{B2}$ \\
+%$\sage{a}$  & $\sage{B}$ & $\sage{C}$ \\
+%$\sage{B3}$  & $\sage{C2}$ & $\sage{C3}$ \\
+%$\sage{B4}$  & $\sage{B5}$ & $\sage{C4}$ 
+%\end{tabular}
+%
+%\input{Precalc-Compute-0010.HELP.tex}
+%
+%\[
+%f(g(\sage{a}))=\answer{\sage{A1}} \qquad\qquad g(f(\sage{a}))=\answer{\sage{A2}}
+%\]
+%
+%\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Composition, File@0011}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a = 0
+b=0
+F(x) = x
+G(x) = x
+while F(a) == -b or G(a) == -b:
+    a=RandInt(1,5)
+    b=RandInt(1,4)
+    c=NonZeroInt(-5,5,[b])
+    p=RandInt(0,4)
+    q=NonZeroInt(0,4,[p])
+    
+    #Choosing the function
+    v=[b*x+c, b*x^2+c, b*x^3+c, sqrt(b*x), (x+c)/(x+b)]
+    F=v[p]
+    G=v[q]
+
+#Computing the Composites
+A1=F(G(a))
+A2=G(F(a))
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0011. \\ \fi
+\begin{problem}
+Given the functions $f(x)=\sage{F}$ and $g(x)=\sage{G}$, compute the following compositions:
+
+\input{Precalc-Compute-0011.HELP.tex}
+
+\begin{itemize}
+\item $f(g(\sage{a}))=\answer{\sage{A1}}$
+\item $g(f(\sage{a}))=\answer{\sage{A2}}$
+\end{itemize}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Domain, Sub@Composition, File@0012}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(1,5)
+b=RandInt(1,10)
+
+#Choosing the function
+F=(x-a)^(1/2)
+G=(b-x)^(1/2)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0012. \\ \fi
+\begin{problem}
+Given the functions $f(x)=\sage{F}$ and $g(x)=\sage{G}$, find the domain of the function $(f\circ g)(x)$.
+
+\input{Precalc-Compute-0012.HELP.tex}
+
+\[\left(\answer{-\infty}, \answer{\sage{b-a^2}}\right]\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Domain, Sub@Composition, File@0013}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(2,5)
+b=RandInt(1,10)
+while a^2<b:
+   b=RandInt(1,10)
+
+#Choosing the function
+F=1/(x-a)
+G=(x+b)^(1/2)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0013. \\ \fi
+\begin{problem}
+Given the functions $f(x)=\sage{F}$ and $g(x)=\sage{G}$, find the domain of the function $(f\circ g)(x)$.
+
+\input{Precalc-Compute-0013.HELP.tex}
+
+\[\left[\answer{\sage{-b}}, \answer{\sage{a^2-b}}\right)\bigcup\left(\answer{\sage{a^2-b}},\answer{\infty}\right)\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
