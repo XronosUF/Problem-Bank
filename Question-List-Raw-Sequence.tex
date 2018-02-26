@@ -798,6 +798,596 @@ Consider the sequence $a_n = \{\sage{an}\}$.
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Rational, Sub@Divergence, File@1300}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+a = NonZeroInt(1,5)
+
+num_coef  = RandInt(1,20)
+num_const = RandInt(1,20)
+G = gcd(num_coef, num_const)
+num_coef, num_const = num_coef/G, num_const/G
+
+den_coef  = RandInt(1,20)
+den_const = RandInt(1,20)
+G = gcd(den_coef, den_const)
+den_coef, den_const = den_coef/G, den_const/G
+
+f(n) = (num_coef*n^(a+1) + num_const)/(den_coef*n^a + den_const)
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1300. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1300.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Converges}
+\choice[correct]{Diverges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Exp, Sub@Convergence, File@1301}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+num_base  = RandInt(2,9)
+num_const = RandInt(-10,10)
+
+den_base  = RandInt(num_base+1,10)
+den_const = RandInt(-10,10)
+
+f(n) = (num_base^n + num_const)/(den_base^n + den_const)
+
+# By design, the answer will be 0.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1301. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1301.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Exp, Sub@Convergence, File@1302}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+den_coeff = RandInt(2,10)
+num_coeff = RandInt(11,20)
+
+f(n) = ln(num_coeff*n)/ln(den_coeff*n)
+
+# By design, the answer will be 1.
+Ans = 1
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1302. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1302.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Log, Sub@Rational, Sub@Convergence, File@1303}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+a = RandInt(1,5)
+
+num_coef  = RandInt(1,20)
+num_const = RandInt(1,20)
+G = gcd(num_coef, num_const)
+num_coef, num_const = num_coef/G, num_const/G
+
+den_coef  = RandInt(1,20)
+den_const = RandInt(1,20)
+G = gcd(den_coef, den_const)
+den_coef, den_const = den_coef/G, den_const/G
+
+f(n) = ln(num_coef*n^a + num_const) - ln(den_coef*n^a + den_const)
+
+Ans = ln(num_coef/den_coef)
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1303. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1303.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Alternating, Sub@Rational, Sub@Divergence, File@1304}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+a = RandInt(-2,2)
+exp = RandInt(1,4)
+
+num_coef  = RandInt(1,20)
+num_const = RandInt(1,20)
+G = gcd(num_coef, num_const)
+num_coef, num_const = num_coef/G, num_const/G
+
+den_coef  = RandInt(1,20)
+den_const = RandInt(1,20)
+G = gcd(den_coef, den_const)
+den_coef, den_const = den_coef/G, den_const/G
+
+f(n) = (-1)^(n+a)*(num_coef*n^exp+num_const)/(den_coef*n^exp)
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1304. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1304.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Converges}
+\choice[correct]{Diverges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Alternating, Sub@Rational, Sub@Divergence, File@1305}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+a = RandInt(-2,2)
+exp = RandInt(1,4)
+
+num_coef  = RandInt(1,20)
+num_const = RandInt(1,20)
+G = gcd(num_coef, num_const)
+num_coef, num_const = num_coef/G, num_const/G
+
+den_coef  = RandInt(1,20)
+den_const = RandInt(1,20)
+G = gcd(den_coef, den_const)
+den_coef, den_const = den_coef/G, den_const/G
+
+f(n) = (-1)^(n+a)*(num_coef*n^exp + num_const)/(den_coef*n^(exp+1) + den_const)
+
+# Answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1305. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1305.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Trig, Sub@Convergence, File@1306}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+outer = NonZeroInt(-10,10)
+inner = NonZeroInt(-10,10)
+
+exp = RandInt(1,4)
+
+f(n) = outer * n^(exp/2) * sin(inner * pi / n^(exp/2))
+
+Ans = inner * outer
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1306. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1306.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Convergence, Sub@Trig, Sub@Squeeze, File@1307}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+inner = RandInt(1,10)
+
+den_const = RandInt(1,10)
+exp = RandInt(1,4)/2
+
+f(n) = sin(inner*n)/(den_const+n^exp)
+
+# Answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1307. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1307.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Recursive, Sub@Convergence, File@1308}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+a = RandInt(2,6)
+b = RandInt(2*a,3*a)
+
+Ans = (b+sqrt(b^2-4))/2
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1308. \\ \fi
+\begin{problem}
+Given that the sequence below is monotonically increasing and bounded above. Find its limit.
+
+\[a_{1} = \sage{a},\quad a_{n+1} = \sage{b} - \frac{1}{a_{n}} \text{ for $n \ge 1$.}\]
+
+\input{Sequence-Compute-1308.HELP.tex}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Factorial, Sub@Convergence, File@1309}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+coeff = RandInt(2,6)
+
+f(n) = factorial(coeff*n-1)/factorial(coeff*n+1)
+
+# Answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1309. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1309.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Factorial, Sub@Convergence, File@1310}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+coeff = RandInt(2,6)
+
+f(n) = factorial(coeff*n+1)/(n^2*factorial(coeff*n-1))
+
+Ans = coeff^2
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1310. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1310.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Factorial, Sub@Divergence, File@1311}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+coeff = RandInt(2,6)
+
+f(n) = factorial(coeff*n+1)/(n*factorial(coeff*n-1))
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1311. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1311.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Converges}
+\choice[correct]{Diverges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Squeeze, Sub@Trig, Sub@Convergence, File@1312}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+exp   = RandInt(1,2)
+base  = RandInt(2,9)
+coeff = RandInt(1,9)
+
+f(n) = cos(coeff*n)^exp/base^n
+
+# The answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1312. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1312.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Log, Sub@LHopital, Sub@Convergence, File@1313}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+num_coeff = RandInt(1,9)
+den_coeff = RandInt(1,9)
+
+exp = RandInt(1,4)
+
+f(n) = (num_coeff * ln(n))/(den_coeff * n^exp)
+
+# The answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1313. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1313.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Log, Sub@LHopital, Sub@Divergence, File@1314}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+num_coeff = RandInt(1,9)
+den_coeff = RandInt(1,9)
+
+exp = RandInt(1,4)
+
+f(n) = (num_coeff * n^exp)/(den_coeff * ln(n))
+
+# The answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1314. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1314.HELP.tex}
+
+\begin{multipleChoice}
+\choice{Converges}
+\choice[correct]{Diverges}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Log, Sub@LHopital, Sub@Convergence, File@1315}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('n')
+
+base = RandInt(2,9)
+coeff = RandInt(1,9)
+
+f(n) = (-1*base)^n/(coeff * factorial(n))
+
+# The answer is 0 by design.
+Ans = 0
+
+\end{sagesilent}
+\latexProblemContent{
+\ifVerboseLocation This is Sequence Compute Question 1315. \\ \fi
+\begin{problem}
+Determine whether the sequence converges or diverges.
+
+\[\{a_n\} = \left\{\sage{f(n)}\right\}\]
+
+\input{Sequence-Compute-1315.HELP.tex}
+
+\begin{multipleChoice}
+\choice[correct]{Converges}
+\choice{Diverges}
+\end{multipleChoice}
+
+\begin{problem}
+\[\lim_{n\to\infty} a_n = \answer{\sage{Ans}}\]
+\end{problem}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 
