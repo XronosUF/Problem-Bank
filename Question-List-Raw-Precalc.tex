@@ -1588,6 +1588,686 @@ Determine the other real root using polynomial division.
 %%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Rational, Sub@VerticalAsymptotes, Sub@HorizontalAsymptotes, Sub@Holes, File@0045}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(-5,5)
+b=NonZeroInt(-5,5, [a])
+c=NonZeroInt(-5,5, [a,b])
+
+# Define the function
+f=(expand((x-a)*(x-b)))/(expand((x-c)*(x-b)))
+hole=(b-a)/(b-c)
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0045. \\ \fi
+\begin{problem}
+
+Consider the rational function $f(x) = \sage{f}$.  Identify any vertical asymptotes.
+
+\input{Precalc-Compute-0045.HELP.tex}
+
+\begin{feedback}[attempt]
+Remember that vertical asymptotes come from the denominator being $0$.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{b}$]
+%That factor canceled out, which would lead to a hole.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that vertical asymptotes are barriers that the graph cannot cross.
+\end{feedback}
+
+\begin{problem}
+
+Are there any holes?  If so, give the coordinates of the hole.  If not, enter ``NONE''.
+
+\begin{feedback}[attempt]
+Remember that holes occur from cancellation of factors in the numerator and the denominator.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{c}$]
+%That factor did not cancel out, which would lead to a vertical asymptote.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that holes are removable discontinuities in the graph.
+\end{feedback}
+
+\begin{problem}
+
+Identify any horizontal asymptotes.  If none, enter ``NONE''.
+
+\[y=\answer[format=integer,id=HA]{1}\]
+
+\begin{feedback}[attempt]
+Remember that horizontal asymptotes you need to compare the degree of the numerator and the denominator.
+\end{feedback}
+
+\begin{feedback}[HA=0]
+This would happen if the degree of the denominator was higher.
+\end{feedback}
+
+\begin{feedback}[HA>1]
+This would happen if the degree of the numerator was higher.
+\end{feedback}
+
+\begin{feedback}[correct]
+The horizontal asymptote is describing the long-run behavior of the function.
+\end{feedback}
+
+
+\end{problem}
+
+\[(\answer[format=integer]{\sage{b}}, \answer{\sage{hole}})\]
+
+\end{problem}
+
+\[x=\answer[format=integer,id=VA]{\sage{c}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Rational, Sub@VerticalAsymptotes, Sub@HorizontalAsymptotes, File@0046}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(-5,5)
+b=NonZeroInt(-5,5, [a])
+c=NonZeroInt(-5,5, [a,b])
+d=NonZeroInt(-5,5, [a,b,c])
+
+# Define the function
+f=(expand((x-a)*(x-b)))/(expand((x-c)*(x-d)))
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0046. \\ \fi
+\begin{problem}
+
+Consider the rational function $f(x) = \sage{f}$.  Identify any vertical asymptotes.
+
+\input{Precalc-Compute-0046.HELP.tex}
+
+\begin{feedback}[attempt]
+Remember that vertical asymptotes come from the denominator being $0$.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{b}$]
+%That factor canceled out, which would lead to a hole.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that vertical asymptotes are barriers that the graph cannot cross.
+\end{feedback}
+
+\begin{problem}
+
+Are there any holes?  If so, give the coordinates of the hole.  If not, enter ``NONE''.
+
+\begin{feedback}[attempt]
+Remember that holes occur from cancellation of factors in the numerator and the denominator.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{c}$]
+%That factor did not cancel out, which would lead to a vertical asymptote.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that holes are removable discontinuities in the graph.
+\end{feedback}
+
+\begin{problem}
+
+Identify any horizontal asymptotes.  If none, enter ``NONE''.
+
+\[y=\answer[format=integer,id=HA]{1}\]
+
+\begin{feedback}[attempt]
+Remember that horizontal asymptotes you need to compare the degree of the numerator and the denominator.
+\end{feedback}
+
+\begin{feedback}[HA=0]
+This would happen if the degree of the denominator was higher.
+\end{feedback}
+
+\begin{feedback}[HA>1]
+This would happen if the degree of the numerator was higher.
+\end{feedback}
+
+\begin{feedback}[correct]
+The horizontal asymptote is describing the long-run behavior of the function.
+\end{feedback}
+
+
+\end{problem}
+
+\[(\answer[format=string]{NONE}, \answer[format=string]{NONE})\]
+
+\end{problem}
+
+\[x=\answer[format=integer]{\sage{c}}\qquad\qquad x=\answer[format=integer]{\sage{d}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Rational, Sub@VerticalAsymptotes, Sub@HorizontalAsymptotes, Sub@Holes, File@0047}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(-5,5)
+b=NonZeroInt(-5,5, [a])
+c=NonZeroInt(-5,5, [a,b])
+
+# Define the function
+f=(expand((x-a)*(x-b)^2))/(expand((x-c)*(x-b)))
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0047. \\ \fi
+\begin{problem}
+
+Consider the rational function $f(x) = \sage{f}$.  Identify any vertical asymptotes.
+
+\input{Precalc-Compute-0047.HELP.tex}
+
+\begin{feedback}[attempt]
+Remember that vertical asymptotes come from the denominator being $0$.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{b}$]
+%That factor canceled out, which would lead to a hole.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that vertical asymptotes are barriers that the graph cannot cross.
+\end{feedback}
+
+\begin{problem}
+
+Are there any holes?  If so, give the coordinates of the hole.  If not, enter ``NONE''.
+
+\begin{feedback}[attempt]
+Remember that holes occur from cancellation of factors in the numerator and the denominator.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{c}$]
+%That factor did not cancel out, which would lead to a vertical asymptote.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that holes are removable discontinuities in the graph.
+\end{feedback}
+
+\begin{problem}
+
+Identify any horizontal asymptotes.  If none, enter ``NONE''.
+
+\[y=\answer[format=string,id=HA]{NONE}\]
+
+\begin{feedback}[attempt]
+Remember that horizontal asymptotes you need to compare the degree of the numerator and the denominator.
+\end{feedback}
+
+\begin{feedback}[HA=0]
+This would happen if the degree of the denominator was higher.
+\end{feedback}
+
+\begin{feedback}[HA=1]
+This would happen if the degree of the numerator equaled the degree of the denominator.
+\end{feedback}
+
+\begin{feedback}[correct]
+The horizontal asymptote is describing the long-run behavior of the function.
+\end{feedback}
+
+
+\end{problem}
+
+\[(\answer[format=integer]{\sage{b}}, \answer{0})\]
+
+\end{problem}
+
+\[x=\answer[format=integer,id=VA]{\sage{c}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Rational, Sub@VerticalAsymptotes, Sub@HorizontalAsymptotes, File@0048}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(-5,5)
+b=NonZeroInt(-5,5, [a])
+c=NonZeroInt(-5,5, [a,b])
+
+# Define the function
+f=(expand((x-a)*(x-b)))/(expand((x-c)*(x-b)^2))
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0048. \\ \fi
+\begin{problem}
+
+Consider the rational function $f(x) = \sage{f}$.  Identify any vertical asymptotes.
+
+\input{Precalc-Compute-0048.HELP.tex}
+
+\begin{feedback}[attempt]
+Remember that vertical asymptotes come from the denominator being $0$.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{b}$]
+%That factor canceled out, which would lead to a hole.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that vertical asymptotes are barriers that the graph cannot cross.
+\end{feedback}
+
+\begin{problem}
+
+Are there any holes?  If so, give the coordinates of the hole.  If not, enter ``NONE''.
+
+\begin{feedback}[attempt]
+Remember that holes occur from cancellation of factors in the numerator and the denominator.
+\end{feedback}
+
+%\begin{feedback}[VA=$\sage{c}$]
+%That factor did not cancel out, which would lead to a vertical asymptote.
+%\end{feedback}
+
+\begin{feedback}[correct]
+Remember that holes are removable discontinuities in the graph.
+\end{feedback}
+
+\begin{problem}
+
+Identify any horizontal asymptotes.  If none, enter ``NONE''.
+
+\[y=\answer[format=integer,id=HA]{0}\]
+
+\begin{feedback}[attempt]
+Remember that horizontal asymptotes you need to compare the degree of the numerator and the denominator.
+\end{feedback}
+
+\begin{feedback}[HA>1]
+This would happen if the degree of the numerator was higher.
+\end{feedback}
+
+\begin{feedback}[HA=1]
+This would happen if the degree of the numerator equaled the degree of the denominator.
+\end{feedback}
+
+\begin{feedback}[correct]
+The horizontal asymptote is describing the long-run behavior of the function.
+\end{feedback}
+
+
+\end{problem}
+
+\[(\answer[format=string]{NONE}, \answer[format=string]{NONE})\]
+
+\end{problem}
+
+%  \begin{validator}[a^2+b^2==$\sage{square}$]
+\[x=\answer[format=integer,id=a]{\sage{c}}\qquad\qquad x=\answer[format=integer,id=b]{\sage{b}}\]
+%  \end{validator}
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Rational, Sub@Intercept, File@0049}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=RandInt(-5,5)
+b=NonZeroInt(-5,5, [a])
+c=NonZeroInt(-5,5, [0,a,b])
+
+# Define the function
+f=(expand((x-a)*(x-b)))/(expand((x-c)*(x-b)))
+yint=(a)/(c)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0049. \\ \fi
+\begin{problem}
+
+Consider the rational function $f(x) = \sage{f}$.  What is the $y-$intercept?
+
+\input{Precalc-Compute-0049.HELP.tex}
+
+\begin{feedback}[attempt]
+To find the $y-$intercept, set $x=0$.
+\end{feedback}
+
+\begin{feedback}[correct]
+The $y-$intercept is where the graph of the function crosses the $y-$axis.
+\end{feedback}
+
+\begin{problem}
+
+What are the $x-$intercept(s)?
+
+\begin{feedback}[attempt]
+For rational functions, you need only set the numerator equal to $0$ and solve for $x$.  And don't forget to make sure the values are in the domain!
+\end{feedback}
+
+\begin{feedback}[correct]
+An $x-$intercept is where the graph of the function crosses the $x-$axis.
+\end{feedback}
+
+\[x=\answer{\sage{a}}\]
+
+\end{problem}
+
+\[y=\answer{\sage{yint}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Quadratic, Sub@Inverse, Sub@DomainRestricted, File@0050}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(-5,5)
+b=NonZeroInt(-5,5)
+c=NonZeroInt(-5,5, [b])
+
+# Define the function
+f=expand(a*(x-b)^2+c)
+finv=((x-c)/a)^(1/2)+b
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0050. \\ \fi
+\begin{problem}
+
+Given $f(x) = \sage{f}$, which of the following is a possible restricted domain to make $f(x)$ one-to-one?
+
+\input{Precalc-Compute-0050.HELP.tex}
+
+\begin{feedback}[attempt]
+Completing the square makes it clear!
+\end{feedback}
+
+\begin{feedback}[correct]
+Identifying the axis of symmetry is the goal.
+\end{feedback}
+
+\begin{problem}
+
+What is the inverse of $f(x)$ under this restricted domain?
+
+\begin{feedback}
+Don't forget about the restricted domain!
+\end{feedback}
+
+\[f^{-1}(x) = \answer{\sage{finv}}\]
+
+\end{problem}
+
+\begin{multipleChoice}
+\choice{$[0,\infty)$}
+\choice{$(-\infty,\sage{b^2}]$}
+\choice{$[\sage{b^2},\infty)$}
+\choice{$(-\infty,\sage{c}]$}
+\choice[correct]{$(-\infty,\sage{b}]$}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Quadratic, Sub@Inverse, Sub@DomainRestricted, File@0051}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(-5,5)
+b=NonZeroInt(-5,5)
+c=NonZeroInt(-5,5, [b])
+
+# Define the function
+f=expand(a*(x-b)^2+c)
+finv=-((x-c)/a)^(1/2)+b
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0051. \\ \fi
+\begin{problem}
+
+Given $f(x) = \sage{f}$, which of the following is a possible restricted domain to make $f(x)$ one-to-one?
+
+\input{Precalc-Compute-0051.HELP.tex}
+
+\begin{feedback}[attempt]
+Completing the square makes it clear!
+\end{feedback}
+
+\begin{feedback}[correct]
+Identifying the axis of symmetry is the goal.
+\end{feedback}
+
+\begin{problem}
+
+What is the inverse of $f(x)$ under this restricted domain?
+
+\begin{feedback}
+Don't forget about the restricted domain!
+\end{feedback}
+
+\[f^{-1}(x) = \answer{\sage{finv}}\]
+
+\end{problem}
+
+\begin{multipleChoice}
+\choice{$[0,\infty)$}
+\choice{$[\sage{b^2},\infty)$}
+\choice[correct]{$[\sage{b},\infty)$}
+\choice{$(-\infty,\sage{c}]$}
+\choice{$(-\infty,\sage{b^2}]$}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Exp, File@0052}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(1,5)
+b=RandInt(2,5)
+c=RandInt(-3,3)
+d=NonZeroInt(-3,3, [c])
+
+# Define the function
+f=a*b^x
+f1=f(c)
+f2=f(d)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0052. \\ \fi
+\begin{problem}
+
+Given $\left(\sage{c},\sage{f1}\right)$ and $\left(\sage{d},\sage{f2}\right)$ are points on an exponential function, find the equation of the function.
+
+\input{Precalc-Compute-0052.HELP.tex}
+
+\begin{feedback}[attempt]
+To find the equation, substitute both points and then find the growth factor and the $y-$intercept.
+\end{feedback}
+
+\begin{problem}
+Is this a growth or decay function?  Enter in `Growth' or `Decay'
+
+\begin{feedback}[attempt]
+Remember to check if the growth factor is $>$ or $<$ $1$.
+\end{feedback}
+
+\[\answer[format=string,id=Ans]{Growth}\]
+
+\end{problem}
+
+\[f(x) = \answer{\sage{f}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Exp, File@0053}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(1,5)
+b=RandInt(2,5)
+c=RandInt(-3,3)
+d=NonZeroInt(-3,3, [c])
+
+# Define the function
+f=a*(1/b)^x
+f1=f(c)
+f2=f(d)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0053. \\ \fi
+\begin{problem}
+
+Given $\left(\sage{c},\sage{f1}\right)$ and $\left(\sage{d},\sage{f2}\right)$ are points on an exponential function, find the equation of the function.
+
+\input{Precalc-Compute-0053.HELP.tex}
+
+\begin{feedback}[attempt]
+To find the equation, substitute both points and then find the growth factor and the $y-$intercept.
+\end{feedback}
+
+\begin{problem}
+Is this a growth or decay function?  Enter in `Growth' or `Decay'
+
+\begin{feedback}[attempt]
+Remember to check if the growth factor is $>$ or $<$ $1$.
+\end{feedback}
+
+\[\answer[format=string,id=Ans]{Decay}\]
+
+\end{problem}
+
+\[f(x) = \answer{\sage{f}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Exp, Sub@Interest, File@0054}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('t')
+a=RandInt(1,5)
+b=RandInt(2,5)
+r=RandInt(4,6)
+pick=RandInt(0,3)
+
+# Define the function
+P=b*1000
+rate=r*0.01
+v=['semiannually', 'quarterly', 'monthly', 'yearly']
+C=pick+1
+comp=v[pick]
+Amt=P*(1+(rate)/C)^(C*t)
+A1=Amt(a)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0054. \\ \fi
+\begin{problem}
+
+Suppose we invest $\sage{P}$ into an account paying $\sage{r}$ percent interest, compounded $\sage{comp}$.  Write the equation for the amount of money in the account after $t$ years.
+
+\input{Precalc-Compute-0054.HELP.tex}
+
+\begin{problem}
+What will be the value of the account in $\sage{a}$ years?
+
+\[A(\sage{a}) = \answer{\sage{A1}}\]
+\end{problem}
+
+\[A(t) = \answer{\sage{Amt}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Exp, Sub@Interest, File@0055}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('t')
+a=RandInt(1,5)
+b=RandInt(2,5)
+r=NonZeroInt(4,6)
+
+# Define the function
+P=b*1000
+rate=r*0.01
+Amt=P*exp((rate)*t)
+A1=Amt(a)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0055. \\ \fi
+\begin{problem}
+
+Suppose we invest $\sage{P}$ into an account paying $\sage{r}$ percent interest, compounded continuously.  Write the equation for the amount of money in the account after $t$ years.
+
+\input{Precalc-Compute-0055.HELP.tex}
+
+\begin{problem}
+What will be the value of the account in $\sage{a}$ years?
+
+\[A(\sage{a}) = \answer{\sage{A1}}\]
+\end{problem}
+
+\[A(t) = \answer{\sage{Amt}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Exp, Sub@Application, File@0056}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('t')
+a=NonZeroInt(1,8)
+b=RandInt(2,8)
+r=NonZeroInt(3,20)
+
+# Define the function
+P=b*100
+rate=r*0.01
+Amt=P*exp(-1*(rate)*t)
+A1=Amt(a)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0056. \\ \fi
+\begin{problem}
+
+A certain radioactive substance decays at a rate of $\sage{r}$ percent per hour.  Write an equation to model the decay of the substance after $t$ hours.
+
+\input{Precalc-Compute-0056.HELP.tex}
+
+\begin{problem}
+How much of $\sage{P}$ mg of the substance will remain after $\sage{a}$ hours?
+
+\[A(\sage{a}) = \answer{\sage{A1}}\]
+\end{problem}
+
+\[A(t) = \answer{\sage{Amt}}\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
 
 
 
