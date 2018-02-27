@@ -2177,7 +2177,8 @@ pick=RandInt(0,3)
 P=b*1000
 rate=r*0.01
 v=['semiannually', 'quarterly', 'monthly', 'yearly']
-C=pick+1
+w=[2,4,12,1]
+C=w[pick]
 comp=v[pick]
 Amt=P*(1+(rate)/C)^(C*t)
 A1=Amt(a)
@@ -2255,7 +2256,7 @@ A1=Amt(a)
 \ifVerboseLocation This is Precalc Compute Question 0056. \\ \fi
 \begin{problem}
 
-A certain radioactive substance decays at a rate of $\sage{r}$ percent per hour.  Write an equation to model the decay of the substance after $t$ hours.
+A certain radioactive substance decays at a rate of $\sage{r}$ percent per hour.  Write an equation to model the decay of $\sage{P}$ mg of the substance after $t$ hours.
 
 \input{Precalc-Compute-0056.HELP.tex}
 
