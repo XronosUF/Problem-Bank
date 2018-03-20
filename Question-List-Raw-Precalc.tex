@@ -2307,6 +2307,7 @@ c=NonZeroInt(-5,5)
 
 # Define the function
 f=x^a*y^b*z^c
+F=log(f)
 \end{sagesilent}
  
 \latexProblemContent{
@@ -2317,7 +2318,7 @@ Expand completely and simplify $\log\left(\sage{f}\right)$.
 
 \input{Precalc-Compute-0058.HELP.tex}
 
-\[\answer{\log(\sage{f})}\]
+\[\answer{\sage{(F).log_expand()}}\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2394,7 +2395,7 @@ a=NonZeroInt(-3,3)
 b=RandInt(2,6)
 c=NonZeroInt(-5,5)
 d=RandInt(-3,3)
-p=NonZeroInt(-5,5)
+p=RandInt(1,5)
 
 # Define the function
 B1=b
