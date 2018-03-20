@@ -2270,6 +2270,231 @@ How much of $\sage{P}$ mg of the substance will remain after $\sage{a}$ hours?
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Log, File@0057}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+a=NonZeroInt(1,5)
+b=RandInt(2,6)
+c=RandInt(2,8)
+
+# Define the function
+B=b^a
+Ans=c*a
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0057. \\ \fi
+\begin{problem}
+
+Compute $\log_{\sage{b}}(\sage{B}^{\sage{c}})$
+
+\input{Precalc-Compute-0057.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Log, Sub@Expand, File@0058}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y,z')
+a=NonZeroInt(-5,5)
+b=NonZeroInt(-5,5)
+c=NonZeroInt(-5,5)
+
+# Define the function
+f=x^a*y^b*z^c
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0058. \\ \fi
+\begin{problem}
+
+Expand completely and simplify $\log\left(\sage{f}\right)$.
+
+\input{Precalc-Compute-0058.HELP.tex}
+
+\[\answer{\log(\sage{f})}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Log, Sub@Collapse, File@0059}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y,z')
+a=NonZeroInt(-5,5)
+b=NonZeroInt(-5,5)
+c=NonZeroInt(-5,5)
+
+# Define the function
+f=x^a*y^b*z^c
+F=log(f)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0059. \\ \fi
+\begin{problem}
+
+Rewrite as a single logarithm $\sage{(F).log_expand()}$.
+
+\input{Precalc-Compute-0059.HELP.tex}
+
+\[\answer{\sage{F}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Exp, Sub@OneToOne, File@0060}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-3,3)
+b=RandInt(2,6)
+c=NonZeroInt(-5,5)
+d=RandInt(-3,3)
+p=NonZeroInt(-5,5)
+q=RandInt(-3,3)
+while c==a*p:
+   c=NonZeroInt(-5,5)
+
+# Define the function
+B1=b
+B2=b^a
+f=c*x+d
+g=p*x+q
+Ans=(a*q-d)/(c-a*p)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0060. \\ \fi
+\begin{problem}
+
+Solve $\sage{B1}^{\sage{f}} = \sage{B2}^{\sage{g}}$
+
+\input{Precalc-Compute-0060.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Log, Sub@OneToOne, File@0061}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=NonZeroInt(-3,3)
+b=RandInt(2,6)
+c=NonZeroInt(-5,5)
+d=RandInt(-3,3)
+p=NonZeroInt(-5,5)
+
+# Define the function
+B1=b
+B2=b^a
+f=c*x+d
+Ans=(p^(1/a)-d)/c
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0061. \\ \fi
+\begin{problem}
+
+Solve $\log_{\sage{B1}}(\sage{f}) = \log_{\sage{B2}}(\sage{p})$
+
+\input{Precalc-Compute-0061.HELP.tex}
+
+\[\answer{\sage{Ans}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Log, Sub@Application, File@0062}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=RandInt(2,5)
+b=RandInt(2,6)
+c=RandInt(2,8)
+Ten=RandInt(20,50)
+
+# Define the function
+Half=100*a+Ten
+Rate=-log(2)/Half
+Amt=100*b
+yrs=100*c
+Ans=Amt*exp(Rate*yrs)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0062. \\ \fi
+\begin{problem}
+
+A radioactive substance has a half-life of $\sage{Half}$ years.  Determine the decay rate for the exponential model.
+
+\input{Precalc-Compute-0062.HELP.tex}
+
+\begin{problem}
+
+Suppose you begin with $\sage{Amt}$ mg of the radioactive substance.  Using your modeling function determine how much of the substance will remain after $\sage{yrs}$ years.
+
+\[\answer{\sage{Ans}} mg\]
+
+\end{problem}
+
+\[\answer{\sage{Rate}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Log, Sub@Application, File@0063}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a=RandInt(2,5)
+b=RandInt(2,6)
+c=RandInt(2,8)
+Ten=RandInt(20,50)
+
+# Define the function
+Double=a+Ten
+Rate=log(2)/Double
+Amt=100*b
+minutes=100*c
+Ans=Amt*exp(Rate*minutes)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0063. \\ \fi
+\begin{problem}
+
+A culture of bacteria doubles every $\sage{Double}$ minutes.  Determine the growth rate for the exponential model.
+
+\input{Precalc-Compute-0063.HELP.tex}
+
+\begin{problem}
+
+Suppose you begin with $\sage{Amt}$ bacteria.  Using your modeling function determine how large the culture will be after $\sage{minutes}$ minutes.
+
+\[\answer{\sage{Ans}} mg\]
+
+\end{problem}
+
+\[\answer{\sage{Rate}}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 
