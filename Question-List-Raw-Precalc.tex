@@ -2496,7 +2496,613 @@ Suppose you begin with $\sage{Amt}$ bacteria.  Using your modeling function dete
 %%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Ellipse, File@0064}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+b=NonZeroInt(1,9,[a])
 
+# Define the function
+if a>b:
+   F=x^2/a^2+y^2/b^2
+   C=sqrt(a^2-b^2)
+else:
+   F=x^2/a^2+y^2/b^2
+   C=sqrt(b^2-a^2)
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0064. \\ \fi
+\begin{problem}
+
+Write the equation of the ellipse centered at the origin with endpoints $(\sage{a},0)$, $(\sage{-a},0)$, $(0,\sage{b})$, and $(0,\sage{-b})$.
+
+\input{Precalc-Compute-0064.HELP.tex}
+
+\begin{problem}
+
+What is the value of $c$ for the foci?
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2-b^2}$.
+\end{feedback}
+
+\[\answer{\sage{C}}\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Ellipse, File@0065}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+b=RandInt(1,9)
+c=RandInt(1,9)
+
+# Define the function
+A=sqrt(c^2+b^2)
+Major=2*A
+F=x^2/A^2+y^2/b^2
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0065. \\ \fi
+\begin{problem}
+
+Write the equation of the ellipse with foci $(\sage{c},0)$, $(\sage{-c},0)$ and minor axis endpoints $(0,\sage{b})$, and $(0,\sage{-b})$.
+
+\input{Precalc-Compute-0065.HELP.tex}
+
+\begin{problem}
+
+What is the length of the major axis?
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2-b^2}$, and that the length is $2a$.
+\end{feedback}
+
+\[\answer{\sage{Major}}\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Ellipse, File@0066}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+b=RandInt(1,9)
+c=RandInt(1,9)
+
+# Define the function
+A=sqrt(c^2+b^2)
+Major=2*A
+F=x^2/b^2+y^2/A^2
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0066. \\ \fi
+\begin{problem}
+
+Write the equation of the ellipse with foci $(0,\sage{c})$, $(0,\sage{-c})$ and minor axis endpoints $(\sage{b},0)$, and $(\sage{-b},0)$.
+
+\input{Precalc-Compute-0066.HELP.tex}
+
+\begin{problem}
+
+What is the length of the major axis?
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2-b^2}$, and that the length is $2a$.
+\end{feedback}
+
+\[\answer{\sage{Major}}\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Ellipse, File@0067}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+b=NonZeroInt(1,9,[a])
+h=RandInt(-4,4)
+k=RandInt(-4,4)
+
+# Define the function
+
+A1=h+a
+A2=h-a
+b1=k+b
+b2=k-b
+F=(x-h)^2/a^2+(y-k)^2/b^2
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0067. \\ \fi
+\begin{problem}
+
+Write the equation of the ellipse with endpoints $(\sage{A1},\sage{k})$, $(\sage{A2},\sage{k})$, $(\sage{h},\sage{b1})$, and $(\sage{h},\sage{b2})$.
+
+\input{Precalc-Compute-0067.HELP.tex}
+
+\begin{problem}
+What is the center of the ellipse?
+
+\[(\answer{\sage{h}},\answer{\sage{k}})\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Hyperbola, File@0068}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+b=NonZeroInt(1,9)
+
+# Define the function
+C=sqrt(a^2+b^2)
+F=x^2/a^2-y^2/b^2
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0068. \\ \fi
+\begin{problem}
+
+Write the equation of the hyperbola centered at the origin with vertices $(\sage{a},0)$, $(\sage{-a},0)$ and endpoints of the minor axis $(0,\sage{b})$, $(0,\sage{-b})$.
+
+\input{Precalc-Compute-0068.HELP.tex}
+
+\begin{problem}
+
+What is the value of $c$ for the foci?
+
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2+b^2}$.
+\end{feedback}
+
+\[\answer{\sage{C}}\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Hyperbola, File@0069}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+b=NonZeroInt(1,9)
+
+# Define the function
+C=sqrt(a^2+b^2)
+F=y^2/a^2-x^2/b^2
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0069. \\ \fi
+\begin{problem}
+
+Write the equation of the hyperbola centered at the origin with vertices $(0,\sage{a})$, $(0,\sage{-a})$ and endpoints of the minor axis $(\sage{b},0)$, $(\sage{-b},0)$.
+
+\input{Precalc-Compute-0069.HELP.tex}
+
+\begin{problem}
+
+What is the value of $c$ for the foci?
+
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2+b^2}$.
+\end{feedback}
+
+\[\answer{\sage{C}}\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Hyperbola, File@0070}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+b=RandInt(1,8)
+c=RandInt(b+1,9)
+
+# Define the function
+A=sqrt(c^2-b^2)
+F=y^2/A^2-x^2/b^2
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0070. \\ \fi
+\begin{problem}
+
+Write the equation of the hyperbola with foci $(0,\sage{c})$, $(0,\sage{-c})$ and minor axis endpoints $(\sage{b},0)$, and $(\sage{-b},0)$.
+
+\input{Precalc-Compute-0070.HELP.tex}
+
+\begin{problem}
+
+What are the coordinates of the vertices?
+
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2+b^2}$ and the vertices lie on the major axis.
+\end{feedback}
+
+\[(0,\pm\answer{\sage{A}})\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Hyperbola, File@0071}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+b=RandInt(1,8)
+c=RandInt(b+1,9)
+
+# Define the function
+A=sqrt(c^2-b^2)
+F=x^2/A^2-y^2/b^2
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0071. \\ \fi
+\begin{problem}
+
+Write the equation of the hyperbola with foci $(\sage{c},0)$, $(\sage{-c},0)$ and minor axis endpoints $(0,\sage{b})$, and $(0,\sage{-b})$.
+
+\input{Precalc-Compute-0071.HELP.tex}
+
+\begin{problem}
+
+What are the coordinates of the vertices?
+
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2+b^2}$ and the vertices lie on the major axis.
+\end{feedback}
+
+\[(\pm\answer{\sage{A}},0)\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Hyperbola, File@0072}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+b=RandInt(1,9)
+h=RandInt(-4,4)
+k=RandInt(-4,4)
+
+# Define the function
+A=a
+B=b
+A1=h+a
+A2=h-a
+b1=k+b
+b2=k-b
+F=(x-h)^2/A^2-(y-k)^2/B^2
+C=sqrt(A^2+B^2)
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0072. \\ \fi
+\begin{problem}
+
+Write the equation of the hyperbola with vertices $(\sage{A1},\sage{k})$, $(\sage{A2},\sage{k})$ and endpoints of the minor axis $(\sage{h},\sage{b1})$, $(\sage{h},\sage{b2})$.
+
+\input{Precalc-Compute-0072.HELP.tex}
+
+\begin{problem}
+
+What is the center of the hyperbola?
+
+\begin{problem}
+
+What is the value of $c$ for the foci?
+
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2+b^2}$ and the vertices lie on the major axis.
+\end{feedback}
+
+\[\answer{\sage{C}}\]
+
+\end{problem}
+
+\[(\answer{\sage{h}},\answer{\sage{k}})\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Hyperbola, File@0073}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+b=RandInt(1,9)
+h=RandInt(-4,4)
+k=RandInt(-4,4)
+
+# Define the function
+A=a
+B=b
+A1=h+a
+A2=h-a
+b1=k+b
+b2=k-b
+F=(y-k)^2/B^2-(x-h)^2/A^2
+C=sqrt(A^2+B^2)
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0073. \\ \fi
+\begin{problem}
+
+Write the equation of the hyperbola with vertices $(\sage{h},\sage{b1})$, $(\sage{h},\sage{b2})$ and endpoints of the minor axis $(\sage{A1},\sage{k})$, $(\sage{A2},\sage{k})$ .
+
+\input{Precalc-Compute-0073.HELP.tex}
+
+\begin{problem}
+
+What is the center of the hyperbola?
+
+\begin{problem}
+
+What is the value of $c$ for the foci?
+
+\begin{feedback}[attempt]
+Remember that $c=\sqrt{a^2+b^2}$ and the vertices lie on the major axis.
+\end{feedback}
+
+\[\answer{\sage{C}}\]
+
+\end{problem}
+
+\[(\answer{\sage{h}},\answer{\sage{k}})\]
+
+\end{problem}
+
+\[\answer{\sage{F}}=1\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Parabola, File@0074}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+pick=RandInt(0,1)
+p=a/4
+
+# Define the function
+LHS=[x^2,y^2]
+RHS=[a*y,a*x]
+
+F1=LHS[pick]
+F2=RHS[pick]
+
+if pick==0:
+   Dir=-p
+   DirCorrect=y
+   DirWrong=x
+   FocX=p
+   FocY=0
+   VertX=0
+   VertY=0
+if pick==1:
+   Dir=-p
+   DirCorrect=x
+   DirWrong=y
+   FocX=0
+   FocY=p
+   VertX=0
+   VertY=0
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0074. \\ \fi
+\begin{problem}
+
+Given $\sage{F1}=\sage{F2}$, what is the vertex of the parabola?
+
+\input{Precalc-Compute-0074.HELP.tex}
+
+\begin{problem}
+
+What is the focus?
+
+\begin{problem}
+
+What is the directrix?
+
+\wordChoice{\choice[correct]{$\sage{DirCorrect}$}\choice{$\sage{DirWrong}$}} $= \answer{\sage{Dir}}$
+
+\end{problem}
+
+\[\left(\answer{\sage{FocX}},\answer{\sage{FocY}}\right)\]
+
+\end{problem}
+
+\[\left(\answer{\sage{VertX}},\answer{\sage{VertY}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Parabola, File@0075}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+h=RandInt(-4,4)
+k=RandInt(-4,4)
+pick=RandInt(0,1)
+p=a/4
+
+# Define the function
+LHS=[(x-h)^2,(y-k)^2]
+RHS=[(y-k),(x-h)]
+
+F1=LHS[pick]
+F2=RHS[pick]
+
+if pick==0:
+   Dir=k-p
+   DirCorrect=y
+   DirWrong=x
+   FocX=h
+   FocY=k+p
+   VertX=h
+   VertY=k
+if pick==1:
+   Dir=h-p
+   DirCorrect=x
+   DirWrong=y
+   FocX=h+p
+   FocY=k
+   VertX=h
+   VertY=k
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0075. \\ \fi
+\begin{problem}
+
+Given $\sage{F1}=\sage{a}(\sage{F2})$, what is the vertex of the parabola?
+
+\input{Precalc-Compute-0075.HELP.tex}
+
+\begin{problem}
+
+What is the focus?
+
+\begin{problem}
+
+What is the directrix?
+
+\wordChoice{\choice[correct]{$\sage{DirCorrect}$}\choice{$\sage{DirWrong}$}} $= \answer{\sage{Dir}}$
+
+\end{problem}
+
+\[\left(\answer{\sage{FocX}},\answer{\sage{FocY}}\right)\]
+
+\end{problem}
+
+\[\left(\answer{\sage{VertX}},\answer{\sage{VertY}}\right)\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Conic, Sub@Parabola, File@0076}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x,y')
+a=RandInt(1,9)
+h=RandInt(-4,4)
+k=RandInt(-4,4)
+pick=RandInt(0,1)
+p=a/4
+
+# Define the function
+LHS=[(x-h)^2,(y-k)^2]
+RHS=[(y-k),(x-h)]
+
+F1=LHS[pick]
+F2=RHS[pick]
+
+if pick==0:
+   Dir=k-p
+   DirVar=y
+   FocX=h
+   FocY=k+p
+   VertX=h
+   VertY=k
+if pick==1:
+   Dir=h-p
+   DirVar=x
+   FocX=h+p
+   FocY=k
+   VertX=h
+   VertY=k
+
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 0076. \\ \fi
+\begin{problem}
+
+What is the equation for the parabola with focus $\left(\sage{FocX},\sage{FocY}\right)$ and directrix $\sage{DirVar}=\sage{Dir}$? (Enter squared term in left box).
+
+\input{Precalc-Compute-0076.HELP.tex}
+
+\begin{problem}
+What is the vertex?
+
+\[\left(\answer{\sage{VertX}},\answer{\sage{VertY}}\right)\]
+
+\end{problem}
+
+\[\answer{\sage{F1}} = \answer{\sage{a}(\sage{F2})}\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
 
 
 
