@@ -35,9 +35,9 @@ ans=c*(a-b)# The limit is simplified and computable by design.
 \latexProblemContent{
 \ifVerboseLocation This is Limit Compute Question 0001. \\ \fi
 \begin{problem}
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0001.HELP.tex}
+%\input{Limit-Compute-0001.HELP.tex}
 
 \[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{ans}}\]
 \end{problem}}%}
@@ -60,9 +60,9 @@ Ans=c/(a-b)# Limit is simplified to be computable by design.
 \ifVerboseLocation This is Limit Compute Question 0002. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0002.HELP.tex}
+%\input{Limit-Compute-0002.HELP.tex}
 
 \[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -86,9 +86,9 @@ Ans = 0# by simplification; limit(fNum/fDen, x=b)
 \ifVerboseLocation This is Limit Compute Question 0003. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0003.HELP.tex}
+%\input{Limit-Compute-0003.HELP.tex}
 
 \[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{0}\]
 \end{problem}}%}
@@ -110,11 +110,11 @@ fNum=c*(x-a)
 \ifVerboseLocation This is Limit Compute Question 0004. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0004.HELP.tex}
+%\input{Limit-Compute-0004.HELP.tex}
 
-\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{DNE}\]
+\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer[format=string]{DNE}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
@@ -128,17 +128,17 @@ c = NonZeroInt(-5,5)
 
 fNum=expand((x-a)*(x-c))
 fDen=expand((x-a)*(x-b))
-Ans=limit(fNum/fDen, x=a)
-#fans=(a-c)/(a-b)
+#Ans=limit(fNum/fDen, x=a)
+Ans=(a-c)/(a-b)
 \end{sagesilent}
 
 \latexProblemContent{
 \ifVerboseLocation This is Limit Compute Question 0005. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0005.HELP.tex}
+%\input{Limit-Compute-0005.HELP.tex}
 
 \[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -152,7 +152,7 @@ a = NonZeroInt(-6,6)
 b = NonZeroInt(-6,6, [0,a])
 c = NonZeroInt(-5,5)
 
-fNum=expand(c*(x-a)*(x^2+a*x+a^2))
+fNum=expand(c*(x^3-a^3))# = c*(x-a)*(x^2+a*x+a^2)
 fDen=expand((x-a)*(x-b))
 Ans=(c*(3*a^2))/(a-b)# Answer is computable by simplification by design; limit(fNum/fDen, x=a)
 \end{sagesilent}
@@ -161,9 +161,9 @@ Ans=(c*(3*a^2))/(a-b)# Answer is computable by simplification by design; limit(f
 \ifVerboseLocation This is Limit Compute Question 0006. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0006.HELP.tex}
+%\input{Limit-Compute-0006.HELP.tex}
 
 \[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -203,7 +203,7 @@ if p==q:
 else:
    Ans=0# Otherwise, by design the bottom is higher degree than top so the answer is 0.
 
-I=NonZeroInt(-1,1)
+I=(-1)^(RandInt(0,1))
 Inf=I*infinity
 
 \end{sagesilent}
@@ -212,9 +212,9 @@ Inf=I*infinity
 \ifVerboseLocation This is Limit Compute Question 0007. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0007.HELP.tex}
+%\input{Limit-Compute-0007.HELP.tex}
 
 \[\lim_{x\to\sage{Inf}}\frac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
 
@@ -246,24 +246,29 @@ Ftwo=vright[second]
 
 
 Use the function to answer the following questions.
-\[f(x)=\left\{\begin{array}{ll}\sage{Fone}&,x<\sage{a}\\[5pt] 
-\sage{Ftwo}&,x\geq\sage{a} 
+\[f(x)=\left\{\begin{array}{ll}\sage{Fone}& x<\sage{a}\\[5pt] 
+\sage{Ftwo}& x\geq\sage{a} 
 \end{array}\right.\]
 
-\input{Limit-Compute-0008.HELP.tex}
+%\input{Limit-Compute-0008.HELP.tex}
 
 
+The function is ...
+\begin{multipleChoice}
+    \choice[correct]{continuous at $x=\sage{a}$.}
+    \choice{discontinuous at $x=\sage{a}$.}
+\end{multipleChoice}
+
+
+\begin{problem}
 Compute $\lim\limits_{x\to\sage{a}^-}f(x)=\answer{\sage{b}}$\\[1in]
 
 Compute $\lim\limits_{x\to\sage{a}^+}f(x)=\answer{\sage{b}}$\\[1in]
 
 Compute $f(\sage{a})=\answer{\sage{b}}$\\[1in]
 
-The function is ...
-\begin{multipleChoice}
-\choice[correct]{continuous at $x=\sage{a}$.}
-\choice{discontinuous at $x=\sage{a}$.}
-\end{multipleChoice}
+\end{problem}
+
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -296,9 +301,9 @@ Ans=limit(F,x=d)
 \ifVerboseLocation This is Limit Compute Question 0009. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0009.HELP.tex}
+%\input{Limit-Compute-0009.HELP.tex}
 
 \[\lim_{x\to\sage{d}}\sage{F}=\answer{\sage{Ans}}\]
 
@@ -306,7 +311,7 @@ Determine if the limit approaches a finite number, $\pm\infty$, or does not exis
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0010}{
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@DifferenceQuotient, File@0010}{
 \begin{sagesilent}
 a = NonZeroInt(-8,8)
 b = NonZeroInt(-15,15)
@@ -321,9 +326,9 @@ Ans=limit(F,x=-a)
 \ifVerboseLocation This is Limit Compute Question 0010. \\ \fi
 \begin{problem}
 
-Simplify the following difference quotient:
+Compute the limit of the following difference quotient:
 
-\input{Limit-Compute-0010.HELP.tex}
+%\input{Limit-Compute-0010.HELP.tex}
 
 \[\lim_{x\to\sage{-a}}\dfrac{\sage{Fone}}{\sage{Ftwo}}=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -334,11 +339,12 @@ Simplify the following difference quotient:
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Asymptote, Sub@OneSided, File@0011}{
 \begin{sagesilent}
 a = NonZeroInt(-30,30)
-v=[a*x*ln(x),a/(x), a/(x^2), a/(x^3), a/(x^4), a/(x^5), a/(x^6), a/(x^7), a/(x^8), a/(x^9)]
-choice = RandInt(0,9)
-F=v[choice]
+b = RandInt(1,9)
+v=[a*x*ln(x),a/(x^b)]
+pick1 = min(1,RandInt(0,9)) # Use min to do a clever weighting so we don't end up with half of all problems are log.
+F=v[pick1]
 
-if choice==0:
+if pick1==0:
    Ans=0# By definition
 else:# The bottom is going to 0 from the right regardless of other choice
    if a > 0:# Top is positive
@@ -346,16 +352,16 @@ else:# The bottom is going to 0 from the right regardless of other choice
    else:# Top is negative
       Ans=-infinity
 
-#Ans=limit(F,x=0,dir='plus') # Answer is computable directly.
+###  Ans=limit(F,x=0,dir='plus') # Answer is computable directly.
 \end{sagesilent}
 
 \latexProblemContent{
 \ifVerboseLocation This is Limit Compute Question 0011. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0011.HELP.tex}
+%\input{Limit-Compute-0011.HELP.tex}
 
 \[\lim_{x\to 0^+}\sage{F}=\answer{\sage{Ans}}\]
 
@@ -370,22 +376,22 @@ a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5)
 c = NonZeroInt(-5,5)   
 d1 = NonZeroInt(1,10, [a])
-d = d1^2# For a nice answer
+d = d1^2# 					For a nice answer
 e = NonZeroInt(-5,5) 
 m = RandInt(1,3)
 
 F=(sqrt(d*x^(2*m)+a)-b)/(e*x^m+c)
 
-Ans=sqrt(d)/e# Computable by simplification. limit(F,x=infinity)
+Ans=d1/e# Computable by simplification. limit(F,x=infinity)
 \end{sagesilent}
 
 \latexProblemContent{
 \ifVerboseLocation This is Limit Compute Question 0012. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0012.HELP.tex}
+%\input{Limit-Compute-0012.HELP.tex}
 
 \[\lim_{x\to\infty}\sage{F}=\answer{\sage{Ans}}\]
 
@@ -415,16 +421,16 @@ Ans=limit(DQ,h=0)
 \ifVerboseLocation This is Limit Compute Question 0013. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0013.HELP.tex}
+%\input{Limit-Compute-0013.HELP.tex}
 
 \[\lim_{h\to0}\frac{\sage{Fone-Ftwo}}{h}=\answer{\sage{Ans}}\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%  
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Trig, File@0014}{
 \begin{sagesilent}
 a = NonZeroInt(-15,15)
@@ -441,9 +447,9 @@ Ans=limit(F,x=0)
 \ifVerboseLocation This is Limit Compute Question 0014. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0014.HELP.tex}
+%\input{Limit-Compute-0014.HELP.tex}
 
 \[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -466,9 +472,9 @@ Ans=limit(F,x=0)
 \ifVerboseLocation This is Limit Compute Question 0015. \\ \fi
 \begin{problem}
 
-Determine if the limit approaches a finite number, $\pm\infty$, or does not exist. (If the limit does not exist, write DNE)
+Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does not exist. (If the limit does not exist, write DNE)
 
-\input{Limit-Compute-0015.HELP.tex}
+%\input{Limit-Compute-0015.HELP.tex}
 
 \[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
 \end{problem}}%}
@@ -503,15 +509,10 @@ Ans=Ans1.simplify_rational()
 \begin{problem}
 Calculate the following limit:
 
-\input{Limit-Compute-0016.HELP.tex}
+%\input{Limit-Compute-0016.HELP.tex}
 
 $\lim\limits_{x \rightarrow \sage{finv(c1)}} \sage{f2(x)} = \answer{\sage{Ans}}$
 \end{problem}}
-
-
-
-
-
 
 
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0017}{
@@ -524,10 +525,7 @@ while Check == 0:
    pick1 = RandInt(0,5)
    fpick = funcvec[pick1]
    
-   #Setup for while loop.
-   f2(x)=(x+100)^3
-   f3(x)=(x+100)^3
-   
+   ## Some parameters depend on the type of random function we selected.
    # Logs don't like negatives.
    if pick1 == 5:
       target = RandInt(1, 8)
@@ -540,6 +538,11 @@ while Check == 0:
    else:
       pwr = 1
    
+   
+   #Setup for while loop.
+   f2(x)= x + 700
+   f3(x)= x + 700
+      
    #First we do the numerator
    while abs(f2(target)) > 400:
       c3 = NonZeroInt(-5,5)
@@ -578,7 +581,7 @@ while Check == 0:
       
       f3(x) = (f3t(x))^pwr2
       
-      if f3(target)==0:
+      if f3(target)==0:# Make sure we don't try to divide by zero as well. That's bad juju.
           f4(x) = f3(x) + 1
       else:
           f4(x) = f3(x)
@@ -595,14 +598,14 @@ while Check == 0:
 
 Compute the following limit:
 
-\input{Limit-Compute-0017.HELP.tex}
+%\input{Limit-Compute-0017.HELP.tex}
 
 $\lim\limits_{x \rightarrow \sage{target}} \sage{fFinal(x)} = \answer{\sage{ans}}$
 
-\end{problem}}
+\end{problem}}%}
 
 
-%% Squeeze theorem problem. Currently the answer is always zero, should mix it up a little more.
+% Squeeze theorem problem. Currently the answer is always zero, should mix it up a little more.
 
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@squeeze, File@0018}{
 
@@ -637,11 +640,11 @@ fFinal(x) = f5(x-c1)*f4(x)
 
 Calculate the following limit:
 
-\input{Limit-Compute-0018.HELP.tex}
+%\input{Limit-Compute-0018.HELP.tex}
 
 $\lim\limits_{x\rightarrow\sage{c1}} \sage{fFinal(x)} = \answer{0}$
 
-\end{problem}}
+\end{problem}}%}
 
 
 %%Special Limits, sinx/x and tanx/x
@@ -665,10 +668,10 @@ c2 = RandInt(1,10)
 pwr3 = pwr1 + pwr2 # This is the power of x we will end up needing.
 f3(x) = f1(c1*x)^pwr1*f2(c2*x)^pwr2
 
-pwr4 = NonZeroInt(-1,1)# The power of the constant
-c4 = NonZeroInt(-10,10)^pwr4
+pwr4 = (-1)^(1 - RandInt(0,1))# The power of the constant
+c4 = NonZeroInt(-10,10)
 
-f4(x) = c4*f3(x)/(x^pwr3)
+f4(x) = c4^pwr4 * f3(x) / (x^pwr3) 
 
 ans = limit(f4(x), x=0)
 
@@ -680,7 +683,7 @@ ans = limit(f4(x), x=0)
 
 Calculate the following limit:
 
-\input{Limit-Compute-0019.HELP.tex}
+%\input{Limit-Compute-0019.HELP.tex}
 
 $\lim\limits_{x\rightarrow 0} \sage{f4(x)} = \answer{\sage{ans}}$
 \end{problem}}
@@ -722,7 +725,7 @@ ans = limit(fFinal(x),x=lim)
 
 Compute the following limit:
 
-\input{Limit-Compute-0020.HELP.tex}
+%\input{Limit-Compute-0020.HELP.tex}
 
 $\lim\limits_{x \rightarrow \sage{lim}} \sage{fFinal(x)} = \answer{\sage{ans}}$.
 \end{problem}}
@@ -762,7 +765,7 @@ ans = limit(fCompute(x),x=lim)
 
 Compute the following limit:
 
-\input{Limit-Compute-0021.HELP.tex}
+%\input{Limit-Compute-0021.HELP.tex}
 
 $\lim\limits_{x \rightarrow \sage{lim}} \dfrac{\sage{f1(x)}}{\sqrt[\sage{cprt}]{\sage{f2(x)}}} = \answer{\sage{ans}}$.
 \end{problem}}
@@ -793,12 +796,12 @@ ans3 = limit(ans2(h),h=0)
 \begin{problem}
 The position function of a ball thrown into the air with a velocity of $\sage{b}$ ft/sec and initial height of $\sage{c}$ feet is given by the function $s(t) = \sage{f(t)}$ where $s(t)$ is the height of the ball above the ground after $t$ seconds.  
 
-\input{Limit-Compute-0022.HELP.tex}
+%\input{Limit-Compute-0022.HELP.tex}
 
 Find the average velocity of the ball on the interval starting with $t = \sage{start}$ to the time $0.5$ seconds later. $V_{ave}=\answer[tolerance=0.1]{\sage{ans1}}$
 
 \begin{problem}
-Now write an expression for the average velocity of the ball on the time interval from $t=\sage{start}$ to $h$ seconds later.  That is, on the interval $[\sage{start},\sage{start}+h]$ where $h\neq 0$. Simplify your answer.  
+Now write an expression for the average velocity of the ball on the time interval from $t=\sage{start}$ to $h$ seconds later.  That is, find the expression for the average velocity on the interval $[\sage{start},\sage{start}+h]$ where $h\neq 0$.
 
 $\answer{\sage{ans2}}$
 
@@ -827,7 +830,6 @@ $\lim\limits_{h\rightarrow 0} \sage{ans2} = \answer{\sage{ans3}}$
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Poly, Sub@DifferenceQuotient, File@0023}{
 \begin{sagesilent}
-# This is a ballistic arc problem
 a = RandInt(-20,-1)# This is negative to account for acceleration
 b = RandInt(1,10)# Positive for initial velocity
 c = RandInt(-5,5)# Starting position
@@ -844,7 +846,7 @@ ans = ( f(start+h)-f(start) )/h# Difference quotient
 \begin{problem}
 Find the average velocity of $s(t) = \sage{f(t)}$ from $t=\sage{start}$ to $t=\sage{start}+h$. 
 
-\input{Limit-Compute-0023.HELP.tex}
+%\input{Limit-Compute-0023.HELP.tex}
 
 $V_{ave}=\answer{\sage{ans}}$
 
@@ -870,7 +872,7 @@ ans = 2*a*c
 \ifVerboseLocation This is Limit Compute Question 0024. \\ \fi
 Use algebra to find the following limit
 
-\input{Limit-Compute-0024.HELP.tex}
+%\input{Limit-Compute-0024.HELP.tex}
 
 \[
 \lim\limits_{h\rightarrow 0} \sage{dif(h)} = \answer{\sage{ans}}
@@ -922,7 +924,7 @@ b = NonZeroInt(-5,5)
 c = NonZeroInt(-5,5)
 
 f=x+a
-d=b*c
+ans=b*c
 \end{sagesilent}
 
 \latexProblemContent{
@@ -931,9 +933,9 @@ d=b*c
 
 If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\to0}g(x)=\sage{c}$, then evaluate the following limit:
 
-\input{Limit-Concept-0001.HELP.tex}
+%\input{Limit-Concept-0001.HELP.tex}
 
-\[\lim_{x\to0}f(\sage{f})g(x)=\answer{\sage{d}}\]
+\[\lim_{x\to0}f(\sage{f})g(x)=\answer{\sage{ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -945,7 +947,7 @@ b = NonZeroInt(-5,5)
 c = NonZeroInt(-5,5)
 
 f=x+a
-d=b+c
+ans=b+c
 \end{sagesilent}
 
 \latexProblemContent{
@@ -954,9 +956,9 @@ d=b+c
 
 If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\to0}g(x)=\sage{c}$, then evaluate the following limit:
 
-\input{Limit-Concept-0002.HELP.tex}
+%\input{Limit-Concept-0002.HELP.tex}
 
-\[\lim_{x\to0}f(\sage{f})+g(x)=\answer{\sage{d}}\]
+\[\lim_{x\to0}f(\sage{f})+g(x)=\answer{\sage{ans}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -969,10 +971,10 @@ c = NonZeroInt(-5,5)
 
 f=x+a
 g=x-a
-d=b*c
-d2=b+c
-d3=c-b
-d4=b/c
+ans=b*c
+ans2=b+c
+ans3=c-b
+ans4=b/c
 
 \end{sagesilent}
 
@@ -982,23 +984,23 @@ d4=b/c
 
 If you know that $\lim\limits_{x\to\sage{a}}f(x)=\sage{b}$ and $\lim\limits_{x\to0}g(x)=\sage{c}$, then evaluate the following limits:
 
-\input{Limit-Concept-0003.HELP.tex}
+%\input{Limit-Concept-0003.HELP.tex}
 
 
-\[\lim_{x\to0}f(\sage{f})g(x)=\answer{\sage{d}}\]
+\[\lim_{x\to0}f(\sage{f})g(x)=\answer{\sage{ans}}\]
 
-\[\lim_{x\to0}f(\sage{f})+g(x)=\answer{\sage{d2}}\]
+\[\lim_{x\to0}f(\sage{f})+g(x)=\answer{\sage{ans2}}\]
 
-\[\lim_{x\to0}g(x)-f(\sage{f})=\answer{\sage{d3}}\]
+\[\lim_{x\to0}g(x)-f(\sage{f})=\answer{\sage{ans3}}\]
 
-\[\lim_{x\to\sage{a}}\dfrac{f(x)}{g(\sage{g})}=\answer{\sage{d4}}\]
+\[\lim_{x\to\sage{a}}\dfrac{f(x)}{g(\sage{g})}=\answer{\sage{ans4}}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@MultiAns, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Disc-Jump, Sub@Piecewise, File@0004}{
 \begin{sagesilent}
-a = Integer(randint(-3,3))
+a = RandInt(-3,3)
 b = NonZeroInt(a+2,a+5)
 
 c = RandInt(-5,5)
@@ -1035,9 +1037,9 @@ Let $f(x)=\left\{\begin{array}{clc}
 
 Find the numbers at which $f$ is discontinuous: $x=\answer{\sage{a}}$\\ \qquad (If no such numbers exist, enter ``None'')
 
-\input{Limit-Concept-0004.HELP.tex}
+%\input{Limit-Concept-0004.HELP.tex}
 
-At which of these points of discontinuity is $f$ continuous from the right?\\  $x=\answer{None}$ \qquad (If no such numbers exist, enter ``None'')
+At which of these points of discontinuity is $f$ continuous from the right?\\  $x=\answer[format=string]{None}$ \qquad (If no such numbers exist, enter ``None'')
 
 At which of these points of discontinuity is $f$ continuous from the left?\\  $x=\answer{\sage{a}}$ \qquad (If no such numbers exist, enter ``None'')
 \end{problem}}%}
@@ -1072,19 +1074,26 @@ f3 = integerfunc[intp2]
 \ifVerboseLocation This is Limit Concept Question 0005. \\ \fi
 \begin{problem}
 
-Let $f(x)=\left\{\begin{array}{clc}
-\sage{f1} & , & x< \sage{a}\\
-\sage{f2} & , & \sage{a}\leq x\leq\sage{b}\\
-\sage{f3} & , & x>\sage{b}
+Let $f(x)=\left\{\begin{array}{ll}
+\sage{f1} , & x< \sage{a}\\
+\sage{f2} , & \sage{a}\leq x\leq\sage{b}\\
+\sage{f3} , & x>\sage{b}
 \end{array}\right.$.  
 
-Find the numbers at which $f$ is discontinuous: $x=\answer{\sage{a},\sage{b}}$\\ \qquad (If no such numbers exist, enter ``None'')
+Find the numbers at which $f$ is discontinuous (list your answers from lowest to highest and enter "None" in any box remaining after all answers are entered): 
 
-\input{Limit-Concept-0005.HELP.tex}
+$x=\answer{\sage{a}}$ \qquad $x=\answer{\sage{b}}$ 
 
-At which of these points of discontinuity is $f$ continuous from the right?\\  $x=\answer{\sage{a}}$ \qquad (If no such numbers exist, enter ``None'')
 
-At which of these points of discontinuity is $f$ continuous from the left?\\  $x=\answer{\sage{b}}$ \qquad (If no such numbers exist, enter ``None'')
+%\input{Limit-Concept-0005.HELP.tex}
+
+At which of these points of discontinuity is $f$ continuous from the right? (List your answers from lowest to highest and enter "None" in any box remaining after all answers are entered): 
+
+$x=\answer{\sage{a}}$ \qquad $x=\answer[format=string]{None}$
+
+At which of these points of discontinuity is $f$ continuous from the left? (List your answers from lowest to highest and enter "None" in any box remaining after all answers are entered): 
+
+$x=\answer{\sage{b}}$ \qquad $x=\answer[format=string]{None}$
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1093,18 +1102,26 @@ At which of these points of discontinuity is $f$ continuous from the left?\\  $x
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@MC, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Theorems-IVT, Sub@Poly, File@0006}{
 \begin{sagesilent}
-a = RandInt(1,3)
-r1 = RandInt(-5,5)
-shift1 = RandInt(2,4)
-shift2 = RandInt(2,4)
-r2 = r1 + shift1
-r3 = r1 - shift2
-pwr1 = RandInt(0,2)
-
-start = r1-RandInt(1,shift2-1)
-end = r1+RandInt(1,shift1-1)
-
-F=expand(a*(x-r3)^pwr1*(x-r1)*(x-r2))
+check = 0;
+while check == 0:
+    a = RandInt(1,3)
+    r1 = RandInt(-5,5)
+    shift1 = RandInt(2,4)
+    shift2 = RandInt(2,4)
+    r2 = r1 + shift1
+    r3 = r1 - shift2
+    pwr1 = RandInt(0,2)
+    
+    start = r1-RandInt(1,shift2-1)
+    end = r1+RandInt(1,shift1-1)
+    
+    F=expand(a*(x-r3)^pwr1*(x-r1)*(x-r2))
+    checktmp = 1
+    for coef in F.list():
+        if coef  > 400:
+            checktmp = 0
+    check = checktmp
+        
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1113,7 +1130,7 @@ F=expand(a*(x-r3)^pwr1*(x-r1)*(x-r2))
 
 Does $\sage{F}$ have a root in the interval $(\sage{start},\sage{end})$?  
 
-\input{Limit-Concept-0006.HELP.tex}
+%\input{Limit-Concept-0006.HELP.tex}
 
 \begin{multipleChoice}
 \choice[correct]{Yes}
@@ -1151,7 +1168,7 @@ G=poly[p]
 
 Does the equation $\sage{F}=\sage{G}$ have a solution in the interval $(\sage{a},\sage{a+b})$?  
 
-\input{Limit-Concept-0007.HELP.tex}
+%\input{Limit-Concept-0007.HELP.tex}
 
 \begin{multipleChoice}
 \choice[correct]{Yes}
@@ -1180,9 +1197,9 @@ Ans=limit(F,x=0)
 \ifVerboseLocation This is Limit Concept Question 0008. \\ \fi
 \begin{problem}
 
-The limit as $x\to\sage{b}$ of $f(x)=\sage{F}$ is $0$.  What is the reason why this is true?
+The limit as $x$ approaches $\sage{b}$ of $f(x)=\sage{F}$ is $0$.  What is the reason why this is true?
 
-\input{Limit-Concept-0008.HELP.tex}
+%\input{Limit-Concept-0008.HELP.tex}
 
 \begin{multipleChoice}
 \choice{The statement is in fact false: $\lim\limits_{x\to\sage{b}}\sage{F}\neq0$.}
@@ -1193,8 +1210,10 @@ The limit as $x\to\sage{b}$ of $f(x)=\sage{F}$ is $0$.  What is the reason why t
 
 
 What is the name of the theorem that applies to this problem? \qquad \\
-The $\underline{\answer{Squeeze}}$ Theorem
+The $\underline{\answer[format=string]{Squeeze}}$ Theorem
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
 
+
+                                                                                                                                
