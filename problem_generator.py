@@ -6,6 +6,26 @@ from subprocess import call
 
 # VERSION SHOULD BE Python 3.6+
 
+def find_closure(text, begin_idx):
+	"""Given a piece of text and the index of an opening brace, return the index
+	of its closing brace.
+	"""
+	curly_depth = 0
+	ignore = False # We'll set this to be True when the characters we're looking at are commented out.
+	for idx, char in enumerate(text[begin_idx:]):
+		if char == "{":
+			curly_depth += 1
+		elif char == "}":
+			curly_depth -= 1
+			if curly_depth == 0:
+				end_idx = idx + begin_idx
+				break
+	else:
+		# If we're here, we couldn't find a closing brace.
+		raise Exception("No closing brace found!")
+	return end_idx
+
+
 def gen_problems(input_file):
 	if input_file[-4:] == '.tex':
 		print(input_file)
@@ -15,21 +35,35 @@ def gen_problems(input_file):
 	with open("{}.tex".format(input_file), 'r') as f:
 		contents = f.read()
 
-	begin_prob = r"%%%%%%%%%%%%%%%%%%%%%%%"
+	begin_prob = r"%\tagged{"
 	begin_len  = len(begin_prob)
-	end_prob   = r"%%%%%%%%%%%%%%%%%%%%%%"
+	end_prob   = r"}%}"
 	end_len    = len(end_prob)
 	while begin_prob in contents:
-		begin_idx = contents.index(begin_prob)
-		end_idx   = contents[begin_idx+begin_len:].index(end_prob)
 
-		problem  = contents[begin_idx:begin_idx+begin_len+end_idx+end_len+1]
-		contents = contents[begin_idx+begin_len+end_idx+end_len+1:]
+		begin_tags_idx = contents.index(begin_prob)
+
+		begin_tags_brace_idx = begin_tags_idx + begin_len - 1
+
+		end_tags_brace_idx = find_closure(contents, begin_tags_brace_idx)
+		
+		begin_prob_brace_idx = end_tags_brace_idx + 1
+		assert contents[begin_prob_brace_idx] == '{', r"Tags formatting seems wrong. Should read %\tagged{...}{problem_content}!"
+
+		end_prob_brace_idx = find_closure(contents, begin_prob_brace_idx)
+
+		end_prob_idx = end_prob_brace_idx + 1
+
+		problem  = contents[begin_tags_idx:end_prob_idx]
+		contents = contents[end_prob_idx:]
+
+		# ast = r"*"*13
+		# print(f"{ast}\n   PROBLEM   \n{ast}\n{problem}")
 
 		yield problem
 
 def parse_problem(text):
-	"""Given the complete problem, parses it into five pieces."""
+	"""Given the complete problem, parse it into five pieces."""
 	problem_dict = {'original':text}
 	# `problem_dict['original']` is the complete string passed.
 
@@ -48,6 +82,13 @@ def parse_problem(text):
 	text = text[sagesilent_end_idx:]
 	# `text` is now without sagesilent block.
 
+	# print(f"BEFORE:\n{text}\nDONE!")
+	
+	text = remove_comments(text) 
+	# This is necessary in case there are commented out braces in the problem content.
+	
+	# print(f"AFTER:\n{text}\nDONE!")
+
 	latexprob_begin = r"\latexProblemContent{"
 	latexprob_begin_idx = text.index(latexprob_begin)
 	problem_dict['middle'] = text[:latexprob_begin_idx]
@@ -55,8 +96,10 @@ def parse_problem(text):
 	text = text[latexprob_begin_idx:]
 	# `text` is now without middle.
 
-	latexprob_end = r"}%}"
-	latexprob_end_idx = text.index(latexprob_end) + 1 # We don't want to include the `%}` here.
+	latexprob_open_brace_idx = len(latexprob_begin) - 1
+	latexprob_close_brace_idx = find_closure(text, latexprob_open_brace_idx)
+
+	latexprob_end_idx = latexprob_close_brace_idx + 1 # We don't want to include the `%}` here.
 	problem_dict['latexproblem'] = text[:latexprob_end_idx]
 	# `problem_dict['latexproblem'] is the whole "\latexProblemContent{...}" block.
 	text = text[latexprob_end_idx:]
@@ -86,8 +129,7 @@ def find_file_name(latex_problem):
 			break
 	else:
 		# If we're here, there was no `\input{_.HELP.tex}`.
-		print("There was no input file!")
-		raise ValueError
+		raise Exception("No file was input!")
 
 	return file_name
 
@@ -110,12 +152,26 @@ def create_intermediate(problem, file_name, copies):
 
 	intermediate_file = f"{file_name}_INTERMEDIATE"
 
+	one_sage_problem = "\n".join([problem['sage'],problem['latexproblem']])
+
 	with open(f"{intermediate_file}.tex", 'w') as f:
-		one_sage_problem = "\n".join([problem['sage'],problem['latexproblem']])
 		intermediate_contents = "\n".join([preprocess_header] + [one_sage_problem]*copies + [preprocess_footer])
 		f.write(intermediate_contents)
 
 	return file_name
+
+def remove_comments(text, comment_char = r"%"):
+	old_lines = text.split("\n")
+	new_lines = []
+
+	for line in old_lines:
+		if comment_char in line:
+			comment_idx = line.index(comment_char)
+			line = line[:comment_idx]
+
+		new_lines.append(line)
+
+	return "\n".join(new_lines)
 
 def create_help(file_name):
 	"""Create the help file if it doesn't exist."""
@@ -142,44 +198,52 @@ def extract_replacements(file_name):
 	# print(f"{ast}\nLINES:\n{ast}\n")
 
 	begin = r"\newlabel{@sageinline"
+	begin_len = len(begin)
 	end_braces = r"}{}{}{}{}}" + "\n"
+
+	end_len = len(end_braces)
 	for idx, line in enumerate(sout_contents):
 		# print(line)
 		# print(line[:21])
 
-		if line[:21] == begin:
+		if line[:begin_len] == begin:
 			# print('success')
 			next_line = sout_contents[idx+1]
 			# print(next_line)
 			# print(next_line[:-11])
 			# print(next_line[-11:])
-			assert next_line[-11:] == end_braces, f"Unexpected behavior in .sout!: {next_line[-11:]} is not {end_braces}"
-			term = next_line[:-11]
+			assert next_line[-end_len:] == end_braces, f"Unexpected behavior in .sout!: {next_line[-end_len:]} is not {end_braces}"
+			term = next_line[:-end_len]
 			replacements.append(term)
 	return replacements
 
 def replace_sage(latex_problems, replacements):
-	"""Replace instances of `\sage{...}` in each text in `texts` with the provided `replacements` in order.
+	"""Replace instances of `\sage{...}` in each latex problem in 
+	`latex_problems` with the provided `replacements` in order.
 	"""
+	# print("\n"*5)
+	# print(latex_problems)
+	# print("\n"*5)
+	# print(replacements)
+	# print("\n"*5)
 	sage_begin = r"\sage{"
 
 	for problem_idx, latex_problem in enumerate(latex_problems):
 		while sage_begin in latex_problem:
 			begin_idx = latex_problem.index(sage_begin)
 
-			curly_depth = 0
+			# Index of opening brace.
+			begin_brace_idx = begin_idx + len(sage_begin) - 1
 
-			# Begin searching for the closing curly brace. 
-			for idx, symbol in enumerate(latex_problem[begin_idx:]):
-				if symbol == "{":
-					curly_depth += 1
-				elif symbol == "}":
-					curly_depth -= 1
-					if curly_depth == 0:
-						end_idx = idx + begin_idx + 1
-						break
+			# Index of closing brace
+			close_brace_idx = find_closure(latex_problem, begin_brace_idx)
+			
+			end_idx = close_brace_idx + 1
+
 			replacement = replacements.pop(0)
+
 			latex_problem = latex_problem[:begin_idx] + replacement + latex_problem[end_idx:]
+
 		latex_problems[problem_idx] = latex_problem
 
 	assert len(replacements) == 0, 'Not all replacements were used!'
@@ -194,13 +258,18 @@ def cleanup(intermediate_file):
 	for file in files_to_remove:
 		os.remove(file)
 
-def process_problem(text, copies_initially = 1000, final_copies = 500, quiet = False):
+def process_problem(text, copies_initially = 1, final_copies = 500, quiet = False):
 	problem = parse_problem(text)
+
+	for key, val in sorted(problem.items()):
+		print(f"key={key}")
+		print(f"val={val}")
 	
 	file_name = find_file_name(problem['latexproblem'])
 
 	intermediate_file = f"{file_name}_INTERMEDIATE"
 	create_intermediate(problem, file_name, copies_initially)
+
 	# This will create the itermediate files and give us the file name to write to.
 
 	pdflatex_command = f"pdflatex {intermediate_file}.tex"
@@ -266,7 +335,10 @@ def main():
 		input_file = "Question-List-Raw-Sequences"
 
 	for problem in gen_problems(input_file):
-		process_problem(problem)
+		if all(not line or line[0] == r'%' for line in problem.split('\n')):
+			# Skip problem if commented out!
+			continue
+		process_problem(problem, quiet=False)
 
 if __name__ == "__main__":
 
