@@ -66,7 +66,7 @@ coef = coef1/coef2
 
 
 #Define the general term of the sequence
-f=coef*(-1)^x/x^a
+f(x)=coef*(-1)^x/x^a
 
 #Compute limit of sequence
 # Ans=limit(f,x=infinity)# Ans is always 0 by question design.
@@ -158,7 +158,7 @@ s=Integer(randint(1,9))
 
 #Define the general term of the sequence
 v=[a*x^s, (-a)^x, a*cos(pi*x)]
-f=v[p]
+f(x)=v[p]
 
 #Compute limit of sequence
 Ans=limit(f,x=infinity)
@@ -199,7 +199,7 @@ coef = coef1/coef2
 
 #Define the general term of the sequence
 v=[coef*cos(2*pi*x), coef*sin(2*pi*x)]
-f=v[p]
+f(x)=v[p]
 
 #Compute limit of sequence
 if p==0:
@@ -243,7 +243,7 @@ c=NonZeroInt(1,9)
 
 
 #Define the general term of the sequence
-f=a*cos(x)^b/c^x
+f(x)=a*cos(x)^b/c^x
 
 #Compute limit of sequence
 Ans=limit(f,x=infinity)
@@ -283,7 +283,7 @@ b=NonZeroInt(-9,9)
 
 
 #Define the general term of the sequence
-f=a*(1+b/x)^x
+f(x)=a*(1+b/x)^x
 
 #Compute limit of sequence
 Ans=limit(f,x=infinity)
@@ -329,7 +329,7 @@ coef = coef1/coef2
 
 
 #Define the general term of the sequence
-f=coef*x/a*sin(a/x)
+f(x)=coef*x/a*sin(a/x)
 
 #Compute limit of sequence
 # Ans=limit(f,x=infinity) # Answer is always coef by design.
@@ -369,7 +369,7 @@ b=NonZeroInt(-9,9)
 
 
 #Define the general term of the sequence
-f=(-1)^(x+a)*x/(x^2+b)
+f(x)=(-1)^(x+a)*x/(x^2+b)
 
 #Compute limit of sequence
 Ans=limit(f,x=infinity)
@@ -411,7 +411,7 @@ p=Integer(randint(0,1))
 
 #Define the general term of the sequence
 v=[a*sin(b*x), a*cos(b*x)]
-f=v[p]/x^c
+f(x)=v[p]/x^c
 
 #Compute limit of sequence
 Ans=limit(f,x=infinity)
@@ -457,7 +457,7 @@ b = (-1)^flip2*bT
 c=NonZeroInt(1,9)
 
 #Define the general term of the sequence
-f=(a^x)/b^(x+c)
+f(x)=(a^x)/b^(x+c)
 
 #Compute limit of sequence
 Ans=limit(f,x=infinity)
@@ -501,7 +501,7 @@ while a^2<=b^2:
    b=NonZeroInt(-9,9)
 
 #Define the general term of the sequence
-f=(a^x)/b^(x+c)
+f(x)=(a^x)/b^(x+c)
 
 \end{sagesilent}
 
@@ -540,7 +540,7 @@ if t == s:
       d = RandInt(-9,9)
 
 #Define the general term of the sequence
-f=(a*x^s+b)/(c*x^t+d)
+f(x)=(a*x^s+b)/(c*x^t+d)
 
 #Compute limit of sequence
 
@@ -577,7 +577,7 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Rational, Sub@Divergence, File@0015}{
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Rational, Sub@Divergence, Sub@LHopital, File@0015}{
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x,n')
@@ -586,7 +586,7 @@ b=NonZeroInt(-9,9)
 s=RandInt(1,9)
 
 #Define the general term of the sequence
-f=exp(x)/(a*x^s+b)
+f(x)=exp(x)/(a*x^s+b)
 
 \end{sagesilent}
 
@@ -606,6 +606,8 @@ Determine whether the sequence converges or diverges.  If it converges, find its
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Sequence, Sub@Recursive, Sub@Convergence, File@0016}{
@@ -699,7 +701,7 @@ Suppose a sequence $\{a_n\}$ is alternating, and the absolute value of the seque
 Consider the sequence $a_n = \left\{ (-1)^n \left(\sage{an} \right) \right\}$. What is the limit of this sequence? (Put DNE if the limit does not exist).
 
 
-\[\lim\limits_{n\rightarrow\infty} a_n =  \answer{DNE}.\]
+\[\lim\limits_{n\rightarrow\infty} a_n =  \answer[format=string]{DNE}.\]
 
 \end{problem}
 

@@ -533,7 +533,7 @@ Compute the indefinite integral:
 \input{Integral-Compute-0014.HELP.tex}
 
 \[
-\int\;\sage{G}\;dx = \answer{\sage{Ans}+C}
+\int\;\sage{G}\;dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -565,7 +565,7 @@ Compute the indefinite integral:
 \input{Integral-Compute-0015.HELP.tex}
 
 \[
-\int\;\sage{a*(F+G)}\;dx = \answer{\sage{Ans}+C}
+\int\;\sage{a*(F+G)}\;dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -597,7 +597,7 @@ Compute the indefinite integral:
 \input{Integral-Compute-0016.HELP.tex}
 
 \[
-\int\;\sage{a*G*F}\;dx = \answer{\sage{Ans}+C}
+\int\;\sage{a*G*F}\;dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -629,7 +629,7 @@ Compute the indefinite integral:
 \input{Integral-Compute-0017.HELP.tex}
 
 \[
-\int\;\sage{a*G(F)*f}\;dx = \answer{\sage{Ans}+C}
+\int\;\sage{a*G(F)*f}\;dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -663,7 +663,7 @@ Compute the indefinite integral:
 \input{Integral-Compute-0018.HELP.tex}
 
 \[
-\int\;\sage{G(F)*f}\;dx = \answer{\sage{Ans}+C}
+\int\;\sage{G(F)*f}\;dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -690,7 +690,7 @@ Compute the indefinite integral:
 \input{Integral-Compute-0019.HELP.tex}
 
 \[
-\int\;\sage{F*f}\;dx = \answer{\sage{Ans}+C}
+\int\;\sage{F*f}\;dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -721,16 +721,17 @@ Compute the indefinite integral:
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x')
-p = NonZeroInt(2,5)
+pwr = NonZeroInt(1,3)
 s = RandInt(-5,5)
 q = NonZeroInt(-9,9)
 
 #Define the two functions to be multiplied
-f=(x-s)^p
+f=(x-s)^pwr
 g=exp(q*x)
+h = f*g
 
 #Compute their integral and factor the answer
-Ans = integral(f*g,x)
+Ans = factor(integral(h,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -742,7 +743,7 @@ Compute the following integral:
 \input{Integral-Compute-0020.HELP.tex}
 
 \[
-\int{\sage{f}\cdot\sage{g}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{h}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -775,7 +776,7 @@ Compute the following integral:
 \input{Integral-Compute-0021.HELP.tex}
 
 \[
-\int{\sage{f}\cdot\sage{g}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\cdot\sage{g}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -797,7 +798,7 @@ p = Integer(randint(0,2))
 f = v[p]
 
 #Compute Integral
-Ans = integral(f,x)
+Ans = factor(integral(f,x))
 
 tag = tagVec[p]
 \end{sagesilent}
@@ -810,7 +811,7 @@ Compute the following integral:
 
 \input{Integral-Compute-0022.HELP.tex}
 
-\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\[\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -829,7 +830,7 @@ p = RandInt(0,1)
 f = v[p]
 
 #Compute the Integral
-Ans = integral(f,x)
+Ans = factor(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -841,7 +842,7 @@ Compute the following integral:
 \input{Integral-Compute-0023.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -860,7 +861,7 @@ c = NonZeroInt(-9,9)
 f = a*x^b*log(c*x)
 
 #Compute the answer
-Ans = integral(f,x)
+Ans = factor(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -872,7 +873,7 @@ Compute the following integral:
 \input{Integral-Compute-0024.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -901,7 +902,7 @@ func2 = funcvec[p](x-A)
 
 F(x) = C*func1(x)*func2(x)
 
-Ans = (integral(F(x),x)).factor()
+Ans = factor(integral(F(x),x))
 
 tag = tagVec[p]
 \end{sagesilent}
@@ -912,7 +913,7 @@ tag = tagVec[p]
 Evaluate:
 \input{Integral-Compute-0025.HELP.tex}
 \[
-\int \sage{F(x)} dx = \answer{\sage{Ans}+C}
+\int \sage{F(x)} dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 
 \end{problem}}%}
@@ -958,11 +959,12 @@ tag = tagVec[p]
 Evaluate:
 \input{Integral-Compute-0026.HELP.tex}
 \[
-\int_{\sage{Start}}^{\sage{End}} \sage{F(x)} dx = \answer{\sage{Ans}+C}
+\int_{\sage{Start}}^{\sage{End}} \sage{F(x)} dx = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -992,7 +994,7 @@ Compute the following integral:
 \input{Integral-Compute-0027.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1026,7 +1028,7 @@ Compute the following integral:
 \input{Integral-Compute-0028.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1063,10 +1065,13 @@ Compute the following integral:
 \input{Integral-Compute-0029.HELP.tex}
 
 \[
-\int{\sage{a}\sage{u[p]}^{\sage{pwrOdd}}(x)\sage{w[p]}^{\sage{pwrEven}}(x)\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{a}\sage{u[p]}^{\sage{pwrOdd}}(x)\sage{w[p]}^{\sage{pwrEven}}(x)\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Func@Trig, Sub@EvenEven, File@0030}{
@@ -1113,7 +1118,7 @@ Compute the following integral:
 \input{Integral-Compute-0030.HELP.tex}
 
 \[
-\int{\sage{a}\sage{u[p]}^{\sage{pwrEven1}}(x)\sage{w[p]}^{\sage{pwrEven2}}(x)\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{a}\sage{u[p]}^{\sage{pwrEven1}}(x)\sage{w[p]}^{\sage{pwrEven2}}(x)\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1146,9 +1151,12 @@ Compute the following integral:
 
 \input{Integral-Compute-0031.HELP.tex}
 
-\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\[\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1166,6 +1174,11 @@ while len(latex(Ans))>80:
     #Define fucntion and latex output
     f = a*tan(x)^b*sec(x)^(pwrEven)
     
+    if b == 1:
+        bshow = ""
+    else:
+        bshow = b
+    
     #Compute answer
     Ans=integral(f,x)
 \end{sagesilent}
@@ -1178,7 +1191,7 @@ Compute the following integral:
 
 \input{Integral-Compute-0032.HELP.tex}
 
-\[\int{\sage{a}\tan^{\sage{b}}(x)\sec^{\sage{pwrEven}}(x)\;dx} = \answer{\sage{Ans}+C}\]
+\[\int{\sage{a}\tan^{\sage{bshow}}(x)\sec^{\sage{pwrEven}}(x)\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1198,6 +1211,16 @@ while len(latex(Ans))>80:
     
     # Define function and latex output
     f=a*tan(x)^(pwrOdd1)*sec(x)^(pwrOdd2)
+
+    if pwrOdd1 == 1:
+        pwrOdd1type = ""
+    else:
+        pwrOdd1type = pwrOdd1
+    
+    if pwrOdd2 == 1:
+        pwrOdd2type = ""
+    else:
+        pwrOdd2type = pwrOdd2
     
     #Compute answer
     Ans=integral(f,x)
@@ -1212,10 +1235,12 @@ Compute the following integral:
 \input{Integral-Compute-0033.HELP.tex}
 
 \[
-\int{\sage{a}\tan^{\sage{pwrOdd1}}(x)\sec^{\sage{pwrOdd2}}(x)\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{a}\tan^{\sage{pwrOdd1type}}(x)\sec^{\sage{pwrOdd2type}}(x)\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1245,10 +1270,11 @@ Compute the following integral:
 \input{Integral-Compute-0034.HELP.tex}
 
 \[
-\int{\sage{a}\tan^{\sage{pwrEven}}(x)\sec^{\sage{pwrOdd}}(x)\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{a}\tan^{\sage{pwrEven}}(x)\sec^{\sage{pwrOdd}}(x)\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1261,6 +1287,11 @@ pwr = (2 * n21) + 3
 flip = RandInt(0,1)
 freq = NonZeroInt(-5,5)
 Coef = NonZeroInt(-5,5)
+
+while Coef^pwr > 5000:
+    n21 = RandInt(0,2)
+    pwr = (2 * n21) + 3
+    Coef = NonZeroInt(-5,5)
 
 # Set up the vectors to grab trig functions.
 
@@ -1297,7 +1328,7 @@ Evaluate the integral. \\
 \input{Integral-Compute-0035.HELP.tex}
 
 \[
-\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer{\sage{Ans}+C}
+\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1358,7 +1389,7 @@ Evaluate the integral. \\
 \input{Integral-Compute-0036.HELP.tex}
 
 \[
-\int \sage{Integrand} dx=\answer{\sage{Ans}+C}
+\int \sage{Integrand} dx=\answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 
 \end{problem}}%}
@@ -1393,7 +1424,7 @@ Compute the following integral:
 \input{Integral-Compute-0037.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1425,7 +1456,7 @@ Compute the following integral:
 \input{Integral-Compute-0038.HELP.tex}
 
 \[
-\int{\dfrac{\sage{a}}{x^2\sage{denom}}\;dx} = \answer{\sage{Ans}+C}
+\int{\dfrac{\sage{a}}{x^2\sage{denom}}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1458,7 +1489,7 @@ Compute the following integral:
 \input{Integral-Compute-0039.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1490,7 +1521,7 @@ Compute the following integral:
 \input{Integral-Compute-0040.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1522,7 +1553,7 @@ Compute the following integral:
 \input{Integral-Compute-0041.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1556,7 +1587,7 @@ Compute the following integral:
 \input{Integral-Compute-0042.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1590,7 +1621,7 @@ Compute the following integral:
 \input{Integral-Compute-0043.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1624,7 +1655,7 @@ Compute the following integral:
 \input{Integral-Compute-0044.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1657,7 +1688,7 @@ Compute the following integral:
 \input{Integral-Compute-0045.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1691,7 +1722,7 @@ Compute the following integral:
 \input{Integral-Compute-0046.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1724,7 +1755,7 @@ Compute the following integral:
 \input{Integral-Compute-0047.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1760,7 +1791,7 @@ Compute the following integral:
 \input{Integral-Compute-0048.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1828,10 +1859,13 @@ Compute the following integral:
 \input{Integral-Compute-0050.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -1861,7 +1895,7 @@ Compute the following integral:
 
 \input{Integral-Compute-0051.HELP.tex}
 
-\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\[\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1893,7 +1927,7 @@ Compute the following integral:
 \input{Integral-Compute-0052.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1929,7 +1963,7 @@ Compute the following integral:
 \input{Integral-Compute-0053.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1966,7 +2000,7 @@ Compute the following integral:
 \input{Integral-Compute-0054.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1999,7 +2033,7 @@ Compute the following integral:
 \input{Integral-Compute-0055.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2033,7 +2067,7 @@ Compute the following integral:
 \input{Integral-Compute-0056.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2068,7 +2102,7 @@ Compute the following integral:
 \input{Integral-Compute-0057.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2102,7 +2136,7 @@ Compute the following integral:
 \input{Integral-Compute-0058.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2136,7 +2170,7 @@ Compute the following integral:
 \input{Integral-Compute-0059.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2150,9 +2184,9 @@ Compute the following integral:
 # Define variables and constants/exponents
 var('x')
 a = NonZeroInt(-9,9)
-c = NonZeroInt(-9,9)
-b = NonZeroInt(-9,9,[c])
-d = NonZeroInt(-9,9)
+c = NonZeroInt(-7,7)
+b = NonZeroInt(-5,5,[c])
+d = NonZeroInt(-5,5)
 
 # Define Rational Expression
 Num1 = a*(x-b)
@@ -2172,7 +2206,7 @@ Compute the following integral:
 \input{Integral-Compute-0060.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2184,7 +2218,6 @@ Compute the following integral:
 \begin{sagesilent}
 # Define variables and constants/exponents
 var('x')
-a = NonZeroInt(-9,9)
 b = NonZeroInt(-9,9)
 c = NonZeroInt(-9,9)
 e = NonZeroInt(-9,9)
@@ -2193,19 +2226,19 @@ h = NonZeroInt(-9,9)
 d = NonZeroInt(-9,9,[g/e])
 
 # Compute the discriminant and make sure we have an irreducible quadratic
-Disc = b^2-4*a*c
+Disc = b^2-4*c
 
 while Disc>=0:
    c = NonZeroInt(-9,9)
    b = NonZeroInt(-9,9)
-   Disc = b^2-4*a*c
+   Disc = b^2-4*c
 
 
 # Define Rational Expression
 
-frac1 = e*(x-g)/(a*x^2+b*x+c)
+frac1 = e*(x-g)/(x^2+b*x+c)
 frac2 = h/(x-d)
-f = (frac1+frac2).simplify_rational()
+f = (expand(e*(x-g)*(x-d) + h*(x^2+b*x+c)))/((x-d)*(x^2+b*x+c))
 
 # Compute Answer
 Ans = integral(f,x)
@@ -2220,7 +2253,7 @@ Compute the following integral:
 \input{Integral-Compute-0061.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2267,7 +2300,7 @@ Compute the following integral:
 \input{Integral-Compute-0062.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2284,6 +2317,14 @@ d = NonZeroInt(-9,9)
 e = NonZeroInt(-9,9)
 g = NonZeroInt(-9,9)
 h = NonZeroInt(-9,9)
+
+while d^2*g+c*h > 250:# Try to make coef manageable.
+    c = NonZeroInt(-9,9)
+    d = NonZeroInt(-9,9)
+    g = NonZeroInt(-9,9)
+    h = NonZeroInt(-9,9)
+
+
 # Compute the discriminant and make sure we have an irreducible quadratic
 Disc = b^2-4*a*c
 
@@ -2310,7 +2351,7 @@ Compute the following integral:
 \input{Integral-Compute-0063.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2355,9 +2396,10 @@ Compute the following integral:
 
 \input{Integral-Compute-0064.HELP.tex}
 
-\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\[\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -2389,7 +2431,7 @@ Compute the following integral:
 \input{Integral-Compute-0065.HELP.tex}
 
 \[
-\int{\dfrac{\sage{a}}{x\cdot\sage{denom}}\;dx} = \answer{\sage{Ans}+C}
+\int{\dfrac{\sage{a}}{x\cdot\sage{denom}}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2421,7 +2463,7 @@ Compute the following integral:
 \input{Integral-Compute-0066.HELP.tex}
 
 \[
-\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}
+\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2457,7 +2499,7 @@ Compute the following integral:
 
 \input{Integral-Compute-0067.HELP.tex}
 
-\[\int{\sage{f}\;dx} = \answer{\sage{Ans}+C}\]
+\[\int{\sage{f}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -2761,6 +2803,7 @@ Determine if the integral converges or diverges.  If it converges, determine wha
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@PartialFractions, File@0075}{
 \begin{sagesilent}
@@ -2813,6 +2856,7 @@ Then $\sage{letC1}+\sage{letC2} =\answer{\sage{ans}}$.\\
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigInt, Func@Trig, File@0076}{
 \begin{sagesilent}
@@ -2859,7 +2903,7 @@ ans = CalcInt#.simplify()
 \input{Integral-Compute-0076.HELP.tex}
 Evaluate the integral. \\
 \[
-\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer{\sage{ans}}
+\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 
 \end{problem}}%}
@@ -2921,7 +2965,7 @@ ans = CalcInt
 Evaluate the integral. \\
 
 \[
-\int \sage{Integrand} dx=\answer{\sage{ans}}
+\int \sage{Integrand} dx=\answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 
 \end{problem}}%}
@@ -2950,14 +2994,12 @@ ans = integral(func(x),x)
 Evaluate:
 \input{Integral-Compute-0078.HELP.tex}
 \[
-\int \sage{func(x)} dx = \answer{\sage{ans}}
+\int \sage{func(x)} dx = \answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Func@Poly, File@0079}{
@@ -3044,6 +3086,70 @@ Evaluate the integral
 %%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Func@Exp, Func@Trig, File@0101}{
+
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+pwr = RandInt(1,3)
+
+IntFuncVec = [e^x,sin(x),cos(x)]
+
+p0 = RandInt(0,2)
+
+df(x) = a*IntFuncVec[p0](b*x+c)
+f(x) = integral(df(x),x)
+G(x) = x^pwr 
+g(x) = derivative(G(x),x)
+h(x) = df(x)*G(x)
+
+Ans(x) = integral(h(x),x)
+
+\end{sagesilent}
+
+\begin{problem}
+    We aim to calculate the following improper integral:
+    \[
+    \int \sage{h(x)} dx. 
+    \]
+        First, need to determine which integration technique would be appropriate here. 
+        \begin{multipleChoice}
+        \choice{We should just integrate directly, integrating the monomial term $\sage{G(x)}$ and the extra term $\sage{df(x)}$ separately to get our integral.}
+        \choice{We should integrate using (only) a $u$-substitution on the inner function: $u = \sage{b*x+c}$, and rewriting the $\sage{G(x)}$ in terms of $u$ }
+        \choice{We should integrate using (only) a $u$-substitution of: $u = \sage{G(x)}$, and rewriting the exponent of $\sage{df(x)}$ in terms of $u$}
+        \choice[correct]{We should use Integration by parts, using $u = \sage{G(x)}$ and $dv = \sage{df(x)}$}
+        \choice{We will should Integration by parts, using $u = \sage{df(x)}$ and $dv = \sage{G(x)}$}
+        \end{multipleChoice}
+
+\begin{problem}
+        Now that we have determined we need to use integration by parts (and chosen $u$ and $dv$), we need to compute $du$ and $v$;
+
+        \[
+        \begin{array}{lr}
+        u = \sage{G(x)} & dv = \sage{df(x)} \\
+        du = \answer{\sage{g(x)}} & v = \answer{\sage{f(x)}} 
+        \end{array}
+        \]
+\begin{problem}
+
+        Next we can determine the result of the integration by parts step.
+        \[
+        \int \sage{h(x)} = \answer{\sage{G(x)*f(x)}} - \int \answer{\sage{g(x)*f(x)}}dx
+        \]
+\begin{problem}
+    Now, using the previous steps, we can calculate our answer!
+        \[
+        \int \sage{h(x)} dx = \answer{\sage{Ans(x)}}
+        \]
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+
+
+                     
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%\tagged{Ans@MC, Type@Compute, Topic@Integral, Sub@Improper, File@0081}{

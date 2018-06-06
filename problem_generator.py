@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os
+import shutil
 import sys
 from subprocess import call
 
@@ -27,11 +28,6 @@ def find_closure(text, begin_idx):
 
 
 def gen_problems(input_file):
-	if input_file[-4:] == '.tex':
-		print(input_file)
-		input_file = input_file[:-4]
-		print(input_file)
-
 	with open("{}.tex".format(input_file), 'r') as f:
 		contents = f.read()
 
@@ -57,23 +53,38 @@ def gen_problems(input_file):
 		problem  = contents[begin_tags_idx:end_prob_idx]
 		contents = contents[end_prob_idx:]
 
-		# ast = r"*"*13
-		# print(f"{ast}\n   PROBLEM   \n{ast}\n{problem}")
+		if any(line.strip() and line[0] != r'%' for line in problem.split('\n')):
+			# Some line in the problem is not commented out.
 
-		yield problem
+			# ast = r"*"*13
+			# print(f"{ast}\n   PROBLEM   \n{ast}\n{problem}")
+			# print(f"{ast}\n     REST    \n{ast}\n{contents}")
+
+			yield problem
 
 def parse_problem(text):
 	"""Given the complete problem, parse it into five pieces."""
 	problem_dict = {'original':text}
 	# `problem_dict['original']` is the complete string passed.
 
-	# Parse file
+	########## Parse file ##########
+
+	tags_begin = r"%\tagged{"
+	tags_open_brace_idx = text.index(tags_begin) + len(tags_begin) - 1
+	tags_close_brace_idx = find_closure(text, tags_open_brace_idx)
+	problem_dict['tags'] = text[:tags_close_brace_idx+1]
+	# `problem_dict['tags']` is the tagged block, e.g., "\tagged{...}"
+	assert text[tags_close_brace_idx+1] == '{', r"Tags formatting seems wrong. Should read %\tagged{...}{problem_content}!"
+
+	text = text[tags_close_brace_idx+1:]
+	# `text` is now everything after, starting with the opening brace `{`.
+
+	# Note that we'll drop everything before the `\begin{sagesilent}` block.
+
 	sagesilent_begin = r"\begin{sagesilent}"
 	sagesilent_begin_idx = text.index(sagesilent_begin)
-	problem_dict['header'] = text[:sagesilent_begin_idx]
-	# `problem_dict['header']` is everything before "\begin{sagesilent}".
 	text = text[sagesilent_begin_idx:]
-	# `text` is now without header.
+	# `text` is now without the tagged bit.
 
 	sagesilent_end = r"\end{sagesilent}"
 	sagesilent_end_idx = text.index(sagesilent_end) + len(sagesilent_end)
@@ -108,8 +119,10 @@ def parse_problem(text):
 	problem_dict['footer'] = text
 	# `problem_dict['footer']` is everything after the problem content.
 
+	# The footer is never used in practice.
+
 	# ast = r"*"*10
-	# print("{}\n   HEADER   \n{}\n{}".format(ast,ast,problem_dict['header']))
+	# print("{}\n    TAGS    \n{}\n{}".format(ast,ast,problem_dict['tags']))
 	# print("{}\n SAGESILENT \n{}\n{}".format(ast,ast,problem_dict['sage']))
 	# print("{}\n   MIDDLE   \n{}\n{}".format(ast,ast,problem_dict['middle']))
 	# print("{}\nLATEXPROBLEM\n{}\n{}".format(ast,ast,problem_dict['latexproblem']))
@@ -129,7 +142,7 @@ def find_file_name(latex_problem):
 			break
 	else:
 		# If we're here, there was no `\input{_.HELP.tex}`.
-		raise Exception("No file was input!")
+		raise Exception(r"No file was input! Was the inputting of the help file commented out?")
 
 	return file_name
 
@@ -258,23 +271,31 @@ def cleanup(intermediate_file):
 	for file in files_to_remove:
 		os.remove(file)
 
-def process_problem(text, copies_initially = 1, final_copies = 500, quiet = False):
+def process_problem(text, input_file, destination_folder, folder = "", copies_initially = 1000, final_copies = 500, quiet = False):
 	problem = parse_problem(text)
 
-	for key, val in sorted(problem.items()):
-		print(f"key={key}")
-		print(f"val={val}")
+	# for key, val in sorted(problem.items()):
+	# 	print(f"key={key}")
+	# 	print(f"val={val}")
 	
 	file_name = find_file_name(problem['latexproblem'])
 
 	intermediate_file = f"{file_name}_INTERMEDIATE"
 	create_intermediate(problem, file_name, copies_initially)
+	# This will create the itermediate files, namely the help file and the file to run pdflatex on.
 
-	# This will create the itermediate files and give us the file name to write to.
 
-	pdflatex_command = f"pdflatex {intermediate_file}.tex"
+	########## Run pdflatex and sage ##########
+
+	pdflatex_command = "pdflatex "
+	pdflatex_options = []
+
 	if quiet:
-		pdflatex_command += " >/dev/null" # Redirect output to nowhere. (run quietly)
+		pdflatex_options += "-quiet"
+	
+	pdflatex_options.append(f"{intermediate_file}.tex")
+	pdflatex_command += " ".join(pdflatex_options) 
+	
 	print(pdflatex_command)
 	os.system(pdflatex_command)
 
@@ -284,23 +305,50 @@ def process_problem(text, copies_initially = 1, final_copies = 500, quiet = Fals
 	print(sage_command)
 	os.system(sage_command)
 
+	########## Extract and make replacements ##########
+
 	one_final_problem = problem['latexproblem']
 	problems = [one_final_problem] * copies_initially
 
 	replacements = extract_replacements(intermediate_file)
+	# Pull the list of sage replacements from the .sout file.
 
 	final_problems = replace_sage(problems, replacements)
+	# These are the \latexProblemContent{...} entries with the replacements made.
 
-	final_problems = list(set(final_problems)) # Removes duplicates.
+	final_problems = list(set(final_problems)) 
+	# Removes duplicates.
+
+	########## Put the finished problems together and cleanup ##########
 
 	if len(final_problems) > final_copies:
 		final_problems = final_problems[:final_copies]
 
-	between = "\n" + r"%%%%%%%%%%%%%%%%%%%%%%" + "\n"
-	final_contents = problem['header'] + between.join(final_problems) + problem['footer']
-	final_file = f"{file_name}_FINAL"
-	with open(f"{final_file}.tex", 'w') as f:
+	between = "\n\n" + r"%%%%%%%%%%%%%%%%%%%%%%" + "\n\n"
+	final_contents = problem['tags'] + r"{" + "\n"
+	final_contents += between.join(final_problems) 
+	final_contents += r"%}"
+	final_contents += problem['footer']
+	
+	file_tex = f"{file_name}.tex"
+	with open(file_tex, 'w') as f:
 		f.write(final_contents)
+
+	help_tex = r".HELP.tex"
+	help_file = file_name + help_tex
+
+	os.rename(help_file, os.sep.join([folder,help_file]))
+	os.rename(file_tex,  os.sep.join([folder,file_tex]))
+
+	with open(input_file, 'a') as f:
+		lines = []
+		lines.append("")
+		lines.append(problem['tags'][1:] + "{") # Omit the opening `%`
+		lines.append("\t" + os.sep.join([destination_folder,folder,file_tex]))
+		lines.append("}")
+		lines.append("")
+		
+		f.write("\n".join(lines))
 
 	cleanup(intermediate_file)
 
@@ -327,22 +375,75 @@ def postprocessing():
 	# print(open_command_final)
 	# os.system(open_command_final)
 
-def main():
+def main(destination_folder = None, quiet = False, copies_initially = 1000):
 	try:
-		input_file = sys.argv[1]
+		archetype_file = sys.argv[1]
+		if archetype_file[-4:] == '.tex':
+			# print(archetype_file)
+			archetype_file = archetype_file[:-4]
+			# print(archetype_file)
 	except:
 		# input_file = input("Enter name of file to process: ")
-		input_file = "Question-List-Raw-Sequences"
+		raise Exception("Need a file to operate on!")
 
-	for problem in gen_problems(input_file):
-		if all(not line or line[0] == r'%' for line in problem.split('\n')):
-			# Skip problem if commented out!
-			continue
-		process_problem(problem, quiet=False)
+	begin = r"Question-List-Raw-"
+	begin_len = len(begin)
+
+	if archetype_file[:begin_len] == begin:
+		folder = archetype_file[begin_len:]
+	else:
+		folder = archetype_file + "-Problems"
+
+	# print(f"folder = {folder}")
+
+	os.makedirs(folder, exist_ok=True)
+
+	input_file = f'{folder}-Input.tex'
+	# print(f"input_file = {input_file}")
+
+	with open(input_file, 'w') as f:
+		file_path = os.path.abspath(f"{archetype_file}.tex")
+
+		header =     [r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"]
+		header.append(r"%%%%%%%%%%%%%%%%%%% 			Header Contents				%%%%%%%%%%%%%%%%%%%")
+		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+		header.append(r"")
+		header.append(r"%Debug line. to activate this check, put \Verbosetrue at the start of a file calling this.")
+		header.append(r"\ifVerbose{Input File Called: " + f"{file_path}" + r"}\fi")
+		header.append(r"")
+		header.append(r"")
+		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+		header.append(r"%%%%%%%%%%%%%%%%%%% 			File Contents				%%%%%%%%%%%%%%%%%%%")
+		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+		header.append(r"")
+		header.append(r"")
+		f.write("\n".join(header))
+
+	if destination_folder is None:
+		cwd = os.getcwd()
+		destination_folder = cwd
+
+	for problem in gen_problems(archetype_file):
+		process_problem(problem, input_file, destination_folder, copies_initially = copies_initially, folder = folder, quiet=quiet)
+
+	shutil.rmtree(os.sep.join([destination_folder, folder]), ignore_errors=True)
+	try:
+		os.remove(os.sep.join([destination_folder, input_file]))
+	except:
+		pass
+
+	os.makedirs(destination_folder, exist_ok=True)
+
+	shutil.move(folder,     destination_folder)
+	shutil.move(input_file, destination_folder)
 
 if __name__ == "__main__":
 
-	main()
+	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks"
+	quiet = False
+	copies_initially = 10
+
+	main(destination_folder, quiet, copies_initially)
 
 
 
