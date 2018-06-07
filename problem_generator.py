@@ -439,7 +439,7 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000):
 
 if __name__ == "__main__":
 
-	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks"
+	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
 	quiet = False
 	copies_initially = 10
 
