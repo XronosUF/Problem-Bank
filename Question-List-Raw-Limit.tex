@@ -216,7 +216,9 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0007.HELP.tex}
 
-\[\lim_{x\to\sage{Inf}}\frac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\[
+\lim\limits_{x\to\sage{Inf}}\frac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}
+\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
@@ -246,7 +248,7 @@ Ftwo=vright[second]
 
 
 Use the function to answer the following questions.
-\[f(x)=\left\{\begin{array}{ll}\sage{Fone}& x<\sage{a}\\[5pt] 
+\[f(x)=\left\lbrace\begin{array}{ll}\sage{Fone}& x<\sage{a}\\[5pt] 
 \sage{Ftwo}& x\geq\sage{a} 
 \end{array}\right.\]
 
@@ -1029,7 +1031,7 @@ f2 = F2 + B
 \ifVerboseLocation This is Limit Concept Question 0004. \\ \fi
 \begin{problem}
 
-Let $f(x)=\left\{\begin{array}{clc}
+Let $f(x)=\left\lbrace\begin{array}{clc}
 \sage{f3} & , & x\leq \sage{a}\\
 \sage{f1} & , & \sage{a}<x\leq\sage{b}\\
 \sage{f2} & , & x>\sage{b}
@@ -1074,7 +1076,7 @@ f3 = integerfunc[intp2]
 \ifVerboseLocation This is Limit Concept Question 0005. \\ \fi
 \begin{problem}
 
-Let $f(x)=\left\{\begin{array}{ll}
+Let $f(x)=\left\lbrace\begin{array}{ll}
 \sage{f1} , & x< \sage{a}\\
 \sage{f2} , & \sage{a}\leq x\leq\sage{b}\\
 \sage{f3} , & x>\sage{b}
