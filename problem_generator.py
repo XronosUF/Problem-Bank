@@ -1,69 +1,96 @@
 from __future__ import print_function
 
+import errno
 import os
 import shutil
 import sys
 from subprocess import call
 
+from collections import defaultdict
+
 # VERSION SHOULD BE Python 3.6+
+
+class NoClosingBraceError(Exception):
+	pass
 
 def find_closure(text, begin_idx):
 	"""Given a piece of text and the index of an opening brace, return the index
 	of its closing brace.
 	"""
 	curly_depth = 0
-	ignore = False # We'll set this to be True when the characters we're looking at are commented out.
-	for idx, char in enumerate(text[begin_idx:]):
-		if char == "{":
+
+	text_after = text[begin_idx:]
+
+	for idx, char in enumerate(text_after):
+		if char == "{" and text_after[idx-1:idx+1] != "\\{":
 			curly_depth += 1
-		elif char == "}":
+		elif char == "}" and text_after[idx-1:idx+1] != "\\}":
 			curly_depth -= 1
 			if curly_depth == 0:
 				end_idx = idx + begin_idx
 				break
 	else:
 		# If we're here, we couldn't find a closing brace.
-		raise Exception("No closing brace found!")
+		raise NoClosingBraceError
 	return end_idx
 
+def gen_problems(input_file, verbose=False):
+	"""Given an input file, parse it into individual problems.
 
-def gen_problems(input_file):
+	The beginning of a problem found with its tagged block, and the end with 
+	that blocks closing braces.
+	"""
+
 	with open("{}.tex".format(input_file), 'r') as f:
 		contents = f.read()
 
 	begin_prob = r"%\tagged{"
 	begin_len  = len(begin_prob)
-	end_prob   = r"}%}"
-	end_len    = len(end_prob)
+
+	# end_prob   = r"}%}"
+	# end_len    = len(end_prob)
 	while begin_prob in contents:
 
 		begin_tags_idx = contents.index(begin_prob)
 
 		begin_tags_brace_idx = begin_tags_idx + begin_len - 1
 
-		end_tags_brace_idx = find_closure(contents, begin_tags_brace_idx)
+		try:
+			end_tags_brace_idx = find_closure(contents, begin_tags_brace_idx)
+		except NoClosingBraceError:
+			error_statement = f"\nNo closing brace found for the _first_ part of the tagged block beginning\n{contents[begin_tags_brace_idx:][:1000]}"
+			raise NoClosingBraceError(error_statement)
+
 		
 		begin_prob_brace_idx = end_tags_brace_idx + 1
-		assert contents[begin_prob_brace_idx] == '{', r"Tags formatting seems wrong. Should read %\tagged{...}{problem_content}!"
+		assert contents[begin_prob_brace_idx] == '{', \
+			r"Tags formatting seems wrong. Should read '%\tagged{ etc }{' and so on!"
 
-		end_prob_brace_idx = find_closure(contents, begin_prob_brace_idx)
+		try:
+			end_prob_brace_idx = find_closure(contents, begin_prob_brace_idx)
+		except NoClosingBraceError:
+			error_statement = f"\nNo closing brace found for the _second_ part of the tagged block beginning\n{contents[begin_tags_brace_idx:][:1000]}"
+			raise NoClosingBraceError(error_statement)	
 
 		end_prob_idx = end_prob_brace_idx + 1
 
 		problem  = contents[begin_tags_idx:end_prob_idx]
 		contents = contents[end_prob_idx:]
 
-		if any(line.strip() and line[0] != r'%' for line in problem.split('\n')):
+		if any(line.strip() and line.lstrip()[0] != r'%' for line in problem.split('\n')):
 			# Some line in the problem is not commented out.
+			# Could also potentially remove comment lines.
 
-			# ast = r"*"*13
-			# print(f"{ast}\n   PROBLEM   \n{ast}\n{problem}")
-			# print(f"{ast}\n     REST    \n{ast}\n{contents}")
+			if verbose:
+				ast = r"*"*13
+				print(f"{ast}\n   PROBLEM   \n{ast}\n{problem}")
+				print(f"{ast}\n     REST    \n{ast}\n{contents}")
 
 			yield problem
 
-def parse_problem(text):
+def parse_problem(text, verbose=False):
 	"""Given the complete problem, parse it into five pieces."""
+
 	problem_dict = {'original':text}
 	# `problem_dict['original']` is the complete string passed.
 
@@ -71,20 +98,35 @@ def parse_problem(text):
 
 	tags_begin = r"%\tagged{"
 	tags_open_brace_idx = text.index(tags_begin) + len(tags_begin) - 1
-	tags_close_brace_idx = find_closure(text, tags_open_brace_idx)
+	try:
+		tags_close_brace_idx = find_closure(text, tags_open_brace_idx)
+	except NoClosingBraceError:
+		error_statement = f"\nNo closing brace found for the _first_ part of the tagged block beginning\n{text[tags_open_brace_idx:][:1000]}"
+		raise NoClosingBraceError(error_statement)
 	problem_dict['tags'] = text[:tags_close_brace_idx+1]
 	# `problem_dict['tags']` is the tagged block, e.g., "\tagged{...}"
 	assert text[tags_close_brace_idx+1] == '{', r"Tags formatting seems wrong. Should read %\tagged{...}{problem_content}!"
 
 	text = text[tags_close_brace_idx+1:]
 	# `text` is now everything after, starting with the opening brace `{`.
+	
+	if verbose:
+		ast = r"*"*13
+		print(f"{ast}\n     tags    \n{ast}\n{problem_dict['tags']}")
+		# print(f"{ast}\n     rest    \n{ast}\n{text}")
 
 	# Note that we'll drop everything before the `\begin{sagesilent}` block.
 
 	sagesilent_begin = r"\begin{sagesilent}"
 	sagesilent_begin_idx = text.index(sagesilent_begin)
+
+	if verbose:
+		ast = r"*"*13
+		print(f"{ast}\n   dropping  \n{ast}\n{text[:sagesilent_begin_idx]}")
+		# print(f"{ast}\n     rest    \n{ast}\n{text[sagesilent_begin_idx:]}")
+
 	text = text[sagesilent_begin_idx:]
-	# `text` is now without the tagged bit.
+	# `text` is now without anything before the sagesilent block.
 
 	sagesilent_end = r"\end{sagesilent}"
 	sagesilent_end_idx = text.index(sagesilent_end) + len(sagesilent_end)
@@ -93,12 +135,14 @@ def parse_problem(text):
 	text = text[sagesilent_end_idx:]
 	# `text` is now without sagesilent block.
 
-	# print(f"BEFORE:\n{text}\nDONE!")
+	if verbose:
+		ast = r"*"*14
+		print(f"{ast}\n  sagesilent  \n{ast}\n{problem_dict['sage']}")
+		# print(f"{ast}\n     rest     \n{ast}\n{text}")
 	
-	text = remove_comments(text) 
+	# THIS MAY NEED TO GO!
+	text = remove_comments(text)
 	# This is necessary in case there are commented out braces in the problem content.
-	
-	# print(f"AFTER:\n{text}\nDONE!")
 
 	latexprob_begin = r"\latexProblemContent{"
 	latexprob_begin_idx = text.index(latexprob_begin)
@@ -107,8 +151,19 @@ def parse_problem(text):
 	text = text[latexprob_begin_idx:]
 	# `text` is now without middle.
 
+	if verbose:
+		ast = r"*"*14
+		print(f"{ast}\n    middle    \n{ast}\n{problem_dict['middle']}")
+		# print(f"{ast}\n     rest     \n{ast}\n{text}")
+
+	del problem_dict['middle']
+
 	latexprob_open_brace_idx = len(latexprob_begin) - 1
-	latexprob_close_brace_idx = find_closure(text, latexprob_open_brace_idx)
+	try:
+		latexprob_close_brace_idx = find_closure(text, latexprob_open_brace_idx)
+	except NoClosingBraceError:
+		error_statement = f"\nNo closing brace found for the \latexProblemContent block beginning\n{text[latexprob_open_brace_idx:][:1000]}"
+		raise NoClosingBraceError(error_statement)
 
 	latexprob_end_idx = latexprob_close_brace_idx + 1 # We don't want to include the `%}` here.
 	problem_dict['latexproblem'] = text[:latexprob_end_idx]
@@ -116,22 +171,23 @@ def parse_problem(text):
 	text = text[latexprob_end_idx:]
 	# `text` is now without problem content.
 
+	if verbose:
+		ast = r"*"*14
+		print(f"{ast}\n latexproblem \n{ast}\n{problem_dict['latexproblem']}")
+		print(f"{ast}\n     rest     \n{ast}\n{text}")
+
 	problem_dict['footer'] = text
 	# `problem_dict['footer']` is everything after the problem content.
 
-	# The footer is never used in practice.
-
-	# ast = r"*"*10
-	# print("{}\n    TAGS    \n{}\n{}".format(ast,ast,problem_dict['tags']))
-	# print("{}\n SAGESILENT \n{}\n{}".format(ast,ast,problem_dict['sage']))
-	# print("{}\n   MIDDLE   \n{}\n{}".format(ast,ast,problem_dict['middle']))
-	# print("{}\nLATEXPROBLEM\n{}\n{}".format(ast,ast,problem_dict['latexproblem']))
-	# print("{}\n   FOOTER   \n{}\n{}".format(ast,ast,problem_dict['footer']))
+	del problem_dict['footer']
 
 	return problem_dict
 
 def find_file_name(latex_problem):
-	"""Given the `\latexProblemContent{...}` block, return the intended file name. """
+	"""Given the `\latexProblemContent{...}` block, return the intended file name.
+
+
+	"""
 	input_begin = r"\input{"
 	help_tex = r".HELP.tex"
 	for line in latex_problem.splitlines():
@@ -148,22 +204,24 @@ def find_file_name(latex_problem):
 
 def create_intermediate(problem, file_name, copies):
 	preprocess_header = r"""\documentclass{ximera}
-\usepackage{PackageLoader}
-\usepackage{sagetex}
-\renewcommand{\latexProblemContent}[1]{#1}
-\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}
-\begin{document}
-\input{Useful-Sage-Macros.tex}
-"""
+	\usepackage{PackageLoader}
+	\usepackage{sagetex}
+	\renewcommand{\latexProblemContent}[1]{#1}
+	\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}
+	\begin{document}
+	\input{Useful-Sage-Macros.tex}
+	"""
+	preprocess_header = preprocess_header.replace("\t","") # To remove leading tabs.
 
 	preprocess_footer = r"""
-\end{document}
-"""
+	\end{document}
+	"""
+	preprocess_footer = preprocess_footer.replace("\t","") # To remove leading tabs.
 
 	create_help(file_name)
 	# This will create the help file (if it doesn't exist).
 
-	intermediate_file = f"{file_name}_INTERMEDIATE"
+	intermediate_file = f"INTERMEDIATE_{file_name}"
 
 	one_sage_problem = "\n".join([problem['sage'],problem['latexproblem']])
 
@@ -178,11 +236,10 @@ def remove_comments(text, comment_char = r"%"):
 	new_lines = []
 
 	for line in old_lines:
-		if comment_char in line:
-			comment_idx = line.index(comment_char)
-			line = line[:comment_idx]
 
-		new_lines.append(line)
+		line_before, mid, line_after = line.partition(comment_char)
+		# if len(line_after) < 
+		new_lines.append(line_before)
 
 	return "\n".join(new_lines)
 
@@ -249,7 +306,10 @@ def replace_sage(latex_problems, replacements):
 			begin_brace_idx = begin_idx + len(sage_begin) - 1
 
 			# Index of closing brace
-			close_brace_idx = find_closure(latex_problem, begin_brace_idx)
+			try:
+				close_brace_idx = find_closure(latex_problem, begin_brace_idx)
+			except NoClosingBraceError:
+				error_statement = f"\nVery strange: No closing brace found for a \sage variable, beginning\n{latex_problem[begin_brace_idx:][:1000]}"
 			
 			end_idx = close_brace_idx + 1
 
@@ -271,19 +331,24 @@ def cleanup(intermediate_file):
 	for file in files_to_remove:
 		os.remove(file)
 
-def process_problem(text, input_file, destination_folder, folder = "", copies_initially = 1000, final_copies = 500, quiet = False):
-	problem = parse_problem(text)
+def process_problem(text, input_file, destination_folder, folder = "",
+	copies_initially = 1000, final_copies = 500, quiet = False, verbose = False):
 
-	# for key, val in sorted(problem.items()):
-	# 	print(f"key={key}")
-	# 	print(f"val={val}")
-	
-	file_name = find_file_name(problem['latexproblem'])
+	########## Setup: parse file, get its name, make intermediate files ##########
 
-	intermediate_file = f"{file_name}_INTERMEDIATE"
+	problem = parse_problem(text, verbose=verbose)
+
+	if verbose:
+		for key, val in sorted(problem.items()):
+			print(f"key={key}")
+			print(f"val={val}")
+
+	tags_dict = parse_tags(problem['tags'])
+	file_name = create_file_name(tags_dict) # This is of the form "{Topic}-{Type}-{File}"
+
+	intermediate_file = f"INTERMEDIATE_{file_name}"
 	create_intermediate(problem, file_name, copies_initially)
-	# This will create the itermediate files, namely the help file and the file to run pdflatex on.
-
+	# This will create the intermediate files, namely the help file and the file to run pdflatex on.
 
 	########## Run pdflatex and sage ##########
 
@@ -291,7 +356,7 @@ def process_problem(text, input_file, destination_folder, folder = "", copies_in
 	pdflatex_options = []
 
 	if quiet:
-		pdflatex_options += "-quiet"
+		pdflatex_options.append(r">/dev/null 2>&1")
 	
 	pdflatex_options.append(f"{intermediate_file}.tex")
 	pdflatex_command += " ".join(pdflatex_options) 
@@ -324,33 +389,35 @@ def process_problem(text, input_file, destination_folder, folder = "", copies_in
 	if len(final_problems) > final_copies:
 		final_problems = final_problems[:final_copies]
 
-	between = "\n\n" + r"%%%%%%%%%%%%%%%%%%%%%%" + "\n\n"
+	problem_separator = "\n\n" + "%"*22 + "\n\n"
+
 	final_contents = problem['tags'] + r"{" + "\n"
-	final_contents += between.join(final_problems) 
-	final_contents += r"%}"
-	final_contents += problem['footer']
+
+	final_contents += problem_separator.join(final_problems) 
+	final_contents += r"%}" 
 	
-	file_tex = f"{file_name}.tex"
-	with open(file_tex, 'w') as f:
+	tex_file = f"{file_name}.tex"
+	with open(tex_file, 'w') as f:
 		f.write(final_contents)
 
 	help_tex = r".HELP.tex"
 	help_file = file_name + help_tex
 
-	os.rename(help_file, os.sep.join([folder,help_file]))
-	os.rename(file_tex,  os.sep.join([folder,file_tex]))
+	########## Write to input file ##########
 
 	with open(input_file, 'a') as f:
 		lines = []
 		lines.append("")
 		lines.append(problem['tags'][1:] + "{") # Omit the opening `%`
-		lines.append("\t" + os.sep.join([destination_folder,folder,file_tex]))
+		lines.append("\t" + os.sep.join([destination_folder,folder,tex_file]))
 		lines.append("}")
 		lines.append("")
 		
 		f.write("\n".join(lines))
 
 	cleanup(intermediate_file)
+
+	return (tex_file, help_file)
 
 def postprocessing():
 	"""Does nothing for now."""
@@ -375,7 +442,7 @@ def postprocessing():
 	# print(open_command_final)
 	# os.system(open_command_final)
 
-def main(destination_folder = None, quiet = False, copies_initially = 1000):
+def main(destination_folder = None, quiet = False, copies_initially = 1000, verbose = False):
 	try:
 		archetype_file = sys.argv[1]
 		if archetype_file[-4:] == '.tex':
@@ -394,18 +461,30 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000):
 	else:
 		folder = archetype_file + "-Problems"
 
-	# print(f"folder = {folder}")
+	if verbose:
+		print(f"Destination folder = {folder}")
 
-	os.makedirs(folder, exist_ok=True)
+	######## Make the folder in the current working directory ########
+
+	try:
+		os.mkdir(folder)
+	except OSError as exc:
+		if exc.errno != errno.EEXIST:
+			raise
+		pass
+
+	######## Create the input file ########
 
 	input_file = f'{folder}-Input.tex'
-	# print(f"input_file = {input_file}")
+
+	if verbose:
+		print(f"Input file = {input_file}")
 
 	with open(input_file, 'w') as f:
 		file_path = os.path.abspath(f"{archetype_file}.tex")
 
 		header =     [r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"]
-		header.append(r"%%%%%%%%%%%%%%%%%%% 			Header Contents				%%%%%%%%%%%%%%%%%%%")
+		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				Header Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 		header.append(r"")
 		header.append(r"%Debug line. to activate this check, put \Verbosetrue at the start of a file calling this.")
@@ -413,7 +492,7 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000):
 		header.append(r"")
 		header.append(r"")
 		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-		header.append(r"%%%%%%%%%%%%%%%%%%% 			File Contents				%%%%%%%%%%%%%%%%%%%")
+		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				File Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 		header.append(r"")
 		header.append(r"")
@@ -423,27 +502,121 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000):
 		cwd = os.getcwd()
 		destination_folder = cwd
 
-	for problem in gen_problems(archetype_file):
-		process_problem(problem, input_file, destination_folder, copies_initially = copies_initially, folder = folder, quiet=quiet)
+	######## Generate problems as a group, to catch errors early ########
+	
+	all_problems = list(gen_problems(archetype_file, verbose=verbose))
 
-	shutil.rmtree(os.sep.join([destination_folder, folder]), ignore_errors=True)
+	######## Make the destination directories first ########
+
 	try:
-		os.remove(os.sep.join([destination_folder, input_file]))
-	except:
+		os.mkdir(destination_folder)
+	except OSError as exc:
+		if exc.errno != errno.EEXIST:
+			raise
 		pass
 
-	os.makedirs(destination_folder, exist_ok=True)
+	try: 
+		os.mkdir(os.sep.join([destination_folder, folder]))
+	except OSError as exc:
+		if exc.errno != errno.EEXIST:
+			raise
+		pass
 
-	shutil.move(folder,     destination_folder)
-	shutil.move(input_file, destination_folder)
+	######## Process problems, catching conflicts ########
+
+	conflict_list = []
+
+	for problem in all_problems:
+		tex_file, help_file = process_problem(problem, input_file, destination_folder, \
+			copies_initially = copies_initially, folder = folder, quiet=quiet, verbose=verbose)
+
+		destination_tex  = os.sep.join([folder,tex_file])
+		destination_help = os.sep.join([folder,help_file])
+
+		if os.path.isfile(destination_tex):
+			conflict_list.append((tex_file, destination_tex))
+		else:
+			os.rename(tex_file,  destination_tex)
+
+		os.rename(help_file, destination_help)
+
+	destination_input = os.sep.join([destination_folder,input_file])
+	
+	if os.path.isfile(destination_input):
+		os.rename(input_file, destination_input)
+	else:
+		shutil.move(input_file, destination_folder)
+
+	######## Resolve conflicts ########
+
+	if conflict_list:
+		conflict_list = sorted(conflict_list)
+		do_all = False
+		print(f"There were {len(conflict_list)} conflicts!")
+		while conflict_list:
+			conflict_src, conflict_dst = conflict_list.pop(0)
+			if do_all:
+				os.rename(conflict_src,  conflict_dst)
+			else:
+				choice = input(f"Would you like to overwrite {conflict_dst} with {conflict_src}? Enter 'yes' or 'no' for this one, and 'all' to overwrite the remaining {len(conflict_list)+1} conflicts:\n")
+				choice = choice.lower()
+				if choice == 'all':
+					do_all = True
+					print(f"Okay, overwriting each of the remaining {len(conflict_list)} conflicts.")
+					os.rename(conflict_src,  conflict_dst)
+				elif choice == 'yes':
+					print(f"Okay, overwriting {conflict_dst} with {conflict_src} just this once.")
+					os.rename(conflict_src,  conflict_dst)
+				else:
+					print(f"Okay, not overwriting {conflict_dst} with {conflict_src}.")
+
+
+
+def parse_tags(tags_string):
+	left_brace = tags_string.index("{")
+	right_brace = tags_string.index("}")
+	stripped = tags_string[left_brace+1:right_brace]
+	split = [tag.strip() for tag in stripped.split(',')]
+
+	tag_dict = defaultdict(list)
+	for tag in split:
+		assert tag.count("@") == 1, f"Hmm, one of the tags looks funny (fix this!): \"{tag}\""
+		left, right = tag.split("@")
+		tag_dict[left].append(right)
+
+	return tag_dict
+
+def create_file_name(tags_dict, verbose = False):
+	fields = ['Topic', 'Type', 'File']
+	for field in fields:
+		l = len(tags_dict[field])
+		assert l >= 1, f"No {field} given!"
+		assert l <= 1, f"More than one {field} given: {tags_dict[field]}"
+
+	s = "-".join(tags_dict[field][0] for field in fields)
+	if verbose:
+		print(f"Parsed the file name as: {s}")
+	return s
+
+def display_tags(tag_dict):
+	s = ""
+	for key, val_list in sorted(tag_dict.items()):
+		s += f"% {key:10s}" + " : " + ", ".join(val_list) + "\n"
+	return s
 
 if __name__ == "__main__":
 
-	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
-	quiet = False
-	copies_initially = 10
+	# destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
+	# quiet = False
+	# copies_initially = 1000
+	# verbose = False # Only use for debugging the problem parses and whatnot for now.
 
-	main(destination_folder, quiet, copies_initially)
+	destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
+	quiet = True
+	copies_initially = 1
+	verbose = False # Only use for debugging the problem parses and whatnot for now.
+
+	main(destination_folder, quiet, copies_initially, verbose=verbose)
 
 
 

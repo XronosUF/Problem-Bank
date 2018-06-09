@@ -1013,9 +1013,9 @@ Compute the following derivative:
 \begin{sagesilent}
 unitvec = ['cm', 'in', 'mm', 'line']
 descvec = ['', '', '', ' (a line is 1/12 of an inch)']
-choice = RandInt(0,3)
-unit = unitvec[choice]
-unitdesc = descvec[choice]
+p = RandInt(0,3)
+unit = unitvec[p]
+unitdesc = descvec[p]
 
 R = RandInt(2,10)
 V = 4/3*R^3
@@ -1051,12 +1051,12 @@ v2 = [4, 12, 15]
 v3 = [5, 13, 17]
 
 # Choose a triple
-choice = RandInt(0,2)
+p = RandInt(0,2)
 
 # Assign base vectors
-a1 = v1[choice]# Horizontal vector
-b1 = v2[choice]# Vertical Vector
-c1 = v3[choice]# Vector Sum
+a1 = v1[p]# Horizontal vector
+b1 = v2[p]# Vertical Vector
+c1 = v3[p]# Vector Sum
 
 # Scale the vectors, we can do so independently as long as they form (mathematically) similar triangles.
 speedscale = RandInt(3,15)*10
@@ -1104,13 +1104,13 @@ v2 = [4, 12, 15]
 v3 = [5, 13, 17]
 
 # Choose a triple
-choice = RandInt(0,2)
+p = RandInt(0,2)
 
-a1 = v1[choice]
-a2 = v2[choice]
-a3 = v3[choice]
+a1 = v1[p]
+a2 = v2[p]
+a3 = v3[p]
 
-speedscale = RandInt(2,10)/(choice+1)
+speedscale = RandInt(2,10)/(p+1)
 distscale = RandInt(1,15)
 
 Da = a1*distscale
@@ -1154,13 +1154,13 @@ v2 = [4, 12, 15]
 v3 = [5, 13, 17]
 
 # Choose a triple
-choice = RandInt(0,2)
+p = RandInt(0,2)
 
 scale = RandInt(1,4)
 
-A = scale*v3[choice]
-B = scale*v1[choice]
-Ans=v1[choice]/v2[choice]
+A = scale*v3[p]
+B = scale*v1[p]
+Ans=v1[choice]/v2[p]
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2063,9 +2063,9 @@ pwr = RandInt(2,10)
 
 funcv = [expand((a1*x+b1)*(a2*x+b2)*(a3*x+b3)*(a4*x+b4)), sin(x), tan(x), sec(x), csc(x), cot(x), cos(x), e^x, ln(x), x^(1/pwr)]
 
-choice = RandInt(0,9)
+p = RandInt(0,9)
 
-f(x) = funcv[choice]
+f(x) = funcv[p]
 
 ans = simplify(derivative(f(x),x))
 
