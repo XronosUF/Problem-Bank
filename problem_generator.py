@@ -611,9 +611,9 @@ if __name__ == "__main__":
 	# copies_initially = 1000
 	# verbose = False # Only use for debugging the problem parses and whatnot for now.
 
-	destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
+	destination_folder = r"/root/texmf/tex/latex/QuestionBanks/Problem-Bank"
 	quiet = True
-	copies_initially = 1
+	copies_initially = 600
 	verbose = False # Only use for debugging the problem parses and whatnot for now.
 
 	main(destination_folder, quiet, copies_initially, verbose=verbose)
