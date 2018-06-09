@@ -58,7 +58,8 @@ def gen_problems(input_file, verbose=False):
 		try:
 			end_tags_brace_idx = find_closure(contents, begin_tags_brace_idx)
 		except NoClosingBraceError:
-			error_statement = f"\nNo closing brace found for the _first_ part of the tagged block beginning\n{contents[begin_tags_brace_idx:][:1000]}"
+			problematic_bit = text[tags_open_brace_idx:][:1000]
+			error_statement = f"\nNo closing brace found for the _first_ part of the tagged block beginning\n{problematic_bit}"
 			raise NoClosingBraceError(error_statement)
 
 		
@@ -101,7 +102,8 @@ def parse_problem(text, verbose=False):
 	try:
 		tags_close_brace_idx = find_closure(text, tags_open_brace_idx)
 	except NoClosingBraceError:
-		error_statement = f"\nNo closing brace found for the _first_ part of the tagged block beginning\n{text[tags_open_brace_idx:][:1000]}"
+		problematic_bit = text[tags_open_brace_idx:][:1000]
+		error_statement = f"\nNo closing brace found for the _first_ part of the tagged block beginning\n{problematic_bit}"
 		raise NoClosingBraceError(error_statement)
 	problem_dict['tags'] = text[:tags_close_brace_idx+1]
 	# `problem_dict['tags']` is the tagged block, e.g., "\tagged{...}"
@@ -162,7 +164,8 @@ def parse_problem(text, verbose=False):
 	try:
 		latexprob_close_brace_idx = find_closure(text, latexprob_open_brace_idx)
 	except NoClosingBraceError:
-		error_statement = f"\nNo closing brace found for the \latexProblemContent block beginning\n{text[latexprob_open_brace_idx:][:1000]}"
+		problematic_bit = text[latexprob_open_brace_idx:][:1000]
+		error_statement = f"\nNo closing brace found for the \latexProblemContent block beginning\n{problematic_bit}"
 		raise NoClosingBraceError(error_statement)
 
 	latexprob_end_idx = latexprob_close_brace_idx + 1 # We don't want to include the `%}` here.
@@ -203,20 +206,17 @@ def find_file_name(latex_problem):
 	return file_name
 
 def create_intermediate(problem, file_name, copies):
-	preprocess_header = r"""\documentclass{ximera}
-	\usepackage{PackageLoader}
-	\usepackage{sagetex}
-	\renewcommand{\latexProblemContent}[1]{#1}
-	\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}
-	\begin{document}
-	\input{Useful-Sage-Macros.tex}
-	"""
-	preprocess_header = preprocess_header.replace("\t","") # To remove leading tabs.
+	preprocess_header = "\n".join( 
+		[r"\documentclass{ximera}",
+		 r"\usepackage{PackageLoader}",
+		 r"\usepackage{sagetex}",
+		 r"\renewcommand{\latexProblemContent}[1]{#1}",
+		 r"\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}",
+		 r"\begin{document}",
+		 r"\input{Useful-Sage-Macros.tex}"])
 
-	preprocess_footer = r"""
-	\end{document}
-	"""
-	preprocess_footer = preprocess_footer.replace("\t","") # To remove leading tabs.
+	preprocess_footer = "\n".join( 
+		[r"\end{document}"])
 
 	create_help(file_name)
 	# This will create the help file (if it doesn't exist).
@@ -236,9 +236,7 @@ def remove_comments(text, comment_char = r"%"):
 	new_lines = []
 
 	for line in old_lines:
-
 		line_before, mid, line_after = line.partition(comment_char)
-		# if len(line_after) < 
 		new_lines.append(line_before)
 
 	return "\n".join(new_lines)
@@ -331,6 +329,61 @@ def cleanup(intermediate_file):
 	for file in files_to_remove:
 		os.remove(file)
 
+def parse_tags(tags_string):
+	left_brace = tags_string.index("{")
+	right_brace = tags_string.index("}")
+	stripped = tags_string[left_brace+1:right_brace]
+	split = [tag.strip() for tag in stripped.split(',')]
+
+	tag_dict = defaultdict(list)
+	for tag in split:
+		assert tag.count("@") == 1, f"Hmm, one of the tags looks funny (fix this!): \"{tag}\""
+		left, right = tag.split("@")
+		tag_dict[left].append(right)
+
+	return tag_dict
+
+def create_file_name(tags_dict, verbose = False):
+	fields = ['Topic', 'Type', 'File']
+	for field in fields:
+		l = len(tags_dict[field])
+		assert l >= 1, f"No {field} given!"
+		assert l <= 1, f"More than one {field} given: {tags_dict[field]}"
+
+	s = "-".join(tags_dict[field][0] for field in fields)
+	if verbose:
+		print(f"Parsed the file name as: {s}")
+	return s
+
+def display_tags(tag_dict):
+	s = ""
+	for key, val_list in sorted(tag_dict.items()):
+		s += f"% {key:10s}" + " : " + ", ".join(val_list) + "\n"
+	return s
+
+def postprocessing():
+	"""Does nothing for now."""
+	pass
+	# postprocess_header = r"""\documentclass{ximera}
+	# \usepackage{PackageLoader}
+	# \renewcommand{\latexProblemContent}[1]{#1}
+	# \begin{document}
+	# """
+
+	# postprocess_footer = r"""\end{document}
+	# """
+	# final_file = f"{file_name}_FINAL"
+	# with open(f"{final_file}.tex", 'w') as f:
+	# 	f.write(final_contents)
+
+	# pdflatex_command_final = f"pdflatex {final_file}.tex"
+	# # pdflatex_command_final += ">/dev/null" # Redirect output to nowhere. (run quietly)
+	# print(pdflatex_command_final)
+	# os.system(pdflatex_command_final)
+	# open_command_final = f"open {final_file}.pdf"
+	# print(open_command_final)
+	# os.system(open_command_final)
+
 def process_problem(text, input_file, destination_folder, folder = "",
 	copies_initially = 1000, final_copies = 500, quiet = False, verbose = False):
 
@@ -366,7 +419,7 @@ def process_problem(text, input_file, destination_folder, folder = "",
 
 	sage_command = f"sage {intermediate_file}.sagetex.sage"
 	if quiet:
-		sage_command += " >/dev/null" # Redirect output to nowhere. (run quietly)
+		sage_command += " >/dev/null 2>&1" # Redirect output to nowhere. (run quietly)
 	print(sage_command)
 	os.system(sage_command)
 
@@ -419,29 +472,6 @@ def process_problem(text, input_file, destination_folder, folder = "",
 
 	return (tex_file, help_file)
 
-def postprocessing():
-	"""Does nothing for now."""
-	pass
-	# postprocess_header = r"""\documentclass{ximera}
-	# \usepackage{PackageLoader}
-	# \renewcommand{\latexProblemContent}[1]{#1}
-	# \begin{document}
-	# """
-
-	# postprocess_footer = r"""\end{document}
-	# """
-	# final_file = f"{file_name}_FINAL"
-	# with open(f"{final_file}.tex", 'w') as f:
-	# 	f.write(final_contents)
-
-	# pdflatex_command_final = f"pdflatex {final_file}.tex"
-	# # pdflatex_command_final += ">/dev/null" # Redirect output to nowhere. (run quietly)
-	# print(pdflatex_command_final)
-	# os.system(pdflatex_command_final)
-	# open_command_final = f"open {final_file}.pdf"
-	# print(open_command_final)
-	# os.system(open_command_final)
-
 def main(destination_folder = None, quiet = False, copies_initially = 1000, verbose = False):
 	try:
 		archetype_file = sys.argv[1]
@@ -462,7 +492,7 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 		folder = archetype_file + "-Problems"
 
 	if verbose:
-		print(f"Destination folder = {folder}")
+		print(f"Destination folder = {destination_folder}")
 
 	######## Make the folder in the current working directory ########
 
@@ -528,10 +558,10 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 
 	for problem in all_problems:
 		tex_file, help_file = process_problem(problem, input_file, destination_folder, \
-			copies_initially = copies_initially, folder = folder, quiet=quiet, verbose=verbose)
+			copies_initially = copies_initially, folder = folder, quiet = quiet, verbose = verbose)
 
-		destination_tex  = os.sep.join([folder,tex_file])
-		destination_help = os.sep.join([folder,help_file])
+		destination_tex  = os.sep.join([destination_folder,folder,tex_file])
+		destination_help = os.sep.join([destination_folder,folder,help_file])
 
 		if os.path.isfile(destination_tex):
 			conflict_list.append((tex_file, destination_tex))
@@ -570,40 +600,6 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 				else:
 					print(f"Okay, not overwriting {conflict_dst} with {conflict_src}.")
 
-
-
-def parse_tags(tags_string):
-	left_brace = tags_string.index("{")
-	right_brace = tags_string.index("}")
-	stripped = tags_string[left_brace+1:right_brace]
-	split = [tag.strip() for tag in stripped.split(',')]
-
-	tag_dict = defaultdict(list)
-	for tag in split:
-		assert tag.count("@") == 1, f"Hmm, one of the tags looks funny (fix this!): \"{tag}\""
-		left, right = tag.split("@")
-		tag_dict[left].append(right)
-
-	return tag_dict
-
-def create_file_name(tags_dict, verbose = False):
-	fields = ['Topic', 'Type', 'File']
-	for field in fields:
-		l = len(tags_dict[field])
-		assert l >= 1, f"No {field} given!"
-		assert l <= 1, f"More than one {field} given: {tags_dict[field]}"
-
-	s = "-".join(tags_dict[field][0] for field in fields)
-	if verbose:
-		print(f"Parsed the file name as: {s}")
-	return s
-
-def display_tags(tag_dict):
-	s = ""
-	for key, val_list in sorted(tag_dict.items()):
-		s += f"% {key:10s}" + " : " + ", ".join(val_list) + "\n"
-	return s
-
 if __name__ == "__main__":
 
 	# destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
@@ -611,9 +607,11 @@ if __name__ == "__main__":
 	# copies_initially = 1000
 	# verbose = False # Only use for debugging the problem parses and whatnot for now.
 
+	# destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
+
 	destination_folder = r"/root/texmf/tex/latex/QuestionBanks/Problem-Bank"
 	quiet = True
-	copies_initially = 600
+	copies_initially = 600 
 	verbose = False # Only use for debugging the problem parses and whatnot for now.
 
 	main(destination_folder, quiet, copies_initially, verbose=verbose)
