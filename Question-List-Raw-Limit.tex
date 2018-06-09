@@ -520,74 +520,47 @@ $\lim\limits_{x \rightarrow \sage{finv(c1)}} \sage{f2(x)} = \answer{\sage{Ans}}$
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0017}{
 
 \begin{sagesilent}
-funcvec=[x, x^(1/3), x, x^2, exp(x), log(x)]
-pick1 = RandInt(0,5)
-fpick = funcvec[pick1]
-
-## Some parameters depend on the type of random function we selected.
-# Logs don't like negatives.
-if pick1 == 5:
-  target = RandInt(1, 8)
-else:
-  target = RandInt(-8, 8)
-
-# Figure out if we really want a rational parent function.
-if pick1 == 2:
-  pwr = -1
-else:
-  pwr = 1
+# This problem generates a terrible looking function, that happens to be continuous at the desired limit target; to teach people that L'Hsopital's rule shouldn't be a reflex.
 
 
-#Setup for while loop.
-f2(x)= x + 700
-f3(x)= x + 700
-  
-#First we do the numerator
-while abs(f2(target)) > 400:
-  c3 = NonZeroInt(-5,5)
-  c4 = RandInt(-10, 10)
-  
-  f1t(x) = x - target
-  
-  while f1t(target) == 0: # Make sure rational functions don't explode.
-     c1 = RandInt(1, 10)
-     c2 = RandInt(1, 10)
-     f1t(x) = fpick(c1*x+c2)
-  
-  f1(x) = (f1t(x))^pwr
-  f2(x) = c3*f1(x)+c4
+# Everything in the initial creation needs to avoid crazy large, or zero value, to make sure end result is valid and reasonable for students.
 
-# Now we work on the denominator
-while abs(f3(target)) > 400:
-    c21 = RandInt(1, 10)
-    c22 = RandInt(1, 10)
-    c23 = NonZeroInt(-5,5)
-    c24 = RandInt(-10, 10)
+# initialize functions
+ftop = x
+fbot = x
+# initialize target to force the while loop to trigger.
+target = 0 
+
+while ftop(target) == 0 or fbot(target) == 0 or ftop(target) > 1000 or fbot(target) > 1000:
+    ## parameters of the master functions:
+    a = RandInt(-5,5)
+    aPlus = RandInt(1,10)
+    aPlus2 = RandInt(aPlus,15)
+    aAlt = NonZeroInt(-5,5)
+    b = NonZeroInt(-5,5,[a])
+    c = RandInt(-5,5)
     
-    pick2 = RandInt(0,5)
-    if pick2 == 2:
-        pwr2 = -1
+    # Master function vector
+    funcvec=[a*x^2+b*x+c, aAlt*(x-a)^(1/3)+c, aAlt*exp(x+a)+c, aAlt*log(x+aPlus)+c, aAlt*(x+aPlus2)^(1/2)+c]
+    
+    pick1 = 3#RandInt(0,4)# Pick numerator function
+    ftop = funcvec[pick1]
+    
+    pick2 = 4#NonZeroInt(0,4,[pick1])# Pick a different denominator Function
+    fbot = funcvec[pick2]
+    
+    ## Some parameters depend on the type of random function we selected.
+    # Logs and square roots don't like negatives.
+    if pick1 > 2 or pick2 > 2:
+      target = RandInt(-aPlus + 1, 8)
     else:
-        pwr2 = 1
-    
-    fpick2 = funcvec[pick2]
-    
-    f3t(x) = fpick2(c21*x+c22) 
-    while f3t(target) == 0: # Make sure rational functions don't explode.
-        c21 = RandInt(1, 10)
-        c22 = RandInt(1, 10)
-        f3t(x) = fpick2(c21*x+c22)
-    
-    f3(x) = (f3t(x))^pwr2
+      target = RandInt(-8, 8)
 
-if f3(target)==0:# Make sure we don't try to divide by zero as well. That's bad juju.
-    f4(x) = f3(x) + 1
-else:
-    f4(x) = f3(x)
-
-# Now we have a nice answer, so we just need to clean up.
-fFinal(x) = f2(x)/f4(x)
+# Now we have a reasonable answer, so we just need to clean up.
+fFinal(x) = ftop(x)/fbot(x)
 ans = fFinal(target)
+
+
 \end{sagesilent}
 
 \latexProblemContent{
@@ -597,7 +570,7 @@ ans = fFinal(target)
 
 Compute the following limit:
 
-\input{Limit-Compute-0017.HELP.tex}
+%\input{Limit-Compute-0017.HELP.tex}
 
 $\lim\limits_{x \rightarrow \sage{target}} \sage{fFinal(x)} = \answer{\sage{ans}}$
 
