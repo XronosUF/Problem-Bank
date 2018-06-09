@@ -731,7 +731,7 @@ g=exp(q*x)
 h = f*g
 
 #Compute their integral and factor the answer
-Ans = factor(integral(h,x))
+Ans = factor(HyperSimp(integral(h,x)))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -764,7 +764,8 @@ f = (x)^p
 g = exp(q*x)
 
 #Compute their integral and factor the answer
-Ans = integral(f*g,x)
+Ans = HyperSimp(integral(f*g,x))
+
 \end{sagesilent}
 
 \latexProblemContent{
@@ -798,7 +799,7 @@ p = Integer(randint(0,2))
 f = v[p]
 
 #Compute Integral
-Ans = factor(integral(f,x))
+Ans = HyperSimp(factor(integral(f,x)))
 
 tag = tagVec[p]
 \end{sagesilent}
@@ -830,7 +831,8 @@ p = RandInt(0,1)
 f = v[p]
 
 #Compute the Integral
-Ans = factor(integral(f,x))
+Ans = HyperSimp(factor(integral(f,x)))
+
 \end{sagesilent}
 
 \latexProblemContent{
@@ -861,7 +863,8 @@ c = NonZeroInt(-9,9)
 f = a*x^b*log(c*x)
 
 #Compute the answer
-Ans = factor(integral(f,x))
+Ans = HyperSimp(factor(integral(f,x)))
+
 \end{sagesilent}
 
 \latexProblemContent{
@@ -902,7 +905,7 @@ func2 = funcvec[p](x-A)
 
 F(x) = C*func1(x)*func2(x)
 
-Ans = factor(integral(F(x),x))
+Ans = HyperSimp(factor(integral(F(x),x)))
 
 tag = tagVec[p]
 \end{sagesilent}
@@ -982,7 +985,7 @@ p = RandInt(0,1)
 f = v[p]
 
 # Compute Answer
-Ans=integral(f,x)
+Ans=HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1016,7 +1019,7 @@ p = Integer(randint(0,1))
 f = v[p]
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1053,7 +1056,7 @@ p = RandInt(0,1)
 f=v[p]
 
 # Compute Answer
-Ans=integral(f,x)
+Ans=HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1097,7 +1100,7 @@ while Check == 0:
    f = v[p]
    
    # Compute Answer
-   Ans = integral(f,x)
+   Ans = HyperSimp(integral(f,x))
    # Check answer for sanity. The pi/8 term can sneak in huge numbers, or not exist, so we have to break the check into two cases.
    
    Checkval = Ans(pi/4)
@@ -1140,7 +1143,7 @@ p = RandInt(0,2)
 f=v[p]
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1180,7 +1183,7 @@ while len(latex(Ans))>80:
         bshow = b
     
     #Compute answer
-    Ans=integral(f,x)
+    Ans=HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1223,7 +1226,7 @@ while len(latex(Ans))>80:
         pwrOdd2type = pwrOdd2
     
     #Compute answer
-    Ans=integral(f,x)
+    Ans=HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1258,7 +1261,7 @@ pwrOdd = 2*c+1
 f = a*tan(x)^(pwrEven)*sec(x)^(pwrOdd)
 
 #Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1315,7 +1318,7 @@ Integrand = (Coef*Intvec[p](freq*x))
 # Calculate the actual power separately to prevent sage from trying to cancel negatives.
 Integrandpower = (pwr)*((-1)^flip)
 
-CalcInt = integral(ToCalcInt(x),x)
+CalcInt = HyperSimp(integral(ToCalcInt(x),x))
 Ans = CalcInt
 \end{sagesilent}
 
@@ -1374,7 +1377,7 @@ else:
 
 
 # Now have sage calculate the answer
-CalcInt = integral(ToCalcInt(x),x)
+CalcInt = HyperSimp(integral(ToCalcInt(x),x))
 
 # Write the answer for ximera. In this case, the 'simplify' just causes it to be worse.
 Ans = CalcInt
@@ -1412,7 +1415,7 @@ denom = v[p]
 f = a/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1444,7 +1447,7 @@ denom = v[p]
 f = a/(x^2*denom)
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1477,7 +1480,7 @@ denom = v[p]
 f = a*x^3/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1509,7 +1512,7 @@ denom = v[p]
 f = a*x^2/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1541,7 +1544,7 @@ denom = v[p]
 f = a*x/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1575,7 +1578,7 @@ denom = expand(v[p])
 f = a/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1609,7 +1612,7 @@ denom = expand(v[p])
 f = a*x/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1643,7 +1646,7 @@ denom = expand(v[p])
 f = a*x^2/denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1676,7 +1679,7 @@ denom = expand(v[p])
 f = denom
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1710,7 +1713,7 @@ denom = expand(v[p])
 f = a/(denom)^3
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1743,7 +1746,7 @@ denom = expand(v[p])
 f = a/(denom)^5
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1779,7 +1782,7 @@ pwr = u[q]
 f = a*denom/pwr
 
 # Compute answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1826,7 +1829,7 @@ Compute the following integral:
 \input{Integral-Compute-0049.HELP.tex}
 
 \[
-\int \sage{Integrand(x)} dx = \answer{\sage{F(x)}+C}
+\int \sage{Integrand(x)} dx = \answer[validator=sameDerivative]{\sage{F(x)}+C}
 \]
 
 \end{problem}}%}
@@ -1847,7 +1850,7 @@ d = NonZeroInt(-9,9)
 f = (a*x+b)/((x-c)*(x-d))
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1884,7 +1887,7 @@ e = NonZeroInt(-9,9)
 f=(a*x+b)/((x-c)*(x-d)*(x-e))
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1915,7 +1918,7 @@ e = NonZeroInt(-9,9)
 f = (a/(c*x+d)+ b/(x-e)).simplify_rational()
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1988,7 +1991,7 @@ denom = (x-c)*(x-d)*(x-e)
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2021,7 +2024,7 @@ denom = (x-c)^2
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2055,7 +2058,7 @@ denom = (x-c)^2
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2090,7 +2093,7 @@ denom = (x-c)^2*(x-d)
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2124,7 +2127,7 @@ denom = (x-c)^2*(x-d)
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2158,7 +2161,7 @@ denom = (x-c)^2*(x-d)^2
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2194,7 +2197,7 @@ Num2 = x-d
 f = (Num1/(x-c) + Num2/(x^2+c*x+c^2)).simplify_rational()
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2241,7 +2244,7 @@ frac2 = h/(x-d)
 f = (expand(e*(x-g)*(x-d) + h*(x^2+b*x+c)))/((x-d)*(x^2+b*x+c))
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2288,7 +2291,7 @@ frac2 = h/(x-d)
 f = (frac1+frac2).simplify_rational()
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2339,7 +2342,7 @@ while Disc>=0:
 f = ((e*x-g)/(a*x^2+b*x+c) + h/(x-d)^2).simplify_rational().factor()
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2385,7 +2388,7 @@ denom = (a*x^2+b*x+c)^2
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2419,7 +2422,7 @@ denom = sqrt(b^2*x^2+c)
 f = Numer/(x*denom)
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2451,7 +2454,7 @@ denom = (b+x^3)
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x)
+Ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -2486,7 +2489,7 @@ denom = vDenom[p]
 f = Numer/denom
 
 # Compute Answer
-Ans = integral(f,x).simplify_full()
+Ans = HyperSimp(integral(f,x)).simplify_full()
 
 tag = tagVec[p]
 \end{sagesilent}
@@ -2523,7 +2526,7 @@ fone = a*x
 fTwo = b*x^2
 
 # Compute the indefinite integral and then evaluate at the bounds
-INT = integral(f,x)
+INT = HyperSimp(integral(f,x))
 Ans = limit(INT,x=infinity)-limit(INT,x=c)
 \end{sagesilent}
 
@@ -2569,7 +2572,7 @@ c = NonZeroInt(1,9)
 f = a/x^b
 
 # Compute the indefinite integral and then evaluate at the bounds
-INT = integral(f,x)
+INT = HyperSimp(integral(f,x))
 Ans = limit(INT,x=infinity)-limit(INT,x=c)
 \end{sagesilent}
 
@@ -2615,7 +2618,7 @@ b = NonZeroInt(-9,9)
 f = a/sqrt(b^2-x)
 
 # Compute the indefinite integral and then evaluate at the bounds
-INT = integral(f,x)
+INT = HyperSimp(integral(f,x))
 Ans = limit(INT,x=b^2)-limit(INT,x=0)
 \end{sagesilent}
 
@@ -2662,7 +2665,7 @@ c = NonZeroInt(-9,9)
 f = a/sqrt(b^2-x)
 
 # Compute the indefinite integral and then evaluate at the bounds
-INT = integral(f,x)
+INT = HyperSimp(integral(f,x))
 Ans = limit(INT,x=b^2)-limit(INT,x=c)
 \end{sagesilent}
 
@@ -2709,7 +2712,7 @@ c = NonZeroInt(-9,9)
 f = a*exp(x)/(exp(2*x)+b)
 
 # Compute the indefinite integral and then evaluate at the bounds
-INT = integral(f,x)
+INT = HyperSimp(integral(f,x))
 Ans = limit(INT,x=infinity)-limit(INT,x=c)
 \end{sagesilent}
 
@@ -2892,7 +2895,7 @@ Integrandpower = (power*(-1)^flip)
 
 
 
-CalcInt = integral(ToCalcInt(x),x)
+CalcInt = HyperSimp(integral(ToCalcInt(x),x))
 ans = CalcInt#.simplify()
 
 \end{sagesilent}
@@ -2951,7 +2954,7 @@ else:
 
 
 # Now have sage calculate the answer
-CalcInt = integral(ToCalcInt(x),x)
+CalcInt = HyperSimp(integral(ToCalcInt(x),x))
 
 # Write the answer for ximera. In this case, the 'simplify' just causes it to be worse.
 ans = CalcInt
@@ -2984,7 +2987,7 @@ pwr2 = 2*n2
 
 func = A * sec(B*x)^(pwr1)*tan(B*x)^(pwr2)
 
-ans = integral(func(x),x)
+ans = HyperSimp(integral(func(x),x))
 
 \end{sagesilent}
 
@@ -3078,7 +3081,7 @@ Integrand(x) = derivative(F(x),x)
 Evaluate the integral
 \input{Integral-Compute-0080.HELP.tex}
 \[
-\int \sage{Integrand(x)} dx = \answer{\sage{F(x)}}
+\int \sage{Integrand(x)} dx = \answer[validator=sameDerivative]{\sage{F(x)} + C}
 \]
 
 
@@ -3144,12 +3147,12 @@ Ans(x) = HyperSimp(integral(h(x),x))
 \begin{problem}
     Now, using the previous steps, we can calculate our answer!
         \[
-        \int \sage{h(x)} dx = \answer{\sage{Ans(x)}}
+        \int \sage{h(x)} dx = \answer[validator=sameDerivative]{\sage{Ans(x)} + C}
         \]
 \end{problem}
 \end{problem}
 \end{problem}
-\end{problem}}
+\end{problem}}%}
 
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -3268,7 +3271,7 @@ Ans = HyperSimp(factor(Ans))
 \end{problem}
 \end{problem}
 \end{problem}
-\end{problem}}
+\end{problem}}%}
                      
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -3370,7 +3373,7 @@ Ans = HyperSimp(integral(Integrand(x),x))
 \end{problem}
 \end{problem}
 \end{problem}
-\end{problem}}
+\end{problem}}%}
 
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -3412,7 +3415,7 @@ pwrVec = [pwr1, pwr2]
 
 Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
 
-Ans = integral(Integrand(x),x)
+Ans = HyperSimp(integral(Integrand(x),x))
 
 \end{sagesilent}
 
@@ -3461,7 +3464,7 @@ Finally, we have that
 \end{problem}
 \end{problem}
 \end{problem}
-\end{problem}}
+\end{problem}}%}
 
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -3490,7 +3493,7 @@ oddfunc = funcVec[1-p]
 
 Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
 
-Ans = integral(Integrand(x),x)
+Ans = HyperSimp(integral(Integrand(x),x))
 
 \end{sagesilent}
 
@@ -3533,12 +3536,13 @@ Ans = integral(Integrand(x),x)
 \end{problem}
 \end{problem}
 \end{problem}
-\end{problem}}
+\end{problem}}%}
+
 %%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@PartialFractions, Func@Rational, Func@Poly, File@0107}{
+%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@PartialFractions, Func@Rational, Func@Poly, File@0106}{
 \begin{sagesilent}
 a = NonZeroInt(-5,5)
 b = RandInt(1,10)
@@ -3557,6 +3561,10 @@ Integrand = factor((f1+f2).simplify_rational())
 Ans = HyperSimp(integral(f2,x))
 
 \end{sagesilent}
+
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0106. \\ \fi
 
 \begin{problem}
     We wish to calculate the following integral:
@@ -3599,7 +3607,7 @@ Ans = HyperSimp(integral(f2,x))
 \end{problem}
 \end{problem}
 \end{problem}
-\end{problem}
+\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -3680,7 +3688,7 @@ Ans = HyperSimp(integral(f2,x))
 %\latexProblemContent{
 %\begin{problem}
 %Which of the following is a correct statement? (p \textit{all} that apply)
-\input{Integral-Compute-0081.HELP.tex}
+%\input{Integral-Compute-0081.HELP.tex}
 %\begin{multipleChoice}
 %\choice[correct]{$\int\limits_{0}^\infty \sage{F1(x)} dx$}
 %\choice[$\sage{ans2T}$]{$\int\limits_{0}^\infty \sage{F2(x)} dx$}
