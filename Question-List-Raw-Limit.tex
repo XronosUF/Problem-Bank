@@ -520,77 +520,74 @@ $\lim\limits_{x \rightarrow \sage{finv(c1)}} \sage{f2(x)} = \answer{\sage{Ans}}$
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0017}{
 
 \begin{sagesilent}
-Check = 0
+funcvec=[x, x^(1/3), x, x^2, exp(x), log(x)]
+pick1 = RandInt(0,5)
+fpick = funcvec[pick1]
 
-while Check == 0:
-   funcvec=[x, x^(1/3), x, x^2, exp(x), log(x)]
-   pick1 = RandInt(0,5)
-   fpick = funcvec[pick1]
-   
-   ## Some parameters depend on the type of random function we selected.
-   # Logs don't like negatives.
-   if pick1 == 5:
-      target = RandInt(1, 8)
-   else:
-      target = RandInt(-8, 8)
-   
-   # Figure out if we really want a rational parent function.
-   if pick1 == 2:
-      pwr = -1
-   else:
-      pwr = 1
-   
-   
-   #Setup for while loop.
-   f2(x)= x + 700
-   f3(x)= x + 700
-      
-   #First we do the numerator
-   while abs(f2(target)) > 400:
-      c3 = NonZeroInt(-5,5)
-      c4 = RandInt(-10, 10)
-      
-      f1t(x) = x - target
-      
-      while f1t(target) == 0: # Make sure rational functions don't explode.
-         c1 = RandInt(1, 10)
-         c2 = RandInt(1, 10)
-         f1t(x) = fpick(c1*x+c2)
-      
-      f1(x) = (f1t(x))^pwr
-      f2(x) = c3*f1(x)+c4
-   
-   # Now we work on the denominator
-   while abs(f3(target)) > 400:
-      c21 = RandInt(1, 10)
-      c22 = RandInt(1, 10)
-      c23 = NonZeroInt(-5,5)
-      c24 = RandInt(-10, 10)
-      
-      pick2 = RandInt(0,5)
-      if pick2 == 2:
-         pwr2 = -1
-      else:
-         pwr2 = 1
-      
-      fpick2 = funcvec[pick2]
-      
-      f3t(x) = fpick2(c21*x+c22) 
-      while f3t(target) == 0: # Make sure rational functions don't explode.
-         c21 = RandInt(1, 10)
-         c22 = RandInt(1, 10)
-         f3t(x) = fpick2(c21*x+c22)
-      
-      f3(x) = (f3t(x))^pwr2
-      
-      if f3(target)==0:# Make sure we don't try to divide by zero as well. That's bad juju.
-          f4(x) = f3(x) + 1
-      else:
-          f4(x) = f3(x)
-   # Now we have a nice answer, so we just need to clean up.
-   fFinal(x) = f2(x)/f4(x)
-   ans = fFinal(target)
-   Check = saneCheck(ans)
+## Some parameters depend on the type of random function we selected.
+# Logs don't like negatives.
+if pick1 == 5:
+  target = RandInt(1, 8)
+else:
+  target = RandInt(-8, 8)
+
+# Figure out if we really want a rational parent function.
+if pick1 == 2:
+  pwr = -1
+else:
+  pwr = 1
+
+
+#Setup for while loop.
+f2(x)= x + 700
+f3(x)= x + 700
+  
+#First we do the numerator
+while abs(f2(target)) > 400:
+  c3 = NonZeroInt(-5,5)
+  c4 = RandInt(-10, 10)
+  
+  f1t(x) = x - target
+  
+  while f1t(target) == 0: # Make sure rational functions don't explode.
+     c1 = RandInt(1, 10)
+     c2 = RandInt(1, 10)
+     f1t(x) = fpick(c1*x+c2)
+  
+  f1(x) = (f1t(x))^pwr
+  f2(x) = c3*f1(x)+c4
+
+# Now we work on the denominator
+while abs(f3(target)) > 400:
+    c21 = RandInt(1, 10)
+    c22 = RandInt(1, 10)
+    c23 = NonZeroInt(-5,5)
+    c24 = RandInt(-10, 10)
+    
+    pick2 = RandInt(0,5)
+    if pick2 == 2:
+        pwr2 = -1
+    else:
+        pwr2 = 1
+    
+    fpick2 = funcvec[pick2]
+    
+    f3t(x) = fpick2(c21*x+c22) 
+    while f3t(target) == 0: # Make sure rational functions don't explode.
+        c21 = RandInt(1, 10)
+        c22 = RandInt(1, 10)
+        f3t(x) = fpick2(c21*x+c22)
+    
+    f3(x) = (f3t(x))^pwr2
+
+if f3(target)==0:# Make sure we don't try to divide by zero as well. That's bad juju.
+    f4(x) = f3(x) + 1
+else:
+    f4(x) = f3(x)
+
+# Now we have a nice answer, so we just need to clean up.
+fFinal(x) = f2(x)/f4(x)
+ans = fFinal(target)
 \end{sagesilent}
 
 \latexProblemContent{
