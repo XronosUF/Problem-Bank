@@ -81,13 +81,11 @@ Endpoint = v2[p2]					# Initialize Endpoint
 # Calculate the area
 Area = 0							# Initialize Area
 for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
-    if p2 == 0:						# Right Endpoint case
-        Xpt = j + 1					# Shift to right x anchor point by adding width
-    if p2 == 1:						# Left Endpoint case
-        Xpt = j						# Use left x anchor point.
+    Xpt = j + 1 - p2                # p2 = 0 is Right Endpoint case, p2 = 1 is left endpoint case. 
+    Area = Area + abs(f(LeftEnd+(Delx*Xpt)))	# Exploit that rectangles are width 1
+
 # Case not implemented    if p2 == 2:					# Midpoint case
 # Case not implemented        Xpt = j + 0.5				# Shift half a width
-    Area = Area + abs(f(LeftEnd+(Delx*Xpt)))	# Exploit that rectangles are width 1
    
 Ans=abs(Area)
 \end{sagesilent}
@@ -129,13 +127,11 @@ Endpoint = v2[p2]					# Initialize Endpoint
 # Calculate the area
 Area = 0							# Initialize Area
 for j in range(n):					# Note range(n) = 0, 1, 2, ..., n-1.
-    if p2 == 0:						# Right Endpoint case
-        Xpt = j + 1					# Shift to right x anchor point by adding width
-    if p2 == 1:						# Left Endpoint case
-        Xpt = j						# Use left x anchor point.
+    Xpt = j + 1 - p2                # p2 = 0 is Right Endpoint case, p2 = 1 is left endpoint case. 
+    Area = Area + f(a+(Xpt))	    # Exploit that rectangles are width 1
+
 # Case not implemented    if p2 == 2:					# Midpoint case
 # Case not implemented        Xpt = j + 0.5				# Shift half a width
-    Area = Area + f(a+(Xpt))	# Exploit that rectangles are width 1
    
 Ans=abs(Area)
 \end{sagesilent}
@@ -174,10 +170,10 @@ f = v[p]
 tagVec = ["Abs", "Poly", "Radical"]
 tag = tagVec[p]
 
-if p==2:
-   Area = (1/2)*pi*r^2
+if p==2:# Easy to calculate area for the semicircle case.
    a = -r
    b = r
+   Area = (1/2)*pi*r^2
 else:
    c1 = NonZeroInt(-5,5)
    c2 = RandInt(-5,5)
@@ -252,8 +248,12 @@ b = NonZeroInt(-10,10)
 c = NonZeroInt(1,5)
 
 p = RandInt(0,11)
+
 v = [sqrt(x-b), log(x-c), exp(x-b), (x-b)^2, (x-b)^3, (x-b)^4, (x-b), sin(x-b), cos(x-b), 1/(x-b), 1/(x-b)^2, 1/(x-b)^3]
+
+# Build associated tag vector to the above function vector
 tagVec = ["Radical", "Log", "Exp", "Poly", "Poly", "Poly", "Poly", "Trig", "Trig", "Rational", "Rational", "Rational"]
+
 f = v[p]
 
 Ans = f(t)
@@ -266,11 +266,15 @@ tag = tagVec[p]
 \begin{problem}
 
 Use the Fundamental Theorem of Calculus to find the derivative of the function.
-\[g(t)=\int_{\sage{a}}^{t} \sage{f}\;dx\]
+\[
+g(t)=\int_{\sage{a}}^{t} \sage{f}\;dx
+\]
 
 \input{Integral-Compute-0006.HELP.tex}
 
-\[\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}\]
+\[
+\dfrac{d}{dt}(g(t))=\answer{\sage{Ans}}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -1082,34 +1086,20 @@ Compute the following integral:
 # Define variables and constants/exponents
 var('x')
 
-# Initialize the saneCheck variable.
-Check = 0
+a = NonZeroInt(-9,9)
+b = RandInt(1,4)
+c = RandInt(1,5-b)
+pwrEven1 = 2*b
+pwrEven2 = 2*c
 
-while Check == 0:
-   a = NonZeroInt(-9,9)
-   b = RandInt(1,4)
-   c = RandInt(1,4)
-   pwrEven1 = 2*b
-   pwrEven2 = 2*c
-   
-   # Define function and latex output
-   v = [a*sin(x)^(pwrEven1)*cos(x)^(pwrEven2), a*cos(x)^(pwrEven1)*sin(x)^(pwrEven2)]
-   u = [latex(sin), latex(cos)]
-   w = [latex(cos), latex(sin)]
-   p = Integer(randint(0,1))
-   f = v[p]
-   
-   # Compute Answer
-   Ans = HyperSimp(integral(f,x))
-   # Check answer for sanity. The pi/8 term can sneak in huge numbers, or not exist, so we have to break the check into two cases.
-   
-   Checkval = Ans(pi/4)
-   Checkval2 = Ans(pi/8)
-   if Checkval2 == 0:
-      Check = saneCheck(Checkval)
-   else:
-      Check = saneCheck(Checkval)*saneCheck(Checkval2)
+# Define function and latex output
+v = [a*sin(x)^(pwrEven1)*cos(x)^(pwrEven2), a*cos(x)^(pwrEven1)*sin(x)^(pwrEven2)]
+p = RandInt(0,1)
+f = v[p]
 
+# Compute Answer
+Ans = HyperSimp(integral(f,x))
+   
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1121,7 +1111,7 @@ Compute the following integral:
 \input{Integral-Compute-0030.HELP.tex}
 
 \[
-\int{\sage{a}\sage{u[p]}^{\sage{pwrEven1}}(x)\sage{w[p]}^{\sage{pwrEven2}}(x)\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
+\int{\sage{f(x)}\;dx} = \answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1286,26 +1276,22 @@ Compute the following integral:
 # First get all the random rolls for the constants, powers, and whether or not it's going to have a negative exponent.
 
 n21 = RandInt(0,2)
-pwr = (2 * n21) + 3
-flip = RandInt(0,1)
+pwr = (2 * n21) + 1
+flip = RandInt(0,1)# If flip = 1, we're using the co(trig) functions, otherwise normal functions.
 freq = NonZeroInt(-5,5)
-Coef = NonZeroInt(-5,5)
+Coef = NonZeroInt(-15,15,[-1,0,1])
 
-while Coef^pwr > 5000:
-    n21 = RandInt(0,2)
-    pwr = (2 * n21) + 3
-    Coef = NonZeroInt(-5,5)
-
-# Set up the vectors to grab trig functions.
+# Set up the vectors of trig functions.
 
 trigvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
 
 p = RandInt(0,5)
 
 # The function that sage uses to calculate the answer
-ToCalcInt = (Coef*trigvec[p](freq*x))^(pwr)
+ToCalcInt = Coef*(trigvec[p](freq*x))^(pwr)
 
-# Now we need to create the function the student sees to integrate (the actual integrand). If flip=1 we have a negative exponent, so we convert each trig function to it's co-function in the trigvec1 and trigvec2 to pull appropriate functions. Otherwise, we can just use the same function that sage is using to calculate. If we didn't use cofunctions, sage would helpfully negate the negatives and kill it.
+# Now we need to create the function the student sees to integrate (the actual integrand). 
+# We need to generate vectors with cofunctions, otherwise sage would helpfully negate the negatives and kill it.
 
 if flip == 1:
     Intvec = [csc(x), sec(x), cos(x)*cot(x), cot(x), sin(x)*tan(x), tan(x)]
@@ -1313,13 +1299,12 @@ else:
     Intvec = [sin(x), cos(x), sec(x)*tan(x), tan(x), csc(x)*cot(x), cot(x)]
 
 # Actually create the integrand with the above vectors
-Integrand = (Coef*Intvec[p](freq*x))
+Integrand = Intvec[p](freq*x)
 
 # Calculate the actual power separately to prevent sage from trying to cancel negatives.
 Integrandpower = (pwr)*((-1)^flip)
 
-CalcInt = HyperSimp(integral(ToCalcInt(x),x))
-Ans = CalcInt
+Ans = HyperSimp(integral(ToCalcInt(x),x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1331,7 +1316,7 @@ Evaluate the integral. \\
 \input{Integral-Compute-0035.HELP.tex}
 
 \[
-\int \left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer[validator=sameDerivative]{\sage{Ans}+C}
+\int \sage{Coef}\left(\sage{Integrand}\right)^{\sage{Integrandpower}} dx=\answer[validator=sameDerivative]{\sage{Ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -3116,39 +3101,46 @@ Ans(x) = HyperSimp(integral(h(x),x))
 \latexProblemContent{
 \ifVerboseLocation This is Integration Compute Question 0101. \\ \fi
 \begin{problem}
-    We aim to calculate the following improper integral:
-    \[
-    \int \sage{h(x)} dx. 
-    \]
-        First, need to determine which integration technique would be appropriate here. 
-        \begin{multipleChoice}
-        \choice{We should just integrate directly, integrating the monomial term $\sage{G(x)}$ and the extra term $\sage{df(x)}$ separately to get our integral.}
-        \choice{We should integrate using (only) a $u$-substitution on the inner function: $u = \sage{b*x+c}$, and rewriting the $\sage{G(x)}$ in terms of $u$ }
-        \choice{We should integrate using (only) a $u$-substitution of: $u = \sage{G(x)}$, and rewriting the exponent of $\sage{df(x)}$ in terms of $u$}
-        \choice[correct]{We should use Integration by parts, using $u = \sage{G(x)}$ and $dv = \sage{df(x)}$}
-        \choice{We will should Integration by parts, using $u = \sage{df(x)}$ and $dv = \sage{G(x)}$}
-        \end{multipleChoice}
+We aim to calculate the following improper integral:
+\[
+\int \sage{h(x)} dx. 
+\]
+\input{Integral-Compute-0101.HELP.tex}
+
+First, need to determine which integration technique would be appropriate here. 
+
+\begin{multipleChoice}
+\choice{We should just integrate directly, integrating the monomial term $\sage{G(x)}$ and the extra term $\sage{df(x)}$ separately to get our integral.}
+\choice{We should integrate using (only) a $u$-substitution on the inner function: $u = \sage{b*x+c}$, and rewriting the $\sage{G(x)}$ in terms of $u$ }
+\choice{We should integrate using (only) a $u$-substitution of: $u = \sage{G(x)}$, and rewriting the exponent of $\sage{df(x)}$ in terms of $u$}
+\choice[correct]{We should use Integration by parts, using $u = \sage{G(x)}$ and $dv = \sage{df(x)}$}
+\choice{We will should Integration by parts, using $u = \sage{df(x)}$ and $dv = \sage{G(x)}$}
+\end{multipleChoice}
 
 \begin{problem}
-        Now that we have determined we need to use integration by parts (and chosen $u$ and $dv$), we need to compute $du$ and $v$;
+Now that we have determined we need to use integration by parts (and chosen $u$ and $dv$), we need to compute $du$ and $v$;
 
-        \[
-        \begin{array}{lr}
-        u = \sage{G(x)} & dv = \sage{df(x)} \\
-        du = \answer{\sage{g(x)}} & v = \answer{\sage{f(x)}} 
-        \end{array}
-        \]
+\[
+\begin{array}{lr}
+u = \sage{G(x)} & dv = \sage{df(x)} \\
+du = \answer{\sage{g(x)}} & v = \answer{\sage{f(x)}} 
+\end{array}
+\]
+
 \begin{problem}
 
-        Next we can determine the result of the integration by parts step.
-        \[
-        \int \sage{h(x)} = \answer{\sage{G(x)*f(x)}} - \int \answer{\sage{g(x)*f(x)}}dx
-        \]
+Next we can determine the result of the integration by parts step.
+\[
+\int \sage{h(x)} = \answer{\sage{G(x)*f(x)}} - \int \answer{\sage{g(x)*f(x)}}dx
+\]
+
 \begin{problem}
-    Now, using the previous steps, we can calculate our answer!
-        \[
-        \int \sage{h(x)} dx = \answer[validator=sameDerivative]{\sage{Ans(x)} + C}
-        \]
+
+Now, using the previous steps, we can calculate our answer!
+\[
+\int \sage{h(x)} dx = \answer[validator=sameDerivative]{\sage{Ans(x)} + C}
+\]
+
 \end{problem}
 \end{problem}
 \end{problem}
@@ -3211,60 +3203,71 @@ Ans = HyperSimp(factor(Ans))
 \latexProblemContent{
 \ifVerboseLocation This is Integration Compute Question 0102. \\ \fi
 \begin{problem}
-    We aim to calculate the following integral:
-    \[
-    \int \sage{Integrand(x)} dx. 
-    \]
-        First, we must complete the square in order to choose the Pythagorean expression the function inside the square root resembles. Complete the square and leave answer in terms of $x$.
-        \[
-        \begin{array}{lr}
-        \sage{radicand(x)}= (\answer{\sage{rad1}})^2 + \answer{\sage{rad2}} 
-        \end{array}
-        \]
-\begin{problem}
-        First, determine the Pythagorean expression the function inside the square root resembles. 
 
-        \begin{multipleChoice}
-        \choice{$\sage{fake1}$}
-        \choice[correct]{$\sage{pythForm}$}
-        \choice{$\sage{fake2}$}
-        \end{multipleChoice}
-\begin{problem}
-        In this case, 
+We aim to calculate the following integral:
 
-        \[
-        \begin{array}{lr}
-        a = \answer{\sage{b1}} 
-        \end{array}
-        \]
-\begin{problem}
-        This suggests the substitution should be
+\[
+\int \sage{Integrand(x)} dx. 
+\]
+\input{Integral-Compute-0102.HELP.tex}
 
-        \[
-        \begin{array}{lr}
-        x = \answer{\sage{sub(theta)}}  \\
-        dx = \answer{\sage{dtheta(theta)}} d\theta
-        \end{array}
-        \]
-\begin{problem}
-        Therefore, we rid the square root in the integrand by using the following substitution
+First, we must complete the square in order to choose the Pythagorean expression the function inside the square root resembles. Complete the square and leave answer in terms of $x$.
 
-        \[
-        \begin{array}{lr}
-         \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
-        \end{array}
-        \]
-\begin{problem}
-       Using our trig substitution, we can calculate the integral in terms of $\theta$
+\[
+\begin{array}{lr}
+\sage{radicand(x)}= (\answer{\sage{rad1}})^2 + \answer{\sage{rad2}} 
+\end{array}
+\]
 
-         \[
-        \int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
-        \]
 \begin{problem}
-    Now, using the previous steps, we can calculate our final answer in terms of $x$!
-        \[
-        \int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
-        \]
+First, determine the Pythagorean expression the function inside the square root resembles. 
+
+\begin{multipleChoice}
+\choice{$\sage{fake1}$}
+\choice[correct]{$\sage{pythForm}$}
+\choice{$\sage{fake2}$}
+\end{multipleChoice}
+\begin{problem}
+In this case, 
+
+\[
+\begin{array}{lr}
+a = \answer{\sage{b1}} 
+\end{array}
+\]
+
+\begin{problem}
+This suggests the substitution should be
+
+\[
+\begin{array}{lr}
+x = \answer{\sage{sub(theta)}}  \\
+dx = \answer{\sage{dtheta(theta)}} d\theta
+\end{array}
+\]
+
+\begin{problem}
+Therefore, we rid the square root in the integrand by using the following substitution
+
+\[
+\begin{array}{lr}
+ \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
+\end{array}
+\]
+
+\begin{problem}
+Using our trig substitution, we can calculate the integral in terms of $\theta$
+
+ \[
+\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
+\]
+
+\begin{problem}
+Now, using the previous steps, we can calculate our final answer in terms of $x$!
+\[
+\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
+\]
+
 \end{problem}
 \end{problem}
 \end{problem}
@@ -3325,49 +3328,50 @@ Ans = HyperSimp(integral(Integrand(x),x))
 \ifVerboseLocation This is Integration Compute Question 0103. \\ \fi
 
 \begin{problem}
-    We wish to calculate the following integral:
-    \[
-    \int \sage{Integrand(x)} dx. 
-    \]
+We wish to calculate the following integral:
+\[
+\int \sage{Integrand(x)} dx. 
+\]
+\input{Integral-Compute-0103.HELP.tex}
 
-        First, determine the Pythagorean expression the function inside the square root resembles. 
-        \begin{multipleChoice}
-        \choice{$\sage{fake1}$}
-        \choice[correct]{$\sage{pythForm}$}
-        \choice{$\sage{fake2}$}
-        \end{multipleChoice}
+First, determine the Pythagorean expression the function inside the square root resembles. 
+\begin{multipleChoice}
+\choice{$\sage{fake1}$}
+\choice[correct]{$\sage{pythForm}$}
+\choice{$\sage{fake2}$}
+\end{multipleChoice}
 \begin{problem}
-        In this case, 
-        \[
-        \begin{array}{lr}
-        a = \answer{\sage{b1}} 
-        \end{array}
-        \]
+In this case, 
+\[
+\begin{array}{lr}
+a = \answer{\sage{b1}} 
+\end{array}
+\]
 \begin{problem}
-        This suggests the substitution should be
-        \[
-        \begin{array}{lr}
-        x = \answer{\sage{sub(theta)}}  \\
-        dx = \answer{\sage{dtheta(theta)}} d\theta
-        \end{array}
-        \]
+This suggests the substitution should be
+\[
+\begin{array}{lr}
+x = \answer{\sage{sub(theta)}}  \\
+dx = \answer{\sage{dtheta(theta)}} d\theta
+\end{array}
+\]
 \begin{problem}
-        Therefore, we rid the square root in the integrand by using the following substitution
-        \[
-        \begin{array}{lr}
-         \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
-        \end{array}
-        \]
+Therefore, we rid the square root in the integrand by using the following substitution
+\[
+\begin{array}{lr}
+ \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
+\end{array}
+\]
 \begin{problem}
-       Using our trig substitution, we can calculate the integral in terms of $\theta$
-         \[
-        \int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
-        \]
+Using our trig substitution, we can calculate the integral in terms of $\theta$
+ \[
+\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
+\]
 \begin{problem}
-    Now, using the previous steps, we can calculate our final answer in terms of $x$!
-        \[
-        \int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
-        \]
+Now, using the previous steps, we can calculate our final answer in terms of $x$!
+\[
+\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
+\]
 \end{problem}
 \end{problem}
 \end{problem}
@@ -3424,37 +3428,38 @@ Ans = HyperSimp(integral(Integrand(x),x))
 \ifVerboseLocation This is Integration Compute Question 0104. \\ \fi
 
 \begin{problem}
-    We wish to calculate the following Trigonometric Integral:
-    \[
-    \int \sage{Integrand(x)} \mathop{dx}.
-    \]
+We wish to calculate the following Trigonometric Integral:
+\[
+\int \sage{Integrand(x)} \mathop{dx}.
+\]
+\input{Integral-Compute-0104.HELP.tex}
 
-        The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
-    
-\begin{problem}
-    Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
-    
-        \begin{multipleChoice}
-            \choice{We should use Integration by Parts with $u = \sage{evenfunc^pwr1}$ and $dv = \sage{oddfunc^pwr2}$.}
-            \choice{We should use Integration by Parts with $u = \sage{oddfunc^pwr2}$ and $dv = \sage{evenfunc^pwr1}$.}
-            \choice[correct]{We should use a Pythagorean identity to convert some (or all) of the $\sage{evenfunc}$ into some $\sage{oddfunc}$}
-            \choice{We should convert the entire expression to sines and cosines before attempting the integrate directly.}
-        \end{multipleChoice}
+The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
 
 \begin{problem}
+Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
 
-        What variant of the Pythagorean identity do we need to utilize?
-
-        \[
-	\sage{identL(x)}=\answer{\sage{identR(x)}}
-        \]
+\begin{multipleChoice}
+    \choice{We should use Integration by Parts with $u = \sage{evenfunc^pwr1}$ and $dv = \sage{oddfunc^pwr2}$.}
+    \choice{We should use Integration by Parts with $u = \sage{oddfunc^pwr2}$ and $dv = \sage{evenfunc^pwr1}$.}
+    \choice[correct]{We should use a Pythagorean identity to convert some (or all) of the $\sage{evenfunc}$ into some $\sage{oddfunc}$}
+    \choice{We should convert the entire expression to sines and cosines before attempting the integrate directly.}
+\end{multipleChoice}
 
 \begin{problem}
-        Utilizing the above identity and converting our integrand into something integrable we have:
 
-        \[
-        \int   \answer{\sage{usub(x)}} \mathop{dx}.
-        \]
+What variant of the Pythagorean identity do we need to utilize?
+
+\[
+\sage{identL(x)}=\answer{\sage{identR(x)}}
+\]
+
+\begin{problem}
+Utilizing the above identity and converting our integrand into something integrable we have:
+
+\[
+\int   \answer{\sage{usub(x)}} \mathop{dx}.
+\]
 \begin{problem}
 Finally, we have that
 \[
@@ -3502,36 +3507,37 @@ Ans = HyperSimp(integral(Integrand(x),x))
 \ifVerboseLocation This is Integration Compute Question 0105. \\ \fi
 
 \begin{problem}
-    We wish to calculate the following Trigonometric Integral:
-    \[
-    \int \sage{Integrand(x)} \mathop{dx}.
-    \]
+We wish to calculate the following Trigonometric Integral:
+\[
+\int \sage{Integrand(x)} \mathop{dx}.
+\]
+\input{Integral-Compute-0105.HELP.tex}
 
-       The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
-
-\begin{problem}
-
-    Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
-    
-        \begin{multipleChoice}
-        \choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
-        \choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
-        \choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
-        \choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
-        \end{multipleChoice}
+The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
 
 \begin{problem}
-        Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
 
-        \[
-            \int \answer{\sage{usub(u)}} \mathop{du}
-        \]
+Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
+
+\begin{multipleChoice}
+\choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
+\choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
+\choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
+\choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
+\end{multipleChoice}
+
+\begin{problem}
+Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
+
+\[
+    \int \answer{\sage{usub(u)}} \mathop{du}
+\]
 \begin{problem}
 
-    After applying the power rule and back-substituting to the variable $x$, our final answer is: 
-    \[
-    \int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
-    \]
+After applying the power rule and back-substituting to the variable $x$, our final answer is: 
+\[
+\int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
+\]
 
 \end{problem}
 \end{problem}
@@ -3567,43 +3573,44 @@ Ans = HyperSimp(integral(f2,x))
 \ifVerboseLocation This is Integration Compute Question 0106. \\ \fi
 
 \begin{problem}
-    We wish to calculate the following integral:
-    \[
-    \int \sage{Integrand} dx. 
-    \]
+We wish to calculate the following integral:
+\[
+\int \sage{Integrand} dx. 
+\]
+\input{Integral-Compute-0106.HELP.tex}
 
-        First, determine the Practial Fraction Decomposition of  $\sage{Integrand}$% DEBUG: $\sage{f1}=f1$ and $\sage{f2}=f2$
+First, determine the Practial Fraction Decomposition of  $\sage{Integrand}$% DEBUG: $\sage{f1}=f1$ and $\sage{f2}=f2$
 
-        \[
-        \begin{array}{lr}
-        \sage{Integrand} = \dfrac{A}{ \answer{\sage{f1denom}} } + \dfrac{Bx+C}{\answer{\sage{f2denom}} }
-        \end{array}
-        \]
+\[
+\begin{array}{lr}
+\sage{Integrand} = \dfrac{A}{ \answer{\sage{f1denom}} } + \dfrac{Bx+C}{\answer{\sage{f2denom}} }
+\end{array}
+\]
 \begin{problem}
-        Now, determine the constant coefficients, $A$, $B$, and $C$. 
+Now, determine the constant coefficients, $A$, $B$, and $C$. 
 
-         \[
-        \begin{array}{lr}
-        A = \answer{\sage{a1}}  \\
-        B = \answer{\sage{c}}\\
-        C = \answer{\sage{b1}}
-        \end{array}
-        \]
+ \[
+\begin{array}{lr}
+A = \answer{\sage{a1}}  \\
+B = \answer{\sage{c}}\\
+C = \answer{\sage{b1}}
+\end{array}
+\]
 \begin{problem}
-       Now we can rewrite the integral
+Now we can rewrite the integral
 
-        \[
-        \begin{array}{lr}
-         \int \sage{Integrand} dx = \int \answer{ \sage{f1 + f2} } dx 
-        \end{array}
-        \]
+\[
+\begin{array}{lr}
+ \int \sage{Integrand} dx = \int \answer{ \sage{f1 + f2} } dx 
+\end{array}
+\]
 
 \begin{problem}
 
-    Now, using the previous steps, we can calculate the integral:
-        \[
-       \int \sage{Integrand} dx = \answer[validator=sameDerivative]{  \sage{a1*log(abs(x-a))} + \sage{Ans} +C }
-        \]
+Now, using the previous steps, we can calculate the integral:
+\[
+\int \sage{Integrand} dx = \answer[validator=sameDerivative]{  \sage{a1*log(abs(x-a))} + \sage{Ans} +C }
+\]
 \end{problem}
 \end{problem}
 \end{problem}
