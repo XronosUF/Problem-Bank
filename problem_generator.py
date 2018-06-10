@@ -212,6 +212,12 @@ def create_intermediate(problem, file_name, copies):
 		 r"\usepackage{sagetex}",
 		 r"\renewcommand{\latexProblemContent}[1]{#1}",
 		 r"\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}",
+		 r"\renewenvironment{problem}{}{}",
+		 r"\renewenvironment{question}{}{}",
+		 r"\renewenvironment{exploration}{}{}",
+		 r"\renewenvironment{example}{}{}",
+		 r"\renewcommand{\answer}[2][]{#2}",
+		 r"\renewcommand{\choice}[2][]{\item #2}",
 		 r"\begin{document}",
 		 r"\input{Useful-Sage-Macros.tex}"])
 
@@ -444,10 +450,15 @@ def process_problem(text, input_file, destination_folder, folder = "",
 
 	problem_separator = "\n\n" + "%"*22 + "\n\n"
 
-	final_contents = problem['tags'] + r"{" + "\n"
+	final_contents = display_tags(parse_tags(problem['tags'])) + "\n"
 
+	final_contents += "\n".join([r"\ProblemFileHeader{" + f"{len(final_problems)}" + r"}",
+								 r"\ifquestionPull",
+								 r"\ifproblemToFind"])
 	final_contents += problem_separator.join(final_problems) 
-	final_contents += r"%}" 
+	final_contents += "\n".join([r"\fi             %% end of \ifproblemToFind near top of file",
+								 r"\fi             %% end of \ifquestionCount near top of file",
+								 r"\ProblemFileFooter"])
 	
 	tex_file = f"{file_name}.tex"
 	with open(tex_file, 'w') as f:
@@ -462,7 +473,7 @@ def process_problem(text, input_file, destination_folder, folder = "",
 		lines = []
 		lines.append("")
 		lines.append(problem['tags'][1:] + "{") # Omit the opening `%`
-		lines.append("\t" + os.sep.join([destination_folder,folder,tex_file]))
+		lines.append("\t" + r"\select@Question{" + os.sep.join([destination_folder,folder,tex_file]) + "}" )
 		lines.append("}")
 		lines.append("")
 		
@@ -588,17 +599,21 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 			if do_all:
 				os.rename(conflict_src,  conflict_dst)
 			else:
-				choice = input(f"Would you like to overwrite {conflict_dst} with {conflict_src}? Enter 'yes' or 'no' for this one, and 'all' to overwrite the remaining {len(conflict_list)+1} conflicts:\n")
+				choice = input(f"Would you like to overwrite {conflict_dst} with {conflict_src}?\n" \
+					+ f"Enter 'yes' or 'no' to decide for this one, and 'always' or 'never' to decide for the remaining {len(conflict_list)+1} conflicts:\n")
 				choice = choice.lower()
-				if choice == 'all':
+				if choice == 'always':
 					do_all = True
-					print(f"Okay, overwriting each of the remaining {len(conflict_list)} conflicts.")
+					print(f"Okay, overwriting each of the remaining {len(conflict_list)+1} conflicts.")
 					os.rename(conflict_src,  conflict_dst)
 				elif choice == 'yes':
-					print(f"Okay, overwriting {conflict_dst} with {conflict_src} just this once.")
+					print(f"Okay, overwriting {conflict_dst} with {conflict_src}.")
 					os.rename(conflict_src,  conflict_dst)
-				else:
-					print(f"Okay, not overwriting {conflict_dst} with {conflict_src}.")
+				elif choice == 'no':
+					print(f"Okay, NOT overwriting {conflict_dst} with {conflict_src}.")
+				elif choice == 'never':
+					print(f"Okay, not overwriting anything.")
+					break
 
 if __name__ == "__main__":
 
