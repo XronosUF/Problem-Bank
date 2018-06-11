@@ -50,7 +50,7 @@ Ans=Area
 \ifVerboseLocation This is Integration Compute Question 0001. \\ \fi
 \begin{problem}
 
-Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and \sagestr{Endpoint} endpoints.
 
 \input{Integral-Compute-0001.HELP.tex}
 
@@ -94,7 +94,7 @@ Ans=abs(Area)
 \ifVerboseLocation This is Integration Compute Question 0002. \\ \fi
 \begin{problem}
 
-Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{LeftEnd}$ to $x=\sage{RightEnd}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints. (Hint: Remember to check for negative area).
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{LeftEnd}$ to $x=\sage{RightEnd}$ using $\sage{n}$ rectangles and \sagestr{Endpoint} endpoints. (Hint: Remember to check for negative area).
 
 \input{Integral-Compute-0002.HELP.tex}
 
@@ -111,7 +111,7 @@ Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{LeftEnd}$ to 
 # Build the Interval
 a = NonZeroInt(0,8) 				# Left end point
 n = NonZeroInt(3,7)					# Number of rectangles
-b = a + n				# Fix right endpoint based on left endpoint and number of rec.
+b = a + n				            # Fix right endpoint based on left endpoint and number of rec.
 M = max( abs(a), abs(b)) 			# Max val useful for some functions
 m = min( abs(a), abs(b))			# Min val useful for some functions
 
@@ -140,7 +140,7 @@ Ans=abs(Area)
 \ifVerboseLocation This is Integration Compute Question 0003. \\ \fi
 \begin{problem}
 
-Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and $\sage{Endpoint}$ endpoints.
+Estimate the area under the graph of $f(x)=\sage{f}$ from $x=\sage{a}$ to $x=\sage{b}$ using $\sage{n}$ rectangles and \sagestr{Endpoint} endpoints.
 
 \input{Integral-Compute-0003.HELP.tex}
 
@@ -2837,7 +2837,7 @@ After performing the partial fraction decomposition
 \sage{Ftotal(x)}=\dfrac{A}{\sage{f1bot(x)}}+\dfrac{Bx+C}{\sage{f2bot(x)}}
 \]
 
-Then $\sage{letC1}+\sage{letC2} =\answer{\sage{ans}}$.\\
+Then $\sagestrmm{letC1}+\sagestrmm{letC2} =\answer{\sage{ans}}$.\\
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%

@@ -121,7 +121,7 @@ Convert the polar coordinates into Cartesian coordinates:
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@PolarEq, File@0005}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 r=NonZeroInt(1,10)
 p=RandInt(0,2)
 q=RandInt(0,2)
@@ -140,9 +140,9 @@ if p>0:
 
 #Define the Answer using sage char replacement
 if p==0:
-   Ans=2*yVal*sin(XTRtheta)
+   Ans=2*yVal*sin(theta)
 if p>0:
-   Ans=2*xVal*cos(XTRtheta)
+   Ans=2*xVal*cos(theta)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -161,11 +161,11 @@ Write the polar equation for a circle of radius $\sage{r}$ and center $(\sage{xV
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Rose, Sub@AreaPolar, File@0006}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,10)
 b=RandInt(2,10)
 p=RandInt(0,1)
-v1=[a*cos(b*XTRtheta), a*sin(b*XTRtheta)]
+v1=[a*cos(b*theta), a*sin(b*theta)]
 
 #Define the number of petals and the equation
 if mod(b,2)==0:
@@ -176,7 +176,7 @@ else:
 R=v1[p]
 
 #Define the Answer using sage char replacement
-Ans=integral(R^2,XTRtheta,0,pi/(2*b))
+Ans=integral(R^2,theta,0,pi/(2*b))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -200,11 +200,11 @@ Find the area enclosed by one petal.
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Rose, Sub@AreaPolar, File@0007}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,10)
 b=RandInt(2,10)
 p=RandInt(0,1)
-v1=[a*cos(b*XTRtheta), a*sin(b*XTRtheta)]
+v1=[a*cos(b*theta), a*sin(b*theta)]
 
 #Define the number of petals and the equation
 if mod(b,2)==0:
@@ -216,7 +216,7 @@ d=NonZeroInt(1,Petals-1)
 R=v1[p]
 
 #Define the Answer using sage char replacement
-Ans=integral(R^2,XTRtheta,0,pi/(2*b))*d
+Ans=integral(R^2,theta,0,pi/(2*b))*d
 \end{sagesilent}
 
 \latexProblemContent{
@@ -240,20 +240,20 @@ Find the area enclosed by $\sage{d}$ petal(s).
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@AreaPolar, File@0008}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,10)
 p=RandInt(0,1)
 q=RandInt(0,1)
-v1=[a*(1+(-1)^q*cos(XTRtheta)), a*(1+(-1)^q*sin(XTRtheta))]
+v1=[a*(1+(-1)^q*cos(theta)), a*(1+(-1)^q*sin(theta))]
 
 #Define the equation
 R=v1[p]
 
 #Define the Answer using sage char replacement
 if p==0:
-   Ans=integral(R^2,XTRtheta,0,pi)
+   Ans=integral(R^2,theta,0,pi)
 if p==1:
-   Ans=integral(R^2,XTRtheta,-pi/2,pi/2)
+   Ans=integral(R^2,theta,-pi/2,pi/2)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -271,21 +271,21 @@ Find the area enclosed by the cardioid $r=\sage{R}$.
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@AreaPolar, File@0009}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,10)
 b=RandInt(2,5)
 p=RandInt(0,1)
 q=RandInt(0,1)
-v1=[a*(1+(-1)^q*(1/b)*cos(XTRtheta)), a*(1+(-1)^q*(1/b)*sin(XTRtheta))]
+v1=[a*(1+(-1)^q*(1/b)*cos(theta)), a*(1+(-1)^q*(1/b)*sin(theta))]
 
 #Define the equation
 R=v1[p]
 
 #Define the Answer using sage char replacement
 if p==0: # Cosine version
-   Ans=integral(R^2,XTRtheta,0,pi)
+   Ans=integral(R^2,theta,0,pi)
 if p==1: # Sine version
-   Ans=integral(R^2,XTRtheta,-pi/2,pi/2)
+   Ans=integral(R^2,theta,-pi/2,pi/2)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -303,12 +303,12 @@ Find the area enclosed by the cardioid $r=\sage{R}$.
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Limacon, Sub@AreaPolar, File@0010}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,5)
 b=RandInt(2,5)
 p=RandInt(0,1)
 q=RandInt(0,1)
-v1=[a*(1+(-1)^q*b*cos(XTRtheta)), a*(1+(-1)^q*b*sin(XTRtheta))]
+v1=[a*(1+(-1)^q*b*cos(theta)), a*(1+(-1)^q*b*sin(theta))]
 
 #Define the equation
 R=v1[p]
@@ -316,14 +316,14 @@ R=v1[p]
 #Define the Answer using sage char replacement
 if p==0: ## If Cosine
    if q==0:  #If Positve b
-      Ans=integral(R^2,XTRtheta,arccos(-1/b),pi)
+      Ans=integral(R^2,theta,arccos(-1/b),pi)
    else: #If Negative b
-      Ans=integral(R^2,XTRtheta,0,arccos(1/b))
+      Ans=integral(R^2,theta,0,arccos(1/b))
 if p==1: ## If Sine
    if q==0:  #If Positive b
-      Ans=integral(R^2,XTRtheta,arcsin(-1/b),3*pi/2)
+      Ans=integral(R^2,theta,arcsin(-1/b),3*pi/2)
    else:  ##If Negative b
-      Ans=integral(R^2,XTRtheta,arcsin(1/b),pi/2)
+      Ans=integral(R^2,theta,arcsin(1/b),pi/2)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -341,11 +341,11 @@ Find the area enclosed by the inner loop of the Lima\c{c}on $r=\sage{R}$.
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@PolarGraph, Sub@AreaPolar, File@0011}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,10)
 p=RandInt(0,1)
 q=RandInt(0,1)
-v1=[a*(1+(-1)^q*cos(XTRtheta)), a*(1+(-1)^q*sin(XTRtheta))]
+v1=[a*(1+(-1)^q*cos(theta)), a*(1+(-1)^q*sin(theta))]
 
 #Define the equation
 R1=v1[p]
@@ -355,14 +355,14 @@ RSquared=R1^2-R2^2
 #Define the Answer using sage char replacement
 if p==0: # COSINE
    if q==0: #POSITIVE
-      Ans=integral(RSquared,XTRtheta,0,pi/2)
+      Ans=integral(RSquared,theta,0,pi/2)
    else: #NEGATIVE
-      Ans=integral(RSquared,XTRtheta,pi/2,pi)
+      Ans=integral(RSquared,theta,pi/2,pi)
 if p==1: #SINE
    if q==0: #POSITIVE
-      Ans=integral(RSquared,XTRtheta,0,pi/2)
+      Ans=integral(RSquared,theta,0,pi/2)
    else: #NEGATIVE
-      Ans=integral(RSquared,XTRtheta,pi,3*pi/2)
+      Ans=integral(RSquared,theta,pi,3*pi/2)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -380,11 +380,11 @@ Find the are of the region that lies inside $r_1=\sage{R1}$ and outside $r_2=\sa
 %%\tagged{Ans@ShortAns, Type@Compute, Topic@Polar, Sub@Cardioid, Sub@PolarGraph, Sub@AreaPolar, File@0012}{
 \begin{sagesilent}
 # Define variables and constants/exponents
-var('XTRtheta')
+var('theta')
 a=RandInt(1,10)
 p=RandInt(0,1)
-v1=[a*(1+(1/a)*cos(XTRtheta)), a*(1+(1/a)*sin(XTRtheta))]
-v2=[(a+1)*cos(XTRtheta), (a+1)*sin(XTRtheta)]
+v1=[a*(1+(1/a)*cos(theta)), a*(1+(1/a)*sin(theta))]
+v2=[(a+1)*cos(theta), (a+1)*sin(theta)]
 
 #Define the equation
 R1=v1[p]
@@ -392,9 +392,9 @@ R2=v2[p]
 
 #Define the Answer using sage char replacement
 if p==0: # COSINE
-   Ans=integral(R1^2,XTRtheta,0,pi)-integral(R2^2,XTRtheta,0,pi/2)  
+   Ans=integral(R1^2,theta,0,pi)-integral(R2^2,theta,0,pi/2)  
 if p==1: #SINE
-   Ans=integral(R1^2,XTRtheta,-pi/2,pi/2)-integral(R2^2,XTRtheta,0,pi/2)
+   Ans=integral(R1^2,theta,-pi/2,pi/2)-integral(R2^2,theta,0,pi/2)
 \end{sagesilent}
 
 \latexProblemContent{
