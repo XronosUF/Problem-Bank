@@ -301,13 +301,19 @@ def replace_sage(latex_problems, replacements):
 	# print(replacements)
 	# print("\n"*5)
 	sage_begin = r"\sage{"
+	sagestrmm_begin = r"\sagestrmm{"
+	sagestr_begin = r"\sagestr{"
+	begins = [sage_begin, sagestr_begin, sagestrmm_begin]
 
 	for problem_idx, latex_problem in enumerate(latex_problems):
-		while sage_begin in latex_problem:
-			begin_idx = latex_problem.index(sage_begin)
+		while any(begin in latex_problem for begin in begins):
+			begin_indices = [(begin,latex_problem.find(begin)) for begin in begins]
+			begin_indices = [(begin, idx) for begin, idx in begin_indices if idx != -1]
+
+			begin, begin_idx = min(begin_indices, key=lambda x: x[1]) # Get the begin, idx pair with the minimum idx.
 
 			# Index of opening brace.
-			begin_brace_idx = begin_idx + len(sage_begin) - 1
+			begin_brace_idx = begin_idx + len(begin) - 1
 
 			# Index of closing brace
 			try:
