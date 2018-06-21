@@ -186,56 +186,54 @@ def parse_problem(text, verbose=False):
 
 	return problem_dict
 
-def find_file_name(latex_problem):
-	"""Given the `\latexProblemContent{...}` block, return the intended file name.
+# def find_file_name(latex_problem):
+# 	"""Given the `\latexProblemContent{...}` block, return the intended file name.
 
 
-	"""
-	input_begin = r"\input{"
-	help_tex = r".HELP.tex"
-	for line in latex_problem.splitlines():
-		if help_tex in line:
-			input_begin_idx = line.index(input_begin) + len(input_begin)
-			input_end_idx   = line.index(help_tex)
-			file_name = line[input_begin_idx:input_end_idx]
-			break
-	else:
-		# If we're here, there was no `\input{_.HELP.tex}`.
-		raise Exception(r"No file was input! Was the inputting of the help file commented out?")
+# 	"""
+# 	input_begin = r"\input{"
+# 	help_tex = r".HELP.tex"
+# 	for line in latex_problem.splitlines():
+# 		if help_tex in line:
+# 			input_begin_idx = line.index(input_begin) + len(input_begin)
+# 			input_end_idx   = line.index(help_tex)
+# 			file_name = line[input_begin_idx:input_end_idx]
+# 			break
+# 	else:
+# 		# If we're here, there was no `\input{_.HELP.tex}`.
+# 		raise Exception(r"No file was input! Was the inputting of the help file commented out?")
 
-	return file_name
+# 	return file_name
 
-def create_intermediate(problem, file_name, copies):
-	preprocess_header = "\n".join( 
-		[r"\documentclass{ximera}",
-		 r"\usepackage{PackageLoader}",
-		 r"\usepackage{sagetex}",
-		 r"\renewcommand{\latexProblemContent}[1]{#1}",
-		 r"\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}",
-		 r"\renewenvironment{problem}{}{}",
-		 r"\renewenvironment{question}{}{}",
-		 r"\renewenvironment{exploration}{}{}",
-		 r"\renewenvironment{example}{}{}",
-		 r"\renewcommand{\answer}[2][]{#2}",
-		 r"\renewcommand{\choice}[2][]{\item #2}",
-		 r"\begin{document}",
-		 r"\input{Useful-Sage-Macros.tex}"])
+def create_intermediate(problem_key, problem_dict, copies):
+
+	preprocess_header = "\n".join([
+		r"\documentclass{ximera}",
+		r"\usepackage{PackageLoader}",
+		r"\usepackage{sagetex}",
+		r"\renewcommand{\latexProblemContent}[1]{#1}",
+		r"\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}",
+		r"\renewenvironment{problem}{}{}",
+		r"\renewenvironment{question}{}{}",
+		r"\renewenvironment{exploration}{}{}",
+		r"\renewenvironment{example}{}{}",
+		r"\renewcommand{\answer}[2][]{#2}",
+		r"\renewcommand{\choice}[2][]{\item #2}",
+		r"\begin{document}",
+		r"\input{Useful-Sage-Macros.tex}"])
 
 	preprocess_footer = "\n".join( 
 		[r"\end{document}"])
 
-	create_help(file_name)
-	# This will create the help file (if it doesn't exist).
+	intermediate_file = f"INTERMEDIATE_{problem_key}"
 
-	intermediate_file = f"INTERMEDIATE_{file_name}"
-
-	one_sage_problem = "\n".join([problem['sage'],problem['latexproblem']])
+	one_sage_problem = "\n".join([problem_dict['sage'],problem_dict['latexproblem']])
 
 	with open(f"{intermediate_file}.tex", 'w') as f:
-		intermediate_contents = "\n".join([preprocess_header] + [one_sage_problem]*copies + [preprocess_footer])
+		intermediate_contents = "\n".join([preprocess_header] 
+										+ [one_sage_problem]*copies 
+										+ [preprocess_footer])
 		f.write(intermediate_contents)
-
-	return file_name
 
 def remove_comments(text, comment_char = r"%"):
 	old_lines = text.split("\n")
@@ -247,14 +245,13 @@ def remove_comments(text, comment_char = r"%"):
 
 	return "\n".join(new_lines)
 
-def create_help(file_name):
-	"""Create the help file if it doesn't exist."""
-	help_tex = r".HELP.tex"
-	help_file = file_name + help_tex
+# def create_help(problem_key):
+# 	"""Create the help file if it doesn't exist."""
+# 	help_tex = f"{problem_key}.HELP.tex"
 
-	with open(help_file,'a'):
-		# This will open the help file in 'append mode', creating it if it doesn't exist.
-		pass
+# 	with open(help_tex,'a'):
+# 		# This will open the help file in 'append mode', creating it if it doesn't exist.
+# 		pass
 
 def extract_replacements(file_name):
 	"""Extract replacements from the .sagetex.sout file.
@@ -325,6 +322,14 @@ def replace_sage(latex_problems, replacements):
 
 			replacement = replacements.pop(0)
 
+			text_start = r"\text{\texttt{"
+			text_end   = r"}}"
+			if replacement.startswith(text_start) and replacement.endswith(text_end):
+				replacement = r"\text{" + replacement[len(text_start):-len(text_end)] + r"}" 
+
+			if begin == sagestrmm_begin:
+				replacement = r"\text{" + replacement + r"}"
+
 			latex_problem = latex_problem[:begin_idx] + replacement + latex_problem[end_idx:]
 
 		latex_problems[problem_idx] = latex_problem
@@ -336,6 +341,7 @@ def cleanup(intermediate_file):
 	"""Delete files which are no longer needed."""
 	itermediate_suffixes = ['.aux', '.ids', '.jax', '.log', '.oc', '.out', '.pdf', '.tex', \
 							'.sagetex.sage', '.sagetex.sage.py', '.sagetex.scmd', '.sagetex.sout']
+
 	files_to_remove = [intermediate_file+suffix for suffix in itermediate_suffixes]
 
 	for file in files_to_remove:
@@ -355,6 +361,12 @@ def parse_tags(tags_string):
 
 	return tag_dict
 
+def display_tags(tag_dict):
+	s = ""
+	for key, val_list in sorted(tag_dict.items()):
+		s += f"% {key:10s}" + " : " + ", ".join(val_list) + "\n"
+	return s
+
 def create_file_name(tags_dict, verbose = False):
 	fields = ['Topic', 'Type', 'File']
 	for field in fields:
@@ -362,15 +374,10 @@ def create_file_name(tags_dict, verbose = False):
 		assert l >= 1, f"No {field} given!"
 		assert l <= 1, f"More than one {field} given: {tags_dict[field]}"
 
-	s = "-".join(tags_dict[field][0] for field in fields)
+	# s = "-".join(tags_dict[field][0] for field in fields)
+	s = f"{tags_dict['Topic'][0]}-{tags_dict['Type'][0]}-{tags_dict['File'][0]}"
 	if verbose:
 		print(f"Parsed the file name as: {s}")
-	return s
-
-def display_tags(tag_dict):
-	s = ""
-	for key, val_list in sorted(tag_dict.items()):
-		s += f"% {key:10s}" + " : " + ", ".join(val_list) + "\n"
 	return s
 
 def postprocessing():
@@ -396,48 +403,75 @@ def postprocessing():
 	# print(open_command_final)
 	# os.system(open_command_final)
 
-def process_problem(text, input_file, destination_folder, folder = "",
+def has_help(latexProblem):
+	help_start = r"\input{"
+	help_end   = r".HELP.tex}"
+		
+	for line in latexProblem.split("\n"):
+		line = line.strip()
+		if line.startswith(help_start) and line.endswith(help_end):
+			help_file_input = line[len(help_start):-1]
+			return help_file_input
+	
+	return False
+		# assert problem_dict['guided'],
+		# 	"This problem is not a guided problem, but does not input a help file!"
+	
+
+def process_problem(problem_key, problem_dict, input_file, folder = "",
 	copies_initially = 1000, final_copies = 500, quiet = False, verbose = False):
 
-	########## Setup: parse file, get its name, make intermediate files ##########
+	intermediate_file = f"INTERMEDIATE_{problem_key}"
 
-	problem = parse_problem(text, verbose=verbose)
+	parsed_tags = parse_tags(problem_dict['tags'])
 
 	if verbose:
-		for key, val in sorted(problem.items()):
-			print(f"key={key}")
-			print(f"val={val}")
+		for key, val in parsed_tags.items():
+			print(f"key = {key}, val={val}")
 
-	tags_dict = parse_tags(problem['tags'])
-	file_name = create_file_name(tags_dict) # This is of the form "{Topic}-{Type}-{File}"
+	help_file_input = has_help(problem_dict['latexproblem'])
+	if help_file_input:
+		help_tex = f"{problem_key}.HELP.tex"
+		assert help_file_input == help_tex, "You appear to be inputting the wrong help file!\n" \
+											+ f"You're inputting {help_file_input} instead of {help_tex}."
+		with open(help_tex,'a') as f:
+			pass
+	else:
+		assert "Guided" in parsed_tags['Sub'], f"No file input in a non-guided problem: {problem_key}"
+		help_tex = None
 
-	intermediate_file = f"INTERMEDIATE_{file_name}"
-	create_intermediate(problem, file_name, copies_initially)
+	create_intermediate(problem_key, problem_dict, copies_initially)
 	# This will create the intermediate files, namely the help file and the file to run pdflatex on.
 
 	########## Run pdflatex and sage ##########
 
 	pdflatex_command = "pdflatex "
 	pdflatex_options = []
+	pdflatex_options.append(f"{intermediate_file}.tex")
 
 	if quiet:
-		pdflatex_options.append(r">/dev/null 2>&1")
+		pdflatex_options.append(r">/dev/null")
 	
-	pdflatex_options.append(f"{intermediate_file}.tex")
 	pdflatex_command += " ".join(pdflatex_options) 
-	
 	print(pdflatex_command)
 	os.system(pdflatex_command)
 
-	sage_command = f"sage {intermediate_file}.sagetex.sage"
+	##########
+
+	sage_command = f"sage "
+	sage_options = []
+	sage_options.append(f"{intermediate_file}.sagetex.sage")
+
 	if quiet:
-		sage_command += " >/dev/null 2>&1" # Redirect output to nowhere. (run quietly)
+		sage_options.append(r">/dev/null 2>&1") # Redirect output to nowhere. (run quietly)
+
+	sage_command += " ".join(sage_options)
 	print(sage_command)
 	os.system(sage_command)
 
 	########## Extract and make replacements ##########
 
-	one_final_problem = problem['latexproblem']
+	one_final_problem = problem_dict['latexproblem']
 	problems = [one_final_problem] * copies_initially
 
 	replacements = extract_replacements(intermediate_file)
@@ -456,7 +490,7 @@ def process_problem(text, input_file, destination_folder, folder = "",
 
 	problem_separator = "\n\n" + "%"*22 + "\n\n"
 
-	final_contents = display_tags(parse_tags(problem['tags'])) + "\n"
+	final_contents = display_tags(parsed_tags) + "\n"
 
 	final_contents += "\n".join([r"\ProblemFileHeader{" + f"{len(final_problems)}" + r"}",
 								 r"\ifquestionPull",
@@ -466,160 +500,304 @@ def process_problem(text, input_file, destination_folder, folder = "",
 								 r"\fi             %% end of \ifquestionCount near top of file",
 								 r"\ProblemFileFooter"])
 	
-	tex_file = f"{file_name}.tex"
-	with open(tex_file, 'w') as f:
+	file_tex = f"{problem_key}.tex"
+	with open(file_tex, 'w') as f:
 		f.write(final_contents)
-
-	help_tex = r".HELP.tex"
-	help_file = file_name + help_tex
-
-	########## Write to input file ##########
-
-	with open(input_file, 'a') as f:
-		lines = []
-		lines.append("")
-		lines.append(problem['tags'][1:] + "{") # Omit the opening `%`
-		lines.append("\t" + r"\select@Question{" + os.sep.join([destination_folder,folder,tex_file]) + "}" )
-		lines.append("}")
-		lines.append("")
-		
-		f.write("\n".join(lines))
 
 	cleanup(intermediate_file)
 
-	return (tex_file, help_file)
+	if help_tex and os.path.abspath(destination_folder) != os.path.abspath(os.getcwd()):
+		os.remove(help_tex)
 
-def main(destination_folder = None, quiet = False, copies_initially = 1000, verbose = False):
-	try:
-		archetype_file = sys.argv[1]
-		if archetype_file[-4:] == '.tex':
-			# print(archetype_file)
-			archetype_file = archetype_file[:-4]
-			# print(archetype_file)
-	except:
-		# input_file = input("Enter name of file to process: ")
-		raise Exception("Need a file to operate on!")
+	return (file_tex, help_tex)
 
-	begin = r"Question-List-Raw-"
-	begin_len = len(begin)
-
-	if archetype_file[:begin_len] == begin:
-		folder = archetype_file[begin_len:]
-	else:
-		folder = archetype_file + "-Problems"
-
-	if verbose:
-		print(f"Destination folder = {destination_folder}")
-
-	######## Make the folder in the current working directory ########
-
-	try:
-		os.mkdir(folder)
-	except OSError as exc:
-		if exc.errno != errno.EEXIST:
-			raise
-		pass
-
-	######## Create the input file ########
-
-	input_file = f'{folder}-Input.tex'
-
-	if verbose:
-		print(f"Input file = {input_file}")
-
-	with open(input_file, 'w') as f:
-		file_path = os.path.abspath(f"{archetype_file}.tex")
-
-		header =     [r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"]
-		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				Header Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-		header.append(r"")
-		header.append(r"%Debug line. to activate this check, put \Verbosetrue at the start of a file calling this.")
-		header.append(r"\ifVerbose{Input File Called: " + f"{file_path}" + r"}\fi")
-		header.append(r"")
-		header.append(r"")
-		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				File Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-		header.append(r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-		header.append(r"")
-		header.append(r"")
-		f.write("\n".join(header))
-
-	if destination_folder is None:
-		cwd = os.getcwd()
-		destination_folder = cwd
+def preprocess_file(archetype_file, quiet = False, verbose = False):
+	"""Pull the problems out of the file, ensuring there are no (file name) duplicates.
+	"""
 
 	######## Generate problems as a group, to catch errors early ########
 	
 	all_problems = list(gen_problems(archetype_file, verbose=verbose))
 
-	######## Make the destination directories first ########
+	########## parse file, get its name, make intermediate files ##########
 
-	try:
-		os.mkdir(destination_folder)
-	except OSError as exc:
-		if exc.errno != errno.EEXIST:
-			raise
-		pass
+	problems_dict = dict()
 
-	try: 
-		os.mkdir(os.sep.join([destination_folder, folder]))
-	except OSError as exc:
-		if exc.errno != errno.EEXIST:
-			raise
-		pass
+	for problem_text in all_problems:
+		problem = parse_problem(problem_text, verbose=verbose)
+		file_name = create_file_name(parse_tags(problem['tags'])) # This is of the form "{Topic}-{Type}-{File}"
+		assert file_name not in problems_dict, f"Repeat of {file_name}, aborting the processing of {archetype_file}."
 
-	######## Process problems, catching conflicts ########
+		problems_dict[file_name] = problem
 
-	conflict_list = []
+	return problems_dict
 
-	for problem in all_problems:
-		tex_file, help_file = process_problem(problem, input_file, destination_folder, \
-			copies_initially = copies_initially, folder = folder, quiet = quiet, verbose = verbose)
+def process_file(folder, file_dict, destination_folder, overwrite_all = False):
+	"""
+		Parameters:
+			folder				: Simple file name, e.g. 'Series'
+			this_dict			: Dictionary of the form
+				key : 'name' 				| val : name of file, e.g. 'Question-List-Raw-Series'
+				key : 'path' 				| val : path to file, e.g. '/Documents/Problems/Question-List-Raw-Series.tex'
+				key : 'problems'			| val : dictionary of the form
+					key: problem file name, e.g. 'Series-Compute-0001' | val = dictionary for the problem, see parse_problem
+				key : 'final destination' 	| val : final destination folder, e.g. '/Documents/end_zone/Series'
+				key : 'conflicts'			| val : list of conflicted files, e.g. ['Series-Compute-0001.tex', 'Series-Compute-0002.tex',...]
 
-		destination_tex  = os.sep.join([destination_folder,folder,tex_file])
-		destination_help = os.sep.join([destination_folder,folder,help_file])
+			destination_folder 	: The folder which the final folder will end up in,
+								  e.g. '/Documents/end_zone' 
 
-		if os.path.isfile(destination_tex):
-			conflict_list.append((tex_file, destination_tex))
+		Returns:
+
+	"""
+
+	if overwrite_all:
+		######## Create the input file ########
+
+		input_file = f"{folder}-Input.tex"
+
+		file_path = file_dict['path']
+
+		if verbose:
+			print(f"Processing {file_path}")
+			print(f"Input file = {input_file}")
+
+		with open(input_file, 'w') as f:
+			file_path = os.path.abspath(f"{file_path}.tex")
+
+			header = "\n".join([
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				Header Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+				r"",
+				r"%Debug line. to activate this check, put \Verbosetrue at the start of a file calling this.",
+				r"\ifVerbose{Input File Called: " + f"{file_path}" + r"}\fi",
+				r"",
+				r"",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				File Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"",
+				r""])
+			f.write(header)
+
+		######## Process problems ########
+
+		for problem_key, problem_dict in sorted(file_dict['problems'].items()):
+			file_tex, help_tex = process_problem(problem_key, problem_dict, input_file, destination_folder,
+				copies_initially = copies_initially, quiet = quiet, verbose = verbose)
+
+			file_dict['problems'][problem_key]['help tex'] = help_tex
+
+			######## Write to input file ########
+
+			destination_tex  = os.sep.join([file_dict['final destination'],file_tex])
+			destination_help = os.sep.join([file_dict['final destination'],help_tex])
+
+			with open(input_file, 'a') as f:
+				lines = []
+				lines.append("")
+				lines.append(problem_dict['tags'][1:] + "{") # Omit the opening `%`
+				lines.append("\t" + r"\select@Question{" + os.sep.join([file_dict['final destination'],file_tex]) + "}" )
+				lines.append("}")
+				lines.append("")
+				
+				f.write("\n".join(lines))
+
+			######## Overwrite destination ########
+
+			os.rename(file_tex,  destination_tex)
+
+			######## Ensure destination help file exists, but don't overwrite it ########
+
+			if help_tex:
+				with open(destination_help, 'a') as f:
+					pass
+
+		destination_input = os.sep.join([destination_folder,input_file])
+		
+		if os.path.isfile(destination_input):
+			os.rename(input_file, destination_input)
 		else:
-			os.rename(tex_file,  destination_tex)
-
-		os.rename(help_file, destination_help)
-
-	destination_input = os.sep.join([destination_folder,input_file])
-	
-	if os.path.isfile(destination_input):
-		os.rename(input_file, destination_input)
-	else:
-		shutil.move(input_file, destination_folder)
+			shutil.move(input_file, destination_folder)
 
 	######## Resolve conflicts ########
+	#
+	# if conflict_list:
+	# 	conflict_list = sorted(conflict_list)
+	# 	do_all = overwrite_all
+	# 	print(f"There were {len(conflict_list)} conflicts!")
+	# 	while conflict_list:
+	# 		conflict_src, conflict_dst = conflict_list.pop(0)
+	# 		if do_all:
+	# 			os.rename(conflict_src,  conflict_dst)
+	# 		else:
+	# 			choice = input(f"Would you like to overwrite {conflict_dst} with {conflict_src}?\n" \
+	# 				+ f"Enter 'yes' or 'no' to decide for this one, and 'always' or 'never' to decide for the remaining {len(conflict_list)+1} conflicts:\n")
+	# 			choice = choice.lower()
+	# 			if choice == 'always':
+	# 				do_all = True
+	# 				print(f"Okay, overwriting each of the remaining {len(conflict_list)+1} conflicts.")
+	# 				os.rename(conflict_src,  conflict_dst)
+	# 			elif choice == 'yes':
+	# 				print(f"Okay, overwriting {conflict_dst} with {conflict_src}.")
+	# 				os.rename(conflict_src,  conflict_dst)
+	# 			elif choice == 'no':
+	# 				print(f"Okay, NOT overwriting {conflict_dst} with {conflict_src}.")
+	# 			elif choice == 'never':
+	# 				print(f"Okay, not overwriting anything.")
+	# 				break
 
-	if conflict_list:
-		conflict_list = sorted(conflict_list)
-		do_all = False
-		print(f"There were {len(conflict_list)} conflicts!")
-		while conflict_list:
-			conflict_src, conflict_dst = conflict_list.pop(0)
-			if do_all:
-				os.rename(conflict_src,  conflict_dst)
+	os.rmdir(folder)
+
+
+def main(destination_folder = None, quiet = False, copies_initially = 1000, verbose = False):
+
+	######## Determine the files to operate on ########
+
+	try:
+		user_input = sys.argv[1]
+
+		files_dict = dict()
+
+		begin = 'Question-List-Raw-'
+		end   = '.tex'
+
+		def is_archetype_file(file):
+			return file.startswith(begin) and file.endswith(end)
+
+		if os.path.isdir(user_input):
+			# Input is a directory.
+			archetype_files = [file for file in os.listdir(user_input) if is_archetype_file(file)]
+
+			for file in archetype_files:
+				file_key = file[len(begin):-len(end)] # e.g. 'Series'
+				files_dict[file_key] = {'path' : os.path.join(user_input,file), 'name' : file[:-len(end)]}
+
+		else:
+			# Input is something else.
+			file = user_input
+			assert is_archetype_file(file), \
+				"That's not an archetype file or a directory! (File name is wrong, at least.)"
+			
+			file_key = file[len(begin):-len(end)] # e.g. 'Series'
+			files_dict[file_key] = {'path' : file, 'name' : file[:-len(end)]}
+
+	except:
+		# input_file = input("Enter name of file to process: ")
+		raise Exception("Need something to operate on!")
+
+	print("Processing each of the following files:")
+	print("\n".join([files_dict[file_key]['name'] for file_key in files_dict]))
+
+	######## Ready the destination ########
+
+	if destination_folder is None:
+		cwd = os.getcwd()
+		destination_folder = cwd
+
+	######## Preprocess each file ########
+
+	for file_key in files_dict:
+
+		# e.g. file_key = 'Series'
+		#	   file_dict = dictionary containing:
+		#			key = 'name'	; val = 'Question-List-Raw-Series'
+		#			key = 'path'	; val = '/User/spam/ham/eggs/Question-List-Raw-Series.tex'
+
+		######## Do some preprocessing early ########
+		try:
+			files_dict[file_key]['problems'] = preprocess_file(files_dict[file_key]['name'])
+		except KeyboardInterrupt:
+			raise KeyboardInterrupt
+		except Exception as exc:
+			print(f"Encountered an error in preprocessing {files_dict[file_key]['name']}, moving on:\n{exc}")
+			del files_dict[file_key]
+			continue
+
+		######## Make the folder in the current working directory ########
+		try:
+			os.mkdir(file_key)
+		except OSError as exc:
+			if exc.errno != errno.EEXIST:
+				raise
+			pass
+
+		final_destination = os.sep.join([destination_folder, file_key])
+
+		files_dict[file_key]['final destination'] = final_destination
+
+		######## Make the folder in the destination folder ########
+		try: 
+			os.mkdir(final_destination)
+		except OSError as exc:
+			if exc.errno != errno.EEXIST:
+				raise
+			pass
+
+		######## Note conflicts, problems which are already generated ########
+		files_dict[file_key]['conflicts'] = []
+
+		for problem in files_dict[file_key]['problems']:
+			problem_tex = problem + ".tex"
+			if os.path.isfile(os.sep.join([final_destination, problem_tex])):
+				files_dict[file_key]['conflicts'].append(problem_tex)
+
+	if verbose:
+		for file, dictionary in files_dict.items():
+			ast = r"*"*13
+			print(f"{ast}\n{file}\n{ast}")
+			for key, val in dictionary.items():
+				print(f"{ast}\n{key}\n{ast}")
+				print(str(val)[:300])
+
+	######## Handle conflicts ########
+
+	conflicted_files = [file_key for file_key in files_dict if files_dict[file_key]['conflicts']]
+
+	if conflicted_files:
+		print(f"There were conflicts in {len(conflicted_files)} of the archetype files!")
+		for file in conflicted_files:
+			print(f"{file}: {len(files_dict[file]['conflicts'])} conflicts")
+
+		overwrite_all_list = []
+
+		while True:
+			response = input("How many (entire archtype files) would you like to overwrite? (all, some, none): ")
+			response = response.lower()
+
+			if response == 'all':
+				overwrite_all_list = conflicted_files
+				break
+			elif response == 'some':
+				for file in conflicted_files:
+					while True:
+						file_response = input(f"Would you like to overwrite {file}? (yes/no): ")
+						file_response = file_response.lower()
+						if file_response in ['y','yes']:
+							overwrite_all_list.append(file)
+							break
+						elif file_response in ['n','no']:
+							break
+						else:
+							print("Hmm, I don't understand. Enter 'yes' or 'no'.")
+				break
+			elif response == 'none':
+				break
 			else:
-				choice = input(f"Would you like to overwrite {conflict_dst} with {conflict_src}?\n" \
-					+ f"Enter 'yes' or 'no' to decide for this one, and 'always' or 'never' to decide for the remaining {len(conflict_list)+1} conflicts:\n")
-				choice = choice.lower()
-				if choice == 'always':
-					do_all = True
-					print(f"Okay, overwriting each of the remaining {len(conflict_list)+1} conflicts.")
-					os.rename(conflict_src,  conflict_dst)
-				elif choice == 'yes':
-					print(f"Okay, overwriting {conflict_dst} with {conflict_src}.")
-					os.rename(conflict_src,  conflict_dst)
-				elif choice == 'no':
-					print(f"Okay, NOT overwriting {conflict_dst} with {conflict_src}.")
-				elif choice == 'never':
-					print(f"Okay, not overwriting anything.")
-					break
+				print("Hmm, I don't understand. Let's try again.")
+
+		for file_key in conflicted_files:
+			if file_key not in overwrite_all_list:
+				del files_dict[file_key]
+			else:
+				for problem_tex in files_dict[file_key]['conflicts']:
+					os.remove(os.sep.join([files_dict[file_key]['final destination'],problem_tex]))
+
+	######## Proceed, processing the remaining ones ########
+	
+	for file_key in files_dict:
+		process_file(file_key, files_dict[file_key], destination_folder, overwrite_all = True)
 
 if __name__ == "__main__":
 
@@ -628,12 +806,12 @@ if __name__ == "__main__":
 	# copies_initially = 1000
 	# verbose = False # Only use for debugging the problem parses and whatnot for now.
 
-	# destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
+	destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
 
-	destination_folder = r"/root/texmf/tex/latex/QuestionBanks/Problem-Bank"
-	quiet = True
-	copies_initially = 600 
-	verbose = False # Only use for debugging the problem parses and whatnot for now.
+	# destination_folder = r"/root/texmf/tex/latex/QuestionBanks/Problem-Bank"
+	quiet = False
+	copies_initially = 10**0
+	verbose = True # Only use for debugging the problem parses and whatnot for now.
 
 	main(destination_folder, quiet, copies_initially, verbose=verbose)
 
