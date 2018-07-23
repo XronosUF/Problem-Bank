@@ -1,0 +1,820 @@
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Func@Arctrig, File@0080}{
+\begin{sagesilent}
+# Define coefficients, powers, etc
+A = NonZeroInt(-5,5)
+B = RandInt(-5,5)
+C = NonZeroInt(-10,10)
+
+
+# Vector of possible arctrig functions
+funcvec = [arcsin(x), arccos(x), arctan(x), arcsec(x)]
+p = RandInt(0,3)
+
+# Select our arctrig function, then take the derivative to get the integrand.
+Func1 = funcvec[p]
+F(x) = C*Func1(A*x + B)
+
+Integrand(x) = derivative(F(x),x)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0080. \\ \fi
+\begin{problem}
+Evaluate the integral
+\input{Integral-Compute-0080.HELP.tex}
+\[
+\int \sage{Integrand(x)} dx = \answer[validator=sameDerivative]{\sage{F(x)} + C}
+\]
+
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Guided, Func@Exp, Func@Trig, File@0101}{
+
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = NonZeroInt(-5,5)
+c = NonZeroInt(-5,5)
+pwr = RandInt(1,3)
+
+IntFuncVec = [e^x,sin(x),cos(x)]
+
+p0 = RandInt(0,2)
+
+df(x) = a*IntFuncVec[p0](b*x+c)
+f(x) = integral(df(x),x)
+G(x) = x^pwr 
+g(x) = derivative(G(x),x)
+h(x) = df(x)*G(x)
+
+Ans(x) = HyperSimp(integral(h(x),x))
+
+\end{sagesilent}
+
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0101. \\ \fi
+\begin{problem}
+We aim to calculate the following improper integral:
+\[
+\int \sage{h(x)} dx. 
+\]
+\input{Integral-Compute-0101.HELP.tex}
+
+First, need to determine which integration technique would be appropriate here. 
+
+\begin{multipleChoice}
+\choice{We should just integrate directly, integrating the monomial term $\sage{G(x)}$ and the extra term $\sage{df(x)}$ separately to get our integral.}
+\choice{We should integrate using (only) a $u$-substitution on the inner function: $u = \sage{b*x+c}$, and rewriting the $\sage{G(x)}$ in terms of $u$ }
+\choice{We should integrate using (only) a $u$-substitution of: $u = \sage{G(x)}$, and rewriting the exponent of $\sage{df(x)}$ in terms of $u$}
+\choice[correct]{We should use Integration by parts, using $u = \sage{G(x)}$ and $dv = \sage{df(x)}$}
+\choice{We will should Integration by parts, using $u = \sage{df(x)}$ and $dv = \sage{G(x)}$}
+\end{multipleChoice}
+
+\begin{problem}
+Now that we have determined we need to use integration by parts (and chosen $u$ and $dv$), we need to compute $du$ and $v$;
+
+\[
+u = \sage{G(x)} \hspace{1in} dv = \sage{df(x)}
+\]
+\[
+du = \answer{\sage{g(x)}} \hspace{1in} v = \answer{\sage{f(x)}} 
+\]
+
+\begin{problem}
+
+Next we can determine the result of the integration by parts step.
+\[
+\int \sage{h(x)} = \answer{\sage{G(x)*f(x)}} - \int \answer{\sage{g(x)*f(x)}}dx
+\]
+
+\begin{problem}
+
+Now, using the previous steps, we can calculate our answer!
+\[
+\int \sage{h(x)} dx = \answer[validator=sameDerivative]{\sage{Ans(x)} + C}
+\]
+
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Guided, Sub@TrigSub, File@0102}{
+
+\begin{sagesilent}
+var('a,b,c,theta')
+a1 = RandInt(-7,7)
+b1 = RandInt(1,7)
+flip = RandInt(0,1)
+s1 = (-1)^flip
+flip2 = RandInt(0,1-flip)
+s2 = (-1)^flip2
+
+xpwr = RandInt(-3,3)
+
+rad1 = s2*(x-a1)
+rad2 = s1*b1^2
+
+radicand(x) = expand(s2*(x-a1)^2 + s1*b1^2)
+
+if s1 < 0:
+    pythForm = (x-b)^2 - a^2
+    fake1 = (x-b)^2 + a^2
+    fake2 = a^2 - (x-b)^2
+    sub(z) = b1*sec(z)-a1
+    radsimp(x) = b1*tan(x)
+elif s2 < 0:
+    pythForm = a^2 - (x-b)^2
+    fake1 = (x-b)^2 - a^2
+    fake2 = (x-b)^2 + a^2
+    sub(z)=b1*sin(z)-a1
+    radsimp(x) = b1*cos(x)
+else:
+    pythForm = a^2 + (x-b)^2
+    fake1 = (x-b)^2 - a^2
+    fake2 = a^2 - (x-b)^2
+    sub(z) = b1*tan(z)-a1
+    radsimp(x) = b1*sec(x)
+
+integrandTheta(x) = (sub(x)^xpwr)/radsimp(x)
+integrandTheta(x) = factor(integrandTheta(x))
+
+intTheta(x) = integral(integrandTheta(x),x)
+
+dtheta(z) = derivative(sub(z),z)
+Integrand = x^xpwr*(radicand(x)^(1/2))
+Ans = integral(Integrand(x),x)
+Ans = HyperSimp(factor(Ans))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0102. \\ \fi
+\begin{problem}
+
+We aim to calculate the following integral:
+
+\[
+\int \sage{Integrand(x)} dx. 
+\]
+\input{Integral-Compute-0102.HELP.tex}
+
+First, we must complete the square in order to choose the Pythagorean expression the function inside the square root resembles. Complete the square and leave answer in terms of $x$.
+
+\[
+\begin{array}{lr}
+\sage{radicand(x)}= (\answer{\sage{rad1}})^2 + \answer{\sage{rad2}} 
+\end{array}
+\]
+
+\begin{problem}
+First, determine the Pythagorean expression the function inside the square root resembles. 
+
+\begin{multipleChoice}
+\choice{$\sage{fake1}$}
+\choice[correct]{$\sage{pythForm}$}
+\choice{$\sage{fake2}$}
+\end{multipleChoice}
+\begin{problem}
+In this case, 
+
+\[
+\begin{array}{lr}
+a = \answer{\sage{b1}} 
+\end{array}
+\]
+
+\begin{problem}
+This suggests the substitution should be
+
+\[
+\begin{array}{lr}
+x = \answer{\sage{sub(theta)}}  \\
+dx = \answer{\sage{dtheta(theta)}} d\theta
+\end{array}
+\]
+
+\begin{problem}
+Therefore, we rid the square root in the integrand by using the following substitution
+
+\[
+\begin{array}{lr}
+ \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
+\end{array}
+\]
+
+\begin{problem}
+Using our trig substitution, we can calculate the integral in terms of $\theta$
+
+ \[
+\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
+\]
+
+\begin{problem}
+Now, using the previous steps, we can calculate our final answer in terms of $x$!
+\[
+\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
+\]
+
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+                     
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Guided, Sub@TrigSub, File@0103}{
+
+\begin{sagesilent}
+var('a,b,c,theta')
+a1 = RandInt(1,10)
+b1 = RandInt(1,7)
+flip = RandInt(0,1)
+s1 = (-1)^flip
+flip2 = RandInt(0,1-flip)
+s2 = (-1)^flip2
+
+xpwr = RandInt(-3,3)
+
+radicand(x) = s2*(a1*x)^2 + s1*b1^2
+
+if s1 < 0:
+    pythForm = (b*x)^2 - a^2
+    fake1 = (b*x)^2 + a^2
+    fake2 = a^2 - (b*x)^2
+    sub(z) = b1*1/a1*sec(z)
+    radsimp(x) = b1*tan(x)
+elif s2 < 0:
+    pythForm = a^2 - (b*x)^2
+    fake1 = (b*x)^2 - a^2
+    fake2 = (b*x)^2 + a^2
+    sub(z)=b1*1/a1*sin(z)
+    radsimp(x) = b1*cos(x)
+else:
+    pythForm = a^2 + (b*x)^2
+    fake1 = (b*x)^2 - a^2
+    fake2 = a^2 - (b*x)^2
+    sub(z) = b1*1/a1*tan(z)
+    radsimp(x) = b1*sec(x)
+
+integrandTheta(x) = (sub(x)^xpwr)/radsimp(x)
+intTheta(x) = integral(integrandTheta(x),x)
+
+dtheta(z) = derivative(sub(z),z)
+Integrand = x^xpwr/(radicand(x)^(1/2))
+Ans = HyperSimp(integral(Integrand(x),x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0103. \\ \fi
+
+\begin{problem}
+We wish to calculate the following integral:
+\[
+\int \sage{Integrand(x)} dx. 
+\]
+\input{Integral-Compute-0103.HELP.tex}
+
+First, determine the Pythagorean expression the function inside the square root resembles. 
+\begin{multipleChoice}
+\choice{$\sage{fake1}$}
+\choice[correct]{$\sage{pythForm}$}
+\choice{$\sage{fake2}$}
+\end{multipleChoice}
+\begin{problem}
+In this case, 
+\[
+\begin{array}{lr}
+a = \answer{\sage{b1}} 
+\end{array}
+\]
+\begin{problem}
+This suggests the substitution should be
+\[
+\begin{array}{lr}
+x = \answer{\sage{sub(theta)}}  \\
+dx = \answer{\sage{dtheta(theta)}} d\theta
+\end{array}
+\]
+\begin{problem}
+Therefore, we rid the square root in the integrand by using the following substitution
+\[
+\begin{array}{lr}
+ \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
+\end{array}
+\]
+\begin{problem}
+Using our trig substitution, we can calculate the integral in terms of $\theta$
+ \[
+\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
+\]
+\begin{problem}
+Now, using the previous steps, we can calculate our final answer in terms of $x$!
+\[
+\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
+\]
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Guided, Func@Trig, File@0104}{
+
+
+\begin{sagesilent}
+
+funcVec = [tan(x), sec(x)]
+
+p = RandInt(0,1)
+
+evenfunc = funcVec[p]
+oddfunc = funcVec[1-p]
+
+if p == 0:
+    a1 = RandInt(0,1)
+    pwr1 = 2*a1
+    a2 = RandInt(0,2-a1)
+    pwr2 = 2*a2+1
+    usub(x) = (oddfunc^(2*a2+1)*(oddfunc^2-1)^(a1))
+    identL(x) = (tan(x))^2 
+    identR(x) = (sec(x))^2 - 1
+else:
+    a1 = RandInt(1,4)
+    pwr1 = 2*a1
+    a2 = RandInt(0,3)
+    pwr2 = 2*a2+1
+    usub(x) = (oddfunc^(2*a2+1)*(oddfunc^2+1)^(a1-1)*evenfunc^2)
+    identL(x) = (sec(x))^2
+    identR(x) = (tan(x))^2 + 1
+
+
+pwrVec = [pwr1, pwr2]
+
+
+
+Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
+
+Ans = HyperSimp(integral(Integrand(x),x))
+
+\end{sagesilent}
+
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0104. \\ \fi
+
+\begin{problem}
+We wish to calculate the following Trigonometric Integral:
+\[
+\int \sage{Integrand(x)} \mathop{dx}.
+\]
+
+\input{Integral-Compute-0104.HELP.tex}
+The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
+\begin{problem}
+Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
+
+\begin{multipleChoice}
+    \choice{We should use Integration by Parts with $u = \sage{evenfunc^pwr1}$ and $dv = \sage{oddfunc^pwr2}$.}
+    \choice{We should use Integration by Parts with $u = \sage{oddfunc^pwr2}$ and $dv = \sage{evenfunc^pwr1}$.}
+    \choice[correct]{We should use a Pythagorean identity to convert some (or all) of the $\sage{evenfunc}$ into some $\sage{oddfunc}$}
+    \choice{We should convert the entire expression to sines and cosines before attempting the integrate directly.}
+\end{multipleChoice}
+
+\begin{problem}
+
+What variant of the Pythagorean identity do we need to utilize?
+
+\[
+\sage{identL(x)}=\answer{\sage{identR(x)}}
+\]
+
+\begin{problem}
+Utilizing the above identity and converting our integrand into something integrable we have:
+
+\[
+\int   \answer{\sage{usub(x)}} \mathop{dx}.
+\]
+\begin{problem}
+Finally, we have that
+\[
+	\int \sage{Integrand(x)} \mathop{dx} = \answer[validator=sameDerivative]{\sage{Ans(x)}+C}
+\]
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@TrigInt, Sub@Guided, Func@Trig, File@0105}{
+
+\begin{sagesilent}
+a1 = RandInt(1,3)
+a2 = RandInt(0,3)
+pwr1 = 2*a1
+pwr2 = 2*a2+1
+
+usub(u) = expand(u^(2*a1)*(1-u^2)^(a2))
+
+
+pwrVec = [pwr1, pwr2]
+funcVec = [sin(x), cos(x)]
+
+p = RandInt(0,1)
+
+evenfunc = funcVec[p]
+oddfunc = funcVec[1-p]
+
+Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
+
+Ans = HyperSimp(integral(Integrand(x),x))
+
+\end{sagesilent}
+
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0105. \\ \fi
+
+\begin{problem}
+We wish to calculate the following Trigonometric Integral:
+\[
+\int \sage{Integrand(x)} \mathop{dx}.
+\]
+\input{Integral-Compute-0105.HELP.tex}
+
+The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
+
+\begin{problem}
+
+Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
+
+\begin{multipleChoice}
+\choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
+\choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
+\choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
+\choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
+\end{multipleChoice}
+
+\begin{problem}
+Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
+
+\[
+    \int \answer{\sage{usub(u)}} \mathop{du}
+\]
+\begin{problem}
+
+After applying the power rule and back-substituting to the variable $x$, our final answer is: 
+\[
+\int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
+\]
+
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@PartialFractions, Sub@Guided, Func@Rational, Func@Poly, File@0106}{
+\begin{sagesilent}
+a = NonZeroInt(-5,5)
+b = RandInt(1,10)
+c = RandInt(-3,3)
+a1 = NonZeroInt(-5,5)
+b1 = NonZeroInt(-5,5)
+
+f1denom = x-a
+f2denom = x^2+b
+
+f1 = a1/(x-a)
+f2 = (c*x+b1)/(x^2+b)
+
+Integrand = factor((f1+f2).simplify_rational())
+
+Ans = HyperSimp(integral(f2,x))
+
+\end{sagesilent}
+
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0106. \\ \fi
+
+\begin{problem}
+We wish to calculate the following integral:
+\[
+\int \sage{Integrand} dx. 
+\]
+\input{Integral-Compute-0106.HELP.tex}
+
+First, determine the Practial Fraction Decomposition of  $\sage{Integrand}$% DEBUG: $\sage{f1}=f1$ and $\sage{f2}=f2$
+
+\[
+\begin{array}{lr}
+\sage{Integrand} = \dfrac{A}{ \answer{\sage{f1denom}} } + \dfrac{Bx+C}{\answer{\sage{f2denom}} }
+\end{array}
+\]
+\begin{problem}
+Now, determine the constant coefficients, $A$, $B$, and $C$. 
+
+ \[
+\begin{array}{lr}
+A = \answer{\sage{a1}}  \\
+B = \answer{\sage{c}}\\
+C = \answer{\sage{b1}}
+\end{array}
+\]
+\begin{problem}
+Now we can rewrite the integral
+
+\[
+\begin{array}{lr}
+ \int \sage{Integrand} dx = \int \answer{ \sage{f1 + f2} } dx 
+\end{array}
+\]
+
+\begin{problem}
+
+Now, using the previous steps, we can calculate the integral:
+\[
+\int \sage{Integrand} dx = \answer[validator=sameDerivative]{  \sage{a1*log(abs(x-a))} + \sage{Ans} +C }
+\]
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Compute, Topic@Integral, Sub@Improper, File@0081}{
+%\begin{sagesilent}
+%# Define coefficients, powers, etc
+%A11 = NonZeroInt(1,5)
+%B11 = NonZeroInt(1,5)
+%A12 = NonZeroInt(1,5)
+%B12 = NonZeroInt(1,5)
+%A21 = NonZeroInt(1,5)
+%B21 = NonZeroInt(1,5)
+%A22 = NonZeroInt(1,5)
+%B22 = NonZeroInt(1,5)
+%A31 = NonZeroInt(1,5)
+%B31 = NonZeroInt(1,5)
+%A32 = NonZeroInt(1,5)
+%B32 = NonZeroInt(1,5)
+%A41 = NonZeroInt(1,5)
+%B41 = NonZeroInt(1,5)
+%A42 = NonZeroInt(1,5)
+%B42 = NonZeroInt(1,5)
+%
+%pwr = RandInt(2,6)
+%pwr2 = RandInt(pwr+2,10)
+%
+%slowvec = [ln(x), x^pwr, x^(1/(2*pwr+1))]
+%fastvec = [e^(x), x^pwr2] 
+%funcvec = [ln(x), x^(1/(2*pwr+1)), x^pwr, x^pwr2, e^x]
+%
+%selectslow = RandInt(0,2)
+%selectfast = RandInt(0,1)
+%select11 = RandInt(0,4)
+%select21 = RandInt(0,4)
+%select31 = RandInt(0,4)
+%select41 = RandInt(0,4)
+%select12 = RandInt(0,4)
+%select22 = RandInt(0,4)
+%select32 = RandInt(0,4)
+%select42 = RandInt(0,4)
+%
+%Fslow = slowvec[selectslow]
+%Ffast = fastvec[selectfast]
+%
+%F1 = Fslow/Ffast
+%F2 = funcvec[select11](A11*x + B11)/funcvec[select12](A12*x + B12)
+%F3 = funcvec[select21](A21*x + B21)/funcvec[select22](A22*x + B22)
+%F4 = funcvec[select31](A31*x + B31)/funcvec[select32](A32*x + B32)
+%F5 = funcvec[select41](A41*x + B41)/funcvec[select42](A42*x + B42)
+%
+%
+%if select11 < select12:
+%    ans2T = "correct"
+%else:
+%    ans2T = ""
+%
+%if select21 < select22:
+%    ans3T = "correct"
+%else:
+%    ans3T = ""
+%
+%if select31 < select32:
+%    ans4T = "correct"
+%else:
+%    ans4T = ""
+%
+%if select41 < select42:
+%    ans5T = "correct"
+%else:
+%    ans5T = ""
+%
+%# This will look bad on the pdf, but I think once the merging programs run it will come out correct after the \sage command gets removed. Will probably need to do a replace-all to remove the "\texttt" part of the \texttt{correct} NEEDS TO BE TESTED.
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\begin{problem}
+%Which of the following is a correct statement? (p \textit{all} that apply)
+%\input{Integral-Compute-0081.HELP.tex}
+%\begin{multipleChoice}
+%\choice[correct]{$\int\limits_{0}^\infty \sage{F1(x)} dx$}
+%\choice[$\sage{ans2T}$]{$\int\limits_{0}^\infty \sage{F2(x)} dx$}
+%\choice[$\sage{ans3T}$]{$\int\limits_{0}^\infty \sage{F3(x)} dx$}
+%\choice[$\sage{ans4T}$]{$\int\limits_{0}^\infty \sage{F4(x)} dx$}
+%\choice[$\sage{ans5T}$]{$\int\limits_{0}^\infty \sage{F5(x)} dx$}
+%\end{multipleChoice}
+%
+%
+%\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%				Concept					%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%				Calc 1 Concept			%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Func@Rational, File@0001}{
+\begin{sagesilent}
+a = NonZeroInt(-10,10)
+l = NonZeroInt(-6,-1)  
+u = NonZeroInt(1,6)
+
+p = RandInt(0,3)
+v = [a/x, a/x^2, a/x^3, a/x^4]
+F = v[p]
+f = integrate(F,x)
+Ans = f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Concept Question 0001. \\ \fi
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[
+\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}
+\]
+
+\input{Integral-Concept-0001.HELP.tex}
+
+\begin{multipleChoice}
+\choice{The bounds are evaluated in the wrong order.}
+\choice{The antiderivative is incorrect.}
+\choice[correct]{The integrand is not defined over the entire interval.}
+\choice{Nothing is wrong.  The equation is correct, as is.}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Func@Trig, File@0002}{
+\begin{sagesilent}
+b = NonZeroInt(-10,10)
+l = RandAng(0,pi/3)
+u = RandAng(2*pi/3,pi)
+
+p = RandInt(0,1)
+vt = [b*sec(x)*tan(x), b*sec(x)^2]
+F = vt[p]
+f = integrate(F,x)
+Ans = f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Concept Question 0002. \\ \fi
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[
+\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}
+\]
+
+\input{Integral-Concept-0002.HELP.tex}
+
+\begin{multipleChoice}
+\choice{The antiderivative is incorrect.}
+\choice[correct]{The integrand is not defined over the entire interval.}
+\choice{The bounds are evaluated in the wrong order.}
+\choice{Nothing is wrong.  The equation is correct, as is.}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@MC, Type@Concept, Topic@Integral, Sub@Definite, Sub@Theorems-FTC, Func@Trig, File@0003}{
+\begin{sagesilent}
+b = NonZeroInt(-10,10)
+l = RandAng(pi/6,5*pi/6)
+u = RandAng(7*pi/6,11*pi/6)
+
+p = RandInt(0,1)
+vt = [b*csc(x)^2, b*csc(x)*cot(x)]
+F = vt[p]
+f = integrate(F,x)
+Ans = f(u)-f(l)
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Concept Question 0003. \\ \fi
+\begin{problem}
+
+What is wrong with the following equation:
+
+\[
+\int_{\sage{l}}^{\sage{u}} \sage{F}\;dx = \sage{f}\Bigg\vert_{\sage{l}}^{\sage{u}} = \sage{Ans}
+\]
+
+\input{Integral-Concept-0003.HELP.tex}
+
+\begin{multipleChoice}
+\choice{The antiderivative is incorrect.}
+\choice[correct]{The integrand is not defined over the entire interval.}
+\choice{The bounds are evaluated in the wrong order.}
+\choice{Nothing is wrong.  The equation is correct, as is.}
+\end{multipleChoice}
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
