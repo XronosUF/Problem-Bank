@@ -813,17 +813,17 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 
 if __name__ == "__main__":
 
-	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
-	quiet = True
-	copies_initially = 750
-	verbose = False # Only use for debugging the problem parses and whatnot for now.
+	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks"
+	quiet = False
+	copies_initially = 1#750
+	verbose = True # Only use for debugging the problem parses and whatnot for now.
 
 	# destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
 
 	# destination_folder = r"/root/texmf/tex/latex/QuestionBanks/Problem-Bank"
-	# quiet = False
-	# copies_initially = 10**0
-	# verbose = True # Only use for debugging the problem parses and whatnot for now.
+	# quiet = True
+	# copies_initially = 750
+	# verbose = False # Only use for debugging the problem parses and whatnot for now.
 
 	main(destination_folder, quiet, copies_initially, verbose=verbose)
 
