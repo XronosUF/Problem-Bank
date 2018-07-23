@@ -506,8 +506,12 @@ def process_problem(problem_key, problem_dict, input_file, folder = "",
 
 	cleanup(intermediate_file)
 
-	if help_tex and os.path.abspath(destination_folder) != os.path.abspath(os.getcwd()):
-		os.remove(help_tex)
+	if help_tex:
+		if os.path.abspath(destination_folder) != os.path.abspath(os.getcwd()):
+			print(f"Removing (local) help file: {help_tex}")
+			os.remove(help_tex)
+		else:
+			print(f"Not removing help file ({help_tex}), since the destination is the cwd.")
 
 	return (file_tex, help_tex)
 
@@ -648,7 +652,10 @@ def process_file(folder, file_dict, destination_folder, overwrite_all = False):
 	# 				print(f"Okay, not overwriting anything.")
 	# 				break
 
-	os.rmdir(folder)
+	# try:
+	# 	os.rmdir(folder)
+	# except OSError:
+	# 	print("Hmm, there's still some stuff in {folder}, not deleting it.")
 
 
 def main(destination_folder = None, quiet = False, copies_initially = 1000, verbose = False):
@@ -716,12 +723,14 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 			continue
 
 		######## Make the folder in the current working directory ########
-		try:
-			os.mkdir(file_key)
-		except OSError as exc:
-			if exc.errno != errno.EEXIST:
-				raise
-			pass
+		######## 			This is never used, actually.		  ########
+		# try:
+		# 	os.mkdir(file_key)
+		# except OSError as exc:
+		# 	if exc.errno != errno.EEXIST:
+		# 		raise exc
+		# 	pass
+
 
 		final_destination = os.sep.join([destination_folder, file_key])
 
@@ -732,7 +741,7 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 			os.mkdir(final_destination)
 		except OSError as exc:
 			if exc.errno != errno.EEXIST:
-				raise
+				raise exc
 			pass
 
 		######## Note conflicts, problems which are already generated ########
@@ -797,21 +806,24 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 	######## Proceed, processing the remaining ones ########
 	
 	for file_key in files_dict:
-		process_file(file_key, files_dict[file_key], destination_folder, overwrite_all = True)
+		try:
+			process_file(file_key, files_dict[file_key], destination_folder, overwrite_all = True)
+		except AssertionError as exc:
+			print(f"Encountered an error in processing {file_key}: {exc}")
 
 if __name__ == "__main__":
 
-	# destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
-	# quiet = False
-	# copies_initially = 1000
-	# verbose = False # Only use for debugging the problem parses and whatnot for now.
+	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks/Problem-Bank"
+	quiet = True
+	copies_initially = 750
+	verbose = False # Only use for debugging the problem parses and whatnot for now.
 
-	destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
+	# destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
 
 	# destination_folder = r"/root/texmf/tex/latex/QuestionBanks/Problem-Bank"
-	quiet = False
-	copies_initially = 10**0
-	verbose = True # Only use for debugging the problem parses and whatnot for now.
+	# quiet = False
+	# copies_initially = 10**0
+	# verbose = True # Only use for debugging the problem parses and whatnot for now.
 
 	main(destination_folder, quiet, copies_initially, verbose=verbose)
 
