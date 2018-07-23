@@ -1688,7 +1688,7 @@ while denominator(Ans)>10^7:
     d=RandInt(1,3)
     
     #Define the general term of the series
-    f=(-1)^n*a/(n.factorial())
+    f=(-1)^n*a/(factorial(n))
     Ans = abs(f(b+1))
 
 \end{sagesilent}
@@ -2015,7 +2015,7 @@ f=exp(a*x)
 ans=taylor(f,x,c,d-1)
 
 #Define general taylor term
-fCoeff=a^n*exp(a*c)/n.factorial()
+fCoeff=a^n*exp(a*c)/factorial(n)
 TAY=fCoeff*(x-c)^n
 
 \end{sagesilent}
@@ -2052,7 +2052,7 @@ f=a/x^p
 ans=taylor(f,x,c,d-1)
 
 #Define general taylor term
-fCoeff=((-1)^n*a*(p+n-1).factorial()*c^(-p-n))/(n.factorial()*(p-1).factorial())
+fCoeff=((-1)^n*a*factorial((p+n-1))*c^(-p-n))/(factorial(n)*factorial((p-1)))
 TAY=fCoeff*(x-c)^n
 
 \end{sagesilent}
@@ -2140,7 +2140,7 @@ d=RandInt(1,3)
 p=RandInt(1,10)
 
 #Define the general original function
-f=(-1)^n*b^n*x^(p*n)/n.factorial()
+f=(-1)^n*b^n*x^(p*n)/factorial(n)
 
 #Define the sum of the series
 ans1=exp(-b*x^p)
@@ -2170,7 +2170,7 @@ d=RandInt(1,3)
 p=RandInt(1,10)
 
 #Define the general original function
-f=(-1)^n*b^(2*n+1)*x^(p*(2*n+1))/(2*n+1).factorial()
+f=(-1)^n*b^(2*n+1)*x^(p*(2*n+1))/(factorial(2*n+1))
 
 #Define the sum of the series
 ans1=sin(b*x^p)
@@ -2200,7 +2200,7 @@ d=RandInt(1,3)
 p=RandInt(1,10)
 
 #Define the general original function
-f=(-1)^n*b^(2*n)*x^(p*(2*n))/(2*n).factorial()
+f=(-1)^n*b^(2*n)*x^(p*(2*n))/(factorial(2*n))
 
 #Define the sum of the series
 ans1=cos(b*x^p)
