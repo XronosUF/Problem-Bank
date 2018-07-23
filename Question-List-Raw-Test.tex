@@ -1,344 +1,344 @@
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Func@Arctrig, File@0080}{
+%\begin{sagesilent}
+%# Define coefficients, powers, etc
+%A = NonZeroInt(-5,5)
+%B = RandInt(-5,5)
+%C = NonZeroInt(-10,10)
+%
+%
+%# Vector of possible arctrig functions
+%funcvec = [arcsin(x), arccos(x), arctan(x), arcsec(x)]
+%p = RandInt(0,3)
+%
+%# Select our arctrig function, then take the derivative to get the integrand.
+%Func1 = funcvec[p]
+%F(x) = C*Func1(A*x + B)
+%
+%Integrand(x) = derivative(F(x),x)
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0080. \\ \fi
+%\begin{problem}
+%Evaluate the integral
+%\input{Integral-Compute-0080.HELP.tex}
+%\[
+%\int \sage{Integrand(x)} dx = \answer[validator=sameDerivative]{\sage{F(x)} + C}
+%\]
+%
+%
+%\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@TrigSub, Func@Arctrig, File@0080}{
-\begin{sagesilent}
-# Define coefficients, powers, etc
-A = NonZeroInt(-5,5)
-B = RandInt(-5,5)
-C = NonZeroInt(-10,10)
-
-
-# Vector of possible arctrig functions
-funcvec = [arcsin(x), arccos(x), arctan(x), arcsec(x)]
-p = RandInt(0,3)
-
-# Select our arctrig function, then take the derivative to get the integrand.
-Func1 = funcvec[p]
-F(x) = C*Func1(A*x + B)
-
-Integrand(x) = derivative(F(x),x)
-
-\end{sagesilent}
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0080. \\ \fi
-\begin{problem}
-Evaluate the integral
-\input{Integral-Compute-0080.HELP.tex}
-\[
-\int \sage{Integrand(x)} dx = \answer[validator=sameDerivative]{\sage{F(x)} + C}
-\]
-
-
-\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Guided, Func@Exp, Func@Trig, File@0101}{
-
-\begin{sagesilent}
-a = NonZeroInt(-5,5)
-b = NonZeroInt(-5,5)
-c = NonZeroInt(-5,5)
-pwr = RandInt(1,3)
-
-IntFuncVec = [e^x,sin(x),cos(x)]
-
-p0 = RandInt(0,2)
-
-df(x) = a*IntFuncVec[p0](b*x+c)
-f(x) = integral(df(x),x)
-G(x) = x^pwr 
-g(x) = derivative(G(x),x)
-h(x) = df(x)*G(x)
-
-Ans(x) = HyperSimp(integral(h(x),x))
-
-\end{sagesilent}
-
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0101. \\ \fi
-\begin{problem}
-We aim to calculate the following improper integral:
-\[
-\int \sage{h(x)} dx. 
-\]
-\input{Integral-Compute-0101.HELP.tex}
-
-First, need to determine which integration technique would be appropriate here. 
-
-\begin{multipleChoice}
-\choice{We should just integrate directly, integrating the monomial term $\sage{G(x)}$ and the extra term $\sage{df(x)}$ separately to get our integral.}
-\choice{We should integrate using (only) a $u$-substitution on the inner function: $u = \sage{b*x+c}$, and rewriting the $\sage{G(x)}$ in terms of $u$ }
-\choice{We should integrate using (only) a $u$-substitution of: $u = \sage{G(x)}$, and rewriting the exponent of $\sage{df(x)}$ in terms of $u$}
-\choice[correct]{We should use Integration by parts, using $u = \sage{G(x)}$ and $dv = \sage{df(x)}$}
-\choice{We will should Integration by parts, using $u = \sage{df(x)}$ and $dv = \sage{G(x)}$}
-\end{multipleChoice}
-
-\begin{problem}
-Now that we have determined we need to use integration by parts (and chosen $u$ and $dv$), we need to compute $du$ and $v$;
-
-\[
-u = \sage{G(x)} \hspace{1in} dv = \sage{df(x)}
-\]
-\[
-du = \answer{\sage{g(x)}} \hspace{1in} v = \answer{\sage{f(x)}} 
-\]
-
-\begin{problem}
-
-Next we can determine the result of the integration by parts step.
-\[
-\int \sage{h(x)} = \answer{\sage{G(x)*f(x)}} - \int \answer{\sage{g(x)*f(x)}}dx
-\]
-
-\begin{problem}
-
-Now, using the previous steps, we can calculate our answer!
-\[
-\int \sage{h(x)} dx = \answer[validator=sameDerivative]{\sage{Ans(x)} + C}
-\]
-
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}}%}
-
+%
+%
 %%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Guided, Func@Exp, Func@Trig, File@0101}{
+%
+%\begin{sagesilent}
+%a = NonZeroInt(-5,5)
+%b = NonZeroInt(-5,5)
+%c = NonZeroInt(-5,5)
+%pwr = RandInt(1,3)
+%
+%IntFuncVec = [e^x,sin(x),cos(x)]
+%
+%p0 = RandInt(0,2)
+%
+%df(x) = a*IntFuncVec[p0](b*x+c)
+%f(x) = integral(df(x),x)
+%G(x) = x^pwr 
+%g(x) = derivative(G(x),x)
+%h(x) = df(x)*G(x)
+%
+%Ans(x) = HyperSimp(integral(h(x),x))
+%
+%\end{sagesilent}
+%
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0101. \\ \fi
+%\begin{problem}
+%We aim to calculate the following improper integral:
+%\[
+%\int \sage{h(x)} dx. 
+%\]
+%\input{Integral-Compute-0101.HELP.tex}
+%
+%First, need to determine which integration technique would be appropriate here. 
+%
+%\begin{multipleChoice}
+%\choice{We should just integrate directly, integrating the monomial term $\sage{G(x)}$ and the extra term $\sage{df(x)}$ separately to get our integral.}
+%\choice{We should integrate using (only) a $u$-substitution on the inner function: $u = \sage{b*x+c}$, and rewriting the $\sage{G(x)}$ in terms of $u$ }
+%\choice{We should integrate using (only) a $u$-substitution of: $u = \sage{G(x)}$, and rewriting the exponent of $\sage{df(x)}$ in terms of $u$}
+%\choice[correct]{We should use Integration by parts, using $u = \sage{G(x)}$ and $dv = \sage{df(x)}$}
+%\choice{We will should Integration by parts, using $u = \sage{df(x)}$ and $dv = \sage{G(x)}$}
+%\end{multipleChoice}
+%
+%\begin{problem}
+%Now that we have determined we need to use integration by parts (and chosen $u$ and $dv$), we need to compute $du$ and $v$;
+%
+%\[
+%u = \sage{G(x)} \hspace{1in} dv = \sage{df(x)}
+%\]
+%\[
+%du = \answer{\sage{g(x)}} \hspace{1in} v = \answer{\sage{f(x)}} 
+%\]
+%
+%\begin{problem}
+%
+%Next we can determine the result of the integration by parts step.
+%\[
+%\int \sage{h(x)} = \answer{\sage{G(x)*f(x)}} - \int \answer{\sage{g(x)*f(x)}}dx
+%\]
+%
+%\begin{problem}
+%
+%Now, using the previous steps, we can calculate our answer!
+%\[
+%\int \sage{h(x)} dx = \answer[validator=sameDerivative]{\sage{Ans(x)} + C}
+%\]
+%
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}}%}
+%
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Guided, Sub@TrigSub, File@0102}{
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Guided, Sub@TrigSub, File@0102}{
+%
+%\begin{sagesilent}
+%var('a,b,c,theta')
+%a1 = RandInt(-7,7)
+%b1 = RandInt(1,7)
+%flip = RandInt(0,1)
+%s1 = (-1)^flip
+%flip2 = RandInt(0,1-flip)
+%s2 = (-1)^flip2
+%
+%xpwr = RandInt(-3,3)
+%
+%rad1 = s2*(x-a1)
+%rad2 = s1*b1^2
+%
+%radicand(x) = expand(s2*(x-a1)^2 + s1*b1^2)
+%
+%if s1 < 0:
+%    pythForm = (x-b)^2 - a^2
+%    fake1 = (x-b)^2 + a^2
+%    fake2 = a^2 - (x-b)^2
+%    sub(z) = b1*sec(z)-a1
+%    radsimp(x) = b1*tan(x)
+%elif s2 < 0:
+%    pythForm = a^2 - (x-b)^2
+%    fake1 = (x-b)^2 - a^2
+%    fake2 = (x-b)^2 + a^2
+%    sub(z)=b1*sin(z)-a1
+%    radsimp(x) = b1*cos(x)
+%else:
+%    pythForm = a^2 + (x-b)^2
+%    fake1 = (x-b)^2 - a^2
+%    fake2 = a^2 - (x-b)^2
+%    sub(z) = b1*tan(z)-a1
+%    radsimp(x) = b1*sec(x)
+%
+%integrandTheta(x) = (sub(x)^xpwr)/radsimp(x)
+%integrandTheta(x) = factor(integrandTheta(x))
+%
+%intTheta(x) = integral(integrandTheta(x),x)
+%
+%dtheta(z) = derivative(sub(z),z)
+%Integrand = x^xpwr*(radicand(x)^(1/2))
+%Ans = integral(Integrand(x),x)
+%Ans = HyperSimp(factor(Ans))
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0102. \\ \fi
+%\begin{problem}
+%
+%We aim to calculate the following integral:
+%
+%\[
+%\int \sage{Integrand(x)} dx. 
+%\]
+%\input{Integral-Compute-0102.HELP.tex}
+%
+%First, we must complete the square in order to choose the Pythagorean expression the function inside the square root resembles. Complete the square and leave answer in terms of $x$.
+%
+%\[
+%\begin{array}{lr}
+%\sage{radicand(x)}= (\answer{\sage{rad1}})^2 + \answer{\sage{rad2}} 
+%\end{array}
+%\]
+%
+%\begin{problem}
+%First, determine the Pythagorean expression the function inside the square root resembles. 
+%
+%\begin{multipleChoice}
+%\choice{$\sage{fake1}$}
+%\choice[correct]{$\sage{pythForm}$}
+%\choice{$\sage{fake2}$}
+%\end{multipleChoice}
+%\begin{problem}
+%In this case, 
+%
+%\[
+%\begin{array}{lr}
+%a = \answer{\sage{b1}} 
+%\end{array}
+%\]
+%
+%\begin{problem}
+%This suggests the substitution should be
+%
+%\[
+%\begin{array}{lr}
+%x = \answer{\sage{sub(theta)}}  \\
+%dx = \answer{\sage{dtheta(theta)}} d\theta
+%\end{array}
+%\]
+%
+%\begin{problem}
+%Therefore, we rid the square root in the integrand by using the following substitution
+%
+%\[
+%\begin{array}{lr}
+% \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
+%\end{array}
+%\]
+%
+%\begin{problem}
+%Using our trig substitution, we can calculate the integral in terms of $\theta$
+%
+% \[
+%\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
+%\]
+%
+%\begin{problem}
+%Now, using the previous steps, we can calculate our final answer in terms of $x$!
+%\[
+%\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
+%\]
+%
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}}%}
+%                     
+%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{sagesilent}
-var('a,b,c,theta')
-a1 = RandInt(-7,7)
-b1 = RandInt(1,7)
-flip = RandInt(0,1)
-s1 = (-1)^flip
-flip2 = RandInt(0,1-flip)
-s2 = (-1)^flip2
-
-xpwr = RandInt(-3,3)
-
-rad1 = s2*(x-a1)
-rad2 = s1*b1^2
-
-radicand(x) = expand(s2*(x-a1)^2 + s1*b1^2)
-
-if s1 < 0:
-    pythForm = (x-b)^2 - a^2
-    fake1 = (x-b)^2 + a^2
-    fake2 = a^2 - (x-b)^2
-    sub(z) = b1*sec(z)-a1
-    radsimp(x) = b1*tan(x)
-elif s2 < 0:
-    pythForm = a^2 - (x-b)^2
-    fake1 = (x-b)^2 - a^2
-    fake2 = (x-b)^2 + a^2
-    sub(z)=b1*sin(z)-a1
-    radsimp(x) = b1*cos(x)
-else:
-    pythForm = a^2 + (x-b)^2
-    fake1 = (x-b)^2 - a^2
-    fake2 = a^2 - (x-b)^2
-    sub(z) = b1*tan(z)-a1
-    radsimp(x) = b1*sec(x)
-
-integrandTheta(x) = (sub(x)^xpwr)/radsimp(x)
-integrandTheta(x) = factor(integrandTheta(x))
-
-intTheta(x) = integral(integrandTheta(x),x)
-
-dtheta(z) = derivative(sub(z),z)
-Integrand = x^xpwr*(radicand(x)^(1/2))
-Ans = integral(Integrand(x),x)
-Ans = HyperSimp(factor(Ans))
-
-\end{sagesilent}
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0102. \\ \fi
-\begin{problem}
-
-We aim to calculate the following integral:
-
-\[
-\int \sage{Integrand(x)} dx. 
-\]
-\input{Integral-Compute-0102.HELP.tex}
-
-First, we must complete the square in order to choose the Pythagorean expression the function inside the square root resembles. Complete the square and leave answer in terms of $x$.
-
-\[
-\begin{array}{lr}
-\sage{radicand(x)}= (\answer{\sage{rad1}})^2 + \answer{\sage{rad2}} 
-\end{array}
-\]
-
-\begin{problem}
-First, determine the Pythagorean expression the function inside the square root resembles. 
-
-\begin{multipleChoice}
-\choice{$\sage{fake1}$}
-\choice[correct]{$\sage{pythForm}$}
-\choice{$\sage{fake2}$}
-\end{multipleChoice}
-\begin{problem}
-In this case, 
-
-\[
-\begin{array}{lr}
-a = \answer{\sage{b1}} 
-\end{array}
-\]
-
-\begin{problem}
-This suggests the substitution should be
-
-\[
-\begin{array}{lr}
-x = \answer{\sage{sub(theta)}}  \\
-dx = \answer{\sage{dtheta(theta)}} d\theta
-\end{array}
-\]
-
-\begin{problem}
-Therefore, we rid the square root in the integrand by using the following substitution
-
-\[
-\begin{array}{lr}
- \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
-\end{array}
-\]
-
-\begin{problem}
-Using our trig substitution, we can calculate the integral in terms of $\theta$
-
- \[
-\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
-\]
-
-\begin{problem}
-Now, using the previous steps, we can calculate our final answer in terms of $x$!
-\[
-\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
-\]
-
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}}%}
-                     
-%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Guided, Sub@TrigSub, File@0103}{
-
-\begin{sagesilent}
-var('a,b,c,theta')
-a1 = RandInt(1,10)
-b1 = RandInt(1,7)
-flip = RandInt(0,1)
-s1 = (-1)^flip
-flip2 = RandInt(0,1-flip)
-s2 = (-1)^flip2
-
-xpwr = RandInt(-3,3)
-
-radicand(x) = s2*(a1*x)^2 + s1*b1^2
-
-if s1 < 0:
-    pythForm = (b*x)^2 - a^2
-    fake1 = (b*x)^2 + a^2
-    fake2 = a^2 - (b*x)^2
-    sub(z) = b1*1/a1*sec(z)
-    radsimp(x) = b1*tan(x)
-elif s2 < 0:
-    pythForm = a^2 - (b*x)^2
-    fake1 = (b*x)^2 - a^2
-    fake2 = (b*x)^2 + a^2
-    sub(z)=b1*1/a1*sin(z)
-    radsimp(x) = b1*cos(x)
-else:
-    pythForm = a^2 + (b*x)^2
-    fake1 = (b*x)^2 - a^2
-    fake2 = a^2 - (b*x)^2
-    sub(z) = b1*1/a1*tan(z)
-    radsimp(x) = b1*sec(x)
-
-integrandTheta(x) = (sub(x)^xpwr)/radsimp(x)
-intTheta(x) = integral(integrandTheta(x),x)
-
-dtheta(z) = derivative(sub(z),z)
-Integrand = x^xpwr/(radicand(x)^(1/2))
-Ans = HyperSimp(integral(Integrand(x),x))
-
-\end{sagesilent}
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0103. \\ \fi
-
-\begin{problem}
-We wish to calculate the following integral:
-\[
-\int \sage{Integrand(x)} dx. 
-\]
-\input{Integral-Compute-0103.HELP.tex}
-
-First, determine the Pythagorean expression the function inside the square root resembles. 
-\begin{multipleChoice}
-\choice{$\sage{fake1}$}
-\choice[correct]{$\sage{pythForm}$}
-\choice{$\sage{fake2}$}
-\end{multipleChoice}
-\begin{problem}
-In this case, 
-\[
-\begin{array}{lr}
-a = \answer{\sage{b1}} 
-\end{array}
-\]
-\begin{problem}
-This suggests the substitution should be
-\[
-\begin{array}{lr}
-x = \answer{\sage{sub(theta)}}  \\
-dx = \answer{\sage{dtheta(theta)}} d\theta
-\end{array}
-\]
-\begin{problem}
-Therefore, we rid the square root in the integrand by using the following substitution
-\[
-\begin{array}{lr}
- \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
-\end{array}
-\]
-\begin{problem}
-Using our trig substitution, we can calculate the integral in terms of $\theta$
- \[
-\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
-\]
-\begin{problem}
-Now, using the previous steps, we can calculate our final answer in terms of $x$!
-\[
-\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
-\]
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}}%}
-
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Guided, Sub@TrigSub, File@0103}{
+%
+%\begin{sagesilent}
+%var('a,b,c,theta')
+%a1 = RandInt(1,10)
+%b1 = RandInt(1,7)
+%flip = RandInt(0,1)
+%s1 = (-1)^flip
+%flip2 = RandInt(0,1-flip)
+%s2 = (-1)^flip2
+%
+%xpwr = RandInt(-3,3)
+%
+%radicand(x) = s2*(a1*x)^2 + s1*b1^2
+%
+%if s1 < 0:
+%    pythForm = (b*x)^2 - a^2
+%    fake1 = (b*x)^2 + a^2
+%    fake2 = a^2 - (b*x)^2
+%    sub(z) = b1*1/a1*sec(z)
+%    radsimp(x) = b1*tan(x)
+%elif s2 < 0:
+%    pythForm = a^2 - (b*x)^2
+%    fake1 = (b*x)^2 - a^2
+%    fake2 = (b*x)^2 + a^2
+%    sub(z)=b1*1/a1*sin(z)
+%    radsimp(x) = b1*cos(x)
+%else:
+%    pythForm = a^2 + (b*x)^2
+%    fake1 = (b*x)^2 - a^2
+%    fake2 = a^2 - (b*x)^2
+%    sub(z) = b1*1/a1*tan(z)
+%    radsimp(x) = b1*sec(x)
+%
+%integrandTheta(x) = (sub(x)^xpwr)/radsimp(x)
+%intTheta(x) = integral(integrandTheta(x),x)
+%
+%dtheta(z) = derivative(sub(z),z)
+%Integrand = x^xpwr/(radicand(x)^(1/2))
+%Ans = HyperSimp(integral(Integrand(x),x))
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0103. \\ \fi
+%
+%\begin{problem}
+%We wish to calculate the following integral:
+%\[
+%\int \sage{Integrand(x)} dx. 
+%\]
+%\input{Integral-Compute-0103.HELP.tex}
+%
+%First, determine the Pythagorean expression the function inside the square root resembles. 
+%\begin{multipleChoice}
+%\choice{$\sage{fake1}$}
+%\choice[correct]{$\sage{pythForm}$}
+%\choice{$\sage{fake2}$}
+%\end{multipleChoice}
+%\begin{problem}
+%In this case, 
+%\[
+%\begin{array}{lr}
+%a = \answer{\sage{b1}} 
+%\end{array}
+%\]
+%\begin{problem}
+%This suggests the substitution should be
+%\[
+%\begin{array}{lr}
+%x = \answer{\sage{sub(theta)}}  \\
+%dx = \answer{\sage{dtheta(theta)}} d\theta
+%\end{array}
+%\]
+%\begin{problem}
+%Therefore, we rid the square root in the integrand by using the following substitution
+%\[
+%\begin{array}{lr}
+% \sqrt{\sage{radicand(x)}} = \answer{\sage{radsimp(theta)}}
+%\end{array}
+%\]
+%\begin{problem}
+%Using our trig substitution, we can calculate the integral in terms of $\theta$
+% \[
+%\int \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{intTheta(theta)}+ C}
+%\]
+%\begin{problem}
+%Now, using the previous steps, we can calculate our final answer in terms of $x$!
+%\[
+%\int  \sage{Integrand(x)} dx  = \answer[validator=sameDerivative]{\sage{Ans} + C}
+%\]
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}}%}
+%
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%
