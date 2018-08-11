@@ -3770,77 +3770,77 @@ Finally, we have that
 %%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Trig, Sub@Guided, Func@Trig, File@0105}{
-
-\begin{sagesilent}
-a1 = RandInt(1,3)
-a2 = RandInt(0,3)
-pwr1 = 2*a1
-pwr2 = 2*a2+1
-
-usub(u) = expand(u^(2*a1)*(1-u^2)^(a2))
-
-
-pwrVec = [pwr1, pwr2]
-funcVec = [sin(x), cos(x)]
-
-p = RandInt(0,1)
-
-evenfunc = funcVec[p]
-oddfunc = funcVec[1-p]
-
-Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
-
-Ans = HyperSimp(integral(Integrand(x),x))
-
-\end{sagesilent}
-
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0105. \\ \fi
-
-\begin{problem}
-We wish to calculate the following Trigonometric Integral:
-\[
-\int \sage{Integrand(x)} \mathop{dx}.
-\]
-\input{Integral-Compute-0105.HELP.tex}
-
-The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
-
-\begin{problem}
-
-Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
-
-\begin{multipleChoice}
-\choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
-\choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
-\choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
-\choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
-\end{multipleChoice}
-
-\begin{problem}
-Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
-
-\[
-    \int \answer{\sage{usub(u)}} \mathop{du}
-\]
-\begin{problem}
-
-After applying the power rule and back-substituting to the variable $x$, our final answer is: 
-\[
-\int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
-\]
-
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}}%}
-
-%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Trig, Sub@Guided, Func@Trig, File@0105}{
+%
+%\begin{sagesilent}
+%a1 = RandInt(1,3)
+%a2 = RandInt(0,3)
+%pwr1 = 2*a1
+%pwr2 = 2*a2+1
+%
+%usub(u) = expand(u^(2*a1)*(1-u^2)^(a2))
+%
+%
+%pwrVec = [pwr1, pwr2]
+%funcVec = [sin(x), cos(x)]
+%
+%p = RandInt(0,1)
+%
+%evenfunc = funcVec[p]
+%oddfunc = funcVec[1-p]
+%
+%Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
+%
+%Ans = HyperSimp(integral(Integrand(x),x))
+%
+%\end{sagesilent}
+%
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0105. \\ \fi
+%
+%\begin{problem}
+%We wish to calculate the following Trigonometric Integral:
+%\[
+%\int \sage{Integrand(x)} \mathop{dx}.
+%\]
+%\input{Integral-Compute-0105.HELP.tex}
+%
+%The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
+%
+%\begin{problem}
+%
+%Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
+%
+%\begin{multipleChoice}
+%\choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
+%\choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
+%\choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
+%\choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
+%\end{multipleChoice}
+%
+%\begin{problem}
+%Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
+%
+%\[
+%    \int \answer{\sage{usub(u)}} \mathop{du}
+%\]
+%\begin{problem}
+%
+%After applying the power rule and back-substituting to the variable $x$, our final answer is: 
+%\[
+%\int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
+%\]
+%
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}}%}
+%
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%
