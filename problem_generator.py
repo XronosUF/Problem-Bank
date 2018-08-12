@@ -847,9 +847,9 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 if __name__ == "__main__":
 
 	destination_folder = r"/home/jason/texmf/tex/latex/QuestionBanks"
-	quiet = False
+	quiet = True
 	copies_initially = 400
-	verbose = True # Only use for debugging the problem parses and whatnot for now.
+	verbose = False # Only use for debugging the problem parses and whatnot for now.
 
 	# destination_folder = r"/Users/michaelengen/Dropbox/Xronos/My_Problem_Outputs"
 

@@ -8,6 +8,7 @@
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%			MAC2311: Calculus 1			%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -830,7 +831,7 @@ funcDict = {
   (x - b)^3    : 'Poly',
   (x - b)^4    : 'Poly',
   sin(x - b)   : 'Trig',
-  cos(x - b)   : 'Trig',
+  cos(x - b)   : 'Trig'
 }
 
 F = choice(funcDict.keys())
@@ -1370,7 +1371,7 @@ Compute the following integral:
 \[
 \int{\sage{a}\tan^{\sage{bshow}}(x)\sec^{\sage{pwrEven}}(x)\;dx} 
 = 
-\answer[validator=sameDerivative]{\sage{Ans}+C}
+\answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -1563,7 +1564,7 @@ else:
 CalcInt = HyperSimp(integral(ToCalcInt(x),x))
 
 # Write the answer for ximera. In this case, the 'simplify' just causes it to be worse.
-Ans = CalcInt
+ans = CalcInt
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1577,7 +1578,7 @@ Evaluate the integral. \\
 \[
 \int \sage{Integrand} dx
 =
-\answer[validator=sameDerivative]{\sage{Ans}+C}
+\answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 
 \end{problem}}%}
@@ -1640,7 +1641,7 @@ denom = choice(funcVec)
 f = a / (x^2 * denom)
 
 # Compute answer
-Ans = HyperSimp(integral(f,x))
+ans = HyperSimp(integral(f,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1654,7 +1655,7 @@ Compute the following integral:
 \[
 \int{\dfrac{\sage{a}}{x^2\sage{denom}}\;dx} 
 = 
-\answer[validator=sameDerivative]{\sage{Ans}+C}
+\answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -2709,43 +2710,43 @@ Compute the following integral:
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Sub-u, File@0067}{
+%\begin{sagesilent}
+%# Define variables and constants/exponents
+%var('x')
+%a = NonZeroInt(-9,9)
+%
+%# Define Rational Expression
+%funcDict = [
+%  sin(x)^3 / cos(x)   : "Trig",
+%  sec(x)^3 / tan(x)^2 : "Trig",
+%  arctan(x) / x^2     : "Arctrig"
+%]
+%f = choice(funcDict.keys())
+%tag = funcDict[f]
+%
+%f = a * f
+%
+%# Compute Answer
+%ans = HyperSimp(integral(f,x)).simplify_full()
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0067. \\ \fi
+%\begin{problem}
+%
+%Compute the following integral:
+%
+%\input{Integral-Compute-0067.HELP.tex}
+%
+%\[
+%  \int\; \sage{f} \;dx 
+%  = 
+%  \answer[validator=sameDerivative]{\sage{ans}+C}
+%\]
+%\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Sub-u, File@0067}{
-\begin{sagesilent}
-# Define variables and constants/exponents
-var('x')
-a = NonZeroInt(-9,9)
-
-# Define Rational Expression
-funcDict = [
-  sin(x)^3 / cos(x)   : "Trig",
-  sec(x)^3 / tan(x)^2 : "Trig",
-  arctan(x) / x^2     : "Arctrig"
-]
-f = choice(funcDict.keys())
-tag = funcDict[f]
-
-f = a * f
-
-# Compute Answer
-ans = HyperSimp(integral(f,x)).simplify_full()
-\end{sagesilent}
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0067. \\ \fi
-\begin{problem}
-
-Compute the following integral:
-
-\input{Integral-Compute-0067.HELP.tex}
-
-\[
-  \int\; \sage{f} \;dx 
-  = 
-  \answer[validator=sameDerivative]{\sage{ans}+C}
-\]
-\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -3235,37 +3236,37 @@ Evaluate the integral. \\
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Func@Trig, Sub@Trig, Sub@ByParts, File@0078}{
-\begin{sagesilent}
-A = NonZeroInt(-20,20)
-B = NonZeroInt(-10,10)
-pwr1 = 2 * RandInt(0,1) + 1
-
-if pwr1 == 3:
-  pwr2 = 0
-else:
-  pwr2 = 2 * RandInt(0,1)
-
-func = A * sec(x).subs(x = B*x)^(pwr1) * tan.subs(x = B*x)^(pwr2)
-
-ans = HyperSimp(integral(func, x))
-
-\end{sagesilent}
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0078. \\ \fi
-\begin{problem}
-Evaluate:
-\input{Integral-Compute-0078.HELP.tex}
-\[
-  \int \; \sage{func} \; dx 
-  = 
-  \answer[validator=sameDerivative]{\sage{ans}+C}
-\]
-
-\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Func@Trig, Sub@Trig, Sub@ByParts, File@0078}{
+%\begin{sagesilent}
+%A = NonZeroInt(-20,20)
+%B = NonZeroInt(-10,10)
+%pwr1 = 2 * RandInt(0,1) + 1
+%
+%if pwr1 == 3:
+%  pwr2 = 0
+%else:
+%  pwr2 = 2 * RandInt(0,1)
+%
+%func = A * sec(x).subs(x = B*x)^(pwr1) * tan.subs(x = B*x)^(pwr2)
+%
+%ans = HyperSimp(integral(func, x))
+%
+%\end{sagesilent}
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0078. \\ \fi
+%\begin{problem}
+%Evaluate:
+%\input{Integral-Compute-0078.HELP.tex}
+%\[
+%  \int \; \sage{func} \; dx 
+%  = 
+%  \answer[validator=sameDerivative]{\sage{ans}+C}
+%\]
+%
+%\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -3277,7 +3278,7 @@ B = RandInt(-5,5)
 C = NonZeroInt(-10,10)
 
 start = RandInt(-5,5)
-end = RandInt(Start, 10)
+end = RandInt(start, 10)
 
 pwr1 = RandInt(1,3)
 
@@ -3769,77 +3770,77 @@ Finally, we have that
 %%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Trig, Sub@Guided, Func@Trig, File@0105}{
-
-\begin{sagesilent}
-a1 = RandInt(1,3)
-a2 = RandInt(0,3)
-pwr1 = 2*a1
-pwr2 = 2*a2+1
-
-usub(u) = expand(u^(2*a1)*(1-u^2)^(a2))
-
-
-pwrVec = [pwr1, pwr2]
-funcVec = [sin(x), cos(x)]
-
-p = RandInt(0,1)
-
-evenfunc = funcVec[p]
-oddfunc = funcVec[1-p]
-
-Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
-
-Ans = HyperSimp(integral(Integrand(x),x))
-
-\end{sagesilent}
-
-
-\latexProblemContent{
-\ifVerboseLocation This is Integration Compute Question 0105. \\ \fi
-
-\begin{problem}
-We wish to calculate the following Trigonometric Integral:
-\[
-\int \sage{Integrand(x)} \mathop{dx}.
-\]
-\input{Integral-Compute-0105.HELP.tex}
-
-The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
-
-\begin{problem}
-
-Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
-
-\begin{multipleChoice}
-\choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
-\choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
-\choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
-\choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
-\end{multipleChoice}
-
-\begin{problem}
-Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
-
-\[
-    \int \answer{\sage{usub(u)}} \mathop{du}
-\]
-\begin{problem}
-
-After applying the power rule and back-substituting to the variable $x$, our final answer is: 
-\[
-\int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
-\]
-
-\end{problem}
-\end{problem}
-\end{problem}
-\end{problem}}%}
-
-%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%\tagged{Ans@Long, Type@Compute, Topic@Integral, Sub@Trig, Sub@Guided, Func@Trig, File@0105}{
+%
+%\begin{sagesilent}
+%a1 = RandInt(1,3)
+%a2 = RandInt(0,3)
+%pwr1 = 2*a1
+%pwr2 = 2*a2+1
+%
+%usub(u) = expand(u^(2*a1)*(1-u^2)^(a2))
+%
+%
+%pwrVec = [pwr1, pwr2]
+%funcVec = [sin(x), cos(x)]
+%
+%p = RandInt(0,1)
+%
+%evenfunc = funcVec[p]
+%oddfunc = funcVec[1-p]
+%
+%Integrand(x) = evenfunc(x)^pwr1*oddfunc(x)^pwr2
+%
+%Ans = HyperSimp(integral(Integrand(x),x))
+%
+%\end{sagesilent}
+%
+%
+%\latexProblemContent{
+%\ifVerboseLocation This is Integration Compute Question 0105. \\ \fi
+%
+%\begin{problem}
+%We wish to calculate the following Trigonometric Integral:
+%\[
+%\int \sage{Integrand(x)} \mathop{dx}.
+%\]
+%\input{Integral-Compute-0105.HELP.tex}
+%
+%The powers of $\sage{evenfunc}$ and $\sage{oddfunc}$ in the integrand are $\answer{\sage{pwr1}}$ and $\answer{\sage{pwr2}}$ respectively. 
+%
+%\begin{problem}
+%
+%Since the power for $\sage{evenfunc}$ is even and the power for $\sage{oddfunc}$ is odd, the best course of action is:
+%
+%\begin{multipleChoice}
+%\choice[correct]{We should save a $\sage{oddfunc}$ and convert the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution}
+%\choice{We should save a $\sage{evenfunc}$ and convert the remaining $\sage{evenfunc}$ to $\sage{oddfunc}$ via the Pythagorean identity, then follow up with a $u$-substitution }
+%\choice{We should use Integration by parts, using $u = \sage{oddfunc(x)^pwr2}$ and $dv = \sage{evenfunc(x)^pwr1}$}
+%\choice{We should use Integration by parts, using $u = \sage{evenfunc(x)^pwr1}$ and $dv = \sage{oddfunc(x)^pwr2}$}
+%\end{multipleChoice}
+%
+%\begin{problem}
+%Now that we have saved a $\sage{oddfunc}$ and converted the remaining $\sage{oddfunc}$ to $\sage{evenfunc}$ via the Pythagorean identity, the appropriate $u$-substitution will turn our integral into the following one
+%
+%\[
+%    \int \answer{\sage{usub(u)}} \mathop{du}
+%\]
+%\begin{problem}
+%
+%After applying the power rule and back-substituting to the variable $x$, our final answer is: 
+%\[
+%\int \sage{Integrand(x)} \mathop{dx}= \answer[validator=sameDerivative]{\sage{Ans}}
+%\]
+%
+%\end{problem}
+%\end{problem}
+%\end{problem}
+%\end{problem}}%}
+%
+%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -4695,7 +4696,7 @@ coef = NonZeroInt(-9,9)
 
 integrand = coef * func1.subs(x = coef1*x) * func2.subs(x = coef2*x)
 
-ans = HyperSimp( integral(integrand, x) )
+ans = HyperSimp( integral(integrand(x), x) )
 
 \end{sagesilent}
 
