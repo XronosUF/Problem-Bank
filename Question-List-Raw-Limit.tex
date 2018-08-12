@@ -1,11 +1,8 @@
 %%%%%%  This is the raw list of questions before processing %%%%%%
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%										 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%				Computation				%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%										%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,7 +18,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote, File@0001}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, Sub@Disc-Remove, Sub@Asymptote, File@0001}{
 \begin{sagesilent}
 a = NonZeroInt(-10,10)
 b = NonZeroInt(-10,10, [0,a])
@@ -90,7 +87,11 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0003.HELP.tex}
 
-\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{0}\]
+\[
+   \lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}
+   =
+   \answer{0}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -114,7 +115,11 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0004.HELP.tex}
 
-\[\lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer[format=string]{DNE}\]
+\[
+   \lim_{x\to\sage{b}}\dfrac{\sage{fNum}}{\sage{fDen}}
+   =
+   \answer[format=string]{DNE}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
@@ -140,7 +145,11 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0005.HELP.tex}
 
-\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\[
+   \lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}
+   =
+   \answer{\sage{Ans}}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
@@ -165,14 +174,18 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0006.HELP.tex}
 
-\[\lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}\]
+\[
+   \lim_{x\to\sage{a}}\dfrac{\sage{fNum}}{\sage{fDen}}
+   =
+   \answer{\sage{Ans}}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, \Sub@Asymptote, File@0007}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Asymptote, File@0007}{
 \begin{sagesilent}
 a = RandInt(-5,5)
 b = NonZeroInt(-5,5, [a])
@@ -180,31 +193,36 @@ c = NonZeroInt(-5,5, [a, b])
 d = NonZeroInt(-5,5, [a,b,c])
 e = NonZeroInt(-5,5, [a,b,c,d])
    
-v=[(x-a),(x-b),(x-c),(x-d),(x-e)]
+v = [
+   (x-a),
+   (x-b),
+   (x-c),
+   (x-d),
+   (x-e)
+]
 
-p=RandInt(1,3)
-q=RandInt(p,4)
+p = RandInt(1,3)
+q = RandInt(p,4)
 
-f=1
+f = 1
 for j in [1..p]:
-   k=RandInt(0,4)
-   f=v[k]*f
+   k = RandInt(0,4)
+   f = v[k] * f
 
-g=1
+g = 1
 for j in [1..q]:
-   k=RandInt(0,4)
-   g=v[k]*g
+   k = RandInt(0,4)
+   g = v[k] * g
 
-fNum=expand(f)
-fDen=expand(g)
-#Ans=limit(fNum/fDen,x=infinity)
-if p==q:
-   Ans=1# If the degrees are equal, then the limit is 1
+fNum = expand(f)
+fDen = expand(g)
+#Ans = limit(fNum/fDen, x=infinity)
+if p == q:
+   Ans = 1 # If the degrees are equal, then the limit is 1
 else:
-   Ans=0# Otherwise, by design the bottom is higher degree than top so the answer is 0.
+   Ans = 0 # Otherwise, by design the bottom is higher degree than top so the answer is 0.
 
-I=(-1)^(RandInt(0,1))
-Inf=I*infinity
+Inf = choice([infinity, -infinity])
 
 \end{sagesilent}
 
@@ -217,7 +235,9 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 \input{Limit-Compute-0007.HELP.tex}
 
 \[
-\lim\limits_{x\to\sage{Inf}}\frac{\sage{fNum}}{\sage{fDen}}=\answer{\sage{Ans}}
+   \lim\limits_{x\to\sage{Inf}}\frac{\sage{fNum}}{\sage{fDen}}
+   =
+   \answer{\sage{Ans}}
 \]
 
 \end{problem}}%}
@@ -229,11 +249,18 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 \begin{sagesilent}
 a = RandInt(1,5)
 b = NonZeroInt(-10,10, [0,a])
-r=a-b   
-c=NonZeroInt(-5,5, [0,r])
+r = a-b   
+c = NonZeroInt(-5,5, [0,r])
 
-vleft=[b/2*(x+a)/a,expand((x-c)*(x-r))/(x-c),sqrt(x^2-a^2)+b]
-vright=[b/2*(x+a)/a,expand((x-c)*(x-r))/(x-c)]
+vleft = [
+   b/2 * (x+a)/a,
+   expand((x-c)*(x-r)) / (x-c),
+   sqrt(x^2-a^2) + b
+]
+vright = [
+   b/2 * (x+a)/a,
+   expand((x-c)*(x-r)) / (x-c)
+]
 
 first = RandInt(0,2)
 second = NonZeroInt(0,1, [first])
@@ -248,9 +275,13 @@ Ftwo=vright[second]
 
 
 Use the function to answer the following questions.
-\[f(x)=\left\lbrace\begin{array}{ll}\sage{Fone}& x<\sage{a}\\[5pt] 
-\sage{Ftwo}& x\geq\sage{a} 
-\end{array}\right.\]
+\[
+   f(x)
+   =
+   \left\lbrace\begin{array}{ll}\sage{Fone}& x<\sage{a}\\[5pt] 
+   \sage{Ftwo}& x\geq\sage{a} 
+   \end{array}\right.
+\]
 
 \input{Limit-Compute-0008.HELP.tex}
 
@@ -271,7 +302,6 @@ Compute $f(\sage{a})=\answer{\sage{b}}$\\[1in]
 
 \end{problem}
 
-
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -282,20 +312,39 @@ Compute $f(\sage{a})=\answer{\sage{b}}$\\[1in]
 a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5, [0,a])
 c = NonZeroInt(-5,5)
-d=NonZeroInt(-5,5, [0,a])
+d = NonZeroInt(-5,5, [0,a])
    
-vleft=[a*sin(b*x*pi), a*cos(b*x*pi), a*tan(b*x*pi), a*sin(b*x*pi/2), a*cos(b*x*pi/2), a*tan(b*x*pi/2), a*sin(b*x*pi/6), a*cos(b*x*pi/6), a*tan(b*x*pi/6), a*sin(b*x*pi/3), a*cos(b*x*pi/3), a*tan(b*x*pi/3)]
+vleft=[
+   a*sin(b*x*pi), 
+   a*cos(b*x*pi), 
+   a*tan(b*x*pi), 
+   a*sin(b*x*pi/2), 
+   a*cos(b*x*pi/2), 
+   a*tan(b*x*pi/2), 
+   a*sin(b*x*pi/6), 
+   a*cos(b*x*pi/6), 
+   a*tan(b*x*pi/6), 
+   a*sin(b*x*pi/3), 
+   a*cos(b * x * pi/3), 
+   a*tan(b * x * pi/3)
+]
 
-vright=[(x-a),(x-a)*(x-b),(x-a)*(x-b)*(x-c),expand((x-a)*(x-b)),expand((x-a)*(x-b)*(x-c))]
+vright=[
+   (x-a),
+   (x-a)*(x-b),
+   (x-a)*(x-b)*(x-c),
+   expand((x-a)*(x-b)),
+   expand((x-a)*(x-b)*(x-c))
+]
 
 first = Integer(randint(0,11))
 second = Integer(randint(0,4))
 
-Fone=vleft[first]
-Ftwo=vright[second]
-F=Fone*Ftwo
+Fone = vleft[first]
+Ftwo = vright[second]
+F = Fone * Ftwo
 
-Ans=limit(F,x=d)
+Ans = limit(F,x=d)
 
 \end{sagesilent}
 
@@ -307,7 +356,11 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0009.HELP.tex}
 
-\[\lim_{x\to\sage{d}}\sage{F}=\answer{\sage{Ans}}\]
+\[
+   \lim_{x\to\sage{d}}\sage{F}
+   =
+   \answer{\sage{Ans}}
+\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -332,7 +385,11 @@ Compute the limit of the following difference quotient:
 
 \input{Limit-Compute-0010.HELP.tex}
 
-\[\lim_{x\to\sage{-a}}\dfrac{\sage{Fone}}{\sage{Ftwo}}=\answer{\sage{Ans}}\]
+\[
+   \lim_{x\to\sage{-a}}\dfrac{\sage{Fone}}{\sage{Ftwo}}
+   =
+   \answer{\sage{Ans}}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -342,9 +399,12 @@ Compute the limit of the following difference quotient:
 \begin{sagesilent}
 a = NonZeroInt(-30,30)
 b = RandInt(1,9)
-v=[a*x*ln(x),a/(x^b)]
+v = [
+   a*x*ln(x),
+   a/(x^b)
+]
 pick1 = min(1,RandInt(0,9)) # Use min to do a clever weighting so we don't end up with half of all problems are log.
-F=v[pick1]
+F = v[pick1]
 
 if pick1==0:
    Ans=0# By definition
@@ -378,13 +438,13 @@ a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5)
 c = NonZeroInt(-5,5)   
 d1 = NonZeroInt(1,10, [a])
-d = d1^2# 					For a nice answer
+d = d1^2 # For a nice answer
 e = NonZeroInt(-5,5) 
 m = RandInt(1,3)
 
-F=(sqrt(d*x^(2*m)+a)-b)/(e*x^m+c)
+F = (sqrt(d*x^(2*m)+a)-b)/(e*x^m+c)
 
-Ans=d1/e# Computable by simplification. limit(F,x=infinity)
+Ans = d1 / e # Computable by simplification. limit(F,x=infinity)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -395,7 +455,11 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0012.HELP.tex}
 
-\[\lim_{x\to\infty}\sage{F}=\answer{\sage{Ans}}\]
+\[
+   \lim_{x\to\infty}\sage{F}
+   =
+   \answer{\sage{Ans}}
+\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -409,12 +473,17 @@ p=RandInt(0,3)
 if p==0:
    b = RandInt(1,4)
 
-v=[a*sqrt(x),a/x, a*x^2, a*x^3]
+v = [
+   a*sqrt(x),
+   a/x, 
+   a*x^2, 
+   a*x^3
+]
 
-F=v[p]
-Fone=F(b+h)
-Ftwo=F(b)
-DQ=(F(b+h)-F(b))/h
+F = v[p]
+Fone = F(b+h)
+Ftwo = F(b)
+DQ = (F(b+h)-F(b))/h
 
 Ans=limit(DQ,h=0)
 \end{sagesilent}
@@ -427,7 +496,11 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0013.HELP.tex}
 
-\[\lim_{h\to0}\frac{\sage{Fone-Ftwo}}{h}=\answer{\sage{Ans}}\]
+\[
+   \lim_{h\to0}\frac{\sage{Fone-Ftwo}}{h}
+   =
+   \answer{\sage{Ans}}
+\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -463,11 +536,17 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 a = NonZeroInt(-15,15)
 b = NonZeroInt(1,5,[a])
 
-p=RandInt(0,5)
-v=[sin(a*x)/(b*x), sin(a*x)^2/(b*x^2), sin(a*x)^3/(b*x^3), tan(a*x)/(b*x), tan(a*x)^2/(b*x^2), tan(a*x)^3/(b*x^3)]
+funcVec = [
+   sin(a*x)   / (b*x), 
+   sin(a*x)^2 / (b*x^2), 
+   sin(a*x)^3 / (b*x^3), 
+   tan(a*x)   / (b*x), 
+   tan(a*x)^2 / (b*x^2), 
+   tan(a*x)^3 / (b*x^3)
+]
 
-F=v[p]
-Ans=limit(F,x=0)
+F = choice(funcVec)
+ans = limit(F,x=0)
 \end{sagesilent}
 
 \latexProblemContent{
@@ -478,32 +557,39 @@ Determine if the limit approaches a finite number, $\infty$, $-\infty$, or does 
 
 \input{Limit-Compute-0015.HELP.tex}
 
-\[\lim_{x\to0}\sage{F}=\answer{\sage{Ans}}\]
+\[
+   \lim_{x\to0}\sage{F}
+   =
+   \answer{\sage{ans}}
+\]
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
 
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@algebraic, File@0016}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0016}{
 
 \begin{sagesilent}
-v1=[x, x^(1/3), x^2] 
+funcVec = [
+   x, 
+   x^(1/3), 
+   x^2
+] 
 assume(x>0)
-pick1 = RandInt(0,2)
-f1(x) = v1[pick1](x)
+f1 = choice(funcVec)
 
 c1 = RandInt(1,6)
 c2 = NonZeroInt(-10,10)
 
 p1 = RandInt(2,3)
 
-f2top(x) = expand(c2*(f1(x)^p1 - c1^p1))
-f2bot(x) = (f1(x)-c1)
-f2(x) = f2top(x)/f2bot(x)
+f2top(x) = expand(c2*(f1^p1 - c1^p1))
+f2bot(x) = f1 - c1
+f2(x) = f2top(x) / f2bot(x)
 
-finv = solve(x==f1(y), y)[0].rhs()
+finv = solve(x==f1(x=y), y)[0].rhs()
 
-Ans1=limit(f2(x), x=finv(c1))
-Ans=Ans1.simplify_rational()
+Ans1 = limit(f2(x), x=finv(c1))
+Ans = Ans1.simplify_rational()
 \end{sagesilent}
 
 \latexProblemContent{
@@ -513,54 +599,94 @@ Calculate the following limit:
 
 \input{Limit-Compute-0016.HELP.tex}
 
-$\lim\limits_{x \rightarrow \sage{finv(c1)}} \sage{f2(x)} = \answer{\sage{Ans}}$
+\[
+   \lim_{x \rightarrow \sage{finv(c1)}} \sage{f2(x)} 
+   = 
+   \answer{\sage{Ans}}
+\]
 \end{problem}}%}
 
 
 %\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0017}{
 
 \begin{sagesilent}
-# This problem generates a terrible looking function, that happens to be continuous at the desired limit target; to teach people that L'Hsopital's rule shouldn't be a reflex.
+# Our goal here is to pick a function `g(x)` for the numerator, and then set our 
+# actual numerator to be `f(g(h(x)))`, where both `f` and `h` are linear functions.
 
+# Then repeat for the denominator.
 
-# Everything in the initial creation needs to avoid crazy large, or zero value, to make sure end result is valid and reasonable for students.
+Check = 0
 
-# initialize functions
-ftop = x
-fbot = x
-# initialize target to force the while loop to trigger.
-target = 0 
+while Check == 0:
+   funcVec = [
+      x^(-1), 
+      x^(1/3), 
+      x^1, 
+      x^2, 
+      exp(x), 
+      log(x)
+   ]
+   numMiddleFunc = choice(funcVec) # This is `g` in the description above.
+   denMiddleFunc = choice(funcVec) # This is `g` in the description above.
 
-while ftop(target) == 0 or fbot(target) == 0 or ftop(target) > 1000 or fbot(target) > 1000:
-    ## parameters of the master functions:
-    a = RandInt(-5,5)
-    aPlus = RandInt(1,10)
-    aPlus2 = RandInt(aPlus,15)
-    aAlt = NonZeroInt(-5,5)
-    b = NonZeroInt(-5,5,[a])
-    c = RandInt(-5,5)
-    
-    # Master function vector
-    funcvec=[a*x^2+b*x+c, aAlt*(x-a)^(1/3)+c, aAlt*exp(x+a)+c, aAlt*log(x+aPlus)+c, aAlt*(x+aPlus2)^(1/2)+c]
-    
-    pick1 = 3#RandInt(0,4)# Pick numerator function
-    ftop = funcvec[pick1]
-    
-    pick2 = 4#NonZeroInt(0,4,[pick1])# Pick a different denominator Function
-    fbot = funcvec[pick2]
-    
-    ## Some parameters depend on the type of random function we selected.
-    # Logs and square roots don't like negatives.
-    if pick1 > 2 or pick2 > 2:
-      target = RandInt(-aPlus + 1, 8)
-    else:
-      target = RandInt(-8, 8)
+   chosenFuncs = [numMiddleFunc, denMiddleFunc]
+   
+   if log(x) in chosenFuncs:
+      minVal = 1 # Avoid negative targets if the function is logarithmic.
+   else:
+      minVal = -8
 
-# Now we have a reasonable answer, so we just need to clean up.
-fFinal(x) = ftop(x)/fbot(x)
-ans = fFinal(target)
+   if exp(x) in chosenFuncs:
+      maxVal = 2 # Avoid larget targets if the function is exponential.
+   else:
+      maxVal = 8
 
+   target = RandInt(minVal, maxVal)
+   
+   #Setup for while loop.
+   numerator   = x + 1000 # Just so that the while loop runs at least once.
+   denominator = x + 1000 # Just so that the while loop runs at least once.
+      
+   #First we do the numerator
+   while abs(numerator(x = target)) > 400:
+      inner_coef  = RandInt(1, 10)
+      inner_const = RandInt(1, 10)
+      inner = inner_coef*x + inner_const # This is a candidate for `h` in the description above.
+      middle = numMiddleFunc(x = inner)
 
+      while inner(x = target) == 0:
+         inner_coef  = RandInt(1, 10)
+         inner_const = RandInt(1, 10)
+         inner = inner_coef*x + inner_const # This is a candidate for `h` in the description above.
+         middle = numMiddleFunc(x = inner)
+      
+      outer_coef  = NonZeroInt(-5,5)
+      outer_const = RandInt(-10,10)
+      numerator = outer_coef*middle + outer_coef
+   
+   # Now we work on the denominator
+   while abs(denominator(x = target)) > 400 or denominator(x = target) == 0:
+      inner_coef  = RandInt(1, 10)
+      inner_const = RandInt(1, 10)
+      inner = inner_coef*x + inner_const # This is a candidate for `h` in the description above.
+      middle = denMiddleFunc(x = inner)
+      
+      while inner(x = target) == 0:
+         inner_coef  = RandInt(1, 10)
+         inner_const = RandInt(1, 10)
+         inner = inner_coef*x + inner_const # This is a candidate for `h` in the description above.
+         middle = denMiddleFunc(x = inner)
+
+      outer_coef  = NonZeroInt(-5,5)
+      outer_const = RandInt(-10,10)
+      denominator = outer_coef*middle + outer_coef
+
+   # Now we have a nice answer, so we just need to clean up.
+   func = numerator/denominator
+   ans = func(x = target)
+   Check = saneCheck(ans)
+
+   
 \end{sagesilent}
 
 \latexProblemContent{
@@ -572,37 +698,45 @@ Compute the following limit:
 
 \input{Limit-Compute-0017.HELP.tex}
 
-$\lim\limits_{x \rightarrow \sage{target}} \sage{fFinal(x)} = \answer{\sage{ans}}$
+$\lim\limits_{x \rightarrow \sage{target}} \sage{func} = \answer{\sage{ans}}$
 
 \end{problem}}%}
 
 
 % Squeeze theorem problem. Currently the answer is always zero, should mix it up a little more.
 
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@squeeze, File@0018}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Squeeze, File@0018}{
 
 \begin{sagesilent}
 
-funcvec1=[(x), sin(x), cos((pi/2)-(x)), sqrt(x), x^2, x^3]
-funcvec2=[1/x, log(abs(x))]
-pick1 = RandInt(0,5)
-pick2 = RandInt(0,1)
+# These functions go to 0 as x goes to 0.
+funcVec1 = [
+   sin(x), 
+   cos((pi/2)-(x)), 
+   sqrt(x), 
+   x^1, 
+   x^2, 
+   x^3
+]
+f1 = choice(funcVec1) # This is the part that will let us use the Squeeze theorem.
 
-funcvec3=[sin(x),cos(x)]
-pick3 = RandInt(0,1)
+# These functions "blow up" as x goes to 0.
+funcVec2 = [
+   1/x, 
+   log(abs(x))
+]
+f2 = choice(funcVec2)
 
-f1 = funcvec1[pick1]
-f2 = funcvec2[pick2]
+# These functions oscillate as x tends to +infinity or -infinity.
+funcVec3 = [
+   sin(x),
+   cos(x)
+]
+f3 = choice(funcVec3)
+f4 = f3.subs(x = f2) # This function will now not have a limit as x goes to 0
 
-c1 = RandInt(-10,10)
-
-f3(x) = f2(x-c1)
-
-pick4 = RandInt(0,5)
-f4(x) = funcvec3[pick3](f3(x))
-
-f5 = funcvec1[pick4]
-fFinal(x) = f5(x-c1)*f4(x)
+c = RandInt(-10,10) # This will be our shift.
+fFinal(x) = (f1 * f4).subs(x = (x-c))
 
 \end{sagesilent}
 
@@ -614,7 +748,7 @@ Calculate the following limit:
 
 \input{Limit-Compute-0018.HELP.tex}
 
-$\lim\limits_{x\rightarrow\sage{c1}} \sage{fFinal(x)} = \answer{0}$
+$\lim\limits_{x\rightarrow\sage{c}} \sage{fFinal(x)} = \answer{0}$
 
 \end{problem}}%}
 
@@ -662,7 +796,7 @@ $\lim\limits_{x\rightarrow 0} \sage{f4(x)} = \answer{\sage{ans}}$
 
 
 
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, Sub@Indeterminant, File@0020}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Sub@Rational, File@0020}{
 
 \begin{sagesilent}
 
@@ -685,7 +819,7 @@ tog = (-1)^RandInt(0,1)
 
 fFinal(x) = f1(x)/f2(x)
 
-lim=tog*infinity
+lim = tog*infinity
 
 ans = limit(fFinal(x),x=lim)
 
@@ -706,40 +840,51 @@ $\lim\limits_{x \rightarrow \sage{lim}} \sage{fFinal(x)} = \answer{\sage{ans}}$.
 
 \begin{sagesilent}
 
-cp1 = RandInt(3,7)
-c1 = RandInt(-10,10)
-c2 = RandInt(-10,10)
-c3 = RandInt(-10,10)
-c4 = RandInt(-10,10)
+num_pwr = RandInt(3,7)
+num_coef = NonZeroInt(-10,10)
+num_poly = num_coef * x^num_pwr
 
-cprt = RandInt(2,5)
-cp2 = RandInt(3,7)*cprt
-c5 = RandInt(-10,10)
-c6 = RandInt(-10,10)
-c7 = RandInt(-10,10)
-c8 = RandInt(-10,10)
+num_terms = 4
+for _ in range(num_terms-1):
+   pwr = choice(range(num_pwr))
+   coef = NonZeroInt(-10,10)
+   num_poly += coef * x^pwr
 
-f1(x) = c1*x^cp1+c2*x^2+c3*x+c4
-f2(x) = c5*x^cp2+c6*x^2+c7*x+c8
 
-tog = (-1)^RandInt(0,1)
+root = RandInt(2,5)
+den_pwr = RandInt(3,7) * root
+den_coef = NonZeroInt(-10,10)
+den_poly = den_coef * x^den_pwr
 
-fCompute(x) = f1(x)/((f2(x))^(1/cprt))
-lim=tog*infinity
+den_terms = 4
+for _ in range(den_terms-1):
+   pwr = choice(range(den_pwr))
+   coef = NonZeroInt(-10,10)
+   den_poly += coef * x^pwr
 
-ans = limit(fCompute(x),x=lim)
+fCompute(x) = num_poly/(den_poly^(1/root))
+
+sign = choice([-1,1])
+target = sign * infinity
+
+ans = limit(fCompute(x),x=target)
 
 \end{sagesilent}
 
 \latexProblemContent{
-\ifVerboseLocation This is Limit Compute Question 0022. \\ \fi
+\ifVerboseLocation This is Limit Compute Question 0021. \\ \fi
 \begin{problem}
 
 Compute the following limit:
 
 \input{Limit-Compute-0021.HELP.tex}
 
-$\lim\limits_{x \rightarrow \sage{lim}} \dfrac{\sage{f1(x)}}{\sqrt[\sage{cprt}]{\sage{f2(x)}}} = \answer{\sage{ans}}$.
+\[
+\lim\limits_{x \rightarrow \sage{target}} 
+\dfrac{ \sage{num_poly} }{ \sqrt[\sage{root}]{\sage{den_poly}} } 
+= 
+\answer{\sage{ans}}.
+\]
 \end{problem}}%}
 
 
@@ -1124,14 +1269,21 @@ What is the reason for this answer?\begin{multipleChoice}
 %%\tagged{Ans@MC, Type@Concept, Topic@Limit, Sub@Continuity, Sub@Theorems-IVT, Sub@Poly, Sub@Trig, File@0007}{
 \begin{sagesilent}
 a = RandInt(-8,8)
-p=RandInt(0,1)
 b = RandInt(2,18)
 
-trig=[sin(x-a), cos(x-a)]
-poly=[a+b-x, x-a]
+trigVec = [
+   sin(x), 
+   cos(x)
+]
+polyVec = [
+   a+b-x, 
+   x-a
+]
 
-F=trig[p]
-G=poly[p]
+p = choice([0, 1])
+
+F = trigVec[p].subs(x = x-a)
+G = polyVec[p]
 \end{sagesilent}
 
 \latexProblemContent{
@@ -1185,7 +1337,598 @@ What is the name of the theorem that applies to this problem? \qquad \\
 The $\underline{\answer[format=string]{Squeeze}}$ Theorem
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, File@1000}{
+\begin{sagesilent}
+numCons = NonZeroInt(-10,10)
+num = x - numCons
 
+denCons = NonZeroInt(-10,10, [0, numCons])
+den = x - denCons
 
+target = denCons
 
-                                                                                                                                
+dir = choice(["-", "+"])
+
+if dir == "-":
+    # Approaching target from the left, so denominator will go to 0^-
+    denSign = -1
+else:
+    # Approaching target from the right, so denominator will go to 0^+
+    denSign = +1
+
+numLimit = num.subs(x = target)
+assert numLimit != 0, "Something went wrong!"
+if numLimit > 0:
+    ans = denSign * infinity
+else:
+    ans = denSign * infinity * -1
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1000. \\ \fi
+\begin{problem}
+
+Determine the limit.
+
+\input{Limit-Compute-1000.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}^{\sage{dir}}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, File@1001}{
+\begin{sagesilent}
+numCons = NonZeroInt(-10,10)
+num = numCons - x
+
+denCons = NonZeroInt(-10,10, [0, numCons])
+den = (x - denCons)^2
+
+target = denCons
+
+numLimit = num.subs(x = target)
+assert numLimit != 0, "Something went wrong!"
+if numLimit > 0:
+    ans = infinity
+else:
+    ans = infinity * -1
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1001. \\ \fi
+\begin{problem}
+
+Determine the limit.
+
+\input{Limit-Compute-1001.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \frac{\sage{numCons} - x}{\sage{den}}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Log, File@1002}{
+\begin{sagesilent}
+
+smallRoot = RandInt(-10,10)
+bigRoot   = RandInt(smallRoot,10)
+
+assert smallRoot <= bigRoot
+
+inner = (x - smallRoot)*(x - bigRoot)
+target = bigRoot
+
+func = log(inner)
+
+ans = -infinity
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1002. \\ \fi
+\begin{problem}
+
+Determine the limit.
+
+\input{Limit-Compute-1002.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}^{+}} \sage{func}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Trig, File@1003}{
+\begin{sagesilent}
+
+trigVec = [
+    tan(x),
+    sec(x),
+    csc(x),
+    cot(x)
+]
+trig = choice(trigVec)
+
+pwr = RandInt(1,5)
+func = x^pwr * trig
+
+multiple = RandInt(1,5)
+if trig in [tan(x), sec(x)]:
+    target = latex(2 * multiple) + latex(pi)
+elif trig in [csc(x), cot(x)]:
+    target = latex(4 * multiple + 1) + latex(pi) + "/2"
+else:
+    raise Exception
+
+dirVec = ["-", "+"]
+dir = choice(dirVec)
+
+if dir == "-":
+    ans = -infinity
+elif dir == "+":
+    ans = +infinity
+else:
+    raise Exception
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1003. \\ \fi
+\begin{problem}
+
+Determine the limit.
+
+\input{Limit-Compute-1003.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}^{\sage{dir}}} \sage{func}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, Func@Log, Sub@Asymptote, File@1004}{
+\begin{sagesilent}
+
+shift = RandInt(0,9)
+inner = x - shift
+target = shift
+
+sign = choice([-1, 1])
+coef = sign * RandInt(1,9)
+
+func = coef / inner - sign * log(inner)
+
+ans = sign * infinity
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1004. \\ \fi
+\begin{problem}
+
+Determine the limit.
+
+\input{Limit-Compute-1004.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}^{+}} \sage{func}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, Sub@Asymptote, File@1005}{
+\begin{sagesilent}
+
+sign = choice([-1,1])
+coef = RandInt(1,10)
+target = RandInt(1,5)
+
+num = coef * sign
+den = x^3 - target^3
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1005. \\ \fi
+\begin{problem}
+
+Evaluate the function for values of $x$ that approach $\sage{target}$ from the left and from the right.
+
+\input{Limit-Compute-1005.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}^{-}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer{\sage{-sign * infinity}}
+\]
+\[
+    \lim_{x \to \sage{target}^{+}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer{\sage{sign * infinity}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Exp, Func@Rational, Sub@Asymptote, File@1006}{
+\begin{sagesilent}
+
+numCoef = RandInt(1,9)
+numCons = RandInt(1,9)
+num = numCoef * e^x + numCons
+
+denRoot = RandInt(1,9)
+pwr = 2 * RandInt(0,4) + 1
+den = (x - denRoot)^pwr
+
+target = denRoot
+
+dir = choice(["-", "+"])
+if dir == "-":
+    ans = -infinity
+elif dir == "+":
+    ans = infinity
+else:
+    raise Exception
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1006. \\ \fi
+\begin{problem}
+
+Determine the limit.
+
+\input{Limit-Compute-1006.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}^{\sage{dir}}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Poly, File@1007}{
+\begin{sagesilent}
+
+deg = RandInt(2,5)
+ans = 100
+
+while abs(ans) >= 100:
+    func = RandPoly(deg)
+    target = RandInt(-5,5)
+    ans = func.subs(x = target)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1007. \\ \fi
+\begin{problem}
+
+Evaluate the limit using the appropriate Limit Law(s). (If an answer does not exist, enter DNE.)
+
+\input{Limit-Compute-1007.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \sage{func}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Poly, Func@Rational, File@1008}{
+\begin{sagesilent}
+
+numDeg = RandInt(2,3)
+denDeg = RandInt(2,3)
+
+numLim = 100
+numDen = 100
+
+while abs(numLim) >= 100 or abs(denLim) >= 100:
+    target = RandInt(-5,5)
+    num = RandPoly(numDeg, avoid=[target], expanded=True)
+    den = RandPoly(denDeg, avoid=[target], expanded=True)
+
+    numLim = num.subs(x = target)
+    denLim = den.subs(x = target)
+
+ans = numLim / denLim
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1008. \\ \fi
+\begin{problem}
+
+Evaluate the limit using the appropriate Limit Law(s). (If an answer does not exist, enter DNE.)
+
+\input{Limit-Compute-1008.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Radical, Func@Poly, File@1009}{
+\begin{sagesilent}
+
+deg = RandInt(2,4)
+ans = 10
+
+while abs(ans) >= 10:
+    target = RandInt(-9,9)
+    func = RandPoly(deg)
+    ans2 = func.subs(x = target)
+    if ans2 < 0:
+        ans = 100
+    else:
+        ans = sqrt(ans2)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1009. \\ \fi
+\begin{problem}
+
+Evaluate the limit using the appropriate Limit Law(s). (If an answer does not exist, enter DNE.)
+
+\input{Limit-Compute-1009.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \sqrt{\sage{func}}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Radical, Func@Poly, File@1010}{
+\begin{sagesilent}
+ans = 1000
+
+while abs(ans) >= 1000:
+    target = choice([-8, -1, 1, 8])
+
+    deg = RandInt(1,3)
+    poly = RandPoly(deg)
+
+    cons = RandInt(-9,9)
+    func = (cons + x^(1/3)) * poly
+
+    ans = func.subs(x = target)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1010. \\ \fi
+\begin{problem}
+
+Evaluate the limit using the appropriate Limit Law(s). (If an answer does not exist, enter DNE.)
+
+\input{Limit-Compute-1010.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \sage{func}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, Func@Abs, File@1011}{
+\begin{sagesilent}
+
+target = RandInt(-9,9)
+
+coef = NonZeroInt(-5,5)
+
+num = coef * (x - target)
+den = abs(x - target)
+
+# ans = "DNE"
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1011. \\ \fi
+\begin{problem}
+
+Evaluate the limit using the appropriate Limit Law(s). (If an answer does not exist, enter DNE.)
+
+\input{Limit-Compute-1011.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer[format=string]{DNE}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, Func@Abs, File@1012}{
+\begin{sagesilent}
+
+target = RandInt(-10,-1)
+
+numCoef = NonZeroInt(1,9)
+denCoef = NonZeroInt(1,9)
+
+num = numCoef * (-target) - abs(numCoef * x)
+den = denCoef * (-target + x)
+
+ans = numCoef / denCoef
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1012. \\ \fi
+\begin{problem}
+
+Evaluate the limit using the appropriate Limit Law(s). (If an answer does not exist, enter DNE.)
+
+\input{Limit-Compute-1012.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \frac{\sage{num}}{\sage{den}}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Rational, Func@Poly, Sub@Disc-Remove, File@1013}{
+\begin{sagesilent}
+
+disc = RandInt(-9,9) # Discontinuity
+other = NonZeroInt(-9,9,[disc])
+
+den = x - disc
+num = expand((x - disc)*(x - other))
+
+ans = other - disc
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1013. \\ \fi
+\begin{problem}
+
+How would you "remove the discontinuity" of $f$? In other words, how would you define $f(\sage{disc})$ in order to make $f$ continuous at $\sage{disc}$?
+
+\input{Limit-Compute-1013.HELP.tex}
+
+\[
+   f(x)
+   =
+   \frac{\sage{num}}{\sage{den}}
+\]
+
+$
+f(\sage{disc})
+=
+\answer{\sage{ans}}
+$
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Radical, Func@Poly, File@1014}{
+\begin{sagesilent}
+
+ans = 100
+
+while abs(ans) >= 100:
+    target = RandInt(-9,9)
+
+    innerRoot = RandInt(-5,5)^2 # The inside of the radical will equal this.
+    innerCons = innerRoot + target^2
+    inner = innerCons - x^2
+
+    outerCons = RandInt(-9,9)
+    outerCoef = NonZeroInt(-9,9)
+    outer = outerCons + outerCoef * x
+
+    func = outer * inner^(1/2)
+    ans = func(x = target)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1014. \\ \fi
+\begin{problem}
+
+Use continuity to evaluate the limit.
+
+\input{Limit-Compute-1014.HELP.tex}
+
+\[
+    \lim_{x \to \sage{target}} \left(\sage{outer}\right) \sqrt{\sage{innerCons}-x^2}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Limit, Func@Exp, Func@Poly, File@1015}{
+\begin{sagesilent}
+
+ans = 100
+
+while abs(ans) >= 100:
+    target = 1
+
+    poly = 0
+    for _ in range(3):
+        pwr = RandInt(0,5)
+        coef = NonZeroInt(-9,9)
+        poly += coef * x^pwr
+
+    func = e^poly
+    ans = func.subs(x = 1)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Limit Compute Question 1015. \\ \fi
+\begin{problem}
+
+Use continuity to evaluate the limit.
+
+\input{Limit-Compute-1015.HELP.tex}
+
+\[
+    \lim_{x \to 1} \sage{func}
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%                                                                                                                  

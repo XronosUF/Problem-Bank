@@ -116,7 +116,11 @@ Compute the domain of the function $\sage{F}$.
 
 \input{Precalc-Compute-0004.HELP.tex}
 
-\[\left(\answer{-\infty},\answer{\sage{-b}}\right)\bigcup\left(\answer{\sage{-b}},\answer{\infty}\right)\]
+\[
+  \left(\answer{-\infty},\answer{\sage{-b}}\right)
+  \bigcup
+  \left(\answer{\sage{-b}},\answer{\infty}\right)
+\]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
@@ -3405,34 +3409,39 @@ Find the partial fraction decomposition of $\sage{f}$.
 %%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Precalc, Sub@Domain, Func@Radical, Func@Poly, File@1000}{
+\begin{sagesilent}
+# Define variables and constants/exponents
 
+shift = RandInt(-10,10)
+R = RandInt(1,10)
 
+inner = (x-shift)^2 - R^2
 
+left = shift - R
+right = shift + R
 
+\end{sagesilent}
+ 
+\latexProblemContent{
+\ifVerboseLocation This is Precalc Compute Question 1000. \\ \fi
+\begin{problem}
+Find the domain of the function. (Enter your answer in interval notation.)
 
+\[
+  f(x)
+  =
+  \sqrt{\sage{inner}}
+\]
 
+\input{Precalc-Compute-1000.HELP.tex}
 
+\[
+  \left(\answer{-\infty},\answer{\sage{left}}\right]
+  \bigcup
+  \left[\answer{\sage{right}},\answer{\infty}\right)
+\]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
