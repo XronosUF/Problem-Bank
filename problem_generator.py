@@ -17,6 +17,7 @@ def find_closure(text, begin_idx):
 	"""Given a piece of text and the index of an opening brace, return the index
 	of its closing brace.
 	"""
+	# print(f"Calling find_closure(\ntext = \n{text}\nbegin_idx = \n{begin_idx}\n!")
 	curly_depth = 0
 
 	text_after = text[begin_idx:]
@@ -28,11 +29,11 @@ def find_closure(text, begin_idx):
 			curly_depth -= 1
 			if curly_depth == 0:
 				end_idx = idx + begin_idx
-				break
-	else:
-		# If we're here, we couldn't find a closing brace.
-		raise NoClosingBraceError
-	return end_idx
+				return end_idx
+	
+	# If we're here, we couldn't find a closing brace.
+	raise NoClosingBraceError
+	
 
 def gen_problems(input_file, verbose=False):
 	"""Given an input file, parse it into individual problems.
@@ -212,7 +213,8 @@ def create_intermediate(problem_key, problem_dict, copies):
 		r"\usepackage{PackageLoader}",
 		r"\usepackage{sagetex}",
 		r"\renewcommand{\latexProblemContent}[1]{#1}",
-		r"\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}",
+		# r"\renewcommand{\sqrt}[2][2]{(#2)^{\frac{1}{#1}}}",
+		r"\renewcommand{\sqrt}[2][2]{\text{$(#1)$ root of $(#2)$}}",
 		r"\renewenvironment{problem}{}{}",
 		r"\renewenvironment{question}{}{}",
 		r"\renewenvironment{exploration}{}{}",
@@ -256,6 +258,9 @@ def remove_comments(text, comment_char = r"%"):
 def extract_replacements(file_name):
 	"""Extract replacements from the .sagetex.sout file.
 	"""
+
+	assert os.path.isfile(f"{file_name}.sagetex.sout"), "Sage seems to have failed: There's no .sout file!"
+
 	with open(f"{file_name}.sagetex.sout", 'r') as f:
 		sout_contents = f.readlines()
 
@@ -307,7 +312,7 @@ def replace_sage(latex_problems, replacements):
 			begin_indices = [(begin,latex_problem.find(begin)) for begin in begins]
 			begin_indices = [(begin, idx) for begin, idx in begin_indices if idx != -1]
 
-			begin, begin_idx = min(begin_indices, key=lambda x: x[1]) # Get the begin, idx pair with the minimum idx.
+			begin, begin_idx = min(begin_indices, key=lambda x: x[1]) # Get the (begin, idx) pair with the minimum idx.
 
 			# Index of opening brace.
 			begin_brace_idx = begin_idx + len(begin) - 1
@@ -339,8 +344,20 @@ def replace_sage(latex_problems, replacements):
 
 def cleanup(intermediate_file):
 	"""Delete files which are no longer needed."""
-	itermediate_suffixes = ['.aux', '.ids', '.jax', '.log', '.oc', '.out', '.pdf', '.tex', \
-							'.sagetex.sage', '.sagetex.sage.py', '.sagetex.scmd', '.sagetex.sout']
+	itermediate_suffixes = [
+		'.aux', 
+		'.ids', 
+		'.jax', 
+		'.log', 
+		'.oc', 
+		'.out', 
+		'.pdf', 
+		'.tex', 
+		'.sagetex.sage', 
+		'.sagetex.sage.py', 
+		'.sagetex.scmd', 
+		'.sagetex.sout'
+	]
 
 	files_to_remove = [intermediate_file+suffix for suffix in itermediate_suffixes]
 
@@ -492,13 +509,17 @@ def process_problem(problem_key, problem_dict, input_file, folder = "",
 
 	final_contents = display_tags(parsed_tags) + "\n"
 
-	final_contents += "\n".join([r"\ProblemFileHeader{" + f"{len(final_problems)}" + r"}",
-								 r"\ifquestionPull",
-								 r"\ifproblemToFind"])
+	final_contents += "\n".join([
+		r"\ProblemFileHeader{" + f"{len(final_problems)}" + r"}",
+		r"\ifquestionPull",
+		r"\ifproblemToFind"
+	])
 	final_contents += problem_separator.join(final_problems) 
-	final_contents += "\n".join([r"\fi             %% end of \ifproblemToFind near top of file",
-								 r"\fi             %% end of \ifquestionCount near top of file",
-								 r"\ProblemFileFooter"])
+	final_contents += "\n".join([
+		r"\fi             %% end of \ifproblemToFind near top of file",
+		r"\fi             %% end of \ifquestionCount near top of file",
+		r"\ProblemFileFooter"
+	])
 	
 	file_tex = f"{problem_key}.tex"
 	with open(file_tex, 'w') as f:
@@ -567,22 +588,21 @@ def process_file(folder, file_dict, destination_folder, overwrite_all = False):
 			print(f"Input file = {input_file}")
 
 		with open(input_file, 'w') as f:
-			file_path = os.path.abspath(f"{file_path}.tex")
+			file_path = os.path.abspath(file_path)
 
 			header = "\n".join([
 				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
-				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				Header Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%              Header Contents              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
 				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 				r"",
 				r"%Debug line. to activate this check, put \Verbosetrue at the start of a file calling this.",
 				r"\ifVerbose{Input File Called: " + f"{file_path}" + r"}\fi",
 				r"",
-				r"",
 				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
-				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%				File Contents				%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%                File Contents               %%%%%%%%%%%%%%%%%%%%%%%%%%%",
 				r"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
-				r"",
-				r""])
+				r""
+			])
 			f.write(header)
 
 		######## Process problems ########
@@ -624,6 +644,11 @@ def process_file(folder, file_dict, destination_folder, overwrite_all = False):
 			os.rename(input_file, destination_input)
 		else:
 			shutil.move(input_file, destination_folder)
+
+	else:
+		# Here, we should put the code for if not all files should be overwritten.
+		pass
+
 
 	######## Resolve conflicts ########
 	#
@@ -679,7 +704,9 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 
 			for file in archetype_files:
 				file_key = file[len(begin):-len(end)] # e.g. 'Series'
-				files_dict[file_key] = {'path' : os.path.join(user_input,file), 'name' : file[:-len(end)]}
+				files_dict[file_key] = {
+					'path' : os.path.join(user_input,file), 
+					'name' : file[:-len(end)]}
 
 		else:
 			# Input is something else.
@@ -688,7 +715,9 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 				"That's not an archetype file or a directory! (File name is wrong, at least.)"
 			
 			file_key = file[len(begin):-len(end)] # e.g. 'Series'
-			files_dict[file_key] = {'path' : file, 'name' : file[:-len(end)]}
+			files_dict[file_key] = {
+				'path' : file, 
+				'name' : file[:-len(end)]}
 
 	except:
 		# input_file = input("Enter name of file to process: ")
@@ -705,7 +734,7 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 
 	######## Preprocess each file ########
 
-	for file_key in files_dict:
+	for file_key in list(files_dict.keys()):
 
 		# e.g. file_key = 'Series'
 		#	   file_dict = dictionary containing:
@@ -754,11 +783,15 @@ def main(destination_folder = None, quiet = False, copies_initially = 1000, verb
 
 	if verbose:
 		for file, dictionary in files_dict.items():
-			ast = r"*"*13
-			print(f"{ast}\n{file}\n{ast}")
+			print(f"{file}")
 			for key, val in dictionary.items():
-				print(f"{ast}\n{key}\n{ast}")
-				print(str(val)[:300])
+				key = " ".join(word.capitalize() for word in key.split())
+				print(f"\t{key:18} = ", end = "")
+				print(str(val)[:47], end = "")
+				if len(str(val)) > 47:
+					print(" ...")
+				else:
+					print()
 
 	######## Handle conflicts ########
 
