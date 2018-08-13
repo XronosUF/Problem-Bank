@@ -2967,6 +2967,7 @@ n = RandInt(0,3)
 pwr = 2 * n + 1
 
 func = coef / sqrt(x^pwr)
+func2 = x^pwr
 
 deriv = coef * (-pwr/2) / sqrt(x^(pwr+2))
 
@@ -2986,7 +2987,7 @@ Find the derivative of the funciton using the definition of the derivative.
 \[
     f(x)
     =
-    \frac{\sage{coef}}{\sqrt{x^{\sage{pwr}}}}
+    \frac{\sage{coef}}{\sqrt{\sage{func2}}}
 \]
 
 \input{Derivative-Compute-1003.HELP.tex}
