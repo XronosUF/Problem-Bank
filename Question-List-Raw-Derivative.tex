@@ -2876,7 +2876,7 @@ coef = 2 * NonZeroInt(-5,5)
 inner = coef * x + cons
 
 func = sqrt(inner)
-ans = coef * (2 * sqrt(inner))^(-1)
+ans = derivative(func(x),x)
 
 \end{sagesilent}
 
