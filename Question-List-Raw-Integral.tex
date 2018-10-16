@@ -2710,43 +2710,43 @@ Compute the following integral:
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Sub-u, File@0067}{
-%\begin{sagesilent}
-%# Define variables and constants/exponents
-%var('x')
-%a = NonZeroInt(-9,9)
-%
-%# Define Rational Expression
-%funcDict = [
-%  sin(x)^3 / cos(x)   : "Trig",
-%  sec(x)^3 / tan(x)^2 : "Trig",
-%  arctan(x) / x^2     : "Arctrig"
-%]
-%f = choice(funcDict.keys())
-%tag = funcDict[f]
-%
-%f = a * f
-%
-%# Compute Answer
-%ans = HyperSimp(integral(f,x)).simplify_full()
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\ifVerboseLocation This is Integration Compute Question 0067. \\ \fi
-%\begin{problem}
-%
-%Compute the following integral:
-%
-%\input{Integral-Compute-0067.HELP.tex}
-%
-%\[
-%  \int\; \sage{f} \;dx 
-%  = 
-%  \answer[validator=sameDerivative]{\sage{ans}+C}
-%\]
-%\end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Sub@ByParts, Sub@Sub-u, File@0067}{
+\begin{sagesilent}
+# Define variables and constants/exponents
+var('x')
+a = NonZeroInt(-9,9)
+
+# Define Rational Expression
+funcDict = {
+    sin(x)^3  / cos(x)   : "Trig",
+    sec(x)^3  / tan(x)^2 : "Trig",
+    arctan(x) / x^2      : "Arctrig"
+}
+f = choice(funcDict.keys())
+tag = funcDict[f]
+
+f = a * f
+
+# Compute Answer
+ans = HyperSimp(integral(f,x)).simplify_full()
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0067. \\ \fi
+\begin{problem}
+
+Compute the following integral:
+
+\input{Integral-Compute-0067.HELP.tex}
+
+\[
+    \int\; \sage{f} \;dx 
+    = 
+    \answer[validator=sameDerivative]{\sage{ans}+C}
+\]
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -3230,43 +3230,45 @@ ans = CalcInt
 Evaluate the integral. \\
 
 \[
-\int \sage{Integrand} dx=\answer[validator=sameDerivative]{\sage{ans}+C}
+    \int \sage{Integrand} dx
+    =
+    \answer[validator=sameDerivative]{\sage{ans}+C}
 \]
 
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%
-%%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Func@Trig, Sub@Trig, Sub@ByParts, File@0078}{
-%\begin{sagesilent}
-%A = NonZeroInt(-20,20)
-%B = NonZeroInt(-10,10)
-%pwr1 = 2 * RandInt(0,1) + 1
-%
-%if pwr1 == 3:
-%  pwr2 = 0
-%else:
-%  pwr2 = 2 * RandInt(0,1)
-%
-%func = A * sec(x).subs(x = B*x)^(pwr1) * tan.subs(x = B*x)^(pwr2)
-%
-%ans = HyperSimp(integral(func, x))
-%
-%\end{sagesilent}
-%
-%\latexProblemContent{
-%\ifVerboseLocation This is Integration Compute Question 0078. \\ \fi
-%\begin{problem}
-%Evaluate:
-%\input{Integral-Compute-0078.HELP.tex}
-%\[
-%  \int \; \sage{func} \; dx 
-%  = 
-%  \answer[validator=sameDerivative]{\sage{ans}+C}
-%\]
-%
-%\end{problem}}%}
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Integral, Func@Trig, Sub@Trig, Sub@ByParts, File@0078}{
+\begin{sagesilent}
+A = NonZeroInt(-20,20)
+B = NonZeroInt(-10,10)
+pwr1 = 2 * RandInt(0,1) + 1
+
+if pwr1 == 3:
+    pwr2 = 0
+else:
+    pwr2 = 2 * RandInt(0,1)
+
+func = A * sec(x).subs(x = B*x)^(pwr1) * tan(x).subs(x = B*x)^(pwr2)
+
+ans = HyperSimp(integral(func, x))
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Integration Compute Question 0078. \\ \fi
+\begin{problem}
+Evaluate:
+\input{Integral-Compute-0078.HELP.tex}
+\[
+    \int \; \sage{func} \; dx 
+    = 
+    \answer[validator=sameDerivative]{\sage{ans}+C}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%

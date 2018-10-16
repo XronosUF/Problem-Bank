@@ -20,14 +20,16 @@ a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5,[0,a])
 c = NonZeroInt(-5,5)
     
-vright=[(x-a),expand((x-a)*(x-b)),expand((x-a)*(x-b)*(x-c)),1]
+funcVec = [
+    1,
+    (x-a),
+    expand((x-a)*(x-b)),
+    expand((x-a)*(x-b)*(x-c))
+]
 
-first = Integer(randint(0,3))
-second = Integer(randint(0,2))
-
-Fone=vright[first]
-Ftwo=vright[second]
-F=expand(Fone*Ftwo)
+fOne = choice(funcVec)
+fTwo = choice(funcVec[1:]) # No 0-degree polynomials
+F = expand(fOne*fTwo)
 
 Ans=derivative(F,x)
 
@@ -51,7 +53,7 @@ Compute the following derivative:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Func@Trig, File@0002}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Chain-Rule, Func@Trig, File@0002}{
 \begin{sagesilent}
 w0=SR.wild(0)
 def TrigSimp(f):
@@ -64,13 +66,25 @@ def TrigSimp(f):
 a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5, [0,a])
     
-vleft=[a*sin(b*x*pi), a*cos(b*x*pi), a*tan(b*x*pi), a*sin(b*x*pi/2), a*cos(b*x*pi/2), a*tan(b*x*pi/2), a*sin(b*x*pi/6), a*cos(b*x*pi/6), a*tan(b*x*pi/6), a*sin(b*x*pi/3), a*cos(b*x*pi/3), a*tan(b*x*pi/3)]
+funcVec = [a*func(x=b*x*pi/den) for func in [sin(x),cos(x),tan(x)] for den in [1,2,3,6]]
+# funcVec=[
+#     a*sin(b*x*pi), 
+#     a*cos(b*x*pi),
+#     a*tan(b*x*pi),
+#     a*sin(b*x*pi/2),
+#     a*cos(b*x*pi/2),
+#     a*tan(b*x*pi/2),
+#     a*sin(b*x*pi/6),
+#     a*cos(b*x*pi/6),
+#     a*tan(b*x*pi/6),
+#     a*sin(b*x*pi/3),
+#     a*cos(b*x*pi/3),
+#     a*tan(b*x*pi/3)
+# ]
 
-first = Integer(randint(0,11))
+fOne = choice(funcVec)
 
-Fone=vleft[first]
-
-ans=TrigSimp(derivative(Fone,x))
+ans=TrigSimp(derivative(fOne,x))
 \end{sagesilent}
 
 \latexProblemContent{
@@ -82,7 +96,7 @@ Compute the following derivative:
 \input{Derivative-Compute-0002.HELP.tex}
 
 \[
-    \dfrac{d}{dx}\left(\sage{Fone}\right)
+    \dfrac{d}{dx}\left(\sage{fOne}\right)
     =
     \answer{\sage{ans}}
 \]
@@ -90,7 +104,7 @@ Compute the following derivative:
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Func@Trig, Sub@Product-Rule, File@0003}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Chain-Rule, Func@Trig, Sub@Product-Rule, File@0003}{
 \begin{sagesilent}
 w0=SR.wild(0)
 def TrigSimp(f):
@@ -102,19 +116,17 @@ def TrigSimp(f):
 
 a = NonZeroInt(-5,5)
 b = NonZeroInt(-5,5, [0,a])
+
 c = NonZeroInt(-5,5)   
-d=NonZeroInt(-5,5, [0,c])
+d = NonZeroInt(-5,5, [0,c])
     
-vleft=[a*sin(b*x*pi), a*cos(b*x*pi), a*tan(b*x*pi), a*sin(b*x*pi/2), a*cos(b*x*pi/2), a*tan(b*x*pi/2), a*sin(b*x*pi/6), a*cos(b*x*pi/6), a*tan(b*x*pi/6), a*sin(b*x*pi/3), a*cos(b*x*pi/3), a*tan(b*x*pi/3)]
+funcVecOne = [a*func(x=b*x*pi/den) for func in [sin(x),cos(x),tan(x)] for den in [1,2,3,6]]
+fOne = choice(funcVecOne)
 
-vright=[c*sin(d*x*pi), c*cos(d*x*pi), c*tan(d*x*pi), c*sin(d*x*pi/2), c*cos(d*x*pi/2), c*tan(d*x*pi/2), c*sin(d*x*pi/6), c*cos(d*x*pi/6), c*tan(d*x*pi/6), c*sin(d*x*pi/3), c*cos(d*x*pi/3), c*tan(d*x*pi/3)]
+funcVecTwo = [c*func(x=d*x*pi/den) for func in [sin(x),cos(x),tan(x)] for den in [1,2,3,6]]
+fTwo = choice(funcVecTwo)
 
-first = Integer(randint(0,11))
-second = Integer(randint(0,11))
-
-Fone=vleft[first]
-Ftwo=vright[second]
-F=expand(Fone*Ftwo)
+F=expand(fOne*fTwo)
 
 Ans=TrigSimp(derivative(F,x))
 
@@ -138,7 +150,7 @@ Compute the following derivative:
 %%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Rational, Sub@Quotient-Rule, File@0004}{
+%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Sub@Chain-Rule, Sub@Rational, Sub@Quotient-Rule, File@0004}{
 \begin{sagesilent}
 
 a = NonZeroInt(-5,5)
@@ -1814,15 +1826,15 @@ Rpt = vert + shift
 \ifVerboseLocation This is Derivative Compute Question 0052. \\ \fi
 \begin{problem}
 
-Does the function $\sage{F}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $[\sage{Lpt},\sage{Rpt}]$?
+Does the function $\sage{F}$ satisfy the conditions of the Mean Value Theorem (MVT) over the interval $\left[\sage{Lpt},\sage{Rpt}\right]$?
 
 \input{Derivative-Compute-0052.HELP.tex}
 
 \begin{multipleChoice}
-\choice{No, the function is not continuous over the closed interval $[\sage{Lpt},\sage{Rpt}]$}
-\choice{No, the function is not differentiable over the open interval $[\sage{Lpt},\sage{Rpt}]$}
-\choice{No, the function is not defined over the interval $[\sage{Lpt},\sage{Rpt}]$}
-\choice[correct]{Yes, all the conditions are met}
+\choice{No, the function is not continuous over the closed interval $\left[\sage{Lpt},\sage{Rpt}\right]$}
+\choice{No, the function is not differentiable over the open interval $\left[\sage{Lpt},\sage{Rpt}\right]$}
+\choice{No, the function is not defined over the interval $\left[\sage{Lpt},\sage{Rpt}\right]$}
+\choice[correct]{Yes, all the conditions are met.}
 \end{multipleChoice}
 
 If the conditions are met, then find all numbers $c$ that satisfy the conclusion of the MVT over the interval $[\sage{Lpt},\sage{Rpt}]$.  If the conditions are not met, then write ``NONE.''
@@ -2920,7 +2932,7 @@ derivDomainRight = infinity
 \ifVerboseLocation This is Derivative Compute Question 1002. \\ \fi
 \begin{problem}
 
-Find the derivative of the funciton using the definition of the derivative.
+Find the derivative of the function using the definition of the derivative.
 
 \[
     f(x)
@@ -2982,16 +2994,15 @@ derivDomainRight = infinity
 \ifVerboseLocation This is Derivative Compute Question 1003. \\ \fi
 \begin{problem}
 
-Find the derivative of the funciton using the definition of the derivative.
+Find the derivative of the function using the definition of the derivative.
+
+\input{Derivative-Compute-1003.HELP.tex}
 
 \[
     f(x)
     =
     \frac{\sage{coef}}{\sqrt{\sage{func2}}}
 \]
-
-\input{Derivative-Compute-1003.HELP.tex}
-
 \[
     f'(x)
     =
@@ -3016,6 +3027,326 @@ State the domain of its derivative. (Enter your answer using interval notation.)
     \answer{\sage{derivDomainRight}}\right)
 \] 
 \end{problem}
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Topic@Derivative, Ans@ShortAns, Type@Compute, Func@Rational, Sub@Motion, Sub@Application, File@1004}{
+\begin{sagesilent}
+
+var('a')
+
+coef = RandInt(1,10)
+
+ans = -coef/a^3
+ans1 = ans.subs(a = 1)
+ans2 = ans.subs(a = 2)
+ans3 = ans.subs(a = 3)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 1004. \\ \fi
+\begin{problem}
+
+The displacement (in meters) of a particle moving in a straight line is given by the equation of motion $s = \sage{coef}/t^2$, where $t$ is measured in seconds. Find the velocity of the particle at time $t = a$, $t = 1$, $t = 2$, and $t = 3$.
+
+\input{Derivative-Compute-1004.HELP.tex}
+
+\[
+    t = a,
+    \quad
+    v = \answer{\sage{ans}}
+\]
+
+\begin{problem}
+
+\[
+    t = 1,
+    \quad
+    v = \answer{\sage{ans1}}
+\]
+
+\begin{problem}
+
+\[
+    t = 2,
+    \quad
+    v = \answer{\sage{ans2}}
+\]
+
+\begin{problem}
+
+\[
+    t = 3,
+    \quad
+    v = \answer{\sage{ans3}}
+\]
+
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Topic@Derivative, Ans@ShortAns, Type@Compute, Sub@Tan-Line, File@1005}{
+\begin{sagesilent}
+
+xVal = RandInt(-9,9)
+yVal = RandInt(-9,9)
+slope = NonZeroInt(-10,10)
+
+ans = slope * (x - xVal) + yVal
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 1005. \\ \fi
+\begin{problem}
+
+Find the equation of the tangent line to the graph of $g(x)$ at $x = \sage{xVal}$ if $g(\sage{xVal}) = \sage{yVal}$ and $g'(\sage{xVal}) = \sage{slope}$.
+
+\input{Derivative-Compute-1005.HELP.tex}
+
+\[
+    y
+    =
+    \answer{\sage{ans}}
+\]
+
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Func@Radical, Sub@Linear-Approx, File@1008}{
+\begin{sagesilent}
+
+shift = RandInt(-10,10)
+
+inner = x - shift
+outer = x^(1/2)
+
+func = outer.subs(x=inner)
+
+rootOuter = RandInt(1,5)
+rootInner = rootOuter^2 # This will be the thing inside the square root after the dust settles.
+
+a = rootInner + shift
+
+# linearization = derivative(func,x).subs(x=a) * (x-a) + func.subs(x=a)
+linearization = 1/(2*rootOuter) * (x-a) + rootOuter
+
+diffOne = 0.1
+diffTwo = 0.01
+
+approxOne = linearization.subs(x=a-diffOne)
+approxTwo = linearization.subs(x=a-diffTwo)
+
+pointOne = n(rootInner-diffOne,digits=2)
+pointTwo = n(rootInner-diffTwo,digits=3)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 1008. \\ \fi
+\begin{problem}
+
+Find the linear approximation of the function $f(x) = \sage{func}$ at $a = \sage{a}$ and use it to approximate the numbers $\sqrt{\sage{pointOne}}$ and $\sqrt{\sage{pointTwo}}$.
+
+\input{Derivative-Compute-1008.HELP.tex}
+
+\[
+    L(x)
+    = 
+    \answer{\sage{linearization}}
+\]
+\begin{problem}
+
+\[
+    \sqrt{\sage{pointOne}}
+    \approx
+    \answer{\sage{approxOne}}
+\]
+\begin{problem}
+
+\[
+    \sqrt{\sage{pointTwo}}
+    = 
+    \answer{\sage{approxTwo}}
+\]
+\end{problem}
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Func@Radical, Sub@Linear-Approx, File@1009}{
+\begin{sagesilent}
+
+a = pi/4
+
+func = cos(x)
+
+# linearization = derivative(func,x).subs(x=a) * (x-a) + func.subs(x=a)
+linearization = -1/(2^(1/2)) * (x-a) + 1/(2^(1/2))
+
+pointOne = pi/5
+approxOne = linearization.subs(x=pointOne)
+
+pointTwo = pi/3
+approxTwo = linearization.subs(x=pointTwo)
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 1009. \\ \fi
+\begin{problem}
+
+Find the linear approximation of the function $f(x) = \sage{func}$ at $a = \sage{a}$ and use it to approximate the numbers $\cos\left(\sage{pointOne}\right)$ and $\cos\left(\sage{pointTwo}\right)$.
+
+\input{Derivative-Compute-1009.HELP.tex}
+
+\[
+    L(x)
+    = 
+    \answer{\sage{linearization}}
+\]
+\begin{problem}
+
+\[
+    \cos\left(\sage{pointOne}\right)
+    \approx
+    \answer{\sage{approxOne}}
+\]
+\begin{problem}
+
+\[
+    \cos\left(\sage{pointTwo}\right)
+    \approx
+    \answer{\sage{approxTwo}}
+\]
+\end{problem}
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Func@Poly, Sub@Motion, Sub@Application, File@1010}{
+\begin{sagesilent}
+
+var('t')
+
+a = NonZeroInt(-10,10)
+b = NonZeroInt(-5,5)* (2*a) # So that the stopping point is an integer.
+c = NonZeroInt(-10,10)
+
+pos = a*t^2 + b*t + c
+
+vel = 2*a*t + b
+
+changeDir = -b/(2*a)
+
+if changeDir > 0:
+    distLeft = 0
+    distRight = RandInt(ceil(changeDir), 9)
+else:
+    distLeft = RandInt(-9,floor(changeDir))
+    distRight = 0
+
+distTravelled =   abs(pos.subs(t=changeDir) - pos.subs(t=distLeft)) \
+                + abs(pos.subs(t=changeDir) - pos.subs(t=distRight))
+
+accel = 2*a 
+speedingLeft = changeDir
+speedingRight = infinity
+
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 1010. \\ \fi
+\begin{problem}
+
+The position $s(t)$ of a robot moving along a track at time $t$ is given by $s(t) = \sage{pos}$. What is the velocity $v(t)$ of the particle at time $t$?
+
+\input{Derivative-Compute-1010.HELP.tex}
+
+\[
+    v(t)
+    = 
+    \answer{\sage{vel}}
+\]
+\begin{problem}
+
+Find the total distance travelled by the robot between $t = \sage{distLeft}$ and $t = \sage{distRight}$.
+
+\[
+    \answer{\sage{distTravelled}}.
+\]
+
+\begin{problem}
+
+What is the acceleration $a(t)$ of the particle at time $t$?
+\[
+    a(t)
+    =
+    \answer{\sage{accel}}
+\]
+\begin{problem}
+
+On which interval is the robot speeding up?
+\[
+    \left(\answer{\sage{speedingLeft}},\answer{\sage{speedingRight}}\right).
+\]
+
+\end{problem}
+\end{problem}
+\end{problem}
+\end{problem}}%}
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%\tagged{Ans@ShortAns, Type@Compute, Topic@Derivative, Func@Poly, Sub@Motion, Sub@Application, File@1011}{
+\begin{sagesilent}
+
+var('t')
+
+a = -5
+b = RandInt(1,10)
+c = RandInt(0,10)
+
+h = a*t^2 + b*t + c
+
+v = 2*a*t + b
+peakTime = -b/(2*a)
+peakHeight = h.subs(t=peakTime)
+
+# a = 2*a
+\end{sagesilent}
+
+\latexProblemContent{
+\ifVerboseLocation This is Derivative Compute Question 1011. \\ \fi
+\begin{problem}
+
+At time $t = 0$, a cannonball is launched, with its height $h$ in meters given by $h(t) = \sage{h}$.
+At what time $t$ does the cannonball reach its peak?
+
+\input{Derivative-Compute-1011.HELP.tex}
+
+\[
+    \text{peak time $t$}
+    = 
+    \answer{\sage{peakTime}}
+\]
+\begin{problem}
+
+What is the height of the cannonball at its peak?
+\[
+    \text{peak time $t$}
+    = 
+    \answer{\sage{peakHeight}}
+\]
 \end{problem}
 \end{problem}}%}
 %%%%%%%%%%%%%%%%%%%%%%
